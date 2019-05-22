@@ -1,0 +1,507 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-19 13:53+0200\n"
+"PO-Revision-Date: 2017-10-23 10:31+0200\n"
+"Last-Translator: Jasmine Vyas\n"
+"Language-Team: English (UK)\n"
+"Language: en-GB\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz\n"
+"X-Loco-Source-Locale: en-GB\n"
+"X-Loco-Project-Id: 24032\n"
+"X-Loco-Lookup: id\n"
+"X-Loco-Api-Version: 1.0.18 20171009-1"
+
+#. Source text: ING PSP : Bancontact
+#: classes/class-wc-ingpsp-bancontact.php:17
+#: classes/class-wc-ingpsp-bancontact.php:18 loco:5947bb74820ee94f548b4567
+msgid "Bancontact - ING PSP"
+msgstr "ING PSP : Bancontact"
+
+#. Source text: There was an error processing your payment. Please try again.
+#: classes/class-wc-ingpsp-bancontact.php:46
+#: classes/class-wc-ingpsp-callback.php:119
+#: classes/class-wc-ingpsp-creditcard.php:46
+#: classes/class-wc-ingpsp-homepay.php:47 classes/class-wc-ingpsp-ideal.php:54
+#: classes/class-wc-ingpsp-paypal.php:47 classes/class-wc-ingpsp-sofort.php:47
+#: loco:5947bb74820ee94f548b4568
+msgid "There was a problem processing your transaction."
+msgstr "There was an error processing your payment. Please try again."
+
+#. Source text: ING PSP : Bank Transfer
+#: classes/class-wc-ingpsp-banktransfer.php:17
+#: classes/class-wc-ingpsp-banktransfer.php:18 loco:5947bb74820ee94f548b4569
+msgid "Banktransfer - ING PSP"
+msgstr "ING PSP : Bank Transfer"
+
+#. Source text: Awaiting the bank transfer payment
+#: classes/class-wc-ingpsp-banktransfer.php:49 loco:5947bb74820ee94f548b456a
+msgid "Awaiting Bank-Transfer Payment"
+msgstr "Awaiting the bank transfer payment"
+
+#. Source text: Please use the following reference in your payment:
+#: classes/class-wc-ingpsp-banktransfer.php:67 loco:5947bb74820ee94f548b456b
+msgid "Please use the following payment information:"
+msgstr "Please use the following reference in your payment:"
+
+#. Source text: IBAN: NL13INGB0005300060
+#: classes/class-wc-ingpsp-banktransfer.php:71 loco:5947bb74820ee94f548b456c
+msgid "IBAN: NL13INGB0005300060"
+msgstr "IBAN: NL13INGB0005300060"
+
+#. Source text: BIC: INGBNL2A
+#: classes/class-wc-ingpsp-banktransfer.php:73 loco:5947bb74820ee94f548b456d
+msgid "BIC: INGBNL2A"
+msgstr "BIC: INGBNL2A"
+
+#. Source text: Account Holder: ING Bank N.V. PSP
+#: classes/class-wc-ingpsp-banktransfer.php:75 loco:5947bb74820ee94f548b456e
+msgid "Account Holder: ING Bank N.V. PSP"
+msgstr "Account Holder: ING Bank N.V. PSP"
+
+#. Source text: Residence: Amsterdam
+#: classes/class-wc-ingpsp-banktransfer.php:77 loco:5947bb74820ee94f548b456f
+msgid "Residence: Amsterdam"
+msgstr "Residence: Amsterdam"
+
+#. Plugin Name of the plugin/theme
+#. Source text: ING PSP
+#: classes/class-wc-ingpsp-callback.php:14
+#: classes/class-wc-ingpsp-callback.php:15 loco:5947bb74820ee94f548b4570
+msgid "ING PSP"
+msgstr "ING PSP"
+
+#. Source text: The current webshop is in test mode
+#: classes/class-wc-ingpsp-callback.php:24 loco:5947bb74820ee94f548b4571
+msgid "The current project is in test mode"
+msgstr "The current webshop is in test mode"
+
+#. Source text: When the webshop is in the test mode, you can only test iDEAL. After all the tests have been completed, please login to the ING merchant portal to change the status of your webshop to Live. Choose Settings > Webshops, select your webshop, click Modify and select the status Live. After this all your payment methods will be available.
+#: classes/class-wc-ingpsp-callback.php:26 loco:5947bb74820ee94f548b4572
+msgid ""
+"In test mode you can only test iDEAL. When done testing, \n"
+"                    please login to the portal and activate your project."
+msgstr ""
+"When the webshop is in the test mode, you can only test iDEAL. After all the "
+"tests have been completed, please login to the ING merchant portal to change "
+"the status of your webshop to Live. Choose Settings > Webshops, select your "
+"webshop, click Modify and select the status Live. After this all your "
+"payment methods will be available."
+
+#. Source text: API key
+#: classes/class-wc-ingpsp-callback.php:35 loco:5947bb74820ee94f548b4573
+msgid "API key"
+msgstr "API key"
+
+#. Source text: Copy the API key of your webshop from your merchant portal
+#: classes/class-wc-ingpsp-callback.php:37 loco:5947bb74820ee94f548b4574
+msgid "API key provided by ING"
+msgstr "Copy the API key of your webshop from your merchant portal"
+
+#. Source text: Test API key
+#: classes/class-wc-ingpsp-callback.php:40 loco:5947bb74820ee94f548b4575
+msgid "Test API key"
+msgstr "Test API key"
+
+#. Source text: Enter here the API Key of the test webshop for testing Klarna. If you do not offer Klarna you can leave this empty.
+#: classes/class-wc-ingpsp-callback.php:42 loco:5947bb74820ee94f548b4576
+msgid "Test API key for testing implementation of Klarna."
+msgstr ""
+"Enter here the API Key of the test webshop for testing Klarna. If you do not "
+"offer Klarna you can leave this empty."
+
+#. Source text: IP address(es) for testing Klarna
+#: classes/class-wc-ingpsp-callback.php:45 loco:5947bb74820ee94f548b4577
+msgid "Klarna Debug IP"
+msgstr "IP address(es) for testing Klarna"
+
+#. Source text: You can specify specific IP addresses for which Klarna is visible. If you fill in nothing, then, Klarna is visible to all IP addresses. (For example if you want to test Klarna you can type IP addresses as 128.0.0.1, 255.255.255.255.)
+#: classes/class-wc-ingpsp-callback.php:47 loco:5947bb74820ee94f548b4578
+msgid ""
+"IP address for testing Klarna. If empty, visible for all. If filled, only "
+"visible for specified IP addresses. (Example: 127.0.0.1, 255.255.255.255)"
+msgstr ""
+"You can specify specific IP addresses for which Klarna is visible. If you "
+"fill in nothing, then, Klarna is visible to all IP addresses. (For example "
+"if you want to test Klarna you can type IP addresses as 128.0.0.1, 255.255."
+"255.255.)"
+
+#. Source text: ING PSP product
+#: classes/class-wc-ingpsp-callback.php:50
+#: classes/class-wc-ingpsp-callback.php:52 loco:5947bb74820ee94f548b4579
+msgid "PSP Product"
+msgstr "ING PSP product"
+
+#. Source text: Kassa Compleet
+#: classes/class-wc-ingpsp-callback.php:54 loco:5947bb74820ee94f548b457a
+msgid "Kassa Compleet"
+msgstr "Kassa Compleet"
+
+#. Source text: ING Checkout
+#: classes/class-wc-ingpsp-callback.php:55 loco:5947bb74820ee94f548b457b
+msgid "ING Checkout"
+msgstr "ING Checkout"
+
+#. Source text: ING ePay
+#: classes/class-wc-ingpsp-callback.php:56 loco:5947bb74820ee94f548b457c
+msgid "ING ePay"
+msgstr "ING ePay"
+
+#. Source text: Page after a failed transaction
+#: classes/class-wc-ingpsp-callback.php:60 loco:5947bb74820ee94f548b457d
+msgid "Failed payment page"
+msgstr "Page after a failed transaction"
+
+#. Source text: The page where the shopper is redirected to when his payment has failed.
+#: classes/class-wc-ingpsp-callback.php:61 loco:5947bb74820ee94f548b457e
+msgid "Page where user is redirected after payment has failed."
+msgstr ""
+"The page where the shopper is redirected to when his payment has failed."
+
+#. Source text: Checkout Page
+#: classes/class-wc-ingpsp-callback.php:67 loco:5947bb74820ee94f548b457f
+msgid "Checkout Page"
+msgstr "Checkout Page"
+
+#. Source text: Shopping cart
+#: classes/class-wc-ingpsp-callback.php:68 loco:5947bb74820ee94f548b4580
+msgid "Shopping Cart"
+msgstr "Shopping cart"
+
+#. Source text: cURL CA bundle
+#: classes/class-wc-ingpsp-callback.php:74 loco:5947bb74820ee94f548b4581
+msgid "cURL CA bundle"
+msgstr "cURL CA bundle"
+
+#. Source text: Use cURL CA bundle
+#: classes/class-wc-ingpsp-callback.php:75 loco:5947bb74820ee94f548b4582
+msgid "Use cURL CA bundle"
+msgstr "Use cURL CA bundle"
+
+#. Source text: Resolves issue when curl.cacert path is not set in PHP.ini
+#: classes/class-wc-ingpsp-callback.php:76 loco:5947bb74820ee94f548b4583
+msgid "Resolves issue when curl.cacert path is not set in PHP.ini"
+msgstr "Resolves issue when curl.cacert path is not set in PHP.ini"
+
+#. Source text: ING PSP: Cash on Delivery
+#: classes/class-wc-ingpsp-cashondelivery.php:17
+#: classes/class-wc-ingpsp-cashondelivery.php:18 loco:5947bb74820ee94f548b4584
+msgid "Cash on Delivery - ING PSP"
+msgstr "ING PSP: Cash on Delivery"
+
+#: classes/class-wc-ingpsp-cashondelivery.php:46 loco:5947bb74820ee94f548b4585
+msgid "ING PSP: Awaiting Cash On Delivery payment"
+msgstr ""
+
+#. Source text: ING PSP: MasterCard, VISA, Maestro or V PAY
+#: classes/class-wc-ingpsp-creditcard.php:17
+#: classes/class-wc-ingpsp-creditcard.php:18 loco:5947bb74820ee94f548b4586
+msgid "Mastercard, VISA, Maestro or V PAY - ING PSP"
+msgstr "ING PSP: MasterCard, VISA, Maestro or V PAY"
+
+#. Source text: Your payment is being processed. We did not receive a confirmation from your bank or card issuer. You will receive a message as soon as we have received this.
+#: classes/class-wc-ingpsp-gateway.php:50 loco:5947bb74820ee94f548b4587
+msgid ""
+"Your transaction is still being processed. You will be notified when status "
+"is updated."
+msgstr ""
+"Your payment is being processed. We did not receive a confirmation from your "
+"bank or card issuer. You will receive a message as soon as we have received "
+"this."
+
+#. Source text: iDEAL
+#: classes/class-wc-ingpsp-helper.php:106 loco:5947bb74820ee94f548b4588
+msgid "iDEAL"
+msgstr "iDEAL"
+
+#. Source text: Enable iDEAL payments
+#: classes/class-wc-ingpsp-helper.php:107 loco:5947bb74820ee94f548b4589
+msgid "Enable iDEAL Payments"
+msgstr "Enable iDEAL payments"
+
+#. Source text: Credit card
+#: classes/class-wc-ingpsp-helper.php:110 loco:5947bb74820ee94f548b458a
+msgid "Credit Card"
+msgstr "Credit card"
+
+#. Source text: Enable Credit card payments
+#: classes/class-wc-ingpsp-helper.php:111 loco:5947bb74820ee94f548b458b
+msgid "Enable Credit Card Payments"
+msgstr "Enable Credit card payments"
+
+#. Source text: Bank transfer
+#: classes/class-wc-ingpsp-helper.php:114 loco:5947bb74820ee94f548b458c
+msgid "Bank Transfer"
+msgstr "Bank transfer"
+
+#. Source text: Enable bank transfer payments
+#: classes/class-wc-ingpsp-helper.php:115 loco:5947bb74820ee94f548b458d
+msgid "Enable Bank Transfer Payments"
+msgstr "Enable bank transfer payments"
+
+#. Source text: SOFORT
+#: classes/class-wc-ingpsp-helper.php:118 loco:5947bb74820ee94f548b458e
+msgid "SOFORT"
+msgstr "SOFORT"
+
+#. Source text: Enable SOFORT payments
+#: classes/class-wc-ingpsp-helper.php:119 loco:5947bb74820ee94f548b458f
+msgid "Enable SOFORT Payments"
+msgstr "Enable SOFORT payments"
+
+#. Source text: Bancontact
+#: classes/class-wc-ingpsp-helper.php:122 loco:5947bb74820ee94f548b4590
+msgid "Bancontact"
+msgstr "Bancontact"
+
+#. Source text: Enable Bancontact payments
+#: classes/class-wc-ingpsp-helper.php:123 loco:5947bb74820ee94f548b4591
+msgid "Enable Bancontact Payments"
+msgstr "Enable Bancontact payments"
+
+#. Source text: Cash on delivery
+#: classes/class-wc-ingpsp-helper.php:126 loco:5947bb74820ee94f548b4592
+msgid "Cash On Delivery"
+msgstr "Cash on delivery"
+
+#. Source text: Enable cash on delivery payments
+#: classes/class-wc-ingpsp-helper.php:127 loco:5947bb74820ee94f548b4593
+msgid "Enable Cash On Delivery Payments"
+msgstr "Enable cash on delivery payments"
+
+#. Source text: PayPal
+#: classes/class-wc-ingpsp-helper.php:130 loco:5947bb74820ee94f548b4594
+msgid "PayPal"
+msgstr "PayPal"
+
+#. Source text: Enable PayPal payments
+#: classes/class-wc-ingpsp-helper.php:131 loco:5947bb74820ee94f548b4595
+msgid "Enable PayPal Payments"
+msgstr "Enable PayPal payments"
+
+#. Source text: Home’Pay
+#: classes/class-wc-ingpsp-helper.php:134 loco:5947bb74820ee94f548b4596
+msgid "HomePay"
+msgstr "Home’Pay"
+
+#. Source text: Enable Home’Pay payments
+#: classes/class-wc-ingpsp-helper.php:135 loco:5947bb74820ee94f548b4597
+msgid "Enable HomePay Payments"
+msgstr "Enable Home’Pay payments"
+
+#. Source text: Klarna
+#: classes/class-wc-ingpsp-helper.php:138 loco:5947bb74820ee94f548b4598
+msgid "Klarna"
+msgstr "Klarna"
+
+#. Source text: Enable Klarna payments
+#: classes/class-wc-ingpsp-helper.php:139 loco:5947bb74820ee94f548b4599
+msgid "Enable Klarna Payments"
+msgstr "Enable Klarna payments"
+
+#. Source text: Enable/Disable
+#: classes/class-wc-ingpsp-helper.php:149 loco:5947bb74820ee94f548b459a
+msgid "Enable/Disable"
+msgstr "Enable/Disable"
+
+#. Source text: Title
+#: classes/class-wc-ingpsp-helper.php:155 loco:5947bb74820ee94f548b459b
+msgid "Title"
+msgstr "Title"
+
+#. Source text: This field is the title of the payment method that the shopper will see during the checkout step.
+#: classes/class-wc-ingpsp-helper.php:157 loco:5947bb74820ee94f548b459c
+msgid "This controls the title which the user sees during checkout."
+msgstr ""
+"This field is the title of the payment method that the shopper will see "
+"during the checkout step."
+
+#. Source text: Use Webhook URL
+#: classes/class-wc-ingpsp-helper.php:162 loco:5947bb74820ee94f548b459d
+msgid "Use Webhook URL"
+msgstr "Use Webhook URL"
+
+#. Source text: Automatically include Webhook URL with every order
+#: classes/class-wc-ingpsp-helper.php:163 loco:5947bb74820ee94f548b459e
+msgid "Automatically include Webhook URL with every order"
+msgstr "Automatically include Webhook URL with every order"
+
+#. Source text: Automatically provide the webhook URL with each generated order to the ING PSP API to update the transaction details.
+#: classes/class-wc-ingpsp-helper.php:164 loco:5947bb74820ee94f548b459f
+msgid "API will request this URL in order to update transaction details."
+msgstr ""
+"Automatically provide the webhook URL with each generated order to the ING "
+"PSP API to update the transaction details."
+
+#. Source text: ING PSP : Home’Pay
+#: classes/class-wc-ingpsp-homepay.php:17
+#: classes/class-wc-ingpsp-homepay.php:18 loco:5947bb74820ee94f548b45a0
+msgid "HomePay - ING PSP"
+msgstr "ING PSP : Home’Pay"
+
+#. Source text: ING PSP : iDEAL
+#: classes/class-wc-ingpsp-ideal.php:17 classes/class-wc-ingpsp-ideal.php:18
+#: loco:5947bb74820ee94f548b45a1
+msgid "iDEAL - ING PSP"
+msgstr "ING PSP : iDEAL"
+
+#. Source text: There was an error processing your payment. Please select your bank to use iDEAL!
+#: classes/class-wc-ingpsp-ideal.php:32 loco:5947bb74820ee94f548b45a2
+msgid "Payment Error: You must choose an iDEAL Bank!"
+msgstr ""
+"There was an error processing your payment. Please select your bank to use "
+"iDEAL!"
+
+#. Source text: Choose your bank:
+#: classes/class-wc-ingpsp-ideal.php:77 loco:5947bb74820ee94f548b45a3
+msgid "Choose your bank:"
+msgstr "Choose your bank:"
+
+#. Source text: ING PSP : Klarna
+#: classes/class-wc-ingpsp-klarna.php:17 classes/class-wc-ingpsp-klarna.php:18
+#: loco:5947bb74820ee94f548b45a4
+msgid "Klarna - ING PSP"
+msgstr "ING PSP : Klarna"
+
+#. Source text: There was a problem processing your payment. Please try doing the payment again.
+#: classes/class-wc-ingpsp-klarna.php:53 loco:5947bb74820ee94f548b45a5
+msgid ""
+"Unfortunately, we can not currently accept your purchase with Klarna. \n"
+"                    Please choose another payment option to complete your "
+"order. We apologize for the inconvenience."
+msgstr ""
+"There was a problem processing your payment. Please try doing the payment "
+"again."
+
+#. Source text: Your payment request with Klarna has been sent.
+#: classes/class-wc-ingpsp-klarna.php:63 loco:5947bb74820ee94f548b45a6
+msgid "Klarna payment request sent."
+msgstr "Your payment request with Klarna has been sent."
+
+#. Source text: Your payment with Klarna is successfully processed.
+#: classes/class-wc-ingpsp-klarna.php:79 loco:5947bb74820ee94f548b45a7
+msgid "Your payment using Klarna is successful."
+msgstr "Your payment with Klarna is successfully processed."
+
+#. Source text: The invoice will be sent to your email address.
+#: classes/class-wc-ingpsp-klarna.php:80 loco:5947bb74820ee94f548b45a8
+msgid "The invoice will be sent to your email."
+msgstr "The invoice will be sent to your email address."
+
+#. Source text: Additional Information
+#: classes/class-wc-ingpsp-klarna.php:92 loco:5947bb74820ee94f548b45a9
+msgid "Additional Information"
+msgstr "Additional Information"
+
+#. Source text: Gender:
+#: classes/class-wc-ingpsp-klarna.php:97 loco:5947bb74820ee94f548b45aa
+msgid "Gender:"
+msgstr "Gender:"
+
+#. Source text: Male
+#: classes/class-wc-ingpsp-klarna.php:100 loco:5947bb74820ee94f548b45ab
+msgid "Male"
+msgstr "Male"
+
+#. Source text: Female
+#: classes/class-wc-ingpsp-klarna.php:101 loco:5947bb74820ee94f548b45ac
+msgid "Female"
+msgstr "Female"
+
+#. Source text: Date of Birth:
+#: classes/class-wc-ingpsp-klarna.php:109 loco:5947bb74820ee94f548b45ad
+msgid "Date of birth:"
+msgstr "Date of Birth:"
+
+#. Source text: Please use the following format for entering the birth date : YYYY - MM - DD, e.g.: 31-12-1980
+#: classes/class-wc-ingpsp-klarna.php:110 loco:5947bb74820ee94f548b45ae
+msgid "Birth date format: DD - MM - YYYY, eg: 31-12-1980"
+msgstr ""
+"Please use the following format for entering the birth date : DD - MM - YYYY,"
+" e.g.: 31-12-1980"
+
+#. Source text: ING PSP : PayPal
+#: classes/class-wc-ingpsp-paypal.php:17 classes/class-wc-ingpsp-paypal.php:18
+#: loco:5947bb74820ee94f548b45af
+msgid "PayPal - ING PSP"
+msgstr "ING PSP : PayPal"
+
+#. Source text: ING PSP : SOFORT
+#: classes/class-wc-ingpsp-sofort.php:17 classes/class-wc-ingpsp-sofort.php:18
+#: loco:5947bb74820ee94f548b45b0
+msgid "ING PSP - SOFORT"
+msgstr "ING PSP : SOFORT"
+
+#. Plugin URI of the plugin/theme
+#. Source text: https://www.ing.nl/
+#: loco:5947bb74820ee94f548b45b1
+msgid "https://www.ing.nl/"
+msgstr "https://www.ing.nl/"
+
+#. Description of the plugin/theme
+#. Source text: ING WooCommerce plugin for Kassa Complete, ING ePay and ING Checkout.
+#: loco:5947bb74820ee94f548b45b2
+msgid "ING WooCommerce plugin for ING Kassa Compleet and ING ePay markets."
+msgstr "ING WooCommerce plugin for Kassa Complete, ING ePay and ING Checkout."
+
+#. Author of the plugin/theme
+#. Source text: Ginger Payments
+#: loco:5947bb74820ee94f548b45b3
+msgid "Ginger Payments"
+msgstr "Ginger Payments"
+
+#. Author URI of the plugin/theme
+#. Source text: https://www.gingerpayments.com/
+#: loco:5947bb74820ee94f548b45b4
+msgid "https://www.gingerpayments.com/"
+msgstr "https://www.gingerpayments.com/"
+
+#. Source text: ING PSP : Payconiq
+#: loco:59b0121d820ee9f53d8b4569
+msgid "ING PSP - PAYCONIQ"
+msgstr "ING PSP : Payconiq"
+
+#. Source text: Payconiq
+#: loco:59b0f97e820ee9296b8b4567
+msgid "Payconiq"
+msgstr "Payconiq"
+
+#. Source text: Enable Payconiq Payments
+#: loco:59b106c8820ee90e6e8b4568
+msgid "Enable Payconiq Payments"
+msgstr "Enable Payconiq Payments"
+
+#. Source text: Your order %s at %s
+#: loco:59eda884820ee989358b4567
+msgid "Your order %s at %s"
+msgstr "Your order %s at %s"
+
+#. Source text: ING PSP : AfterPay
+#: classes/class-wc-ingpsp-afterpay.php
+msgid "ING PSP : AfterPay"
+msgstr "ING PSP : AfterPay"
+
+#. Source text: Unfortunately, we can not currently accept your purchase with AfterPay. Please choose another payment option to complete your order. We apologize for the inconvenience.
+#: classes/class-wc-ingpsp-afterpay.php:56
+msgid "Unfortunately, we can not currently accept your purchase with AfterPay. Please choose another payment option to complete your order. We apologize for the inconvenience."
+msgstr "We are sorry to inform you that your request to pay afterwards cannot be accepted by Afterpay. This could have been caused by various (temporary) reasons. If you have any questions pertaining to your rejection, please contact the Afterpay Customer Service via link https://www.afterpay.nl/en/customers/contact or by phone via +31 20 72 30 270. We advise you to select another payment method to complete the payment of your order."
+
+#. Source text: AfterPay payment request sent.
+#: classes/class-wc-ingpsp-afterpay.php:65
+msgid "AfterPay payment request sent."
+msgstr "AfterPay payment request sent."
+
+#. Source text: Your payment using AfterPay is successful.
+#: classes/class-wc-ingpsp-afterpay.php:82
+msgid "Your payment using AfterPay is successful."
+msgstr "Your payment using AfterPay is successful."
+
+#. Source text: I accept <a href='%s' target='_blank'>Terms and Conditions</a>
+#: classes/class-wc-ingpsp-afterpay.php:121
+msgid "I accept <a href='%s' target='_blank'>Terms and Conditions</a>"
+msgstr "I accept AfterPay <a href='%s' target='_blank'>Terms and Conditions</a>"

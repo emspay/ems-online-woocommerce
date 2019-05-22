@@ -1,0 +1,383 @@
+# Copyright (C) 2017 ING PSP
+# This file is distributed under the same license as the ING PSP package.
+msgid ""
+msgstr ""
+"Project-Id-Version: ING PSP 1.2.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/ing-psp\n"
+"POT-Creation-Date: 2017-06-13 09:43:20+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Ginger Payments\n"
+"Language-Team: Ginger Payments Plugins <plugins@gingerpayments.com>\n"
+
+#: classes/class-wc-ingpsp-bancontact.php:17
+#: classes/class-wc-ingpsp-bancontact.php:18
+msgid "Bancontact - ING PSP"
+msgstr ""
+
+#: classes/class-wc-ingpsp-bancontact.php:46
+#: classes/class-wc-ingpsp-callback.php:119
+#: classes/class-wc-ingpsp-creditcard.php:46
+#: classes/class-wc-ingpsp-homepay.php:47 classes/class-wc-ingpsp-ideal.php:54
+#: classes/class-wc-ingpsp-paypal.php:47 classes/class-wc-ingpsp-sofort.php:47
+msgid "There was a problem processing your transaction."
+msgstr ""
+
+#: classes/class-wc-ingpsp-banktransfer.php:17
+#: classes/class-wc-ingpsp-banktransfer.php:18
+msgid "Banktransfer - ING PSP"
+msgstr ""
+
+#: classes/class-wc-ingpsp-banktransfer.php:49
+msgid "Awaiting Bank-Transfer Payment"
+msgstr ""
+
+#: classes/class-wc-ingpsp-banktransfer.php:67
+msgid "Please use the following payment information:"
+msgstr ""
+
+#: classes/class-wc-ingpsp-banktransfer.php:71
+msgid "IBAN: NL13INGB0005300060"
+msgstr ""
+
+#: classes/class-wc-ingpsp-banktransfer.php:73
+msgid "BIC: INGBNL2A"
+msgstr ""
+
+#: classes/class-wc-ingpsp-banktransfer.php:75
+msgid "Account Holder: ING Bank N.V. PSP"
+msgstr ""
+
+#: classes/class-wc-ingpsp-banktransfer.php:77
+msgid "Residence: Amsterdam"
+msgstr ""
+
+#. #-#-#-#-#  ing-psp.pot (ING PSP 1.2.3)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: classes/class-wc-ingpsp-callback.php:14
+#: classes/class-wc-ingpsp-callback.php:15
+msgid "ING PSP"
+msgstr ""
+
+#: classes/class-wc-ingpsp-callback.php:24
+msgid "The current project is in test mode"
+msgstr ""
+
+#: classes/class-wc-ingpsp-callback.php:26
+msgid ""
+"In test mode you can only test iDEAL. When done testing, \n"
+"                    please login to the portal and activate your project."
+msgstr ""
+
+#: classes/class-wc-ingpsp-callback.php:35
+msgid "API key"
+msgstr ""
+
+#: classes/class-wc-ingpsp-callback.php:37
+msgid "API key provided by ING"
+msgstr ""
+
+#: classes/class-wc-ingpsp-callback.php:40
+msgid "Test API key"
+msgstr ""
+
+#: classes/class-wc-ingpsp-callback.php:42
+msgid "Test API key for testing implementation of Klarna."
+msgstr ""
+
+#: classes/class-wc-ingpsp-callback.php:45
+msgid "Klarna Debug IP"
+msgstr ""
+
+#: classes/class-wc-ingpsp-callback.php:47
+msgid ""
+"IP address for testing Klarna. If empty, visible for all. If filled, only "
+"visible for specified IP addresses. (Example: 127.0.0.1, 255.255.255.255)"
+msgstr ""
+
+#: classes/class-wc-ingpsp-callback.php:50
+#: classes/class-wc-ingpsp-callback.php:52
+msgid "PSP Product"
+msgstr ""
+
+#: classes/class-wc-ingpsp-callback.php:54
+msgid "Kassa Compleet"
+msgstr ""
+
+#: classes/class-wc-ingpsp-callback.php:55
+msgid "ING Checkout"
+msgstr ""
+
+#: classes/class-wc-ingpsp-callback.php:56
+msgid "ING ePay"
+msgstr ""
+
+#: classes/class-wc-ingpsp-callback.php:60
+msgid "Failed payment page"
+msgstr ""
+
+#: classes/class-wc-ingpsp-callback.php:61
+msgid "Page where user is redirected after payment has failed."
+msgstr ""
+
+#: classes/class-wc-ingpsp-callback.php:67
+msgid "Checkout Page"
+msgstr ""
+
+#: classes/class-wc-ingpsp-callback.php:68
+msgid "Shopping Cart"
+msgstr ""
+
+#: classes/class-wc-ingpsp-callback.php:74
+msgid "cURL CA bundle"
+msgstr ""
+
+#: classes/class-wc-ingpsp-callback.php:75
+msgid "Use cURL CA bundle"
+msgstr ""
+
+#: classes/class-wc-ingpsp-callback.php:76
+msgid "Resolves issue when curl.cacert path is not set in PHP.ini"
+msgstr ""
+
+#: classes/class-wc-ingpsp-cashondelivery.php:17
+#: classes/class-wc-ingpsp-cashondelivery.php:18
+msgid "Cash on Delivery - ING PSP"
+msgstr ""
+
+#: classes/class-wc-ingpsp-cashondelivery.php:46
+msgid "ING PSP: Awaiting Cash On Delivery payment"
+msgstr ""
+
+#: classes/class-wc-ingpsp-creditcard.php:17
+#: classes/class-wc-ingpsp-creditcard.php:18
+msgid "Mastercard, VISA, Maestro or V PAY - ING PSP"
+msgstr ""
+
+#: classes/class-wc-ingpsp-gateway.php:50
+msgid ""
+"Your transaction is still being processed. You will be notified when status "
+"is updated."
+msgstr ""
+
+#: classes/class-wc-ingpsp-helper.php:106
+msgid "iDEAL"
+msgstr ""
+
+#: classes/class-wc-ingpsp-helper.php:107
+msgid "Enable iDEAL Payments"
+msgstr ""
+
+#: classes/class-wc-ingpsp-helper.php:110
+msgid "Credit Card"
+msgstr ""
+
+#: classes/class-wc-ingpsp-helper.php:111
+msgid "Enable Credit Card Payments"
+msgstr ""
+
+#: classes/class-wc-ingpsp-helper.php:114
+msgid "Bank Transfer"
+msgstr ""
+
+#: classes/class-wc-ingpsp-helper.php:115
+msgid "Enable Bank Transfer Payments"
+msgstr ""
+
+#: classes/class-wc-ingpsp-helper.php:118
+msgid "SOFORT"
+msgstr ""
+
+#: classes/class-wc-ingpsp-helper.php:119
+msgid "Enable SOFORT Payments"
+msgstr ""
+
+#: classes/class-wc-ingpsp-helper.php:122
+msgid "Bancontact"
+msgstr ""
+
+#: classes/class-wc-ingpsp-helper.php:123
+msgid "Enable Bancontact Payments"
+msgstr ""
+
+#: classes/class-wc-ingpsp-helper.php:126
+msgid "Cash On Delivery"
+msgstr ""
+
+#: classes/class-wc-ingpsp-helper.php:127
+msgid "Enable Cash On Delivery Payments"
+msgstr ""
+
+#: classes/class-wc-ingpsp-helper.php:130
+msgid "PayPal"
+msgstr ""
+
+#: classes/class-wc-ingpsp-helper.php:131
+msgid "Enable PayPal Payments"
+msgstr ""
+
+#: classes/class-wc-ingpsp-helper.php:134
+msgid "HomePay"
+msgstr ""
+
+#: classes/class-wc-ingpsp-helper.php:135
+msgid "Enable HomePay Payments"
+msgstr ""
+
+#: classes/class-wc-ingpsp-helper.php:138
+msgid "Klarna"
+msgstr ""
+
+#: classes/class-wc-ingpsp-helper.php:139
+msgid "Enable Klarna Payments"
+msgstr ""
+
+#: classes/class-wc-ingpsp-helper.php:149
+msgid "Enable/Disable"
+msgstr ""
+
+#: classes/class-wc-ingpsp-helper.php:155
+msgid "Title"
+msgstr ""
+
+#: classes/class-wc-ingpsp-helper.php:157
+msgid "This controls the title which the user sees during checkout."
+msgstr ""
+
+#: classes/class-wc-ingpsp-helper.php:162
+msgid "Use Webhook URL"
+msgstr ""
+
+#: classes/class-wc-ingpsp-helper.php:163
+msgid "Automatically include Webhook URL with every order"
+msgstr ""
+
+#: classes/class-wc-ingpsp-helper.php:164
+msgid "API will request this URL in order to update transaction details."
+msgstr ""
+
+#: classes/class-wc-ingpsp-homepay.php:17
+#: classes/class-wc-ingpsp-homepay.php:18
+msgid "HomePay - ING PSP"
+msgstr ""
+
+#: classes/class-wc-ingpsp-ideal.php:17 classes/class-wc-ingpsp-ideal.php:18
+msgid "iDEAL - ING PSP"
+msgstr ""
+
+#: classes/class-wc-ingpsp-ideal.php:32
+msgid "Payment Error: You must choose an iDEAL Bank!"
+msgstr ""
+
+#: classes/class-wc-ingpsp-ideal.php:77
+msgid "Choose your bank:"
+msgstr ""
+
+#: classes/class-wc-ingpsp-klarna.php:17 classes/class-wc-ingpsp-klarna.php:18
+msgid "Klarna - ING PSP"
+msgstr ""
+
+#: classes/class-wc-ingpsp-klarna.php:53
+msgid ""
+"Unfortunately, we can not currently accept your purchase with Klarna. \n"
+"                    Please choose another payment option to complete your "
+"order. We apologize for the inconvenience."
+msgstr ""
+
+#: classes/class-wc-ingpsp-klarna.php:63
+msgid "Klarna payment request sent."
+msgstr ""
+
+#: classes/class-wc-ingpsp-klarna.php:79
+msgid "Your payment using Klarna is successful."
+msgstr ""
+
+#: classes/class-wc-ingpsp-klarna.php:80
+msgid "The invoice will be sent to your email."
+msgstr ""
+
+#: classes/class-wc-ingpsp-klarna.php:92
+msgid "Additional Information"
+msgstr ""
+
+#: classes/class-wc-ingpsp-klarna.php:97
+msgid "Gender:"
+msgstr ""
+
+#: classes/class-wc-ingpsp-klarna.php:100
+msgid "Male"
+msgstr ""
+
+#: classes/class-wc-ingpsp-klarna.php:101
+msgid "Female"
+msgstr ""
+
+#: classes/class-wc-ingpsp-klarna.php:109
+msgid "Date of birth:"
+msgstr ""
+
+#: classes/class-wc-ingpsp-klarna.php:110
+msgid "Birth date format: DD - MM - YYYY, eg: 31-12-1980"
+msgstr ""
+
+#: classes/class-wc-ingpsp-paypal.php:17 classes/class-wc-ingpsp-paypal.php:18
+msgid "PayPal - ING PSP"
+msgstr ""
+
+#: classes/class-wc-ingpsp-sofort.php:17 classes/class-wc-ingpsp-sofort.php:18
+msgid "ING PSP - SOFORT"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://www.ing.nl/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "ING WooCommerce plugin for ING Kassa Compleet and ING ePay markets."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Ginger Payments"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://www.gingerpayments.com/"
+msgstr ""
+
+#: classes/class-wc-ingpsp-payconiq.php:17 classes/class-wc-ingpsp-payconiq.php:18
+msgid "ING PSP - PAYCONIQ"
+msgstr ""
+
+#: classes/class-wc-ingpsp-helper.php:141
+msgid "Payconiq"
+msgstr ""
+
+#: classes/class-wc-ingpsp-helper.php:142
+msgid "Enable Payconiq Payments"
+msgstr ""
+
+#: ingpsp.php:200
+msgid "Your order %s at %s"
+msgstr ""
+
+#: classes/class-wc-ingpsp-afterpay.php
+msgid "ING PSP : AfterPay"
+msgstr ""
+
+#: classes/class-wc-ingpsp-afterpay.php:56
+msgid "Unfortunately, we can not currently accept your purchase with AfterPay. Please choose another payment option to complete your order. We apologize for the inconvenience."
+msgstr ""
+
+#: classes/class-wc-ingpsp-afterpay.php:65
+msgid "AfterPay payment request sent."
+msgstr ""
+
+#: classes/class-wc-ingpsp-afterpay.php:82
+msgid "Your payment using AfterPay is successful."
+msgstr ""
+
+#: classes/class-wc-ingpsp-afterpay.php:121
+msgid "I accept <a href='%s' target='_blank'>Terms and Conditions</a>"
+msgstr ""
