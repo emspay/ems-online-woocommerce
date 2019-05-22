@@ -71,7 +71,7 @@ class WC_Emspay_Banktransfer extends WC_Emspay_Gateway
         echo "<br/>";
         echo __("IBAN: ", WC_Emspay_Helper::DOMAIN);
         echo "<br/>";
-        echo __("BIC: ABNANL2U", WC_Emspay_Helper::DOMAIN);
+        echo __("BIC: ABNANL2A", WC_Emspay_Helper::DOMAIN);
         echo "<br/>";
         echo __("Account Holder: EMS PAY", WC_Emspay_Helper::DOMAIN);
         echo "<br/>";
