@@ -277,7 +277,7 @@ class WC_Emspay_Helper
     public static function getIconSource($method)
     {
         if (in_array($method, self::$PAYMENT_METHODS)) {
-            return '<img src="'.WC_HTTPS::force_https_url(plugins_url()."/ems-pay/images/{$method}.png").'" />';
+            return '<img src="'.WC_HTTPS::force_https_url(plugins_url()."/emspay/images/{$method}.png").'" />';
         }
     }
 
