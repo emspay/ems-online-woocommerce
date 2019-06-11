@@ -27,7 +27,7 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
 
         if (strlen($apiKey) > 0) {
             try {
-                $this->ems = Ginger::createClient($apiKey, $settings['psp_product']);
+                $this->ems = Ginger::createClient($apiKey);
                 if ($settings['bundle_cacert'] == 'yes') {
                     $this->ems->useBundledCA();
                 }

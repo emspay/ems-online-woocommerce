@@ -48,14 +48,6 @@ class WC_Emspay_Callback extends WC_Emspay_Gateway
                 'type' => 'text',
                 'description' => __('IP address for testing Klarna. If empty, visible for all. If filled, only visible for specified IP addresses. (Example: 127.0.0.1, 255.255.255.255)', WC_Emspay_Helper::DOMAIN),
             ],
-            'psp_product' => [
-                'title' => __('PSP Product', WC_Emspay_Helper::DOMAIN),
-                'type' => 'select',
-                'description' => __('PSP Product', WC_Emspay_Helper::DOMAIN),
-                'options' => [
-                    'emspay' => __('EMS Pay', WC_Emspay_Helper::DOMAIN),
-                ],
-            ],
             'failed_redirect' => [
                 'title' => __('Failed payment page', WC_Emspay_Helper::DOMAIN),
                 'description' => __(
@@ -113,7 +105,7 @@ class WC_Emspay_Callback extends WC_Emspay_Gateway
         if (!$success_get) {
             if ($settings['test_api_key']) {
 
-                $this->ems = Ginger::createClient($settings['test_api_key'], $settings['psp_product']);
+                $this->ems = Ginger::createClient($settings['test_api_key']);
                 if ($settings['bundle_cacert'] == 'yes') {
                     $this->ems->useBundledCA();
                 }
@@ -130,7 +122,7 @@ class WC_Emspay_Callback extends WC_Emspay_Gateway
         if (!$success_get) {
             if ($ap_settings['ap_test_api_key']) {
 
-                $this->ems = Ginger::createClient($ap_settings['ap_test_api_key'], $settings['psp_product']);
+                $this->ems = Ginger::createClient($ap_settings['ap_test_api_key']);
                 if ($settings['bundle_cacert'] == 'yes') {
                     $this->ems->useBundledCA();
                 }

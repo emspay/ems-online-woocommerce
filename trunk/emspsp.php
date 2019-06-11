@@ -53,7 +53,7 @@ function woocommerce_emspay_init()
 
         if (strlen($settings['api_key']) > 0) {
             try {
-                $ginger = \GingerPayments\Payment\Ginger::createClient($settings['api_key'], $settings['psp_product']);
+                $ginger = \GingerPayments\Payment\Ginger::createClient($settings['api_key']);
                 if ($settings['bundle_cacert'] == 'yes') {
                     $ginger->useBundledCA();
                 }
@@ -167,7 +167,7 @@ function woocommerce_emspay_init()
             
             if (strlen($apiKey) > 0) {
                 try {
-                    $ginger = \GingerPayments\Payment\Ginger::createClient($apiKey, $settings['psp_product']);
+                    $ginger = \GingerPayments\Payment\Ginger::createClient($apiKey);
                     if ($settings['bundle_cacert'] == 'yes') {
                         $ginger->useBundledCA();
                     }

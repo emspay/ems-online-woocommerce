@@ -35,7 +35,7 @@ final class Ginger
     {
         Guard::uuid(
             static::apiKeyToUuid($apiKey),
-            'ING API key is invalid: '.$apiKey
+            'EMS API key is invalid: '.$apiKey
         );
 
         if (!static::validPHPVersion()) {
@@ -67,7 +67,7 @@ final class Ginger
      * @param string $product
      * @return string
      */
-    public static function getEndpoint($product)
+    public static function getEndpoint($product = null)
     {
         return (new Client\EndpointResolver())->getEndpointEms();
     }

@@ -15,7 +15,7 @@ First create a new API client with your API key and ING product:
 ```php
 use \GingerPayments\Payment\Ginger;
 
-$client = Ginger::createClient('ems-api-key', 'ems_product');
+$client = Ginger::createClient('ems-api-key');
 ```
 
 ## Main differences with ginger-php
