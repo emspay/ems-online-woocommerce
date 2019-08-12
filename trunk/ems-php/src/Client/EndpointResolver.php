@@ -9,7 +9,7 @@ class EndpointResolver {
     /**
      * API endpoint EPAY
      */
-    const ENDPOINT_EMS = 'https://api.onlinetest.emspay.eu/{version}/';
+    const ENDPOINT_EMS = 'https://api.online.emspay.eu/{version}/';
 
 
     public function __construct() {
