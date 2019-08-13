@@ -57,7 +57,6 @@ function woocommerce_emspay_init()
                 if ($settings['bundle_cacert'] == 'yes') {
                     $ginger->useBundledCA();
                 }
-                $apiTestMode = $ginger->isInTestMode();
             } catch (Exception $exception) {
                 WC_Admin_Notices::add_custom_notice('emspay-error', $exception->getMessage());
             }

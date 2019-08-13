@@ -19,17 +19,6 @@ class WC_Emspay_Callback extends WC_Emspay_Gateway
         parent::__construct();
     }
 
-    public function checkWarningTestMode()
-    {
-        if ($this->ems !== null && $this->ems->isInTestMode()) {
-            echo '<h3><span class="dashicons dashicons-warning"></span>'
-                .__('The current project is in test mode', WC_Emspay_Helper::DOMAIN)
-                .'</h3>';
-            echo '<p>'.__('In test mode you can only test iDEAL. When done testing, 
-                    please login to the portal and activate your project.', WC_Emspay_Helper::DOMAIN).'</p>';
-        }
-    }
-
     public function init_form_fields()
     {
         $this->form_fields = [
