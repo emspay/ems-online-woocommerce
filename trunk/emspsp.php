@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name: EMS PAY
+ * Plugin Name: EMS Online
  * Plugin URI: https://emspay.nl/
  * Description: EMS Pay WooCommerce plugin
  * Version: 1.0.0
@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
 }
 
 /**
- * Define EMS PAY plugin version
+ * Define EMS Online plugin version
  */
 define('EMSPAY_PLUGIN_VERSION', 'WooCommerce v1.0.0');
 
@@ -197,7 +197,7 @@ function woocommerce_emspay_init()
     }
 
     /**
-     * Filter out EMS PAY AfterPay method if not in allowed countries.
+     * Filter out EMS Online AfterPay method if not in allowed countries.
      *
      * @param array $gateways
      * @return mixed

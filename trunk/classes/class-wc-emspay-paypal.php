@@ -14,8 +14,8 @@ class WC_Emspay_PayPal extends WC_Emspay_Gateway
         $this->id = 'emspay_paypal';
         $this->icon = false;
         $this->has_fields = false;
-        $this->method_title = __('PayPal - EMS PAY', WC_Emspay_Helper::DOMAIN);
-        $this->method_description = __('PayPal - EMS PAY', WC_Emspay_Helper::DOMAIN);
+        $this->method_title = __('PayPal - EMS Online', WC_Emspay_Helper::DOMAIN);
+        $this->method_description = __('PayPal - EMS Online', WC_Emspay_Helper::DOMAIN);
 
         parent::__construct();
     }

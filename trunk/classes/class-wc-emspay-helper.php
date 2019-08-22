@@ -15,7 +15,7 @@ class WC_Emspay_Helper
     const DOMAIN = 'emspay';
 
     /**
-     * EMS PAY supported payment methods
+     * EMS Online supported payment methods
      */
     public static $PAYMENT_METHODS = [
         'emspay_ideal',

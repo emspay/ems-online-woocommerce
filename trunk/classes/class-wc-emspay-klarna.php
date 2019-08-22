@@ -14,8 +14,8 @@ class WC_Emspay_Klarna extends WC_Emspay_Gateway
         $this->id = 'emspay_klarna';
         $this->icon = false;
         $this->has_fields = true;
-        $this->method_title = __('Klarna - EMS PAY', WC_Emspay_Helper::DOMAIN);
-        $this->method_description = __('Klarna - EMS PAY', WC_Emspay_Helper::DOMAIN);
+        $this->method_title = __('Klarna - EMS Online', WC_Emspay_Helper::DOMAIN);
+        $this->method_description = __('Klarna - EMS Online', WC_Emspay_Helper::DOMAIN);
 
         parent::__construct();
     }

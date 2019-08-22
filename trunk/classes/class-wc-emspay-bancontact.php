@@ -14,8 +14,8 @@ class WC_Emspay_Bancontact extends WC_Emspay_Gateway
         $this->id = 'emspay_bancontact';
         $this->icon = false;
         $this->has_fields = false;
-        $this->method_title = __('Bancontact - EMS PAY', WC_Emspay_Helper::DOMAIN);
-        $this->method_description = __('Bancontact - EMS PAY', WC_Emspay_Helper::DOMAIN);
+        $this->method_title = __('Bancontact - EMS Online', WC_Emspay_Helper::DOMAIN);
+        $this->method_description = __('Bancontact - EMS Online', WC_Emspay_Helper::DOMAIN);
 
         parent::__construct();
     }

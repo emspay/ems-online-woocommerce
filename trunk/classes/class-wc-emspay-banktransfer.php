@@ -14,8 +14,8 @@ class WC_Emspay_Banktransfer extends WC_Emspay_Gateway
         $this->id = 'emspay_banktransfer';
         $this->icon = false;
         $this->has_fields = false;
-        $this->method_title = __('Banktransfer - EMS PAY', WC_Emspay_Helper::DOMAIN);
-        $this->method_description = __('Banktransfer - EMS PAY', WC_Emspay_Helper::DOMAIN);
+        $this->method_title = __('Banktransfer - EMS Online', WC_Emspay_Helper::DOMAIN);
+        $this->method_description = __('Banktransfer - EMS Online', WC_Emspay_Helper::DOMAIN);
 
         parent::__construct();
     }
@@ -73,7 +73,7 @@ class WC_Emspay_Banktransfer extends WC_Emspay_Gateway
         echo "<br/>";
         echo __("BIC: ABNANL2A", WC_Emspay_Helper::DOMAIN);
         echo "<br/>";
-        echo __("Account Holder: EMS PAY", WC_Emspay_Helper::DOMAIN);
+        echo __("Account Holder: EMS Online", WC_Emspay_Helper::DOMAIN);
         echo "<br/>";
         echo __("Residence: Amsterdam", WC_Emspay_Helper::DOMAIN);
         echo "<br/><br/>";
