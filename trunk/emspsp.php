@@ -67,7 +67,6 @@ function woocommerce_emspay_init()
             'WC_Emspay_Ideal',
             'WC_Emspay_Banktransfer',
             'WC_Emspay_Bancontact',
-            'WC_Emspay_Cashondelivery',
             'WC_Emspay_Creditcard',
             'WC_Emspay_PayPal',
             'WC_Emspay_Klarna',
