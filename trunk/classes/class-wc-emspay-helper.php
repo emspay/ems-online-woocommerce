@@ -244,7 +244,8 @@ class WC_Emspay_Helper
                 'label' => __('Automatically include Webhook URL with every order', self::DOMAIN),
                 'description' => __('API will request this URL in order to update transaction details.', self::DOMAIN),
                 'type' => 'checkbox',
-                'desc_tip' => true
+                'desc_tip' => true,
+                'default' => 'yes'
             ]
         ];
 
