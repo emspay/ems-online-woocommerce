@@ -320,47 +320,6 @@ final class Order
     /**
      * @param integer $amount Amount in cents.
      * @param string $currency A valid currency code.
-     * @param array $paymentMethodDetails An array of extra payment method details.
-     * @param string $description A description of the order.
-     * @param string $merchantOrderId A merchant-defined order identifier.
-     * @param string $returnUrl The return URL.
-     * @param string $expirationPeriod The expiration period as an ISO 8601 duration.
-     * @param array $customer Customer information
-     * @param array $extra Extra information.
-     * @param string $webhookUrl The webhook URL.
-     *
-     * @return Order
-     */
-    public static function createWithCod(
-        $amount,
-        $currency,
-        array $paymentMethodDetails = [],
-        $description = null,
-        $merchantOrderId = null,
-        $returnUrl = null,
-        $expirationPeriod = null,
-        $customer = null,
-        $extra = null,
-        $webhookUrl = null
-    ) {
-        return static::create(
-            $amount,
-            $currency,
-            PaymentMethod::COD,
-            $paymentMethodDetails,
-            $description,
-            $merchantOrderId,
-            $returnUrl,
-            $expirationPeriod,
-            $customer,
-            $extra,
-            $webhookUrl
-        );
-    }
-
-    /**
-     * @param integer $amount Amount in cents.
-     * @param string $currency A valid currency code.
      * @param string $description A description of the order.
      * @param string $merchantOrderId A merchant-defined order identifier.
      * @param string $returnUrl The return URL.
@@ -432,49 +391,6 @@ final class Order
             $amount,
             $currency,
             PaymentMethod::PAYPAL,
-            $paymentMethodDetails,
-            $description,
-            $merchantOrderId,
-            $returnUrl,
-            $expirationPeriod,
-            $customer,
-            $extra,
-            $webhookUrl
-        );
-    }
-
-    /**
-     * Create a new Order with the HomePay payment method.
-     *
-     * @param integer $amount Amount in cents.
-     * @param string $currency A valid currency code.
-     * @param array $paymentMethodDetails An array of extra payment method details.
-     * @param string $description A description of the order.
-     * @param string $merchantOrderId A merchant-defined order identifier.
-     * @param string $returnUrl The return URL.
-     * @param string $expirationPeriod The expiration period as an ISO 8601 duration.
-     * @param array $customer Customer information.
-     * @param array $extra Extra information.
-     * @param string $webhookUrl The webhook URL.
-     *
-     * @return Order
-     */
-    public static function createWithHomepay(
-        $amount,
-        $currency,
-        array $paymentMethodDetails = [],
-        $description = null,
-        $merchantOrderId = null,
-        $returnUrl = null,
-        $expirationPeriod = null,
-        $customer = null,
-        $extra = null,
-        $webhookUrl = null
-    ) {
-        return static::create(
-            $amount,
-            $currency,
-            PaymentMethod::HOMEPAY,
             $paymentMethodDetails,
             $description,
             $merchantOrderId,
