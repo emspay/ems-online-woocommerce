@@ -21,7 +21,7 @@ final class GingerTest extends \PHPUnit_Framework_TestCase
         /** @var \GuzzleHttp\Client $httpClient */
         $httpClient = $reflectionProperty->getValue($client);
         $this->assertEquals(
-            str_replace('{version}', Ginger::API_VERSION, EndpointResolver::ENDPOINT_GINGER),
+            str_replace('{version}', Ginger::API_VERSION, EndpointResolver::ENDPOINT_EMS),
             $httpClient->getBaseUrl()
         );
         $this->assertEquals(
