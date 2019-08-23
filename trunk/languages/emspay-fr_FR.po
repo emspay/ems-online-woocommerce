@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-23 08:48+0300\n"
-"PO-Revision-Date: 2019-08-23 09:17+0300\n"
+"PO-Revision-Date: 2019-08-23 12:18+0300\n"
 "Last-Translator: Jasmine Vyas\n"
 "Language-Team: French (France)\n"
 "Language: fr_FR\n"
@@ -74,63 +74,63 @@ msgstr "Femme"
 
 #: classes/class-wc-emspay-afterpay.php:112
 msgid "Dag"
-msgstr ""
+msgstr "Jour"
 
 #: classes/class-wc-emspay-afterpay.php:125
 msgid "Maand"
-msgstr ""
+msgstr "Mois"
 
 #: classes/class-wc-emspay-afterpay.php:127
 msgid "Jan"
-msgstr ""
+msgstr "Janvier"
 
 #: classes/class-wc-emspay-afterpay.php:128
 msgid "Feb"
-msgstr ""
+msgstr "Février"
 
 #: classes/class-wc-emspay-afterpay.php:129
 msgid "Mar"
-msgstr ""
+msgstr "Mars"
 
 #: classes/class-wc-emspay-afterpay.php:130
 msgid "Apr"
-msgstr ""
+msgstr "Avril"
 
 #: classes/class-wc-emspay-afterpay.php:131
 msgid "May"
-msgstr ""
+msgstr "Mai"
 
 #: classes/class-wc-emspay-afterpay.php:132
 msgid "Jun"
-msgstr ""
+msgstr "Juin"
 
 #: classes/class-wc-emspay-afterpay.php:133
 msgid "Jul"
-msgstr ""
+msgstr "Juillet"
 
 #: classes/class-wc-emspay-afterpay.php:134
 msgid "Aug"
-msgstr ""
+msgstr "Août"
 
 #: classes/class-wc-emspay-afterpay.php:135
 msgid "Sep"
-msgstr ""
+msgstr "Septembre"
 
 #: classes/class-wc-emspay-afterpay.php:136
 msgid "Oct"
-msgstr ""
+msgstr "Octobre"
 
 #: classes/class-wc-emspay-afterpay.php:137
 msgid "Nov"
-msgstr ""
+msgstr "Novembre"
 
 #: classes/class-wc-emspay-afterpay.php:138
 msgid "Dec"
-msgstr ""
+msgstr "Décembre"
 
 #: classes/class-wc-emspay-afterpay.php:142
 msgid "Jaar"
-msgstr ""
+msgstr "Année"
 
 #: classes/class-wc-emspay-afterpay.php:161
 #, php-format
