@@ -2,127 +2,218 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-19 13:53+0200\n"
-"PO-Revision-Date: 2017-10-23 10:31+0200\n"
+"POT-Creation-Date: 2019-08-23 08:48+0300\n"
+"PO-Revision-Date: 2019-08-23 08:52+0300\n"
 "Last-Translator: Jasmine Vyas\n"
 "Language-Team: French (France)\n"
-"Language: fr-FR\n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Loco https://localise.biz\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Poedit 2.2\n"
 "X-Loco-Source-Locale: en-GB\n"
 "X-Loco-Project-Id: 24032\n"
 "X-Loco-Lookup: id\n"
-"X-Loco-Api-Version: 1.0.18 20171009-1"
+"X-Loco-Api-Version: 1.0.18 20171009-1\n"
+"X-Poedit-KeywordsList: _e;__;esc_html_e\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#. Source text: EMS PAY : Bancontact
+#: classes/class-wc-emspay-afterpay.php:20
+#: classes/class-wc-emspay-afterpay.php:21
+msgid "EMS Online : AfterPay"
+msgstr "EMS Online: AfterPay"
+
+#: classes/class-wc-emspay-afterpay.php:56
+msgid ""
+"Unfortunately, we can not currently accept your purchase with AfterPay. "
+"Please choose another payment option to complete your order. We apologize "
+"for the inconvenience."
+msgstr ""
+"Nous sommes désolés de vous informer que votre demande de payer plus tard ne "
+"peut pas être acceptée par Afterpay. Cela aurait pu être causé par diverses "
+"raisons (temporaires). Si vous avez des questions concernant votre refus, "
+"s'il vous plaît contacter le Service clientèle Afterpay via https://www."
+"afterpay.nl/en/customers/contact ou par téléphone via +31 20 72 30 270. Nous "
+"vous conseillons de choisir une autre mode de paiement pour effectuer votre "
+"commande."
+
+#: classes/class-wc-emspay-afterpay.php:65
+msgid "AfterPay payment request sent."
+msgstr "Demande AfterPay envoyée."
+
+#: classes/class-wc-emspay-afterpay.php:82
+msgid "Your payment using AfterPay is successful."
+msgstr "Votre paiement en utilisant AfterPay est réussi."
+
+#: classes/class-wc-emspay-afterpay.php:83
+#: classes/class-wc-emspay-klarna.php:80
+msgid "The invoice will be sent to your email."
+msgstr "La facture sera envoyée à votre adresse email."
+
+#: classes/class-wc-emspay-afterpay.php:95
+#: classes/class-wc-emspay-klarna.php:92
+msgid "Additional Information"
+msgstr "Information Supplémentaire"
+
+#: classes/class-wc-emspay-afterpay.php:100
+#: classes/class-wc-emspay-klarna.php:97
+msgid "Gender:"
+msgstr "Sexe:"
+
+#: classes/class-wc-emspay-afterpay.php:103
+#: classes/class-wc-emspay-klarna.php:100
+msgid "Male"
+msgstr "Homme"
+
+#: classes/class-wc-emspay-afterpay.php:104
+#: classes/class-wc-emspay-klarna.php:101
+msgid "Female"
+msgstr "Femme"
+
+#: classes/class-wc-emspay-afterpay.php:112
+msgid "Dag"
+msgstr ""
+
+#: classes/class-wc-emspay-afterpay.php:125
+msgid "Maand"
+msgstr ""
+
+#: classes/class-wc-emspay-afterpay.php:127
+msgid "Jan"
+msgstr ""
+
+#: classes/class-wc-emspay-afterpay.php:128
+msgid "Feb"
+msgstr ""
+
+#: classes/class-wc-emspay-afterpay.php:129
+msgid "Mar"
+msgstr ""
+
+#: classes/class-wc-emspay-afterpay.php:130
+msgid "Apr"
+msgstr ""
+
+#: classes/class-wc-emspay-afterpay.php:131
+msgid "May"
+msgstr ""
+
+#: classes/class-wc-emspay-afterpay.php:132
+msgid "Jun"
+msgstr ""
+
+#: classes/class-wc-emspay-afterpay.php:133
+msgid "Jul"
+msgstr ""
+
+#: classes/class-wc-emspay-afterpay.php:134
+msgid "Aug"
+msgstr ""
+
+#: classes/class-wc-emspay-afterpay.php:135
+msgid "Sep"
+msgstr ""
+
+#: classes/class-wc-emspay-afterpay.php:136
+msgid "Oct"
+msgstr ""
+
+#: classes/class-wc-emspay-afterpay.php:137
+msgid "Nov"
+msgstr ""
+
+#: classes/class-wc-emspay-afterpay.php:138
+msgid "Dec"
+msgstr ""
+
+#: classes/class-wc-emspay-afterpay.php:142
+msgid "Jaar"
+msgstr ""
+
+#: classes/class-wc-emspay-afterpay.php:161
+#, php-format
+msgid "I accept <a href='%s' target='_blank'>Terms and Conditions</a>"
+msgstr ""
+"J'accepte les <a href='%s' target='_blank'>conditions d'utilisation "
+"d'AfterPay</a>"
+
 #: classes/class-wc-emspay-bancontact.php:17
-#: classes/class-wc-emspay-bancontact.php:18 loco:5947bb74820ee94f548b4567
-msgid "Bancontact - EMS PAY"
-msgstr "EMS PAY : Bancontact"
+#: classes/class-wc-emspay-bancontact.php:18
+msgid "Bancontact - EMS Online"
+msgstr "EMS Online: Bancontact"
 
-#. Source text: There was an error processing your payment. Please try again.
 #: classes/class-wc-emspay-bancontact.php:46
-#: classes/class-wc-emspay-callback.php:119
+#: classes/class-wc-emspay-callback.php:155
 #: classes/class-wc-emspay-creditcard.php:46
-#: classes/class-wc-emspay-homepay.php:47 classes/class-wc-emspay-ideal.php:54
+#: classes/class-wc-emspay-ideal.php:54 classes/class-wc-emspay-payconiq.php:47
 #: classes/class-wc-emspay-paypal.php:47 classes/class-wc-emspay-sofort.php:47
-#: loco:5947bb74820ee94f548b4568
 msgid "There was a problem processing your transaction."
 msgstr ""
 "Il y avait malheureusement un problème traitant votre paiement. Veuillez "
 "réessayer le paiement s’il vous plaît."
 
-#. Source text: EMS PAY : Bank Transfer
-#: classes/class-wc-emspay-banktransfer.php:17
-#: classes/class-wc-emspay-banktransfer.php:18 loco:5947bb74820ee94f548b4569
-msgid "Banktransfer - EMS PAY"
-msgstr "EMS PAY : Virement Bancaire"
+#: classes/class-wc-emspay-banktransfer.php:26
+#: classes/class-wc-emspay-banktransfer.php:27
+msgid "Banktransfer - EMS Online"
+msgstr "EMS Online: Virement Bancaire"
 
-#. Source text: Awaiting the bank transfer payment
-#: classes/class-wc-emspay-banktransfer.php:49 loco:5947bb74820ee94f548b456a
+#: classes/class-wc-emspay-banktransfer.php:58
 msgid "Awaiting Bank-Transfer Payment"
 msgstr "En attente du paiement des achats par Virement Bancaire"
 
-#. Source text: Please use the following reference in your payment:
-#: classes/class-wc-emspay-banktransfer.php:67 loco:5947bb74820ee94f548b456b
+#: classes/class-wc-emspay-banktransfer.php:77
 msgid "Please use the following payment information:"
 msgstr "Utilisez la référence suivante pour payer votre commande:"
 
-#. Source text: IBAN: NL13INGB0005300060
-#: classes/class-wc-emspay-banktransfer.php:71 loco:5947bb74820ee94f548b456c
-msgid "IBAN: NL13INGB0005300060"
-msgstr "IBAN: NL13INGB0005300060"
+#: classes/class-wc-emspay-banktransfer.php:79
+msgid "Bank Reference:"
+msgstr "Référence bancaire:"
 
-#. Source text: BIC: INGBNL2A
-#: classes/class-wc-emspay-banktransfer.php:73 loco:5947bb74820ee94f548b456d
-msgid "BIC: INGBNL2A"
-msgstr "BIC: INGBNL2A"
+#: classes/class-wc-emspay-banktransfer.php:81
+msgid "IBAN:"
+msgstr "IBAN:"
 
-#. Source text: Account Holder: ING Bank N.V. PSP
-#: classes/class-wc-emspay-banktransfer.php:75 loco:5947bb74820ee94f548b456e
-msgid "Account Holder: ING Bank N.V. PSP"
-msgstr "Titulaire du compte : ING Bank N.V. PSP"
+#: classes/class-wc-emspay-banktransfer.php:83
+msgid "BIC:"
+msgstr "BIC:"
 
-#. Source text: Residence: Amsterdam
-#: classes/class-wc-emspay-banktransfer.php:77 loco:5947bb74820ee94f548b456f
-msgid "Residence: Amsterdam"
-msgstr "Résidence : Amsterdam"
+#: classes/class-wc-emspay-banktransfer.php:85
+msgid "Account Holder:"
+msgstr "Titulaire du compte :"
 
-#. Plugin Name of the plugin/theme
-#. Source text: EMS PAY
-#: classes/class-wc-emspay-callback.php:14
-#: classes/class-wc-emspay-callback.php:15 loco:5947bb74820ee94f548b4570
-msgid "EMS PAY"
-msgstr "EMS PAY"
+#: classes/class-wc-emspay-banktransfer.php:87
+msgid "Residence:"
+msgstr "Résidence:"
 
-#. Source text: The current webshop is in test mode
-#: classes/class-wc-emspay-callback.php:24 loco:5947bb74820ee94f548b4571
-msgid "The current project is in test mode"
-msgstr "Le boutique en ligne actuel est en mode test"
+#: classes/class-wc-emspay-callback.php:16
+#: classes/class-wc-emspay-callback.php:17
+msgid "EMS Online"
+msgstr "EMS Online"
 
-#. Source text: When the webshop is in the test mode, you can only test iDEAL. After all the tests have been completed, please login to the ING merchant portal to change the status of your webshop to Live. Choose Settings > Webshops, select your webshop, click Modify and select the status Live. After this all your payment methods will be available.
-#: classes/class-wc-emspay-callback.php:26 loco:5947bb74820ee94f548b4572
-msgid ""
-"In test mode you can only test iDEAL. When done testing, \n"
-"                    please login to the portal and activate your project."
-msgstr ""
-"Lorsque le magasin est en mode test, vous pouvez seulement tester iDEAL. "
-"Après tous les tests ont été réalisés, s'il vous plaît se connecter au "
-"portail marchand d'ING pour modifier le statut de votre boutique à \"Webshop "
-"actif\". Sélectionnez Paramètres > Webshop, sélectionnez votre boutique en "
-"ligne, cliquez sur Modifier et sélectionnez le statut \"Webshop actif\". "
-"Après cela, toutes vos méthodes des paiements seront disponibles."
-
-#. Source text: API key
-#: classes/class-wc-emspay-callback.php:35 loco:5947bb74820ee94f548b4573
+#: classes/class-wc-emspay-callback.php:26
 msgid "API key"
 msgstr "Le clé API"
 
-#. Source text: Copy the API key of your webshop from your merchant portal
-#: classes/class-wc-emspay-callback.php:37 loco:5947bb74820ee94f548b4574
-msgid "API key provided by ING"
-msgstr "Obtenez votre EMS PAY clé API du portail marchand"
+#: classes/class-wc-emspay-callback.php:28
+msgid "API key provided by EMS"
+msgstr "Obtenez votre EMS Online clé API du portail marchand"
 
-#. Source text: Test API key
-#: classes/class-wc-emspay-callback.php:40 loco:5947bb74820ee94f548b4575
+#: classes/class-wc-emspay-callback.php:31
+#: classes/class-wc-emspay-helper.php:255
 msgid "Test API key"
 msgstr "Le clé API de Test"
 
-#. Source text: Enter here the API Key of the test webshop for testing Klarna. If you do not offer Klarna you can leave this empty.
-#: classes/class-wc-emspay-callback.php:42 loco:5947bb74820ee94f548b4576
+#: classes/class-wc-emspay-callback.php:33
 msgid "Test API key for testing implementation of Klarna."
 msgstr "Le clé API de Test pour tester la mise en œuvre de Klarna."
 
-#. Source text: IP address(es) for testing Klarna
-#: classes/class-wc-emspay-callback.php:45 loco:5947bb74820ee94f548b4577
+#: classes/class-wc-emspay-callback.php:36
 msgid "Klarna Debug IP"
 msgstr "L’adresse(s) IP pour tester Klarna"
 
-#. Source text: You can specify specific IP addresses for which Klarna is visible. If you fill in nothing, then, Klarna is visible to all IP addresses. (For example if you want to test Klarna you can type IP addresses as 128.0.0.1, 255.255.255.255.)
-#: classes/class-wc-emspay-callback.php:47 loco:5947bb74820ee94f548b4578
+#: classes/class-wc-emspay-callback.php:38
 msgid ""
 "IP address for testing Klarna. If empty, visible for all. If filled, only "
 "visible for specified IP addresses. (Example: 127.0.0.1, 255.255.255.255)"
@@ -133,81 +224,41 @@ msgstr ""
 "souhaitez tester Klarna, vous pouvez saisir des adresses IP comme 128.0.0.1, "
 "255.255.255.255.)"
 
-#. Source text: EMS PAY product
-#: classes/class-wc-emspay-callback.php:50
-#: classes/class-wc-emspay-callback.php:52 loco:5947bb74820ee94f548b4579
-msgid "PSP Product"
-msgstr "Produit PSP"
-
-#. Source text: Kassa Compleet
-#: classes/class-wc-emspay-callback.php:54 loco:5947bb74820ee94f548b457a
-msgid "Kassa Compleet"
-msgstr "Kassa Compleet"
-
-#. Source text: ING Checkout
-#: classes/class-wc-emspay-callback.php:55 loco:5947bb74820ee94f548b457b
-msgid "ING Checkout"
-msgstr "ING Checkout"
-
-#. Source text: ING ePay
-#: classes/class-wc-emspay-callback.php:56 loco:5947bb74820ee94f548b457c
-msgid "ING ePay"
-msgstr "ING ePay"
-
-#. Source text: Page after a failed transaction
-#: classes/class-wc-emspay-callback.php:60 loco:5947bb74820ee94f548b457d
+#: classes/class-wc-emspay-callback.php:41
 msgid "Failed payment page"
 msgstr "Page du paiement échoué"
 
-#. Source text: The page where the shopper is redirected to when his payment has failed.
-#: classes/class-wc-emspay-callback.php:61 loco:5947bb74820ee94f548b457e
+#: classes/class-wc-emspay-callback.php:43
 msgid "Page where user is redirected after payment has failed."
 msgstr "Page où l’utilisateur est redirigé quand le paiement a échoué."
 
-#. Source text: Checkout Page
-#: classes/class-wc-emspay-callback.php:67 loco:5947bb74820ee94f548b457f
+#: classes/class-wc-emspay-callback.php:48
 msgid "Checkout Page"
 msgstr "Page du Checkout"
 
-#. Source text: Shopping cart
-#: classes/class-wc-emspay-callback.php:68 loco:5947bb74820ee94f548b4580
+#: classes/class-wc-emspay-callback.php:49
 msgid "Shopping Cart"
 msgstr "Panier"
 
-#. Source text: cURL CA bundle
-#: classes/class-wc-emspay-callback.php:74 loco:5947bb74820ee94f548b4581
+#: classes/class-wc-emspay-callback.php:55
 msgid "cURL CA bundle"
 msgstr "bundle cURL CA"
 
-#. Source text: Use cURL CA bundle
-#: classes/class-wc-emspay-callback.php:75 loco:5947bb74820ee94f548b4582
+#: classes/class-wc-emspay-callback.php:56
 msgid "Use cURL CA bundle"
 msgstr "Utilisez bundle cURL CA"
 
-#. Source text: Resolves issue when curl.cacert path is not set in PHP.ini
-#: classes/class-wc-emspay-callback.php:76 loco:5947bb74820ee94f548b4583
+#: classes/class-wc-emspay-callback.php:58
 msgid "Resolves issue when curl.cacert path is not set in PHP.ini"
 msgstr ""
 "Résout le problème lorsque le curl.cacert path n’est pas défini dans PHP.ini"
 
-#. Source text: EMS PAY: Cash on Delivery
-#: classes/class-wc-emspay-cashondelivery.php:17
-#: classes/class-wc-emspay-cashondelivery.php:18 loco:5947bb74820ee94f548b4584
-msgid "Cash on Delivery - EMS PAY"
-msgstr "EMS PAY : Contre-remboursement"
-
-#: classes/class-wc-emspay-cashondelivery.php:46 loco:5947bb74820ee94f548b4585
-msgid "EMS PAY: Awaiting Cash On Delivery payment"
-msgstr ""
-
-#. Source text: EMS PAY: MasterCard, VISA, Maestro or V PAY
 #: classes/class-wc-emspay-creditcard.php:17
-#: classes/class-wc-emspay-creditcard.php:18 loco:5947bb74820ee94f548b4586
-msgid "Mastercard, VISA, Maestro or V PAY - EMS PAY"
-msgstr "EMS PAY : MasterCard, VISA, Maestro ou V PAY"
+#: classes/class-wc-emspay-creditcard.php:18
+msgid "Mastercard, VISA, Maestro or V PAY - EMS Online"
+msgstr "EMS Online: MasterCard, VISA, Maestro ou V PAY"
 
-#. Source text: Your payment is being processed. We did not receive a confirmation from your bank or card issuer. You will receive a message as soon as we have received this.
-#: classes/class-wc-emspay-gateway.php:50 loco:5947bb74820ee94f548b4587
+#: classes/class-wc-emspay-gateway.php:55
 msgid ""
 "Your transaction is still being processed. You will be notified when status "
 "is updated."
@@ -216,297 +267,263 @@ msgstr ""
 "confirmation de votre banque ou de l'émetteur de la carte. Vous recevrez un "
 "message dès que nous avons reçu ce."
 
-#. Source text: iDEAL
-#: classes/class-wc-emspay-helper.php:106 loco:5947bb74820ee94f548b4588
+#: classes/class-wc-emspay-helper.php:187
 msgid "iDEAL"
 msgstr "iDEAL"
 
-#. Source text: Enable iDEAL payments
-#: classes/class-wc-emspay-helper.php:107 loco:5947bb74820ee94f548b4589
+#: classes/class-wc-emspay-helper.php:188
 msgid "Enable iDEAL Payments"
 msgstr "Activer les paiements par iDEAL"
 
-#. Source text: Credit card
-#: classes/class-wc-emspay-helper.php:110 loco:5947bb74820ee94f548b458a
+#: classes/class-wc-emspay-helper.php:191
 msgid "Credit Card"
 msgstr "Cartes de crédit"
 
-#. Source text: Enable Credit card payments
-#: classes/class-wc-emspay-helper.php:111 loco:5947bb74820ee94f548b458b
+#: classes/class-wc-emspay-helper.php:192
 msgid "Enable Credit Card Payments"
 msgstr "Activer les paiements par Cartes de crédit"
 
-#. Source text: Bank transfer
-#: classes/class-wc-emspay-helper.php:114 loco:5947bb74820ee94f548b458c
+#: classes/class-wc-emspay-helper.php:195
 msgid "Bank Transfer"
 msgstr "Virement Bancaire"
 
-#. Source text: Enable bank transfer payments
-#: classes/class-wc-emspay-helper.php:115 loco:5947bb74820ee94f548b458d
+#: classes/class-wc-emspay-helper.php:196
 msgid "Enable Bank Transfer Payments"
 msgstr "Activer les paiements par Virement Bancaire"
 
-#. Source text: SOFORT
-#: classes/class-wc-emspay-helper.php:118 loco:5947bb74820ee94f548b458e
+#: classes/class-wc-emspay-helper.php:199
 msgid "SOFORT"
 msgstr "SOFORT"
 
-#. Source text: Enable SOFORT payments
-#: classes/class-wc-emspay-helper.php:119 loco:5947bb74820ee94f548b458f
+#: classes/class-wc-emspay-helper.php:200
 msgid "Enable SOFORT Payments"
 msgstr "Activer les paiements par SOFORT"
 
-#. Source text: Bancontact
-#: classes/class-wc-emspay-helper.php:122 loco:5947bb74820ee94f548b4590
+#: classes/class-wc-emspay-helper.php:203
 msgid "Bancontact"
 msgstr "Bancontact"
 
-#. Source text: Enable Bancontact payments
-#: classes/class-wc-emspay-helper.php:123 loco:5947bb74820ee94f548b4591
+#: classes/class-wc-emspay-helper.php:204
 msgid "Enable Bancontact Payments"
 msgstr "Activer les paiements par Bancontact"
 
-#. Source text: Cash on delivery
-#: classes/class-wc-emspay-helper.php:126 loco:5947bb74820ee94f548b4592
-msgid "Cash On Delivery"
-msgstr "Contre-remboursement"
-
-#. Source text: Enable cash on delivery payments
-#: classes/class-wc-emspay-helper.php:127 loco:5947bb74820ee94f548b4593
-msgid "Enable Cash On Delivery Payments"
-msgstr "Activer les paiements par Contre-remboursement"
-
-#. Source text: PayPal
-#: classes/class-wc-emspay-helper.php:130 loco:5947bb74820ee94f548b4594
+#: classes/class-wc-emspay-helper.php:207
 msgid "PayPal"
 msgstr "PayPal"
 
-#. Source text: Enable PayPal payments
-#: classes/class-wc-emspay-helper.php:131 loco:5947bb74820ee94f548b4595
+#: classes/class-wc-emspay-helper.php:208
 msgid "Enable PayPal Payments"
 msgstr "Activer les paiements par PayPal"
 
-#. Source text: Home’Pay
-#: classes/class-wc-emspay-helper.php:134 loco:5947bb74820ee94f548b4596
-msgid "HomePay"
-msgstr "Home’Pay"
+#: classes/class-wc-emspay-helper.php:211
+msgid "AfterPay"
+msgstr "EMS Online: AfterPay"
 
-#. Source text: Enable Home’Pay payments
-#: classes/class-wc-emspay-helper.php:135 loco:5947bb74820ee94f548b4597
-msgid "Enable HomePay Payments"
-msgstr "Activer les paiements par Home’Pay"
+#: classes/class-wc-emspay-helper.php:212
+msgid "Enable AfterPay Payments"
+msgstr "Activer les paiements par AfterPay"
 
-#. Source text: Klarna
-#: classes/class-wc-emspay-helper.php:138 loco:5947bb74820ee94f548b4598
+#: classes/class-wc-emspay-helper.php:215
 msgid "Klarna"
 msgstr "Klarna"
 
-#. Source text: Enable Klarna payments
-#: classes/class-wc-emspay-helper.php:139 loco:5947bb74820ee94f548b4599
+#: classes/class-wc-emspay-helper.php:216
 msgid "Enable Klarna Payments"
 msgstr "Activer les paiements par Klarna"
 
-#. Source text: Enable/Disable
-#: classes/class-wc-emspay-helper.php:149 loco:5947bb74820ee94f548b459a
+#: classes/class-wc-emspay-helper.php:219
+msgid "Payconiq"
+msgstr "Payconiq"
+
+#: classes/class-wc-emspay-helper.php:220
+msgid "Enable Payconiq Payments"
+msgstr "Activer les paiements par Payconiq"
+
+#: classes/class-wc-emspay-helper.php:230
 msgid "Enable/Disable"
 msgstr "Activer / Désactiver"
 
-#. Source text: Title
-#: classes/class-wc-emspay-helper.php:155 loco:5947bb74820ee94f548b459b
+#: classes/class-wc-emspay-helper.php:236
 msgid "Title"
 msgstr "Titre"
 
-#. Source text: This field is the title of the payment method that the shopper will see during the checkout step.
-#: classes/class-wc-emspay-helper.php:157 loco:5947bb74820ee94f548b459c
+#: classes/class-wc-emspay-helper.php:238
 msgid "This controls the title which the user sees during checkout."
 msgstr ""
 "Cette section permet de contrôler le titre de la méthode de paiement que "
 "l’utilisateur voit lors de check-out."
 
-#. Source text: Use Webhook URL
-#: classes/class-wc-emspay-helper.php:162 loco:5947bb74820ee94f548b459d
+#: classes/class-wc-emspay-helper.php:243
 msgid "Use Webhook URL"
 msgstr "Utilisez l’URL Webhook"
 
-#. Source text: Automatically include Webhook URL with every order
-#: classes/class-wc-emspay-helper.php:163 loco:5947bb74820ee94f548b459e
+#: classes/class-wc-emspay-helper.php:244
 msgid "Automatically include Webhook URL with every order"
 msgstr ""
 "Fournir automatiquement l’URL Webhook à l’API du EMS PAY avec chaque commande"
 
-#. Source text: Automatically provide the webhook URL with each generated order to the EMS PAY API to update the transaction details.
-#: classes/class-wc-emspay-helper.php:164 loco:5947bb74820ee94f548b459f
+#: classes/class-wc-emspay-helper.php:245
 msgid "API will request this URL in order to update transaction details."
 msgstr ""
 "Fournir automatiquement l'URL de webhook avec chaque commande généré à l'API "
 "du EMS PAY pour mettre à jour les détails de la transaction."
 
-#. Source text: EMS PAY : Home’Pay
-#: classes/class-wc-emspay-homepay.php:17
-#: classes/class-wc-emspay-homepay.php:18 loco:5947bb74820ee94f548b45a0
-msgid "HomePay - EMS PAY"
-msgstr "EMS PAY : Home’Pay"
+#: classes/class-wc-emspay-helper.php:257
+msgid "Test API key for testing implementation of AfterPay."
+msgstr "Le clé API de Test pour tester la mise en œuvre de AfterPay."
 
-#. Source text: EMS PAY : iDEAL
+#: classes/class-wc-emspay-helper.php:260
+msgid "AfterPay Debug IP"
+msgstr "L’adresse(s) IP pour tester AfterPay"
+
+#: classes/class-wc-emspay-helper.php:262
+msgid ""
+"IP address for testing AfterPay. If empty, visible for all. If filled, only "
+"visible for specified IP addresses. (Example: 127.0.0.1, 255.255.255.255)"
+msgstr ""
+"L’adresse IP pour tester AfterPay. Vous pouvez spécifier des adresses IP "
+"spécifiques pour lesquelles AfterPay est visible. Si vous remplissez rien, "
+"alors, AfterPay est visible à toutes les adresses IP. (par exemple si vous "
+"souhaitez tester Klarna, vous pouvez saisir des adresses IP comme 128.0.0.1, "
+"255.255.255.255.)"
+
+#: classes/class-wc-emspay-helper.php:384
+#, php-format
+msgid "Your order %s at %s"
+msgstr "Votre commande %s à %s"
+
 #: classes/class-wc-emspay-ideal.php:17 classes/class-wc-emspay-ideal.php:18
-#: loco:5947bb74820ee94f548b45a1
-msgid "iDEAL - EMS PAY"
-msgstr "EMS PAY : iDeal"
+msgid "iDEAL - EMS Online"
+msgstr "EMS Online: iDeal"
 
-#. Source text: There was an error processing your payment. Please select your bank to use iDEAL!
-#: classes/class-wc-emspay-ideal.php:32 loco:5947bb74820ee94f548b45a2
+#: classes/class-wc-emspay-ideal.php:32
 msgid "Payment Error: You must choose an iDEAL Bank!"
 msgstr ""
 "Il y avait une erreur en traitant votre paiement : Il faut choisir une "
 "banque pour payer par iDEAL!"
 
-#. Source text: Choose your bank:
-#: classes/class-wc-emspay-ideal.php:77 loco:5947bb74820ee94f548b45a3
+#: classes/class-wc-emspay-ideal.php:77
 msgid "Choose your bank:"
 msgstr "Choisissez votre banque:"
 
-#. Source text: EMS PAY : Klarna
 #: classes/class-wc-emspay-klarna.php:17 classes/class-wc-emspay-klarna.php:18
-#: loco:5947bb74820ee94f548b45a4
-msgid "Klarna - EMS PAY"
-msgstr "EMS PAY : Klarna"
+msgid "Klarna - EMS Online"
+msgstr "EMS Online: Klarna"
 
-#. Source text: There was a problem processing your payment. Please try doing the payment again.
-#: classes/class-wc-emspay-klarna.php:53 loco:5947bb74820ee94f548b45a5
+#: classes/class-wc-emspay-klarna.php:53
 msgid ""
-"Unfortunately, we can not currently accept your purchase with Klarna. \n"
-"                    Please choose another payment option to complete your "
-"order. We apologize for the inconvenience."
+"Unfortunately, we can not currently accept your purchase with Klarna. Please "
+"choose another payment option to complete your order. We apologize for the "
+"inconvenience."
 msgstr ""
-"Il y avait malheureusement un problème traitant votre paiement par Klarna. "
-"Nous nous excusons pour le dérangement. Veuillez réessayer le paiement par "
-"une autre méthode de paiement."
+"Nous sommes désolés de vous informer que votre demande de payer plus tard ne "
+"peut pas être acceptée par Afterpay. Cela aurait pu être causé par diverses "
+"raisons (temporaires). Si vous avez des questions concernant votre refus, "
+"s'il vous plaît contacter le Service clientèle Afterpay via https://www."
+"afterpay.nl/en/customers/contact ou par téléphone via +31 20 72 30 270. Nous "
+"vous conseillons de choisir une autre mode de paiement pour effectuer votre "
+"commande."
 
-#. Source text: Your payment request with Klarna has been sent.
-#: classes/class-wc-emspay-klarna.php:63 loco:5947bb74820ee94f548b45a6
+#: classes/class-wc-emspay-klarna.php:62
 msgid "Klarna payment request sent."
 msgstr "La demande de paiement à payer par Klarna a été envoyée."
 
-#. Source text: Your payment with Klarna is successfully processed.
-#: classes/class-wc-emspay-klarna.php:79 loco:5947bb74820ee94f548b45a7
+#: classes/class-wc-emspay-klarna.php:79
 msgid "Your payment using Klarna is successful."
 msgstr "Le paiement en utilisant Klarna est réussie."
 
-#. Source text: The invoice will be sent to your email address.
-#: classes/class-wc-emspay-klarna.php:80 loco:5947bb74820ee94f548b45a8
-msgid "The invoice will be sent to your email."
-msgstr "La facture sera envoyée à votre adresse email."
-
-#. Source text: Additional Information
-#: classes/class-wc-emspay-klarna.php:92 loco:5947bb74820ee94f548b45a9
-msgid "Additional Information"
-msgstr "Information Supplémentaire"
-
-#. Source text: Gender:
-#: classes/class-wc-emspay-klarna.php:97 loco:5947bb74820ee94f548b45aa
-msgid "Gender:"
-msgstr "Sexe:"
-
-#. Source text: Male
-#: classes/class-wc-emspay-klarna.php:100 loco:5947bb74820ee94f548b45ab
-msgid "Male"
-msgstr "Homme"
-
-#. Source text: Female
-#: classes/class-wc-emspay-klarna.php:101 loco:5947bb74820ee94f548b45ac
-msgid "Female"
-msgstr "Femme"
-
-#. Source text: Date of Birth:
-#: classes/class-wc-emspay-klarna.php:109 loco:5947bb74820ee94f548b45ad
+#: classes/class-wc-emspay-klarna.php:109
 msgid "Date of birth:"
 msgstr "Date de naissance:"
 
-#. Source text: Please use the following format for entering the birth date : YYYY - MM - DD, e.g.: 31-12-1980
-#: classes/class-wc-emspay-klarna.php:110 loco:5947bb74820ee94f548b45ae
+#: classes/class-wc-emspay-klarna.php:110
 msgid "Birth date format: DD - MM - YYYY, eg: 31-12-1980"
 msgstr ""
-"Veuillez utiliser le format suivant pour entrer la date de naissance : JJ-"
-"MM-AAAA ; par ex: 31-12-1980"
+"Veuillez utiliser le format suivant pour entrer la date de naissance : JJ-MM-"
+"AAAA ; par ex: 31-12-1980"
 
-#. Source text: EMS PAY : PayPal
+#: classes/class-wc-emspay-payconiq.php:17
+#: classes/class-wc-emspay-payconiq.php:18
+msgid "EMS Online - PAYCONIQ"
+msgstr "EMS Online : Payconiq"
+
 #: classes/class-wc-emspay-paypal.php:17 classes/class-wc-emspay-paypal.php:18
-#: loco:5947bb74820ee94f548b45af
-msgid "PayPal - EMS PAY"
-msgstr "EMSPAY : Paypal"
+msgid "PayPal - EMS Online"
+msgstr "EMS Online: Paypal"
 
-#. Source text: EMS PAY : SOFORT
 #: classes/class-wc-emspay-sofort.php:17 classes/class-wc-emspay-sofort.php:18
-#: loco:5947bb74820ee94f548b45b0
-msgid "EMS PAY - SOFORT"
-msgstr "EMS PAY : SOFORT"
+msgid "EMS Online - SOFORT"
+msgstr "EMS Online: SOFORT"
 
-#. Plugin URI of the plugin/theme
-#. Source text: https://emspay.nl/
-#: loco:5947bb74820ee94f548b45b1
-msgid "https://emspay.nl/"
-msgstr "https://emspay.nl/"
+#~ msgid "IBAN: NL13INGB0005300060"
+#~ msgstr "IBAN: NL13INGB0005300060"
 
-#. Description of the plugin/theme
-#. Source text: ING WooCommerce plugin for Kassa Complete, ING ePay and ING Checkout.
-#: loco:5947bb74820ee94f548b45b2
-msgid "ING WooCommerce plugin for ING Kassa Compleet and ING ePay markets."
-msgstr ""
-"ING WooCommerce plugin pour les marchés ING Kassa Compleet et ING ePay."
+#~ msgid "BIC: INGBNL2A"
+#~ msgstr "BIC: INGBNL2A"
 
-#. Author of the plugin/theme
-#. Source text: Ginger Payments
-#: loco:5947bb74820ee94f548b45b3
-msgid "Ginger Payments"
-msgstr "Ginger Payments"
+#~ msgid "EMS PAY"
+#~ msgstr "EMS PAY"
 
-#. Author URI of the plugin/theme
-#. Source text: https://www.gingerpayments.com/
-#: loco:5947bb74820ee94f548b45b4
-msgid "https://www.gingerpayments.com/"
-msgstr "https://www.gingerpayments.com/"
+#~ msgid "The current project is in test mode"
+#~ msgstr "Le boutique en ligne actuel est en mode test"
 
-#. Source text: EMS PAY : Payconiq
-#: loco:59b0121d820ee9f53d8b4569
-msgid "EMS PAY - PAYCONIQ"
-msgstr "EMS PAY : Payconiq"
+#~ msgid ""
+#~ "In test mode you can only test iDEAL. When done testing, \n"
+#~ "                    please login to the portal and activate your project."
+#~ msgstr ""
+#~ "Lorsque le magasin est en mode test, vous pouvez seulement tester iDEAL. "
+#~ "Après tous les tests ont été réalisés, s'il vous plaît se connecter au "
+#~ "portail marchand d'ING pour modifier le statut de votre boutique à "
+#~ "\"Webshop actif\". Sélectionnez Paramètres > Webshop, sélectionnez votre "
+#~ "boutique en ligne, cliquez sur Modifier et sélectionnez le statut "
+#~ "\"Webshop actif\". Après cela, toutes vos méthodes des paiements seront "
+#~ "disponibles."
 
-#. Source text: Payconiq
-#: loco:59b0f97e820ee9296b8b4567
-msgid "Payconiq"
-msgstr "Payconiq"
+#~ msgid "PSP Product"
+#~ msgstr "Produit PSP"
 
-#. Source text: Enable Payconiq Payments
-#: loco:59b106c8820ee90e6e8b4568
-msgid "Enable Payconiq Payments"
-msgstr "Activer les paiements par Payconiq"
+#~ msgid "Kassa Compleet"
+#~ msgstr "Kassa Compleet"
 
-#. Source text: Your order %s at %s
-#: loco:59eda884820ee989358b4567
-msgid "Your order %s at %s"
-msgstr "Votre commande %s à %s"
+#~ msgid "ING Checkout"
+#~ msgstr "ING Checkout"
 
-#. Source text: EMS PAY : AfterPay
-#: classes/class-wc-emspay-afterpay.php
-msgid "EMS PAY : AfterPay"
-msgstr "EMS PAY : AfterPay"
+#~ msgid "ING ePay"
+#~ msgstr "ING ePay"
 
-#. Source text: Unfortunately, we can not currently accept your purchase with AfterPay. Please choose another payment option to complete your order. We apologize for the inconvenience.
-#: classes/class-wc-emspay-afterpay.php:56
-msgid "Unfortunately, we can not currently accept your purchase with AfterPay. Please choose another payment option to complete your order. We apologize for the inconvenience."
-msgstr "Nous sommes désolés de vous informer que votre demande de payer plus tard ne peut pas être acceptée par Afterpay. Cela aurait pu être causé par diverses raisons (temporaires). Si vous avez des questions concernant votre refus, s'il vous plaît contacter le Service clientèle Afterpay via https://www.afterpay.nl/en/customers/contact ou par téléphone via +31 20 72 30 270. Nous vous conseillons de choisir une autre mode de paiement pour effectuer votre commande."
+#~ msgid "Cash on Delivery - EMS PAY"
+#~ msgstr "EMS PAY : Contre-remboursement"
 
-#. Source text: AfterPay payment request sent.
-#: classes/class-wc-emspay-afterpay.php:65
-msgid "AfterPay payment request sent."
-msgstr "Demande AfterPay envoyée."
+#~ msgid "Cash On Delivery"
+#~ msgstr "Contre-remboursement"
 
-#. Source text: Your payment using AfterPay is successful.
-#: classes/class-wc-emspay-afterpay.php:82
-msgid "Your payment using AfterPay is successful."
-msgstr "Votre paiement en utilisant AfterPay est réussi."
+#~ msgid "Enable Cash On Delivery Payments"
+#~ msgstr "Activer les paiements par Contre-remboursement"
 
-#. Source text: I accept <a href='%s' target='_blank'>Terms and Conditions</a>
-#: classes/class-wc-emspay-afterpay.php:121
-msgid "I accept <a href='%s' target='_blank'>Terms and Conditions</a>"
-msgstr "J'accepte les <a href='%s' target='_blank'>conditions d'utilisation d'AfterPay</a>"
+#~ msgid "HomePay"
+#~ msgstr "Home’Pay"
+
+#~ msgid "HomePay - EMS PAY"
+#~ msgstr "EMS PAY : Home’Pay"
+
+#~ msgid ""
+#~ "Unfortunately, we can not currently accept your purchase with Klarna. \n"
+#~ "                    Please choose another payment option to complete your "
+#~ "order. We apologize for the inconvenience."
+#~ msgstr ""
+#~ "Il y avait malheureusement un problème traitant votre paiement par "
+#~ "Klarna. Nous nous excusons pour le dérangement. Veuillez réessayer le "
+#~ "paiement par une autre méthode de paiement."
+
+#~ msgid "https://emspay.nl/"
+#~ msgstr "https://emspay.nl/"
+
+#~ msgid "ING WooCommerce plugin for ING Kassa Compleet and ING ePay markets."
+#~ msgstr ""
+#~ "ING WooCommerce plugin pour les marchés ING Kassa Compleet et ING ePay."
+
+#~ msgid "Ginger Payments"
+#~ msgstr "Ginger Payments"
+
+#~ msgid "https://www.gingerpayments.com/"
+#~ msgstr "https://www.gingerpayments.com/"
