@@ -10,7 +10,7 @@ include_once 'ems-php/vendor/autoload.php';
 
 ## Getting started
 
-First create a new API client with your API key and ING product:
+First create a new API client with your API key and EMS product:
 
 ```php
 use \GingerPayments\Payment\Ginger;

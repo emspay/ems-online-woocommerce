@@ -1,6 +1,6 @@
 {
     "name": "emspay/ems-php",
-    "description": "The official ING-PSP PHP SDK",
+    "description": "The official EMS Online PHP SDK",
     "keywords": ["payment", "pay", "merchant", "e-commerce"],
     "license": "MIT",
     "homepage": "https://github.com/emspay/ems-php",

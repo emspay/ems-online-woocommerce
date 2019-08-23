@@ -6,6 +6,15 @@ if (!defined('ABSPATH')) {
 
 class WC_Emspay_Banktransfer extends WC_Emspay_Gateway
 {
+
+	/**
+	 *  EMS Online bank transfer details
+	 */
+	const EMS_BIC = 'ABNANL2A';
+	const EMS_IBAN = 'NL79ABNA0842577610';
+	const EMS_HOLDER = 'THIRD PARTY FUNDS EMS';
+	const EMS_RESIDENCE = 'Amsterdam';
+
     /**
      * WC_emspay_banktransfer constructor.
      */
@@ -14,8 +23,8 @@ class WC_Emspay_Banktransfer extends WC_Emspay_Gateway
         $this->id = 'emspay_banktransfer';
         $this->icon = false;
         $this->has_fields = false;
-        $this->method_title = __('Banktransfer - EMS PAY', WC_Emspay_Helper::DOMAIN);
-        $this->method_description = __('Banktransfer - EMS PAY', WC_Emspay_Helper::DOMAIN);
+        $this->method_title = __('Banktransfer - EMS Online', WC_Emspay_Helper::DOMAIN);
+        $this->method_description = __('Banktransfer - EMS Online', WC_Emspay_Helper::DOMAIN);
 
         parent::__construct();
     }
@@ -67,15 +76,15 @@ class WC_Emspay_Banktransfer extends WC_Emspay_Gateway
 
         echo __("Please use the following payment information:", WC_Emspay_Helper::DOMAIN);
         echo "<br/>";
-        echo __("Bank Reference: ".$reference[0], WC_Emspay_Helper::DOMAIN);
+        echo __("Bank Reference:", WC_Emspay_Helper::DOMAIN).' '.$reference[0];
         echo "<br/>";
-        echo __("IBAN: ", WC_Emspay_Helper::DOMAIN);
+        echo __("IBAN:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_IBAN;
         echo "<br/>";
-        echo __("BIC: ABNANL2A", WC_Emspay_Helper::DOMAIN);
+        echo __("BIC:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_BIC;
         echo "<br/>";
-        echo __("Account Holder: EMS PAY", WC_Emspay_Helper::DOMAIN);
+        echo __("Account Holder:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_HOLDER;
         echo "<br/>";
-        echo __("Residence: Amsterdam", WC_Emspay_Helper::DOMAIN);
+        echo __("Residence:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_RESIDENCE;
         echo "<br/><br/>";
     }
 }

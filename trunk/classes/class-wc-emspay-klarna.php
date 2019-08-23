@@ -14,8 +14,8 @@ class WC_Emspay_Klarna extends WC_Emspay_Gateway
         $this->id = 'emspay_klarna';
         $this->icon = false;
         $this->has_fields = true;
-        $this->method_title = __('Klarna - EMS PAY', WC_Emspay_Helper::DOMAIN);
-        $this->method_description = __('Klarna - EMS PAY', WC_Emspay_Helper::DOMAIN);
+        $this->method_title = __('Klarna - EMS Online', WC_Emspay_Helper::DOMAIN);
+        $this->method_description = __('Klarna - EMS Online', WC_Emspay_Helper::DOMAIN);
 
         parent::__construct();
     }
@@ -50,8 +50,7 @@ class WC_Emspay_Klarna extends WC_Emspay_Gateway
             ];
         } elseif ($emsOrder->status()->isCancelled()) {
             wc_add_notice(
-                __('Unfortunately, we can not currently accept your purchase with Klarna. 
-                    Please choose another payment option to complete your order. We apologize for the inconvenience.'),
+                __('Unfortunately, we can not currently accept your purchase with Klarna. Please choose another payment option to complete your order. We apologize for the inconvenience.'),
                 'error'
             );
             return [

@@ -14,8 +14,8 @@ class WC_Emspay_Creditcard extends WC_Emspay_Gateway
         $this->id = 'emspay_creditcard';
         $this->icon = false;
         $this->has_fields = false;
-        $this->method_title = __('Mastercard, VISA, Maestro or V PAY - EMS PAY', WC_Emspay_Helper::DOMAIN);
-        $this->method_description = __('Mastercard, VISA, Maestro or V PAY - EMS PAY', WC_Emspay_Helper::DOMAIN);
+        $this->method_title = __('Mastercard, VISA, Maestro or V PAY - EMS Online', WC_Emspay_Helper::DOMAIN);
+        $this->method_description = __('Mastercard, VISA, Maestro or V PAY - EMS Online', WC_Emspay_Helper::DOMAIN);
 
         parent::__construct();
     }

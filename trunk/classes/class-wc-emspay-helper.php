@@ -15,7 +15,7 @@ class WC_Emspay_Helper
     const DOMAIN = 'emspay';
 
     /**
-     * EMS PAY supported payment methods
+     * EMS Online supported payment methods
      */
     public static $PAYMENT_METHODS = [
         'emspay_ideal',
@@ -244,7 +244,8 @@ class WC_Emspay_Helper
                 'label' => __('Automatically include Webhook URL with every order', self::DOMAIN),
                 'description' => __('API will request this URL in order to update transaction details.', self::DOMAIN),
                 'type' => 'checkbox',
-                'desc_tip' => true
+                'desc_tip' => true,
+                'default' => 'yes'
             ]
         ];
 
@@ -277,7 +278,7 @@ class WC_Emspay_Helper
     public static function getIconSource($method)
     {
         if (in_array($method, self::$PAYMENT_METHODS)) {
-            return '<img src="'.WC_HTTPS::force_https_url(plugins_url()."/emspay/images/{$method}.png").'" />';
+            return '<img src="'.WC_HTTPS::force_https_url(EMSPAY_PLUGIN_URL."images/{$method}.png").'" />';
         }
     }
 
@@ -300,7 +301,7 @@ class WC_Emspay_Helper
 
         foreach ($order->get_items() as $orderLine) {
             $productId = (int) $orderLine->get_variation_id() ?: $orderLine->get_product_id();
-            $orderLines[] = [
+            $orderLines[] = array_filter([
                 'url' => get_permalink($productId),
                 'name' => $orderLine->get_name(),
                 'type' => \GingerPayments\Payment\Order\OrderLine\Type::PHYSICAL,
@@ -310,7 +311,10 @@ class WC_Emspay_Helper
                 'image_url' => wp_get_attachment_url($orderLine->get_product()->get_image_id()),
                 'vat_percentage' => static::getAmountInCents(static::getProductTaxRate($orderLine->get_product())),
                 'merchant_order_line_id' => $productId
-            ];
+            ],
+            function($value) {
+	            return ! is_null($value);
+	        });
         }
 
         if ($order->get_total_shipping() > 0) {

@@ -13,8 +13,8 @@ class WC_Emspay_Callback extends WC_Emspay_Gateway
         $this->id = 'emspay';
         $this->icon = false;
         $this->has_fields = false;
-        $this->method_title = __('EMS PAY', WC_Emspay_Helper::DOMAIN);
-        $this->method_description = __('EMS PAY', WC_Emspay_Helper::DOMAIN);
+        $this->method_title = __('EMS Online', WC_Emspay_Helper::DOMAIN);
+        $this->method_description = __('EMS Online', WC_Emspay_Helper::DOMAIN);
 
         parent::__construct();
     }

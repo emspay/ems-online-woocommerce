@@ -17,8 +17,8 @@ class WC_Emspay_AfterPay extends WC_Emspay_Gateway
         $this->id = 'emspay_afterpay';
         $this->icon = false;
         $this->has_fields = true;
-        $this->method_title = __('EMS PAY : AfterPay', WC_Emspay_Helper::DOMAIN);
-        $this->method_description = __('EMS PAY : AfterPay', WC_Emspay_Helper::DOMAIN);
+        $this->method_title = __('EMS Online : AfterPay', WC_Emspay_Helper::DOMAIN);
+        $this->method_description = __('EMS Online : AfterPay', WC_Emspay_Helper::DOMAIN);
 
         parent::__construct();
     }

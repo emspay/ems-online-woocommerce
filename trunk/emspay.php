@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name: EMS PAY
+ * Plugin Name: EMS Online
  * Plugin URI: https://emspay.nl/
  * Description: EMS Pay WooCommerce plugin
  * Version: 1.0.0
@@ -17,9 +17,10 @@ if (!defined('ABSPATH')) {
 }
 
 /**
- * Define EMS PAY plugin version
+ * Define EMS Online plugin version
  */
 define('EMSPAY_PLUGIN_VERSION', 'WooCommerce v1.0.0');
+define('EMSPAY_PLUGIN_URL', plugin_dir_url(__FILE__));
 
 add_action('plugins_loaded', 'woocommerce_emspay_init', 0);
 
@@ -67,7 +68,6 @@ function woocommerce_emspay_init()
             'WC_Emspay_Ideal',
             'WC_Emspay_Banktransfer',
             'WC_Emspay_Bancontact',
-            'WC_Emspay_Cashondelivery',
             'WC_Emspay_Creditcard',
             'WC_Emspay_PayPal',
             'WC_Emspay_Klarna',
@@ -197,7 +197,7 @@ function woocommerce_emspay_init()
     }
 
     /**
-     * Filter out EMS PAY AfterPay method if not in allowed countries.
+     * Filter out EMS Online AfterPay method if not in allowed countries.
      *
      * @param array $gateways
      * @return mixed

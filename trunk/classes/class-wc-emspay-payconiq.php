@@ -14,8 +14,8 @@ class WC_Emspay_Payconiq extends WC_Emspay_Gateway
         $this->id = 'emspay_payconiq';
         $this->icon = false;
         $this->has_fields = false;
-        $this->method_title =  __('EMS PAY - PAYCONIQ', WC_Emspay_Helper::DOMAIN);
-        $this->method_description = __('EMS PAY - PAYCONIQ', WC_Emspay_Helper::DOMAIN);
+        $this->method_title =  __('EMS Online - PAYCONIQ', WC_Emspay_Helper::DOMAIN);
+        $this->method_description = __('EMS Online - PAYCONIQ', WC_Emspay_Helper::DOMAIN);
 
         parent::__construct();
     }

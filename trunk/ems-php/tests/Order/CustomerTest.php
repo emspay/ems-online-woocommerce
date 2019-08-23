@@ -66,6 +66,7 @@ final class CustomerTest extends \PHPUnit_Framework_TestCase
             'housenumber' => '29 A-12',
             'country' => 'NL',
             'phone_numbers' => [],
+            'additional_addresses' => [],
             'locale' => null,
             'gender' => 'male',
             'birthdate' => '1988-03-29',

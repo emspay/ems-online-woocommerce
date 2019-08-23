@@ -1,5 +1,5 @@
-=== EMS PAY ===
-Tags: EMS PAY, WooCommerce, payment
+=== EMS Online ===
+Tags: EMS Online, WooCommerce, payment
 Contributors: emspay, gingerpayments
 Requires at least: 4.0
 Tested up to: 5.1.1
@@ -7,7 +7,7 @@ Stable tag: 1.0.0
 License: The MIT License (MIT)
 License URI: https://opensource.org/licenses/MIT
 
-This is the offical EMS PAY plugin
+This is the offical EMS Online plugin
 
 == Description ==
 
@@ -25,13 +25,13 @@ OR
 1. Install .zip archive from the console
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
-After that configure the Webhook URL in the EMS PAY Merchant portal.
+After that configure the Webhook URL in the EMS Online Merchant portal.
 The Webhook URL should look like be:
 https://www.example.com/?wc-api=woocommerce_emspay
 
 If you visit the URL in your browser you should see the following message:
 "Only work to do if the status changed"
-3. Go to WooCommerce> Settings > Checkout > EMS PAY and set the API key. 
+3. Go to WooCommerce> Settings > Checkout > EMS Online and set the API key.
 You can copy the API key from your merchant portal. Go to Settings > Webshops 
 > select the webshop and in the detail screen you can find the API key.
 

@@ -2,9 +2,7 @@
 
 namespace GingerPayments\Payment;
 
-use Assert\Assertion as Guard;
 use GingerPayments\Payment\Common\StringBasedValueObject;
-use IsoCodes\Iban as IbanValidator;
 
 final class Iban
 {
@@ -15,11 +13,6 @@ final class Iban
      */
     private function __construct($value)
     {
-        Guard::true(
-            empty($value) || IbanValidator::validate($value),
-            'Must be a valid IBAN (ISO 13616:2007)'
-        );
-
         $this->value = $value;
     }
 }

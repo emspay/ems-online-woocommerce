@@ -14,8 +14,8 @@ class WC_Emspay_Ideal extends WC_Emspay_Gateway
         $this->id = 'emspay_ideal';
         $this->icon = false;
         $this->has_fields = true;
-        $this->method_title = __('iDEAL - EMS PAY', WC_Emspay_Helper::DOMAIN);
-        $this->method_description = __('iDEAL - EMS PAY', WC_Emspay_Helper::DOMAIN);
+        $this->method_title = __('iDEAL - EMS Online', WC_Emspay_Helper::DOMAIN);
+        $this->method_description = __('iDEAL - EMS Online', WC_Emspay_Helper::DOMAIN);
 
         parent::__construct();
     }
