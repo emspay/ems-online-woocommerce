@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-23 08:48+0300\n"
-"PO-Revision-Date: 2019-08-23 08:52+0300\n"
+"PO-Revision-Date: 2019-08-23 09:17+0300\n"
 "Last-Translator: Jasmine Vyas\n"
 "Language-Team: French (France)\n"
 "Language: fr_FR\n"
@@ -360,13 +360,14 @@ msgstr "Utilisez l’URL Webhook"
 #: classes/class-wc-emspay-helper.php:244
 msgid "Automatically include Webhook URL with every order"
 msgstr ""
-"Fournir automatiquement l’URL Webhook à l’API du EMS PAY avec chaque commande"
+"Fournir automatiquement l’URL Webhook à l’API du EMS Online avec chaque "
+"commande"
 
 #: classes/class-wc-emspay-helper.php:245
 msgid "API will request this URL in order to update transaction details."
 msgstr ""
 "Fournir automatiquement l'URL de webhook avec chaque commande généré à l'API "
-"du EMS PAY pour mettre à jour les détails de la transaction."
+"du EMS Online pour mettre à jour les détails de la transaction."
 
 #: classes/class-wc-emspay-helper.php:257
 msgid "Test API key for testing implementation of AfterPay."
