@@ -1,7 +1,7 @@
 # EMS Online plugin for Wordpress WooCommerce
 
 ## About
-This is the offical EMS Pay plugin.
+This is the offical EMS Online plugin.
 
 By integrating your webshop with EMS Online you can accept payments from your customers in an easy and trusted manner with all relevant payment methods supported. 
 

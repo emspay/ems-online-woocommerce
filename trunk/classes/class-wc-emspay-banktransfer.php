@@ -76,15 +76,15 @@ class WC_Emspay_Banktransfer extends WC_Emspay_Gateway
 
         echo __("Please use the following payment information:", WC_Emspay_Helper::DOMAIN);
         echo "<br/>";
-        echo __("Bank Reference: ".$reference[0], WC_Emspay_Helper::DOMAIN);
+        echo __("Bank Reference:", WC_Emspay_Helper::DOMAIN).' '.$reference[0];
         echo "<br/>";
-        echo __("IBAN: ".static::EMS_IBAN, WC_Emspay_Helper::DOMAIN);
+        echo __("IBAN:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_IBAN;
         echo "<br/>";
-        echo __("BIC: ".static::EMS_BIC, WC_Emspay_Helper::EMS_BIC);
+        echo __("BIC:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_BIC;
         echo "<br/>";
-        echo __("Account Holder: ".static::EMS_HOLDER, WC_Emspay_Helper::DOMAIN);
+        echo __("Account Holder:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_HOLDER;
         echo "<br/>";
-        echo __("Residence: ".static::EMS_RESIDENCE, WC_Emspay_Helper::DOMAIN);
+        echo __("Residence:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_RESIDENCE;
         echo "<br/><br/>";
     }
 }
