@@ -50,8 +50,7 @@ class WC_Emspay_Klarna extends WC_Emspay_Gateway
             ];
         } elseif ($emsOrder->status()->isCancelled()) {
             wc_add_notice(
-                __('Unfortunately, we can not currently accept your purchase with Klarna. 
-                    Please choose another payment option to complete your order. We apologize for the inconvenience.'),
+                __('Unfortunately, we can not currently accept your purchase with Klarna. Please choose another payment option to complete your order. We apologize for the inconvenience.'),
                 'error'
             );
             return [
