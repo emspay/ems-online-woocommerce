@@ -49,8 +49,6 @@ class WC_Emspay_Bancontact extends WC_Emspay_Gateway
             ];
         }
 
-        WC_Emspay_Helper::reduceStock($order);
-
         return [
             'result' => 'success',
             'redirect' => $emsOrder->firstTransactionPaymentUrl()->toString()

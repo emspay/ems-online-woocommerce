@@ -59,10 +59,6 @@ class WC_Emspay_Klarna extends WC_Emspay_Gateway
             ];
         }
 
-        $order->update_status('on-hold', __('Klarna payment request sent.', WC_Emspay_Helper::DOMAIN));
-
-        WC_Emspay_Helper::reduceStock($order);
-
         return [
             'result' => 'success',
             'redirect' => $this->get_return_url($order)
