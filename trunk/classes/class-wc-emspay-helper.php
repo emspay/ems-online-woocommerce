@@ -383,18 +383,4 @@ class WC_Emspay_Helper
     {
         return sprintf(__('Your order %s at %s', self::DOMAIN), $orderId, get_bloginfo('name'));
     }
-
-    /**
-     * @param $order
-     */
-    public static function reduceStock($order)
-    {
-        if (version_compare(get_option('woocommerce_version'), '3.0', '>=')) {
-            if ( ! get_post_meta( $order->id, '_order_stock_reduced', $single = true ) )
-                wc_reduce_stock_levels($order->get_id());
-        } else {
-            if ( ! get_post_meta( $order->id, '_order_stock_reduced', $single = true ) )
-                $order->reduce_order_stock();
-        }
-    }
 }

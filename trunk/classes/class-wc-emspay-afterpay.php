@@ -62,10 +62,6 @@ class WC_Emspay_AfterPay extends WC_Emspay_Gateway
             ];
         }
 
-        $order->update_status('on-hold', __('AfterPay payment request sent.', WC_Emspay_Helper::DOMAIN));
-
-        WC_Emspay_Helper::reduceStock($order);
-
         return [
             'result' => 'success',
             'redirect' => $this->get_return_url($order)

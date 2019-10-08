@@ -57,8 +57,6 @@ class WC_Emspay_Banktransfer extends WC_Emspay_Gateway
 
         $order->update_status('on-hold', __('Awaiting Bank-Transfer Payment', WC_Emspay_Helper::DOMAIN));
 
-        WC_Emspay_Helper::reduceStock($order);
-
         return [
             'result' => 'success',
             'redirect' => $this->get_return_url($order)
