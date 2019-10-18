@@ -27,6 +27,7 @@ class WC_Emspay_Helper
         'emspay_klarna',
         'emspay_payconiq',
         'emspay_afterpay',
+        'emspay_applepay',
     ];
 
     /**
@@ -219,6 +220,10 @@ class WC_Emspay_Helper
                 $default = __('Payconiq', self::DOMAIN);
                 $label = __('Enable Payconiq Payments', self::DOMAIN);
                 break;
+	        case 'emspay_applepay':
+		        $default = __('Apple Pay', self::DOMAIN);
+		        $label = __('Enable Apple Pay Payments', self::DOMAIN);
+		        break;
             default:
                 $default = '';
                 $label = '';
