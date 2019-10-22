@@ -190,6 +190,47 @@ final class Order
         );
     }
 
+	/**
+	 * Create a new Order with the credit card payment method.
+	 *
+	 * @param integer $amount Amount in cents.
+	 * @param string $currency A valid currency code.
+	 * @param string $description A description of the order.
+	 * @param string $merchantOrderId A merchant-defined order identifier.
+	 * @param string $returnUrl The return URL.
+	 * @param string $expirationPeriod The expiration period as an ISO 8601 duration
+	 * @param array $customer Customer information.
+	 * @param array $extra Extra information.
+	 * @param string $webhookUrl The webhook URL.
+	 *
+	 * @return Order
+	 */
+	public static function createWithApplePay(
+		$amount,
+		$currency,
+		$description = null,
+		$merchantOrderId = null,
+		$returnUrl = null,
+		$expirationPeriod = null,
+		$customer = null,
+		$extra = null,
+		$webhookUrl = null
+	) {
+		return static::create(
+			$amount,
+			$currency,
+			PaymentMethod::APPLE_PAY,
+			[],
+			$description,
+			$merchantOrderId,
+			$returnUrl,
+			$expirationPeriod,
+			$customer,
+			$extra,
+			$webhookUrl
+		);
+	}
+
     /**
      * Create a new Order with the SEPA payment method.
      *

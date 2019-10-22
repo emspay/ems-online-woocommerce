@@ -44,6 +44,10 @@ final class PaymentMethodDetailsFactory
             return AfterPayPaymentMethodDetails::fromArray($paymentMethodDetails);
         }
 
+	    if ($paymentMethod->isApplePay()) {
+		    return ApplePayPaymentMethodDetails::fromArray($paymentMethodDetails);
+	    }
+
         throw new \InvalidArgumentException('Provided payment method not supported.');
     }
 }
