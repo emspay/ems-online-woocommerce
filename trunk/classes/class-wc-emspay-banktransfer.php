@@ -70,19 +70,37 @@ class WC_Emspay_Banktransfer extends WC_Emspay_Gateway
     {
         WC()->cart->empty_cart();
 
+        echo $this->get_instructions($order_id);
+    }
+
+    /**
+     * Adds instructions for order emails
+     *
+     * @param $order
+     */
+    public function add_order_email_instructions($order) {
+        echo $this->get_instructions($order->id);
+    }
+
+    /**
+     * @param $order_id
+     * @return string
+     */
+    public function get_instructions($order_id){
+
         $reference = get_post_custom_values('bank_reference', $order_id);
 
-        echo __("Please use the following payment information:", WC_Emspay_Helper::DOMAIN);
-        echo "<br/>";
-        echo __("Bank Reference:", WC_Emspay_Helper::DOMAIN).' '.$reference[0];
-        echo "<br/>";
-        echo __("IBAN:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_IBAN;
-        echo "<br/>";
-        echo __("BIC:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_BIC;
-        echo "<br/>";
-        echo __("Account Holder:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_HOLDER;
-        echo "<br/>";
-        echo __("Residence:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_RESIDENCE;
-        echo "<br/><br/>";
+        return __("Please use the following payment information:", WC_Emspay_Helper::DOMAIN)
+            . "<br/>"
+            . __("Bank Reference:", WC_Emspay_Helper::DOMAIN).' '.$reference[0]
+            . "<br/>"
+            . __("IBAN:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_IBAN
+            . "<br/>"
+            . __("BIC:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_BIC
+            . "<br/>"
+            . __("Account Holder:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_HOLDER
+            . "<br/>"
+            . __("Residence:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_RESIDENCE
+            . "<br/><br/>";
     }
 }
