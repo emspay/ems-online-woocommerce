@@ -86,7 +86,7 @@ class WC_Emspay_Banktransfer extends WC_Emspay_Gateway
      * @param $order
      */
     public function add_order_email_instructions($order) {
-        echo $this->get_instructions($order->id);
+        echo $this->get_instructions($order->get_id());
     }
 
     /**
