@@ -222,32 +222,4 @@ function woocommerce_emspay_init()
 
     add_filter('woocommerce_available_payment_gateways', 'afterpay_filter_gateways', 10);
     add_filter('woocommerce_thankyou_order_received_text', 'emspay_order_received_text', 10, 2);
-
-    /**
-     * Create banktransfer order in ginger system when creating an order from the admin panel
-     *
-     * @param int $_order_id
-     * @param object $_post
-     */
-    function create_banktransfer_order_from_admin($_order_id, $_post)
-    {
-        $payment_method = get_post_meta( $_order_id, '_payment_method', true );
-        if ( $payment_method != 'emspay_banktransfer' ) {
-            return;
-        }
-
-        $available_gateways = WC()->payment_gateways->get_available_payment_gateways();
-        if ( ! isset( $available_gateways[ $payment_method ] ) ) {
-            return;
-        }
-
-        WC()->initialize_session();
-        // Store Order ID in session so it can be re-used after payment failure.
-        WC()->session->set( 'order_awaiting_payment', $_order_id );
-
-        // Process Payment.
-        $result = $available_gateways[ $payment_method ]->process_payment( $_order_id );
-
-    }
-    add_action('woocommerce_process_shop_order_meta', 'create_banktransfer_order_from_admin', 41, 2);
 }
