@@ -27,6 +27,9 @@ class WC_Emspay_Banktransfer extends WC_Emspay_Gateway
         $this->method_description = __('Banktransfer - EMS Online', WC_Emspay_Helper::DOMAIN);
 
         parent::__construct();
+
+        // Create banktransfer order in ginger system when creating an order from the admin panel
+        add_action('woocommerce_process_shop_order_meta', array($this, 'process_payment'), 41, 1);
     }
 
     /**
