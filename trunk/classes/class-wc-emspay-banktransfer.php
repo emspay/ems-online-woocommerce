@@ -27,6 +27,8 @@ class WC_Emspay_Banktransfer extends WC_Emspay_Gateway
         $this->method_description = __('Banktransfer - EMS Online', WC_Emspay_Helper::DOMAIN);
 
         parent::__construct();
+
+        add_action( 'woocommerce_email_after_order_table', array($this, 'add_order_email_instructions'), 10, 1 );
     }
 
     /**

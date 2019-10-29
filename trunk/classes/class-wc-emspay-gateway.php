@@ -40,7 +40,6 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
         add_action('woocommerce_update_options_payment_gateways_'.$this->id, array($this, 'process_admin_options'));
         add_action('woocommerce_thankyou_'.$this->id, array($this, 'handle_thankyou'));
         add_action('woocommerce_api_'.strtolower(get_class($this)), array($this, 'handle_callback'));
-        add_action( 'woocommerce_email_after_order_table', array($this, 'add_order_email_instructions'), 10, 1 );
     }
 
     public function handle_thankyou($order_id)
