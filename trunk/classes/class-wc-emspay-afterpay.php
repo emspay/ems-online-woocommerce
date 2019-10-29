@@ -155,7 +155,7 @@ class WC_Emspay_AfterPay extends WC_Emspay_Gateway
             'class' => array('input-text'),
             'label' => sprintf(
                 __("I accept <a href='%s' target='_blank'>Terms and Conditions</a>", WC_Emspay_Helper::DOMAIN),
-                (WC()->customer->billing['country'] == 'NL'?static::TERMS_CONDITION_URL_NL:static::TERMS_CONDITION_URL_BE)
+                (WC()->customer->get_billing_country() == 'NL'?static::TERMS_CONDITION_URL_NL:static::TERMS_CONDITION_URL_BE)
             ),
             'required' => true
         ));
