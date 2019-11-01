@@ -48,6 +48,10 @@ final class PaymentMethodDetailsFactory
 		    return ApplePayPaymentMethodDetails::fromArray($paymentMethodDetails);
 	    }
 
+        if ($paymentMethod->isPayNow()) {
+            return PayNowPaymentMethodDetails::fromArray($paymentMethodDetails);
+        }
+
         throw new \InvalidArgumentException('Provided payment method not supported.');
     }
 }
