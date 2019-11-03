@@ -86,7 +86,16 @@ class WC_Emspay_Banktransfer extends WC_Emspay_Gateway
      * @param $order
      */
     public function add_order_email_instructions($order) {
-        echo $this->get_instructions($order->get_id());
+
+        if (version_compare(get_option('woocommerce_version'), '3.0', '>=')) {
+            $payment_method = $order->get_payment_method();
+        } else {
+            $payment_method = $order->payment_method;
+        }
+
+        if( $payment_method == $this->id ) {
+            echo $this->get_instructions($order->get_id());
+        }
     }
 
     /**
