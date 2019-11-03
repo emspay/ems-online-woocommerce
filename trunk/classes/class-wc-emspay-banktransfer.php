@@ -29,11 +29,33 @@ class WC_Emspay_Banktransfer extends WC_Emspay_Gateway
         parent::__construct();
 
         // Create banktransfer order in ginger system when creating an order from the admin panel
-        add_action('woocommerce_process_shop_order_meta', array($this, 'process_payment'), 41, 1);
+        add_action('woocommerce_new_order', array($this, 'create_banktransfer_order'), 10, 1);
 
         // Sends instructions for payment in the Order email
         add_action( 'woocommerce_email_after_order_table', array($this, 'add_order_email_instructions'), 10, 1 );
 
+    }
+
+    /**
+     * @param $order_id
+     */
+    public function create_banktransfer_order($order_id){
+
+        if (! is_admin()) {
+            return;
+        }
+
+        $order = wc_get_order($order_id);
+
+        if (version_compare(get_option('woocommerce_version'), '3.0', '>=')) {
+            $payment_method = $order->get_payment_method();
+        } else {
+            $payment_method = $order->payment_method;
+        }
+
+        if( $payment_method == $this->id ) {
+            $this->process_payment($order_id);
+        }
     }
 
     /**
