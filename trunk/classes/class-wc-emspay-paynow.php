@@ -13,7 +13,7 @@ class WC_Emspay_Paynow extends WC_Emspay_Gateway
     {
         $this->id = 'emspay_paynow';
         $this->icon = false;
-        $this->has_fields = true;
+        $this->has_fields = false;
         $this->method_title = __('Pay now - EMS Online', WC_Emspay_Helper::DOMAIN);
         $this->method_description = __('Pay now - EMS Online', WC_Emspay_Helper::DOMAIN);
 
