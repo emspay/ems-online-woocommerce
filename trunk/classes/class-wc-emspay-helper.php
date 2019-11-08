@@ -28,6 +28,7 @@ class WC_Emspay_Helper
         'emspay_payconiq',
         'emspay_afterpay',
         'emspay_applepay',
+        'emspay_paynow',
     ];
 
     /**

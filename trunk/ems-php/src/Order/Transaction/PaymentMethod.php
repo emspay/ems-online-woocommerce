@@ -21,6 +21,7 @@ final class PaymentMethod
     const PAYCONIQ = 'payconiq';
     const AFTERPAY = 'afterpay';
     const APPLE_PAY = 'apple-pay';
+    const PAY_NOW = 'pay-now';
 
     /**
      * @return array
@@ -37,7 +38,8 @@ final class PaymentMethod
             self::PAYPAL,
             self::PAYCONIQ,
             self::AFTERPAY,
-            self::APPLE_PAY
+            self::APPLE_PAY,
+            self::PAY_NOW
         ];
     }
 
@@ -119,5 +121,13 @@ final class PaymentMethod
     public function isAfterPay()
     {
         return $this->value === self::AFTERPAY;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPayNow()
+    {
+        return $this->value === self::PAY_NOW;
     }
 }
