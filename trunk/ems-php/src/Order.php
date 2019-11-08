@@ -78,6 +78,11 @@ final class Order
     private $returnUrl;
 
     /**
+     * @var Url|null
+     */
+    private $orderUrl;
+
+    /**
      * @var Transactions
      */
     private $transactions;
@@ -529,6 +534,48 @@ final class Order
     }
 
     /**
+     * @param integer $amount Amount in cents.
+     * @param string $currency A valid currency code.
+     * @param string $description A description of the order.
+     * @param string $merchantOrderId A merchant-defined order identifier.
+     * @param string $returnUrl The return URL.
+     * @param string $expirationPeriod The expiration period as an ISO 8601 duration.
+     * @param array $customer Customer information
+     * @param array $extra Extra information.
+     * @param string $webhookUrl The webhook URL.
+     * @param array $orderLines Order lines.
+     *
+     * @return Order
+     */
+    public static function createWithPayNow(
+        $amount,
+        $currency,
+        $description = null,
+        $merchantOrderId = null,
+        $returnUrl = null,
+        $expirationPeriod = null,
+        $customer = null,
+        $extra = null,
+        $webhookUrl = null,
+        $orderLines = null
+    ) {
+        return static::create(
+            $amount,
+            $currency,
+            PaymentMethod::PAY_NOW,
+            [],
+            $description,
+            $merchantOrderId,
+            $returnUrl,
+            $expirationPeriod,
+            $customer,
+            $extra,
+            $webhookUrl,
+            $orderLines
+        );
+    }
+
+    /**
      * Create a new Order.
      *
      * @param integer $amount Amount in cents.
@@ -560,7 +607,9 @@ final class Order
         $webhookUrl = null,
         $orderLines = null
     ) {
+        $paymentMethod = PaymentMethod::fromString($paymentMethod);
         return new static(
+            ($paymentMethod->isPayNow()) ? null :
             Transactions::fromArray(
                 [
                     [
@@ -574,6 +623,7 @@ final class Order
             ($description !== null) ? Description::fromString($description) : null,
             ($merchantOrderId !== null) ? MerchantOrderId::fromString($merchantOrderId) : null,
             ($returnUrl !== null) ? Url::fromString($returnUrl) : null,
+            null,
             ($expirationPeriod !== null) ? new \DateInterval($expirationPeriod) : null,
             null,
             null,
@@ -594,12 +644,11 @@ final class Order
      */
     public static function fromArray(array $order)
     {
-        Guard::keyExists($order, 'transactions');
         Guard::keyExists($order, 'amount');
         Guard::keyExists($order, 'currency');
 
         return new static(
-            Transactions::fromArray($order['transactions']),
+            array_key_exists('transactions', $order) ? Transactions::fromArray($order['transactions']) : null,
             Amount::fromInteger($order['amount']),
             Currency::fromString($order['currency']),
             array_key_exists('description', $order) ? Description::fromString($order['description']) : null,
@@ -607,6 +656,7 @@ final class Order
                 ? MerchantOrderId::fromString($order['merchant_order_id'])
                 : null,
             array_key_exists('return_url', $order) ? Url::fromString($order['return_url']) : null,
+            array_key_exists('order_url', $order) ? Url::fromString($order['order_url']) : null,
             array_key_exists('expiration_period', $order) ? new \DateInterval($order['expiration_period']) : null,
             array_key_exists('id', $order) ? Uuid::fromString($order['id']) : null,
             array_key_exists('project_id', $order) ? Uuid::fromString($order['project_id']) : null,
@@ -663,7 +713,7 @@ final class Order
      */
     public function getTransactions()
     {
-        return $this->transactions()->toArray();
+        return ($this->transactions() !== null) ? $this->transactions()->toArray() : null;
     }
 
     /**
@@ -926,6 +976,19 @@ final class Order
     }
 
     /**
+     * @param string $orderUrl
+     * @return Url|null
+     */
+    public function orderUrl($orderUrl = null)
+    {
+        if ($orderUrl !== null) {
+            $this->orderUrl = Url::fromString($orderUrl);
+        }
+
+        return $this->orderUrl;
+    }
+
+    /**
      * @param string $webhookUrl
      * @return Url|null
      */
@@ -992,12 +1055,13 @@ final class Order
      * @param OrderLines|null $orderLines
      */
     private function __construct(
-        Transactions $transactions,
+        Transactions $transactions = null,
         Amount $amount,
         Currency $currency,
         Description $description = null,
         MerchantOrderId $merchantOrderId = null,
         Url $returnUrl = null,
+        Url $orderUrl = null,
         \DateInterval $expirationPeriod = null,
         Uuid $id = null,
         Uuid $projectId = null,
@@ -1016,6 +1080,7 @@ final class Order
         $this->description = $description;
         $this->merchantOrderId = $merchantOrderId;
         $this->returnUrl = $returnUrl;
+        $this->orderUrl = $orderUrl;
         $this->expirationPeriod = $expirationPeriod;
         $this->id = $id;
         $this->projectId = $projectId;
