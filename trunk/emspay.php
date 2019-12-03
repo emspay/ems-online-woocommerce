@@ -167,17 +167,7 @@ function woocommerce_emspay_init()
                     $apiKey = ($ap_settings['ap_test_api_key'])?$ap_settings['ap_test_api_key']:$settings['api_key'];
                     break;
             }
-
-            if (strlen($apiKey) > 0) {
-                try {
-                    $ginger = \GingerPayments\Payment\Ginger::createClient($apiKey);
-                    if ($settings['bundle_cacert'] == 'yes') {
-                        $ginger->useBundledCA();
-                    }
-                } catch (Exception $exception) {
-                    WC_Admin_Notices::add_custom_notice('emspay-error', $exception->getMessage());
-                }
-            }
+            
             if (strlen($apiKey) > 0) {
                 try {
                     $ginger = \Ginger\Ginger::createClient(
