@@ -50,6 +50,16 @@ class WC_Emspay_Callback extends WC_Emspay_Gateway
                 ],
                 'default' => 'checkout',
                 'desc_tip' => true
+            ],
+            'bundle_cacert' => [
+                'title' => __('cURL CA bundle', WC_Emspay_Helper::DOMAIN),
+                'label' => __('Use cURL CA bundle', WC_Emspay_Helper::DOMAIN),
+                'description' => __(
+                    'Resolves issue when curl.cacert path is not set in PHP.ini',
+                    WC_Emspay_Helper::DOMAIN
+                ),
+                'type' => 'checkbox',
+                'desc_tip' => true
             ]
         ];
     }
