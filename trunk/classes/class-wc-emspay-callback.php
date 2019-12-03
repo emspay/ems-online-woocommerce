@@ -100,7 +100,7 @@ class WC_Emspay_Callback extends WC_Emspay_Gateway
                     $settings['test_api_key'],
                     ($settings['bundle_cacert'] == 'yes') ?
                         [
-                            CURLOPT_CAINFO => realpath(plugin_dir_path(__FILE__).'/ginger-php/assets/cacert.pem')
+                            CURLOPT_CAINFO => $cacert_path
                         ] : []
                 );
 
@@ -121,7 +121,7 @@ class WC_Emspay_Callback extends WC_Emspay_Gateway
                     $ap_settings['ap_test_api_key'],
                     ($settings['bundle_cacert'] == 'yes') ?
                         [
-                            CURLOPT_CAINFO => realpath(plugin_dir_path(__FILE__).'/ginger-php/assets/cacert.pem')
+                            CURLOPT_CAINFO => $cacert_path
                         ] : []
                 );
 
