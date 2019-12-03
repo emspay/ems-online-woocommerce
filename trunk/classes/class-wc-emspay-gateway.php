@@ -32,7 +32,7 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
                     $apiKey,
                     ($settings['bundle_cacert'] == 'yes') ?
                         [
-                            CURLOPT_CAINFO => realpath(plugin_dir_path(__FILE__).'/ginger-php/assets/cacert.pem')
+                            CURLOPT_CAINFO => WC_Emspay_Helper::getCaCertPath()
                         ] : []
                 );
             } catch (Assert\InvalidArgumentException $exception) {

@@ -57,7 +57,7 @@ function woocommerce_emspay_init()
                     $settings['api_key'],
                     ($settings['bundle_cacert'] == 'yes') ?
                         [
-                            CURLOPT_CAINFO => realpath(plugin_dir_path(__FILE__).'/ginger-php/assets/cacert.pem')
+                            CURLOPT_CAINFO => WC_Emspay_Helper::getCaCertPath()
                         ] : []
                 );
             } catch (Exception $exception) {
@@ -167,7 +167,7 @@ function woocommerce_emspay_init()
                     $apiKey = ($ap_settings['ap_test_api_key'])?$ap_settings['ap_test_api_key']:$settings['api_key'];
                     break;
             }
-            
+
             if (strlen($apiKey) > 0) {
                 try {
                     $ginger = \Ginger\Ginger::createClient(
@@ -175,7 +175,7 @@ function woocommerce_emspay_init()
                         $settings['api_key'],
                         ($settings['bundle_cacert'] == 'yes') ?
                             [
-                                CURLOPT_CAINFO => realpath(plugin_dir_path(__FILE__) . '/ginger-php/assets/cacert.pem')
+                                CURLOPT_CAINFO => WC_Emspay_Helper::getCaCertPath()
                             ] : []
                     );
                 } catch (\Exception $exception) {

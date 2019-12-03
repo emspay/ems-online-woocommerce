@@ -81,7 +81,7 @@ class WC_Emspay_Callback extends WC_Emspay_Gateway
         // we potentially have 3 different API keys we can fetch the order with
         $settings = get_option('woocommerce_emspay_settings');
         $ap_settings = get_option('woocommerce_emspay_afterpay_settings');
-        $cacert_path = realpath(plugin_dir_path(__FILE__).'../ginger-php/assets/cacert.pem');
+        $cacert_path = WC_Emspay_Helper::getCaCertPath();
 
         $success_get = false;
         // first try with standard API key

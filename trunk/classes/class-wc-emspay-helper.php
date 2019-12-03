@@ -394,4 +394,13 @@ class WC_Emspay_Helper
     {
         return sprintf(__('Your order %s at %s', self::DOMAIN), $orderId, get_bloginfo('name'));
     }
+
+    /**
+     * Get CA certificate path
+     *
+     * @return bool|string
+     */
+    public function getCaCertPath(){
+        return realpath(plugin_dir_path(__FILE__).'../ginger-php/assets/cacert.pem');
+    }
 }
