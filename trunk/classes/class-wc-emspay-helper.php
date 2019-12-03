@@ -15,6 +15,11 @@ class WC_Emspay_Helper
     const DOMAIN = 'emspay';
 
     /**
+     * GINGER_ENDPOINT used for create Ginger client
+     */
+    const GINGER_ENDPOINT = 'https://api.online.emspay.eu';
+
+    /**
      * EMS Online supported payment methods
      */
     public static $PAYMENT_METHODS = [
@@ -114,7 +119,7 @@ class WC_Emspay_Helper
             $birthdate = '';
         }
 
-        return \GingerPayments\Payment\Common\ArrayFunctions::withoutNullValues([
+        return array_filter([
             'address_type' => 'customer',
             'merchant_customer_id' => $order->get_user_id(),
             'email_address' => $billems_address['email'],
@@ -172,7 +177,7 @@ class WC_Emspay_Helper
             return $order->get_item_total( $orderLine, true );
         } else {
             $product = $orderLine->get_product();
-            return $product->get_price_includems_tax();
+            return $product->get_price_including_tax();
         }
     }
 
@@ -310,9 +315,9 @@ class WC_Emspay_Helper
             $orderLines[] = array_filter([
                 'url' => get_permalink($productId),
                 'name' => $orderLine->get_name(),
-                'type' => \GingerPayments\Payment\Order\OrderLine\Type::PHYSICAL,
+                'type' => 'physical',
                 'amount' => static::getAmountInCents(static::getProductPrice($orderLine, $order)),
-                'currency' => \GingerPayments\Payment\Currency::EUR,
+                'currency' => 'EUR',
                 'quantity' => (int) $orderLine->get_quantity(),
                 'image_url' => wp_get_attachment_url($orderLine->get_product()->get_image_id()),
                 'vat_percentage' => static::getAmountInCents(static::getProductTaxRate($orderLine->get_product())),
@@ -355,9 +360,9 @@ class WC_Emspay_Helper
     {
         return [
             'name' => $order->get_shippems_method(),
-            'type' => \GingerPayments\Payment\Order\OrderLine\Type::SHIPPING_FEE,
+            'type' => 'shipping_fee',
             'amount' => static::getAmountInCents($order->get_shippems_total() + $order->get_shippems_tax()),
-            'currency' => \GingerPayments\Payment\Currency::EUR,
+            'currency' => 'EUR',
             'vat_percentage' => static::getAmountInCents(static::getShippingTaxRate()),
             'quantity' => 1,
             'merchant_order_line_id' => count($order->get_items()) + 1

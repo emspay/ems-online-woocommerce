@@ -33,7 +33,7 @@ spl_autoload_register(function ($class) {
     }
 });
 
-require_once(untrailingslashit(plugin_dir_path(__FILE__)).'/ems-php/vendor/autoload.php');
+require_once(untrailingslashit(plugin_dir_path(__FILE__)).'/ginger-php/vendor/autoload.php');
 
 function woocommerce_emspay_init()
 {
@@ -49,15 +49,17 @@ function woocommerce_emspay_init()
     function woocommerce_add_emspay($methods)
     {
         $settings = get_option('woocommerce_emspay_settings');
-        $allowed_products = [];
-        $apiTestMode = false;
 
         if (strlen($settings['api_key']) > 0) {
             try {
-                $ginger = \GingerPayments\Payment\Ginger::createClient($settings['api_key']);
-                if ($settings['bundle_cacert'] == 'yes') {
-                    $ginger->useBundledCA();
-                }
+                $ginger = \Ginger\Ginger::createClient(
+                    WC_Emspay_Helper::GINGER_ENDPOINT,
+                    $settings['api_key'],
+                    ($settings['bundle_cacert'] == 'yes') ?
+                        [
+                            CURLOPT_CAINFO => realpath(plugin_dir_path(__FILE__).'/ginger-php/assets/cacert.pem')
+                        ] : []
+                );
             } catch (Exception $exception) {
                 WC_Admin_Notices::add_custom_notice('emspay-error', $exception->getMessage());
             }
@@ -165,7 +167,7 @@ function woocommerce_emspay_init()
                     $apiKey = ($ap_settings['ap_test_api_key'])?$ap_settings['ap_test_api_key']:$settings['api_key'];
                     break;
             }
-            
+
             if (strlen($apiKey) > 0) {
                 try {
                     $ginger = \GingerPayments\Payment\Ginger::createClient($apiKey);
@@ -176,10 +178,26 @@ function woocommerce_emspay_init()
                     WC_Admin_Notices::add_custom_notice('emspay-error', $exception->getMessage());
                 }
             }
+            if (strlen($apiKey) > 0) {
+                try {
+                    $ginger = \Ginger\Ginger::createClient(
+                        WC_Emspay_Helper::GINGER_ENDPOINT,
+                        $settings['api_key'],
+                        ($settings['bundle_cacert'] == 'yes') ?
+                            [
+                                CURLOPT_CAINFO => realpath(plugin_dir_path(__FILE__) . '/ginger-php/assets/cacert.pem')
+                            ] : []
+                    );
+                } catch (\Exception $exception) {
+                    WC_Admin_Notices::add_custom_notice('emspay-error', $exception->getMessage());
+                }
+            }
 
             try {
                 $id = get_post_meta($order_id, 'ems_order_id', true);
-                $ginger->setOrderCapturedStatus($ginger->getOrder($id));
+                $ems_order = $ginger->getOrder($id);
+                $transaction_id = !empty(current($ems_order['transactions'])) ? current($ems_order['transactions'])['id'] : null;
+                $ginger->captureOrderTransaction($ems_order['id'], $transaction_id);
             } catch (\Exception $exception) {
                 WC_Admin_Notices::add_custom_notice('emspay-error', $exception->getMessage());
             }
