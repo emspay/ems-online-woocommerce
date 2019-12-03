@@ -24,16 +24,16 @@ class WC_Emspay_Helper
      */
     public static $PAYMENT_METHODS = [
         'emspay_ideal',
-        'emspay_banktransfer',
-        'emspay_creditcard',
+        'emspay_bank-transfer',
+        'emspay_credit-card',
         'emspay_bancontact',
         'emspay_sofort',
         'emspay_paypal',
         'emspay_klarna',
         'emspay_payconiq',
         'emspay_afterpay',
-        'emspay_applepay',
-        'emspay_paynow',
+        'emspay_apple-pay',
+        'emspay_pay-now',
     ];
 
     /**
@@ -194,11 +194,11 @@ class WC_Emspay_Helper
                 $default = __('iDEAL', self::DOMAIN);
                 $label = __('Enable iDEAL Payments', self::DOMAIN);
                 break;
-            case 'emspay_creditcard':
+            case 'emspay_credit-card':
                 $default = __('Credit Card', self::DOMAIN);
                 $label = __('Enable Credit Card Payments', self::DOMAIN);
                 break;
-            case 'emspay_banktransfer':
+            case 'emspay_bank-transfer':
                 $default = __('Bank Transfer', self::DOMAIN);
                 $label = __('Enable Bank Transfer Payments', self::DOMAIN);
                 break;
@@ -226,10 +226,14 @@ class WC_Emspay_Helper
                 $default = __('Payconiq', self::DOMAIN);
                 $label = __('Enable Payconiq Payments', self::DOMAIN);
                 break;
-	        case 'emspay_applepay':
+	        case 'emspay_apple-pay':
 		        $default = __('Apple Pay', self::DOMAIN);
 		        $label = __('Enable Apple Pay Payments', self::DOMAIN);
 		        break;
+            case 'emspay_pay-now':
+                $default = __('Pay Now', self::DOMAIN);
+                $label = __('Enable Pay Now Payments', self::DOMAIN);
+                break;
             default:
                 $default = '';
                 $label = '';

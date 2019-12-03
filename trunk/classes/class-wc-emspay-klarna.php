@@ -28,27 +28,32 @@ class WC_Emspay_Klarna extends WC_Emspay_Gateway
     {
         $order = new WC_Order($order_id);
 
-        $emsOrder = $this->ems->createKlarnaOrder(
-            WC_Emspay_Helper::gerOrderTotalInCents($order),              // Amount in cents
-            WC_Emspay_Helper::getCurrency(),                             // currency
-            WC_Emspay_Helper::getOrderDescription($order_id),            // description
-            $order_id,                                                   // merchant_order_id
-            WC_Emspay_Helper::getReturnUrl(),                            // return_url
-            null,                                                        // expiration
-            WC_Emspay_Helper::getCustomerInfo($order),                   // customer
-            ['plugin' => EMSPAY_PLUGIN_VERSION],                         // extra information
-            WC_Emspay_Helper::getWebhookUrl($this),                      // webhook_url
-            WC_Emspay_Helper::getOrderLines($order)                      // order_lines
-        );
+        $emsOrder = $this->ems->createOrder([
+            'currency' => WC_Emspay_Helper::getCurrency(),
+            'amount' => WC_Emspay_Helper::gerOrderTotalInCents($order),
+            'transactions' => [
+                [
+                    'payment_method' => str_replace('emspay_', '', $this->id),
+                    'payment_method_details' => []
+                ]
+            ],
+            'merchant_order_id' => $order_id,
+            'description' => WC_Emspay_Helper::getOrderDescription($order_id),
+            'return_url' => WC_Emspay_Helper::getReturnUrl(),
+            'customer' => WC_Emspay_Helper::getCustomerInfo($order),
+            'extra' => ['plugin' => EMSPAY_PLUGIN_VERSION],
+            'webhook_url' => WC_Emspay_Helper::getWebhookUrl($this),
+            'order_lines' => WC_Emspay_Helper::getOrderLines($order)
+        ]);
 
-        update_post_meta($order_id, 'ems_order_id', $emsOrder->getId());
+        update_post_meta($order_id, 'ems_order_id', $emsOrder['id']);
 
-        if ($emsOrder->status()->isError()) {
-            wc_add_notice($emsOrder->transactions()->current()->reason()->toString(), 'error');
+        if ($emsOrder['status'] == 'error') {
+            wc_add_notice(current($emsOrder['transactions'])['reason'], 'error');
             return [
                 'result' => 'failure',
             ];
-        } elseif ($emsOrder->status()->isCancelled()) {
+        } elseif ($emsOrder['status'] == 'cancelled') {
             wc_add_notice(
                 __('Unfortunately, we can not currently accept your purchase with Klarna. Please choose another payment option to complete your order. We apologize for the inconvenience.'),
                 'error'

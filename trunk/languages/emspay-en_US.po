@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-01 21:30+0200\n"
-"PO-Revision-Date: 2019-11-01 21:31+0200\n"
+"POT-Creation-Date: 2019-12-03 16:26+0200\n"
+"PO-Revision-Date: 2019-12-03 16:26+0200\n"
 "Last-Translator: Jasmine Vyas\n"
 "Language-Team: English (UK)\n"
 "Language: en_GB\n"
@@ -25,7 +25,7 @@ msgstr ""
 msgid "EMS Online : AfterPay"
 msgstr "EMS Online: AfterPay"
 
-#: classes/class-wc-emspay-afterpay.php:56
+#: classes/class-wc-emspay-afterpay.php:61
 msgid ""
 "Unfortunately, we can not currently accept your purchase with AfterPay. "
 "Please choose another payment option to complete your order. We apologize "
@@ -38,96 +38,96 @@ msgstr ""
 "customers/contact or by phone via +31 20 72 30 270. We advise you to select "
 "another payment method to complete the payment of your order."
 
-#: classes/class-wc-emspay-afterpay.php:78
+#: classes/class-wc-emspay-afterpay.php:83
 msgid "Your payment using AfterPay is successful."
 msgstr "Your payment using AfterPay is successful."
 
-#: classes/class-wc-emspay-afterpay.php:79
-#: classes/class-wc-emspay-klarna.php:76
+#: classes/class-wc-emspay-afterpay.php:84
+#: classes/class-wc-emspay-klarna.php:81
 msgid "The invoice will be sent to your email."
 msgstr "The invoice will be sent to your email address."
 
-#: classes/class-wc-emspay-afterpay.php:91
-#: classes/class-wc-emspay-klarna.php:88
+#: classes/class-wc-emspay-afterpay.php:96
+#: classes/class-wc-emspay-klarna.php:93
 msgid "Additional Information"
 msgstr "Additional Information"
 
-#: classes/class-wc-emspay-afterpay.php:96
-#: classes/class-wc-emspay-klarna.php:93
+#: classes/class-wc-emspay-afterpay.php:101
+#: classes/class-wc-emspay-klarna.php:98
 msgid "Gender:"
 msgstr "Gender:"
 
-#: classes/class-wc-emspay-afterpay.php:99
-#: classes/class-wc-emspay-klarna.php:96
+#: classes/class-wc-emspay-afterpay.php:104
+#: classes/class-wc-emspay-klarna.php:101
 msgid "Male"
 msgstr "Male"
 
-#: classes/class-wc-emspay-afterpay.php:100
-#: classes/class-wc-emspay-klarna.php:97
+#: classes/class-wc-emspay-afterpay.php:105
+#: classes/class-wc-emspay-klarna.php:102
 msgid "Female"
 msgstr "Female"
 
-#: classes/class-wc-emspay-afterpay.php:108
+#: classes/class-wc-emspay-afterpay.php:113
 msgid "Dag"
 msgstr "Date"
 
-#: classes/class-wc-emspay-afterpay.php:121
+#: classes/class-wc-emspay-afterpay.php:126
 msgid "Maand"
 msgstr "Month"
 
-#: classes/class-wc-emspay-afterpay.php:123
+#: classes/class-wc-emspay-afterpay.php:128
 msgid "Jan"
 msgstr "January"
 
-#: classes/class-wc-emspay-afterpay.php:124
+#: classes/class-wc-emspay-afterpay.php:129
 msgid "Feb"
 msgstr "February"
 
-#: classes/class-wc-emspay-afterpay.php:125
+#: classes/class-wc-emspay-afterpay.php:130
 msgid "Mar"
 msgstr "March"
 
-#: classes/class-wc-emspay-afterpay.php:126
+#: classes/class-wc-emspay-afterpay.php:131
 msgid "Apr"
 msgstr "April"
 
-#: classes/class-wc-emspay-afterpay.php:127
+#: classes/class-wc-emspay-afterpay.php:132
 msgid "May"
 msgstr "May"
 
-#: classes/class-wc-emspay-afterpay.php:128
+#: classes/class-wc-emspay-afterpay.php:133
 msgid "Jun"
 msgstr "June"
 
-#: classes/class-wc-emspay-afterpay.php:129
+#: classes/class-wc-emspay-afterpay.php:134
 msgid "Jul"
 msgstr "July"
 
-#: classes/class-wc-emspay-afterpay.php:130
+#: classes/class-wc-emspay-afterpay.php:135
 msgid "Aug"
 msgstr "August"
 
-#: classes/class-wc-emspay-afterpay.php:131
+#: classes/class-wc-emspay-afterpay.php:136
 msgid "Sep"
 msgstr "September"
 
-#: classes/class-wc-emspay-afterpay.php:132
+#: classes/class-wc-emspay-afterpay.php:137
 msgid "Oct"
 msgstr "October"
 
-#: classes/class-wc-emspay-afterpay.php:133
+#: classes/class-wc-emspay-afterpay.php:138
 msgid "Nov"
 msgstr "November"
 
-#: classes/class-wc-emspay-afterpay.php:134
+#: classes/class-wc-emspay-afterpay.php:139
 msgid "Dec"
 msgstr "December"
 
-#: classes/class-wc-emspay-afterpay.php:138
+#: classes/class-wc-emspay-afterpay.php:143
 msgid "Jaar"
 msgstr "Year"
 
-#: classes/class-wc-emspay-afterpay.php:157
+#: classes/class-wc-emspay-afterpay.php:162
 #, php-format
 msgid "I accept <a href='%s' target='_blank'>Terms and Conditions</a>"
 msgstr ""
@@ -138,13 +138,13 @@ msgstr ""
 msgid "Apple Pay - EMS Online"
 msgstr "EMS Online: Apple Pay"
 
-#: classes/class-wc-emspay-applepay.php:46
-#: classes/class-wc-emspay-bancontact.php:46
-#: classes/class-wc-emspay-callback.php:155
-#: classes/class-wc-emspay-creditcard.php:46
-#: classes/class-wc-emspay-ideal.php:54 classes/class-wc-emspay-payconiq.php:47
-#: classes/class-wc-emspay-paynow.php:50 classes/class-wc-emspay-paypal.php:47
-#: classes/class-wc-emspay-sofort.php:47
+#: classes/class-wc-emspay-applepay.php:51
+#: classes/class-wc-emspay-bancontact.php:51
+#: classes/class-wc-emspay-callback.php:164
+#: classes/class-wc-emspay-creditcard.php:51
+#: classes/class-wc-emspay-ideal.php:58 classes/class-wc-emspay-payconiq.php:51
+#: classes/class-wc-emspay-paynow.php:49 classes/class-wc-emspay-paypal.php:51
+#: classes/class-wc-emspay-sofort.php:51
 msgid "There was a problem processing your transaction."
 msgstr "There was an error processing your payment. Please try again."
 
@@ -158,31 +158,31 @@ msgstr "EMS Online: Bancontact"
 msgid "Banktransfer - EMS Online"
 msgstr "EMS Online: Bank Transfer"
 
-#: classes/class-wc-emspay-banktransfer.php:65
+#: classes/class-wc-emspay-banktransfer.php:70
 msgid "Awaiting Bank-Transfer Payment"
 msgstr "Awaiting the bank transfer payment"
 
-#: classes/class-wc-emspay-banktransfer.php:100
+#: classes/class-wc-emspay-banktransfer.php:105
 msgid "Please use the following payment information:"
 msgstr "Please use the following reference in your payment:"
 
-#: classes/class-wc-emspay-banktransfer.php:102
+#: classes/class-wc-emspay-banktransfer.php:107
 msgid "Bank Reference:"
 msgstr "Bank Reference:"
 
-#: classes/class-wc-emspay-banktransfer.php:104
+#: classes/class-wc-emspay-banktransfer.php:109
 msgid "IBAN:"
 msgstr "IBAN:"
 
-#: classes/class-wc-emspay-banktransfer.php:106
+#: classes/class-wc-emspay-banktransfer.php:111
 msgid "BIC:"
 msgstr "BIC:"
 
-#: classes/class-wc-emspay-banktransfer.php:108
+#: classes/class-wc-emspay-banktransfer.php:113
 msgid "Account Holder:"
 msgstr "Account Holder:"
 
-#: classes/class-wc-emspay-banktransfer.php:110
+#: classes/class-wc-emspay-banktransfer.php:115
 msgid "Residence:"
 msgstr "Residence:"
 
@@ -200,7 +200,7 @@ msgid "API key provided by EMS"
 msgstr "Copy the API key of your webshop from your merchant portal"
 
 #: classes/class-wc-emspay-callback.php:31
-#: classes/class-wc-emspay-helper.php:261
+#: classes/class-wc-emspay-helper.php:270
 msgid "Test API key"
 msgstr "Test API key"
 
@@ -258,7 +258,7 @@ msgstr "Resolves issue when curl.cacert path is not set in PHP.ini"
 msgid "Mastercard, VISA, Maestro or V PAY - EMS Online"
 msgstr "EMS Online: MasterCard, VISA, Maestro or V PAY"
 
-#: classes/class-wc-emspay-gateway.php:55
+#: classes/class-wc-emspay-gateway.php:60
 msgid ""
 "Your transaction is still being processed. You will be notified when status "
 "is updated."
@@ -267,125 +267,133 @@ msgstr ""
 "bank or card issuer. You will receive a message as soon as we have received "
 "this."
 
-#: classes/class-wc-emspay-helper.php:189
+#: classes/class-wc-emspay-helper.php:194
 msgid "iDEAL"
 msgstr "iDEAL"
 
-#: classes/class-wc-emspay-helper.php:190
+#: classes/class-wc-emspay-helper.php:195
 msgid "Enable iDEAL Payments"
 msgstr "Enable iDEAL payments"
 
-#: classes/class-wc-emspay-helper.php:193
+#: classes/class-wc-emspay-helper.php:198
 msgid "Credit Card"
 msgstr "Credit card"
 
-#: classes/class-wc-emspay-helper.php:194
+#: classes/class-wc-emspay-helper.php:199
 msgid "Enable Credit Card Payments"
 msgstr "Enable Credit card payments"
 
-#: classes/class-wc-emspay-helper.php:197
+#: classes/class-wc-emspay-helper.php:202
 msgid "Bank Transfer"
 msgstr "Bank transfer"
 
-#: classes/class-wc-emspay-helper.php:198
+#: classes/class-wc-emspay-helper.php:203
 msgid "Enable Bank Transfer Payments"
 msgstr "Enable bank transfer payments"
 
-#: classes/class-wc-emspay-helper.php:201
+#: classes/class-wc-emspay-helper.php:206
 msgid "SOFORT"
 msgstr "SOFORT"
 
-#: classes/class-wc-emspay-helper.php:202
+#: classes/class-wc-emspay-helper.php:207
 msgid "Enable SOFORT Payments"
 msgstr "Enable SOFORT payments"
 
-#: classes/class-wc-emspay-helper.php:205
+#: classes/class-wc-emspay-helper.php:210
 msgid "Bancontact"
 msgstr "Bancontact"
 
-#: classes/class-wc-emspay-helper.php:206
+#: classes/class-wc-emspay-helper.php:211
 msgid "Enable Bancontact Payments"
 msgstr "Enable Bancontact payments"
 
-#: classes/class-wc-emspay-helper.php:209
+#: classes/class-wc-emspay-helper.php:214
 msgid "PayPal"
 msgstr "PayPal"
 
-#: classes/class-wc-emspay-helper.php:210
+#: classes/class-wc-emspay-helper.php:215
 msgid "Enable PayPal Payments"
 msgstr "Enable PayPal payments"
 
-#: classes/class-wc-emspay-helper.php:213
+#: classes/class-wc-emspay-helper.php:218
 msgid "AfterPay"
 msgstr "EMS Online : AfterPay"
 
-#: classes/class-wc-emspay-helper.php:214
+#: classes/class-wc-emspay-helper.php:219
 msgid "Enable AfterPay Payments"
 msgstr "Enable AfterPay payments"
 
-#: classes/class-wc-emspay-helper.php:217
+#: classes/class-wc-emspay-helper.php:222
 msgid "Klarna"
 msgstr "Klarna"
 
-#: classes/class-wc-emspay-helper.php:218
+#: classes/class-wc-emspay-helper.php:223
 msgid "Enable Klarna Payments"
 msgstr "Enable Klarna payments"
 
-#: classes/class-wc-emspay-helper.php:221
+#: classes/class-wc-emspay-helper.php:226
 msgid "Payconiq"
 msgstr "Payconiq"
 
-#: classes/class-wc-emspay-helper.php:222
+#: classes/class-wc-emspay-helper.php:227
 msgid "Enable Payconiq Payments"
 msgstr "Enable Payconiq Payments"
 
-#: classes/class-wc-emspay-helper.php:225
+#: classes/class-wc-emspay-helper.php:230
 msgid "Apple Pay"
 msgstr "Apple Pay"
 
-#: classes/class-wc-emspay-helper.php:226
+#: classes/class-wc-emspay-helper.php:231
 msgid "Enable Apple Pay Payments"
 msgstr "Enable Apple Pay payments"
 
-#: classes/class-wc-emspay-helper.php:236
+#: classes/class-wc-emspay-helper.php:234
+msgid "Pay Now"
+msgstr "Pay Now"
+
+#: classes/class-wc-emspay-helper.php:235
+msgid "Enable Pay Now Payments"
+msgstr "Enable Pay Now Payments"
+
+#: classes/class-wc-emspay-helper.php:245
 msgid "Enable/Disable"
 msgstr "Enable/Disable"
 
-#: classes/class-wc-emspay-helper.php:242
+#: classes/class-wc-emspay-helper.php:251
 msgid "Title"
 msgstr "Title"
 
-#: classes/class-wc-emspay-helper.php:244
+#: classes/class-wc-emspay-helper.php:253
 msgid "This controls the title which the user sees during checkout."
 msgstr ""
 "This field is the title of the payment method that the shopper will see "
 "during the checkout step."
 
-#: classes/class-wc-emspay-helper.php:249
+#: classes/class-wc-emspay-helper.php:258
 msgid "Use Webhook URL"
 msgstr "Use Webhook URL"
 
-#: classes/class-wc-emspay-helper.php:250
+#: classes/class-wc-emspay-helper.php:259
 msgid "Automatically include Webhook URL with every order"
 msgstr "Automatically include Webhook URL with every order"
 
-#: classes/class-wc-emspay-helper.php:251
+#: classes/class-wc-emspay-helper.php:260
 msgid "API will request this URL in order to update transaction details."
 msgstr ""
 "Automatically provide the webhook URL with each generated order to the ING "
 "PSP API to update the transaction details."
 
-#: classes/class-wc-emspay-helper.php:263
+#: classes/class-wc-emspay-helper.php:272
 msgid "Test API key for testing implementation of AfterPay."
 msgstr ""
 "Enter here the API Key of the test webshop for testing AfterPay. If you do "
 "not offer AfterPay you can leave this empty."
 
-#: classes/class-wc-emspay-helper.php:266
+#: classes/class-wc-emspay-helper.php:275
 msgid "AfterPay Debug IP"
 msgstr "IP address(es) for testing AfterPay"
 
-#: classes/class-wc-emspay-helper.php:268
+#: classes/class-wc-emspay-helper.php:277
 msgid ""
 "IP address for testing AfterPay. If empty, visible for all. If filled, only "
 "visible for specified IP addresses. (Example: 127.0.0.1, 255.255.255.255)"
@@ -395,7 +403,7 @@ msgstr ""
 "if you want to test AfterPay you can type IP addresses as 128.0.0.1, "
 "255.255.255.255.)"
 
-#: classes/class-wc-emspay-helper.php:390
+#: classes/class-wc-emspay-helper.php:399
 #, php-format
 msgid "Your order %s at %s"
 msgstr "Your order %s at %s"
@@ -410,7 +418,7 @@ msgstr ""
 "There was an error processing your payment. Please select your bank to use "
 "iDEAL!"
 
-#: classes/class-wc-emspay-ideal.php:75
+#: classes/class-wc-emspay-ideal.php:83
 msgid "Choose your bank:"
 msgstr "Choose your bank:"
 
@@ -418,7 +426,7 @@ msgstr "Choose your bank:"
 msgid "Klarna - EMS Online"
 msgstr "EMS Online: Klarna"
 
-#: classes/class-wc-emspay-klarna.php:53
+#: classes/class-wc-emspay-klarna.php:58
 msgid ""
 "Unfortunately, we can not currently accept your purchase with Klarna. Please "
 "choose another payment option to complete your order. We apologize for the "
@@ -431,15 +439,15 @@ msgstr ""
 "customers/contact or by phone via +31 20 72 30 270. We advise you to select "
 "another payment method to complete the payment of your order."
 
-#: classes/class-wc-emspay-klarna.php:75
+#: classes/class-wc-emspay-klarna.php:80
 msgid "Your payment using Klarna is successful."
 msgstr "Your payment with Klarna is successfully processed."
 
-#: classes/class-wc-emspay-klarna.php:105
+#: classes/class-wc-emspay-klarna.php:110
 msgid "Date of birth:"
 msgstr "Date of Birth:"
 
-#: classes/class-wc-emspay-klarna.php:106
+#: classes/class-wc-emspay-klarna.php:111
 msgid "Birth date format: DD - MM - YYYY, eg: 31-12-1980"
 msgstr ""
 "Please use the following format for entering the birth date : DD - MM - "

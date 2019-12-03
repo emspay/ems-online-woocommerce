@@ -28,30 +28,39 @@ class WC_Emspay_Bancontact extends WC_Emspay_Gateway
     {
         $order = new WC_Order($order_id);
 
-        $emsOrder = $this->ems->createBancontactOrder(
-            WC_Emspay_Helper::gerOrderTotalInCents($order),          // Amount in cents
-            WC_Emspay_Helper::getCurrency(),                         // Currency
-            WC_Emspay_Helper::getOrderDescription($order_id),        // Description
-            $order_id,                                               // Merchant id
-            WC_Emspay_Helper::getReturnUrl(),                        // Return url
-            null,                                                    // expiration
-            WC_Emspay_Helper::getCustomerInfo($order),               // customer
-            ['plugin' => EMSPAY_PLUGIN_VERSION],                     // extra information
-            WC_Emspay_Helper::getWebhookUrl($this)                   // webhook_url
-        );
+        $emsOrder = $this->ems->createOrder([
+            'currency' => WC_Emspay_Helper::getCurrency(),
+            'amount' => WC_Emspay_Helper::gerOrderTotalInCents($order),
+            'transactions' => [
+                [
+                    'payment_method' => str_replace('emspay_', '', $this->id),
+                    'payment_method_details' => []
+                ]
+            ],
+            'merchant_order_id' => $order_id,
+            'description' => WC_Emspay_Helper::getOrderDescription($order_id),
+            'return_url' => WC_Emspay_Helper::getReturnUrl(),
+            'customer' => WC_Emspay_Helper::getCustomerInfo($order),
+            'extra' => ['plugin' => EMSPAY_PLUGIN_VERSION],
+            'webhook_url' => WC_Emspay_Helper::getWebhookUrl($this),
+        ]);
 
-        update_post_meta($order_id, 'ems_order_id', $emsOrder->getId());
+        update_post_meta($order_id, 'ems_order_id', $emsOrder['id']);
 
-        if ($emsOrder->status()->isError()) {
+        if ($emsOrder['status'] == 'error') {
             wc_add_notice(__('There was a problem processing your transaction.', WC_Emspay_Helper::DOMAIN), 'error');
             return [
                 'result' => 'failure'
             ];
         }
 
+        $pay_url = array_key_exists(0, $emsOrder['transactions'])
+            ? $emsOrder['transactions'][0]['payment_url']
+            : null;
+
         return [
             'result' => 'success',
-            'redirect' => $emsOrder->firstTransactionPaymentUrl()->toString()
+            'redirect' => $pay_url
         ];
     }
 }

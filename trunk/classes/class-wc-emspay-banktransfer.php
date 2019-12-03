@@ -20,7 +20,7 @@ class WC_Emspay_Banktransfer extends WC_Emspay_Gateway
      */
     public function __construct()
     {
-        $this->id = 'emspay_banktransfer';
+        $this->id = 'emspay_bank-transfer';
         $this->icon = false;
         $this->has_fields = false;
         $this->method_title = __('Banktransfer - EMS Online', WC_Emspay_Helper::DOMAIN);
@@ -29,33 +29,11 @@ class WC_Emspay_Banktransfer extends WC_Emspay_Gateway
         parent::__construct();
 
         // Create banktransfer order in ginger system when creating an order from the admin panel
-        add_action('woocommerce_new_order', array($this, 'create_banktransfer_order'), 10, 1);
+        add_action('woocommerce_process_shop_order_meta', array($this, 'process_payment'), 41, 1);
 
         // Sends instructions for payment in the Order email
         add_action( 'woocommerce_email_after_order_table', array($this, 'add_order_email_instructions'), 10, 1 );
 
-    }
-
-    /**
-     * @param $order_id
-     */
-    public function create_banktransfer_order($order_id){
-
-       // Support for this functionality since WC version 3.6.0
-        if (version_compare(get_option('woocommerce_version'), '3.6.0', '<')) {
-            return;
-        }
-
-        if (! is_admin()) {
-            return;
-        }
-
-        $order = wc_get_order($order_id);
-        $payment_method = $order->get_payment_method();
-
-        if( $payment_method == $this->id ) {
-            $this->process_payment($order_id);
-        }
     }
 
     /**
@@ -66,23 +44,28 @@ class WC_Emspay_Banktransfer extends WC_Emspay_Gateway
     {
         $order = new WC_Order($order_id);
 
-        $emsOrder = $this->ems->createSepaOrder(
-            WC_Emspay_Helper::gerOrderTotalInCents($order),          // Amount in cents
-            WC_Emspay_Helper::getCurrency(),                         // Currency
-            [],                                                      // Payment method details
-            WC_Emspay_Helper::getOrderDescription($order_id),        // Description
-            $order_id,                                               // Merchant id
-            WC_Emspay_Helper::getReturnUrl(),                        // Return url,
-            null,                                                    // expiration
-            WC_Emspay_Helper::getCustomerInfo($order),               // customer
-            ['plugin' => EMSPAY_PLUGIN_VERSION],                     // extra information
-            WC_Emspay_Helper::getWebhookUrl($this)                   // webhook_url
-        );
+        $emsOrder = $this->ems->createOrder([
+            'currency' => WC_Emspay_Helper::getCurrency(),
+            'amount' => WC_Emspay_Helper::gerOrderTotalInCents($order),
+            'transactions' => [
+                [
+                    'payment_method' => str_replace('emspay_', '', $this->id),
+                    'payment_method_details' => []
+                ]
+            ],
+            'merchant_order_id' => $order_id,
+            'description' => WC_Emspay_Helper::getOrderDescription($order_id),
+            'return_url' => WC_Emspay_Helper::getReturnUrl(),
+            'customer' => WC_Emspay_Helper::getCustomerInfo($order),
+            'extra' => ['plugin' => EMSPAY_PLUGIN_VERSION],
+            'webhook_url' => WC_Emspay_Helper::getWebhookUrl($this),
+        ]);
 
-        $bank_reference = $emsOrder->Transactions()->current()->paymentMethodDetails()->reference()->toString();
+        $bank_reference = !empty(current($emsOrder['transactions'])) ?
+            current($emsOrder['transactions'])['payment_method_details']['reference'] : null;
 
         update_post_meta($order_id, 'bank_reference', $bank_reference);
-        update_post_meta($order_id, 'ems_order_id', $emsOrder->getId());
+        update_post_meta($order_id, 'ems_order_id', $emsOrder['id']);
 
         $order->update_status('on-hold', __('Awaiting Bank-Transfer Payment', WC_Emspay_Helper::DOMAIN));
 
@@ -108,12 +91,7 @@ class WC_Emspay_Banktransfer extends WC_Emspay_Gateway
      * @param $order
      */
     public function add_order_email_instructions($order) {
-
-        $payment_method = $order->get_payment_method();
-
-        if( $payment_method == $this->id ) {
-            echo $this->get_instructions($order->get_id());
-        }
+        echo $this->get_instructions($order->get_id());
     }
 
     /**
