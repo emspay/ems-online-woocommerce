@@ -29,7 +29,7 @@ class WC_Emspay_Helper
         'emspay_bancontact',
         'emspay_klarna-pay-now',
         'emspay_paypal',
-        'emspay_klarna',
+        'emspay_klarna-pay-later',
         'emspay_payconiq',
         'emspay_afterpay',
         'emspay_apple-pay',
@@ -218,9 +218,9 @@ class WC_Emspay_Helper
                 $default = __('AfterPay', self::DOMAIN);
                 $label = __('Enable AfterPay Payments', self::DOMAIN);
                 break;
-            case 'emspay_klarna':
-                $default = __('Klarna', self::DOMAIN);
-                $label = __('Enable Klarna Payments', self::DOMAIN);
+            case 'emspay_klarna-pay-later':
+                $default = __('Klarna Pay Later', self::DOMAIN);
+                $label = __('Enable Klarna Pay Later Payments', self::DOMAIN);
                 break;
             case 'emspay_payconiq':
                 $default = __('Payconiq', self::DOMAIN);

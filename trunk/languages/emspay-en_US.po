@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-03 21:13+0200\n"
-"PO-Revision-Date: 2019-12-03 21:13+0200\n"
+"POT-Creation-Date: 2019-12-03 22:09+0200\n"
+"PO-Revision-Date: 2019-12-03 22:10+0200\n"
 "Last-Translator: Jasmine Vyas\n"
 "Language-Team: English (UK)\n"
 "Language: en_GB\n"
@@ -43,27 +43,27 @@ msgid "Your payment using AfterPay is successful."
 msgstr "Your payment using AfterPay is successful."
 
 #: classes/class-wc-emspay-afterpay.php:84
-#: classes/class-wc-emspay-klarna.php:81
+#: classes/class-wc-emspay-klarnapaylater.php:81
 msgid "The invoice will be sent to your email."
 msgstr "The invoice will be sent to your email address."
 
 #: classes/class-wc-emspay-afterpay.php:96
-#: classes/class-wc-emspay-klarna.php:93
+#: classes/class-wc-emspay-klarnapaylater.php:93
 msgid "Additional Information"
 msgstr "Additional Information"
 
 #: classes/class-wc-emspay-afterpay.php:101
-#: classes/class-wc-emspay-klarna.php:98
+#: classes/class-wc-emspay-klarnapaylater.php:98
 msgid "Gender:"
 msgstr "Gender:"
 
 #: classes/class-wc-emspay-afterpay.php:104
-#: classes/class-wc-emspay-klarna.php:101
+#: classes/class-wc-emspay-klarnapaylater.php:101
 msgid "Male"
 msgstr "Male"
 
 #: classes/class-wc-emspay-afterpay.php:105
-#: classes/class-wc-emspay-klarna.php:102
+#: classes/class-wc-emspay-klarnapaylater.php:102
 msgid "Female"
 msgstr "Female"
 
@@ -143,7 +143,7 @@ msgstr "EMS Online: Apple Pay"
 #: classes/class-wc-emspay-callback.php:164
 #: classes/class-wc-emspay-creditcard.php:51
 #: classes/class-wc-emspay-ideal.php:58
-#: classes/class-wc-emspay-klarna-pay-now.php:51
+#: classes/class-wc-emspay-klarnapaynow.php:51
 #: classes/class-wc-emspay-payconiq.php:51
 #: classes/class-wc-emspay-paynow.php:49 classes/class-wc-emspay-paypal.php:51
 msgid "There was a problem processing your transaction."
@@ -325,12 +325,12 @@ msgid "Enable AfterPay Payments"
 msgstr "Enable AfterPay payments"
 
 #: classes/class-wc-emspay-helper.php:222
-msgid "Klarna"
-msgstr "Klarna"
+msgid "Klarna Pay Later"
+msgstr "Klarna Pay Later"
 
 #: classes/class-wc-emspay-helper.php:223
-msgid "Enable Klarna Payments"
-msgstr "Enable Klarna payments"
+msgid "Enable Klarna Pay Later Payments"
+msgstr "Enable Klarna Pay Later Payments"
 
 #: classes/class-wc-emspay-helper.php:226
 msgid "Payconiq"
@@ -423,16 +423,12 @@ msgstr ""
 msgid "Choose your bank:"
 msgstr "Choose your bank:"
 
-#: classes/class-wc-emspay-klarna-pay-now.php:17
-#: classes/class-wc-emspay-klarna-pay-now.php:18
-msgid "EMS Online - Klarna Pay Now"
-msgstr "EMS Online: Klarna Pay Now"
+#: classes/class-wc-emspay-klarnapaylater.php:17
+#: classes/class-wc-emspay-klarnapaylater.php:18
+msgid "Klarna Pay Later - EMS Online"
+msgstr "EMS Online: Klarna Pay Later"
 
-#: classes/class-wc-emspay-klarna.php:17 classes/class-wc-emspay-klarna.php:18
-msgid "Klarna - EMS Online"
-msgstr "EMS Online: Klarna"
-
-#: classes/class-wc-emspay-klarna.php:58
+#: classes/class-wc-emspay-klarnapaylater.php:58
 msgid ""
 "Unfortunately, we can not currently accept your purchase with Klarna. Please "
 "choose another payment option to complete your order. We apologize for the "
@@ -445,19 +441,24 @@ msgstr ""
 "customers/contact or by phone via +31 20 72 30 270. We advise you to select "
 "another payment method to complete the payment of your order."
 
-#: classes/class-wc-emspay-klarna.php:80
+#: classes/class-wc-emspay-klarnapaylater.php:80
 msgid "Your payment using Klarna is successful."
 msgstr "Your payment with Klarna is successfully processed."
 
-#: classes/class-wc-emspay-klarna.php:110
+#: classes/class-wc-emspay-klarnapaylater.php:110
 msgid "Date of birth:"
 msgstr "Date of Birth:"
 
-#: classes/class-wc-emspay-klarna.php:111
+#: classes/class-wc-emspay-klarnapaylater.php:111
 msgid "Birth date format: DD - MM - YYYY, eg: 31-12-1980"
 msgstr ""
 "Please use the following format for entering the birth date : DD - MM - "
 "YYYY, e.g.: 31-12-1980"
+
+#: classes/class-wc-emspay-klarnapaynow.php:17
+#: classes/class-wc-emspay-klarnapaynow.php:18
+msgid "EMS Online - Klarna Pay Now"
+msgstr "EMS Online: Klarna Pay Now"
 
 #: classes/class-wc-emspay-payconiq.php:17
 #: classes/class-wc-emspay-payconiq.php:18
@@ -471,6 +472,12 @@ msgstr "EMS Online: Pay now"
 #: classes/class-wc-emspay-paypal.php:17 classes/class-wc-emspay-paypal.php:18
 msgid "PayPal - EMS Online"
 msgstr "EMS Online: PayPal"
+
+#~ msgid "Klarna"
+#~ msgstr "Klarna"
+
+#~ msgid "Enable Klarna Payments"
+#~ msgstr "Enable Klarna payments"
 
 #~ msgid "SOFORT"
 #~ msgstr "SOFORT"

@@ -4,18 +4,18 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class WC_Emspay_Klarna extends WC_Emspay_Gateway
+class WC_Emspay_Klarnapaylater extends WC_Emspay_Gateway
 {
     /**
      * WC_Emspay_Creditcard constructor.
      */
     public function __construct()
     {
-        $this->id = 'emspay_klarna';
+        $this->id = 'emspay_klarna-pay-later';
         $this->icon = false;
         $this->has_fields = true;
-        $this->method_title = __('Klarna - EMS Online', WC_Emspay_Helper::DOMAIN);
-        $this->method_description = __('Klarna - EMS Online', WC_Emspay_Helper::DOMAIN);
+        $this->method_title = __('Klarna Pay Later - EMS Online', WC_Emspay_Helper::DOMAIN);
+        $this->method_description = __('Klarna Pay Later - EMS Online', WC_Emspay_Helper::DOMAIN);
 
         parent::__construct();
     }
