@@ -31,27 +31,32 @@ class WC_Emspay_AfterPay extends WC_Emspay_Gateway
     {
         $order = new WC_Order($order_id);
 
-        $emsOrder = $this->ems->createAfterPayOrder(
-            WC_Emspay_Helper::gerOrderTotalInCents($order),              // Amount in cents
-            WC_Emspay_Helper::getCurrency(),                             // currency
-            WC_Emspay_Helper::getOrderDescription($order_id),            // description
-            $order_id,                                                   // merchant_order_id
-            WC_Emspay_Helper::getReturnUrl(),                            // return_url
-            null,                                                        // expiration
-            WC_Emspay_Helper::getCustomerInfo($order),                   // customer
-            ['plugin' => EMSPAY_PLUGIN_VERSION],                         // extra information
-            WC_Emspay_Helper::getWebhookUrl($this),                      // webhook_url
-            WC_Emspay_Helper::getOrderLines($order)                      // order_lines
-        );
+        $emsOrder = $this->ems->createOrder([
+            'amount' => WC_Emspay_Helper::gerOrderTotalInCents($order),
+            'currency' => WC_Emspay_Helper::getCurrency(),
+            'transactions' => [
+                [
+                    'payment_method' => str_replace('emspay_', '', $this->id),
+                    'payment_method_details' => []
+                ]
+            ],
+            'merchant_order_id' => $order_id,
+            'description' => WC_Emspay_Helper::getOrderDescription($order_id),
+            'return_url' => WC_Emspay_Helper::getReturnUrl(),
+            'customer' => WC_Emspay_Helper::getCustomerInfo($order),
+            'extra' => ['plugin' => EMSPAY_PLUGIN_VERSION],
+            'webhook_url' => WC_Emspay_Helper::getWebhookUrl($this),
+            'order_lines' => WC_Emspay_Helper::getOrderLines($order)
+        ]);
 
-        update_post_meta($order_id, 'ems_order_id', $emsOrder->getId());
+        update_post_meta($order_id, 'ems_order_id', $emsOrder['id']);
 
-        if ($emsOrder->status()->isError()) {
-            wc_add_notice($emsOrder->transactions()->current()->reason()->toString(), 'error');
+        if ($emsOrder['status'] == 'error') {
+            wc_add_notice(current($emsOrder['transactions'])['reason'], 'error');
             return [
                 'result' => 'failure',
             ];
-        } elseif ($emsOrder->status()->isCancelled()) {
+        } elseif ($emsOrder['status'] == 'cancelled') {
             wc_add_notice(
                 __('Unfortunately, we can not currently accept your purchase with AfterPay. Please choose another payment option to complete your order. We apologize for the inconvenience.', WC_Emspay_Helper::DOMAIN),
                 'error'
@@ -62,9 +67,13 @@ class WC_Emspay_AfterPay extends WC_Emspay_Gateway
             ];
         }
 
+        $pay_url = array_key_exists(0, $emsOrder['transactions'])
+            ? $emsOrder['transactions'][0]['payment_url']
+            : null;
+
         return [
             'result' => 'success',
-            'redirect' => $this->get_return_url($order)
+            'redirect' => $pay_url
         ];
     }
 
