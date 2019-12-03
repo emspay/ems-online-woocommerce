@@ -73,7 +73,7 @@ function woocommerce_emspay_init()
             'WC_Emspay_Creditcard',
             'WC_Emspay_PayPal',
             'WC_Emspay_Klarna',
-            'WC_Emspay_Sofort',
+            'WC_Emspay_KlarnaPayNow',
             'WC_Emspay_Payconiq',
             'WC_Emspay_AfterPay',
             'WC_Emspay_ApplePay',

@@ -27,7 +27,7 @@ class WC_Emspay_Helper
         'emspay_bank-transfer',
         'emspay_credit-card',
         'emspay_bancontact',
-        'emspay_sofort',
+        'emspay_klarna-pay-now',
         'emspay_paypal',
         'emspay_klarna',
         'emspay_payconiq',
@@ -202,9 +202,9 @@ class WC_Emspay_Helper
                 $default = __('Bank Transfer', self::DOMAIN);
                 $label = __('Enable Bank Transfer Payments', self::DOMAIN);
                 break;
-            case 'emspay_sofort':
-                $default = __('SOFORT', self::DOMAIN);
-                $label = __('Enable SOFORT Payments', self::DOMAIN);
+            case 'emspay_klarna-pay-now':
+                $default = __('Klarna Pay Now', self::DOMAIN);
+                $label = __('Enable Klarna Pay Now Payments', self::DOMAIN);
                 break;
             case 'emspay_bancontact':
                 $default = __('Bancontact', self::DOMAIN);

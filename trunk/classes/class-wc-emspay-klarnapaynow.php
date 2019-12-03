@@ -4,18 +4,18 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class WC_Emspay_Sofort extends WC_Emspay_Gateway
+class WC_Emspay_Klarnapaynow extends WC_Emspay_Gateway
 {
     /**
-     * WC_Emspay_Creditcard constructor.
+     * WC_Emspay_Klarnapaynow constructor.
      */
     public function __construct()
     {
-        $this->id = 'emspay_sofort';
+        $this->id = 'emspay_klarna-pay-now';
         $this->icon = false;
         $this->has_fields = false;
-        $this->method_title = __('EMS Online - SOFORT', WC_Emspay_Helper::DOMAIN);
-        $this->method_description = __('EMS Online - SOFORT', WC_Emspay_Helper::DOMAIN);
+        $this->method_title = __('EMS Online - Klarna Pay Now', WC_Emspay_Helper::DOMAIN);
+        $this->method_description = __('EMS Online - Klarna Pay Now', WC_Emspay_Helper::DOMAIN);
 
         parent::__construct();
     }

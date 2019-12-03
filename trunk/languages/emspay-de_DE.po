@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-03 16:26+0200\n"
-"PO-Revision-Date: 2019-12-03 16:27+0200\n"
+"POT-Creation-Date: 2019-12-03 21:13+0200\n"
+"PO-Revision-Date: 2019-12-03 21:14+0200\n"
 "Last-Translator: Jasmine Vyas\n"
 "Language-Team: German (Germany)\n"
 "Language: de_DE\n"
@@ -143,9 +143,10 @@ msgstr "EMS Online: Apple Pay"
 #: classes/class-wc-emspay-bancontact.php:51
 #: classes/class-wc-emspay-callback.php:164
 #: classes/class-wc-emspay-creditcard.php:51
-#: classes/class-wc-emspay-ideal.php:58 classes/class-wc-emspay-payconiq.php:51
+#: classes/class-wc-emspay-ideal.php:58
+#: classes/class-wc-emspay-klarna-pay-now.php:51
+#: classes/class-wc-emspay-payconiq.php:51
 #: classes/class-wc-emspay-paynow.php:49 classes/class-wc-emspay-paypal.php:51
-#: classes/class-wc-emspay-sofort.php:51
 msgid "There was a problem processing your transaction."
 msgstr ""
 "Leider ist ein Fehler bei der Verarbeitung Ihrer Bezahlung aufgetreten. "
@@ -296,12 +297,12 @@ msgid "Enable Bank Transfer Payments"
 msgstr "Aktivieren Banküberweisung Zahlungen"
 
 #: classes/class-wc-emspay-helper.php:206
-msgid "SOFORT"
-msgstr "SOFORT"
+msgid "Klarna Pay Now"
+msgstr "Klarna Pay Now"
 
 #: classes/class-wc-emspay-helper.php:207
-msgid "Enable SOFORT Payments"
-msgstr "Aktivieren SOFORT Zahlungen"
+msgid "Enable Klarna Pay Now Payments"
+msgstr "Aktivieren Klarna Pay Now Zahlungen"
 
 #: classes/class-wc-emspay-helper.php:210
 msgid "Bancontact"
@@ -424,6 +425,11 @@ msgstr "Bei einer Zahlung mit iDEAL, bitte wählen Sie Ihre Bank."
 msgid "Choose your bank:"
 msgstr "Bitte wählen Sie Ihre Bank:"
 
+#: classes/class-wc-emspay-klarna-pay-now.php:17
+#: classes/class-wc-emspay-klarna-pay-now.php:18
+msgid "EMS Online - Klarna Pay Now"
+msgstr "EMS Online: Klarna Pay Now"
+
 #: classes/class-wc-emspay-klarna.php:17 classes/class-wc-emspay-klarna.php:18
 msgid "Klarna - EMS Online"
 msgstr "EMS Online: Klarna"
@@ -468,9 +474,14 @@ msgstr "EMS Online: Jetzt zahlen"
 msgid "PayPal - EMS Online"
 msgstr "EMS Online: PayPal"
 
-#: classes/class-wc-emspay-sofort.php:17 classes/class-wc-emspay-sofort.php:18
-msgid "EMS Online - SOFORT"
-msgstr "EMS Online : SOFORT"
+#~ msgid "SOFORT"
+#~ msgstr "SOFORT"
+
+#~ msgid "Enable SOFORT Payments"
+#~ msgstr "Aktivieren SOFORT Zahlungen"
+
+#~ msgid "EMS Online - SOFORT"
+#~ msgstr "EMS Online : SOFORT"
 
 #~ msgid "AfterPay payment request sent."
 #~ msgstr "AfterPay Anfrage gesendet."
