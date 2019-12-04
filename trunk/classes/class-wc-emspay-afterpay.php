@@ -36,8 +36,7 @@ class WC_Emspay_AfterPay extends WC_Emspay_Gateway
             'currency' => WC_Emspay_Helper::getCurrency(),
             'transactions' => [
                 [
-                    'payment_method' => str_replace('emspay_', '', $this->id),
-                    'payment_method_details' => []
+                    'payment_method' => str_replace('emspay_', '', $this->id)
                 ]
             ],
             'merchant_order_id' => $order_id,

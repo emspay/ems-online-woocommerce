@@ -33,8 +33,7 @@ class WC_Emspay_Klarnapaylater extends WC_Emspay_Gateway
             'amount' => WC_Emspay_Helper::gerOrderTotalInCents($order),
             'transactions' => [
                 [
-                    'payment_method' => str_replace('emspay_', '', $this->id),
-                    'payment_method_details' => []
+                    'payment_method' => str_replace('emspay_', '', $this->id)
                 ]
             ],
             'merchant_order_id' => $order_id,

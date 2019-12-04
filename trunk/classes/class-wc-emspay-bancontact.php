@@ -34,7 +34,6 @@ class WC_Emspay_Bancontact extends WC_Emspay_Gateway
             'transactions' => [
                 [
                     'payment_method' => str_replace('emspay_', '', $this->id),
-                    'payment_method_details' => []
                 ]
             ],
             'merchant_order_id' => $order_id,
