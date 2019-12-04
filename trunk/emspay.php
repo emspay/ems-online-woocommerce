@@ -78,6 +78,7 @@ function woocommerce_emspay_init()
             'WC_Emspay_AfterPay',
             'WC_Emspay_ApplePay',
             'WC_Emspay_Paynow',
+            'WC_Emspay_Amex',
         ];
 
         return $methods;

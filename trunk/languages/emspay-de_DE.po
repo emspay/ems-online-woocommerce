@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-03 22:10+0200\n"
-"PO-Revision-Date: 2019-12-03 22:11+0200\n"
+"POT-Creation-Date: 2019-12-04 16:41+0200\n"
+"PO-Revision-Date: 2019-12-04 16:41+0200\n"
 "Last-Translator: Jasmine Vyas\n"
 "Language-Team: German (Germany)\n"
 "Language: de_DE\n"
@@ -134,12 +134,11 @@ msgstr ""
 "Ich akzeptiere AfterPay <a href='%s' target='_blank'>Allgemeine "
 "Geschäftsbedingungen</a>"
 
-#: classes/class-wc-emspay-applepay.php:17
-#: classes/class-wc-emspay-applepay.php:18
-msgid "Apple Pay - EMS Online"
-msgstr "EMS Online: Apple Pay"
+#: classes/class-wc-emspay-amex.php:17 classes/class-wc-emspay-amex.php:18
+msgid "American Express - EMS Online"
+msgstr "EMS Online: American Express"
 
-#: classes/class-wc-emspay-applepay.php:51
+#: classes/class-wc-emspay-amex.php:50 classes/class-wc-emspay-applepay.php:51
 #: classes/class-wc-emspay-bancontact.php:51
 #: classes/class-wc-emspay-callback.php:164
 #: classes/class-wc-emspay-creditcard.php:51
@@ -151,6 +150,11 @@ msgid "There was a problem processing your transaction."
 msgstr ""
 "Leider ist ein Fehler bei der Verarbeitung Ihrer Bezahlung aufgetreten. "
 "Bitte versuchen Sie nochmals."
+
+#: classes/class-wc-emspay-applepay.php:17
+#: classes/class-wc-emspay-applepay.php:18
+msgid "Apple Pay - EMS Online"
+msgstr "EMS Online: Apple Pay"
 
 #: classes/class-wc-emspay-bancontact.php:17
 #: classes/class-wc-emspay-bancontact.php:18
@@ -205,7 +209,7 @@ msgid "API key provided by EMS"
 msgstr "Duplizieren Sie Ihre EMS Online API Schlüssel aus der Merchant Portal"
 
 #: classes/class-wc-emspay-callback.php:31
-#: classes/class-wc-emspay-helper.php:270
+#: classes/class-wc-emspay-helper.php:275
 msgid "Test API key"
 msgstr "Test API Schlüssel"
 
@@ -272,134 +276,142 @@ msgstr ""
 "Bank- oder Kartenaussteller erhalten. Sie erhalten eine Nachricht, sobald "
 "wir dies entfangen haben."
 
-#: classes/class-wc-emspay-helper.php:194
+#: classes/class-wc-emspay-helper.php:195
 msgid "iDEAL"
 msgstr "iDEAL"
 
-#: classes/class-wc-emspay-helper.php:195
+#: classes/class-wc-emspay-helper.php:196
 msgid "Enable iDEAL Payments"
 msgstr "Aktivieren iDEAL Zahlungen"
 
-#: classes/class-wc-emspay-helper.php:198
+#: classes/class-wc-emspay-helper.php:199
 msgid "Credit Card"
 msgstr "Kreditkarte"
 
-#: classes/class-wc-emspay-helper.php:199
+#: classes/class-wc-emspay-helper.php:200
 msgid "Enable Credit Card Payments"
 msgstr "Aktivieren Kreditkarten Zahlungen"
 
-#: classes/class-wc-emspay-helper.php:202
+#: classes/class-wc-emspay-helper.php:203
 msgid "Bank Transfer"
 msgstr "Banküberweisung"
 
-#: classes/class-wc-emspay-helper.php:203
+#: classes/class-wc-emspay-helper.php:204
 msgid "Enable Bank Transfer Payments"
 msgstr "Aktivieren Banküberweisung Zahlungen"
 
-#: classes/class-wc-emspay-helper.php:206
+#: classes/class-wc-emspay-helper.php:207
 msgid "Klarna Pay Now"
 msgstr "Klarna Pay Now"
 
-#: classes/class-wc-emspay-helper.php:207
+#: classes/class-wc-emspay-helper.php:208
 msgid "Enable Klarna Pay Now Payments"
 msgstr "Aktivieren Klarna Pay Now Zahlungen"
 
-#: classes/class-wc-emspay-helper.php:210
+#: classes/class-wc-emspay-helper.php:211
 msgid "Bancontact"
 msgstr "Bancontact"
 
-#: classes/class-wc-emspay-helper.php:211
+#: classes/class-wc-emspay-helper.php:212
 msgid "Enable Bancontact Payments"
 msgstr "Aktivieren SOFORT Zahlungen"
 
-#: classes/class-wc-emspay-helper.php:214
+#: classes/class-wc-emspay-helper.php:215
 msgid "PayPal"
 msgstr "PayPal"
 
-#: classes/class-wc-emspay-helper.php:215
+#: classes/class-wc-emspay-helper.php:216
 msgid "Enable PayPal Payments"
 msgstr "Aktivieren PayPal Zahlungen"
 
-#: classes/class-wc-emspay-helper.php:218
+#: classes/class-wc-emspay-helper.php:219
 msgid "AfterPay"
 msgstr "EMS Online: AfterPay"
 
-#: classes/class-wc-emspay-helper.php:219
+#: classes/class-wc-emspay-helper.php:220
 msgid "Enable AfterPay Payments"
 msgstr "Aktivieren AfterPay Zahlungen"
 
-#: classes/class-wc-emspay-helper.php:222
+#: classes/class-wc-emspay-helper.php:223
 msgid "Klarna Pay Later"
 msgstr "Klarna Pay Later"
 
-#: classes/class-wc-emspay-helper.php:223
+#: classes/class-wc-emspay-helper.php:224
 msgid "Enable Klarna Pay Later Payments"
 msgstr "Aktivieren Klarna Pay Later Zahlungen"
 
-#: classes/class-wc-emspay-helper.php:226
+#: classes/class-wc-emspay-helper.php:227
 msgid "Payconiq"
 msgstr "Payconiq"
 
-#: classes/class-wc-emspay-helper.php:227
+#: classes/class-wc-emspay-helper.php:228
 msgid "Enable Payconiq Payments"
 msgstr "Aktivieren Payconiq Zahlungen"
 
-#: classes/class-wc-emspay-helper.php:230
+#: classes/class-wc-emspay-helper.php:231
 msgid "Apple Pay"
 msgstr "Apple Pay"
 
-#: classes/class-wc-emspay-helper.php:231
+#: classes/class-wc-emspay-helper.php:232
 msgid "Enable Apple Pay Payments"
 msgstr "Aktivieren Apple Pay Zahlungen"
 
-#: classes/class-wc-emspay-helper.php:234
+#: classes/class-wc-emspay-helper.php:235
 msgid "Pay Now"
 msgstr "Pay Now"
 
-#: classes/class-wc-emspay-helper.php:235
+#: classes/class-wc-emspay-helper.php:236
 msgid "Enable Pay Now Payments"
 msgstr "Aktivieren Pay Now Zahlungen"
 
-#: classes/class-wc-emspay-helper.php:245
+#: classes/class-wc-emspay-helper.php:239
+msgid "American Express"
+msgstr "American Express"
+
+#: classes/class-wc-emspay-helper.php:240
+msgid "Enable American Express Payments"
+msgstr "Aktivieren American Express Zahlungen"
+
+#: classes/class-wc-emspay-helper.php:250
 msgid "Enable/Disable"
 msgstr "Aktivieren/Deaktivieren"
 
-#: classes/class-wc-emspay-helper.php:251
+#: classes/class-wc-emspay-helper.php:256
 msgid "Title"
 msgstr "Titel"
 
-#: classes/class-wc-emspay-helper.php:253
+#: classes/class-wc-emspay-helper.php:258
 msgid "This controls the title which the user sees during checkout."
 msgstr ""
 "Dieses Feld enthalt der Titel der Zahlungsmethode die ihre Kunden beim "
 "Zahlen angezeigt wird."
 
-#: classes/class-wc-emspay-helper.php:258
+#: classes/class-wc-emspay-helper.php:263
 msgid "Use Webhook URL"
 msgstr "Webhook URL benutzen"
 
-#: classes/class-wc-emspay-helper.php:259
+#: classes/class-wc-emspay-helper.php:264
 msgid "Automatically include Webhook URL with every order"
 msgstr "Füge eine Webhook URL zu jeder Bestellung"
 
-#: classes/class-wc-emspay-helper.php:260
+#: classes/class-wc-emspay-helper.php:265
 msgid "API will request this URL in order to update transaction details."
 msgstr ""
 "Verwende automatisch der Webhook URL mit jeder Bestellung zum EMS Online "
 "API. Die Webhook URL wird gebraucht um die Transaktionsdetails zu "
 "aktualisieren."
 
-#: classes/class-wc-emspay-helper.php:272
+#: classes/class-wc-emspay-helper.php:277
 msgid "Test API key for testing implementation of AfterPay."
 msgstr ""
 "Bitte geben Sie die API-Schlüssel der Test Web-Shop für Prüfung AfterPay "
 "ein. Dies gilt nur wenn Sie AfterPay offerieren."
 
-#: classes/class-wc-emspay-helper.php:275
+#: classes/class-wc-emspay-helper.php:280
 msgid "AfterPay Debug IP"
 msgstr "IP-Adresse (n) für Prüfung AfterPay"
 
-#: classes/class-wc-emspay-helper.php:277
+#: classes/class-wc-emspay-helper.php:282
 msgid ""
 "IP address for testing AfterPay. If empty, visible for all. If filled, only "
 "visible for specified IP addresses. (Example: 127.0.0.1, 255.255.255.255)"
@@ -408,7 +420,7 @@ msgstr ""
 "addresse 128.0.0.1, 255.255.255.255). Wenn Sie nichts eingeben ist AfterPay "
 "wahrnehmbar in jeder IP-adresse."
 
-#: classes/class-wc-emspay-helper.php:399
+#: classes/class-wc-emspay-helper.php:404
 #, php-format
 msgid "Your order %s at %s"
 msgstr "Ihre Bestellung %s bei %s"

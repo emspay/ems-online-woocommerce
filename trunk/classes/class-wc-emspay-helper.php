@@ -34,6 +34,7 @@ class WC_Emspay_Helper
         'emspay_afterpay',
         'emspay_apple-pay',
         'emspay_pay-now',
+        'emspay_amex',
     ];
 
     /**
@@ -233,6 +234,10 @@ class WC_Emspay_Helper
             case 'emspay_pay-now':
                 $default = __('Pay Now', self::DOMAIN);
                 $label = __('Enable Pay Now Payments', self::DOMAIN);
+                break;
+            case 'amex':
+                $default = __('American Express', self::DOMAIN);
+                $label = __('Enable American Express Payments', self::DOMAIN);
                 break;
             default:
                 $default = '';
