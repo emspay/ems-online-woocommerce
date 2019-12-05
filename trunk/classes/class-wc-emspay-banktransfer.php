@@ -16,7 +16,7 @@ class WC_Emspay_Banktransfer extends WC_Emspay_Gateway
 	const EMS_RESIDENCE = 'Amsterdam';
 
     /**
-     * WC_emspay_banktransfer constructor.
+     * WC_Emspay_Banktransfer constructor.
      */
     public function __construct()
     {

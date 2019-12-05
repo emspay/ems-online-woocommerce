@@ -4,10 +4,10 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class WC_Emspay_Klarnapaynow extends WC_Emspay_Gateway
+class WC_Emspay_KlarnaPayNow extends WC_Emspay_Gateway
 {
     /**
-     * WC_Emspay_Klarnapaynow constructor.
+     * WC_Emspay_KlarnaPayNow constructor.
      */
     public function __construct()
     {

@@ -7,7 +7,7 @@ if (!defined('ABSPATH')) {
 class WC_Emspay_Amex extends WC_Emspay_Gateway
 {
     /**
-     * WC_Emspay_Applepay constructor.
+     * WC_Emspay_Amex constructor.
      */
     public function __construct()
     {

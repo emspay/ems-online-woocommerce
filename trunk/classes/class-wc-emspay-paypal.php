@@ -7,7 +7,7 @@ if (!defined('ABSPATH')) {
 class WC_Emspay_PayPal extends WC_Emspay_Gateway
 {
     /**
-     * WC_Emspay_Creditcard constructor.
+     * WC_Emspay_PayPal constructor.
      */
     public function __construct()
     {

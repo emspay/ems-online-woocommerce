@@ -35,6 +35,7 @@ class WC_Emspay_Helper
         'emspay_apple-pay',
         'emspay_pay-now',
         'emspay_amex',
+        'emspay_tikkie-payment-request',
     ];
 
     /**
@@ -238,6 +239,10 @@ class WC_Emspay_Helper
             case 'amex':
                 $default = __('American Express', self::DOMAIN);
                 $label = __('Enable American Express Payments', self::DOMAIN);
+                break;
+            case 'tikkie-payment-request':
+                $default = __('Tikkie Payment Request', self::DOMAIN);
+                $label = __('Enable Tikkie Payment Request Payments', self::DOMAIN);
                 break;
             default:
                 $default = '';
