@@ -15,20 +15,28 @@ class WC_Emspay_Helper
     const DOMAIN = 'emspay';
 
     /**
+     * GINGER_ENDPOINT used for create Ginger client
+     */
+    const GINGER_ENDPOINT = 'https://api.online.emspay.eu';
+
+    /**
      * EMS Online supported payment methods
      */
     public static $PAYMENT_METHODS = [
         'emspay_ideal',
-        'emspay_banktransfer',
-        'emspay_creditcard',
+        'emspay_bank-transfer',
+        'emspay_credit-card',
         'emspay_bancontact',
-        'emspay_sofort',
+        'emspay_klarna-pay-now',
         'emspay_paypal',
-        'emspay_klarna',
+        'emspay_klarna-pay-later',
         'emspay_payconiq',
         'emspay_afterpay',
-        'emspay_applepay',
-        'emspay_paynow',
+        'emspay_apple-pay',
+        'emspay_pay-now',
+        'emspay_amex',
+        'emspay_tikkie-payment-request',
+        'emspay_wechat',
     ];
 
     /**
@@ -114,7 +122,7 @@ class WC_Emspay_Helper
             $birthdate = '';
         }
 
-        return \GingerPayments\Payment\Common\ArrayFunctions::withoutNullValues([
+        return array_filter([
             'address_type' => 'customer',
             'merchant_customer_id' => $order->get_user_id(),
             'email_address' => $billems_address['email'],
@@ -172,7 +180,7 @@ class WC_Emspay_Helper
             return $order->get_item_total( $orderLine, true );
         } else {
             $product = $orderLine->get_product();
-            return $product->get_price_includems_tax();
+            return $product->get_price_including_tax();
         }
     }
 
@@ -189,17 +197,17 @@ class WC_Emspay_Helper
                 $default = __('iDEAL', self::DOMAIN);
                 $label = __('Enable iDEAL Payments', self::DOMAIN);
                 break;
-            case 'emspay_creditcard':
+            case 'emspay_credit-card':
                 $default = __('Credit Card', self::DOMAIN);
                 $label = __('Enable Credit Card Payments', self::DOMAIN);
                 break;
-            case 'emspay_banktransfer':
+            case 'emspay_bank-transfer':
                 $default = __('Bank Transfer', self::DOMAIN);
                 $label = __('Enable Bank Transfer Payments', self::DOMAIN);
                 break;
-            case 'emspay_sofort':
-                $default = __('SOFORT', self::DOMAIN);
-                $label = __('Enable SOFORT Payments', self::DOMAIN);
+            case 'emspay_klarna-pay-now':
+                $default = __('Klarna Pay Now', self::DOMAIN);
+                $label = __('Enable Klarna Pay Now Payments', self::DOMAIN);
                 break;
             case 'emspay_bancontact':
                 $default = __('Bancontact', self::DOMAIN);
@@ -213,18 +221,34 @@ class WC_Emspay_Helper
                 $default = __('AfterPay', self::DOMAIN);
                 $label = __('Enable AfterPay Payments', self::DOMAIN);
                 break;
-            case 'emspay_klarna':
-                $default = __('Klarna', self::DOMAIN);
-                $label = __('Enable Klarna Payments', self::DOMAIN);
+            case 'emspay_klarna-pay-later':
+                $default = __('Klarna Pay Later', self::DOMAIN);
+                $label = __('Enable Klarna Pay Later Payments', self::DOMAIN);
                 break;
             case 'emspay_payconiq':
                 $default = __('Payconiq', self::DOMAIN);
                 $label = __('Enable Payconiq Payments', self::DOMAIN);
                 break;
-	        case 'emspay_applepay':
+	        case 'emspay_apple-pay':
 		        $default = __('Apple Pay', self::DOMAIN);
 		        $label = __('Enable Apple Pay Payments', self::DOMAIN);
 		        break;
+            case 'emspay_pay-now':
+                $default = __('Pay Now', self::DOMAIN);
+                $label = __('Enable Pay Now Payments', self::DOMAIN);
+                break;
+            case 'amex':
+                $default = __('American Express', self::DOMAIN);
+                $label = __('Enable American Express Payments', self::DOMAIN);
+                break;
+            case 'tikkie-payment-request':
+                $default = __('Tikkie Payment Request', self::DOMAIN);
+                $label = __('Enable Tikkie Payment Request Payments', self::DOMAIN);
+                break;
+            case 'wechat':
+                $default = __('WeChat', self::DOMAIN);
+                $label = __('Enable WeChat Payments', self::DOMAIN);
+                break;
             default:
                 $default = '';
                 $label = '';
@@ -310,9 +334,9 @@ class WC_Emspay_Helper
             $orderLines[] = array_filter([
                 'url' => get_permalink($productId),
                 'name' => $orderLine->get_name(),
-                'type' => \GingerPayments\Payment\Order\OrderLine\Type::PHYSICAL,
+                'type' => 'physical',
                 'amount' => static::getAmountInCents(static::getProductPrice($orderLine, $order)),
-                'currency' => \GingerPayments\Payment\Currency::EUR,
+                'currency' => 'EUR',
                 'quantity' => (int) $orderLine->get_quantity(),
                 'image_url' => wp_get_attachment_url($orderLine->get_product()->get_image_id()),
                 'vat_percentage' => static::getAmountInCents(static::getProductTaxRate($orderLine->get_product())),
@@ -355,9 +379,9 @@ class WC_Emspay_Helper
     {
         return [
             'name' => $order->get_shippems_method(),
-            'type' => \GingerPayments\Payment\Order\OrderLine\Type::SHIPPING_FEE,
+            'type' => 'shipping_fee',
             'amount' => static::getAmountInCents($order->get_shippems_total() + $order->get_shippems_tax()),
-            'currency' => \GingerPayments\Payment\Currency::EUR,
+            'currency' => 'EUR',
             'vat_percentage' => static::getAmountInCents(static::getShippingTaxRate()),
             'quantity' => 1,
             'merchant_order_line_id' => count($order->get_items()) + 1
@@ -388,5 +412,14 @@ class WC_Emspay_Helper
     public static function getOrderDescription($orderId)
     {
         return sprintf(__('Your order %s at %s', self::DOMAIN), $orderId, get_bloginfo('name'));
+    }
+
+    /**
+     * Get CA certificate path
+     *
+     * @return bool|string
+     */
+    public function getCaCertPath(){
+        return realpath(plugin_dir_path(__FILE__).'../ginger-php/assets/cacert.pem');
     }
 }

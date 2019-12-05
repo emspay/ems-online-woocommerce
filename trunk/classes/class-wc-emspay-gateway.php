@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-use \GingerPayments\Payment\Ginger;
+use \Ginger\Ginger;
 
 class WC_Emspay_Gateway extends WC_Payment_Gateway
 {
@@ -27,10 +27,14 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
 
         if (strlen($apiKey) > 0) {
             try {
-                $this->ems = Ginger::createClient($apiKey);
-                if ($settings['bundle_cacert'] == 'yes') {
-                    $this->ems->useBundledCA();
-                }
+                $this->ems = Ginger::createClient(
+                    WC_Emspay_Helper::GINGER_ENDPOINT,
+                    $apiKey,
+                    ($settings['bundle_cacert'] == 'yes') ?
+                        [
+                            CURLOPT_CAINFO => WC_Emspay_Helper::getCaCertPath()
+                        ] : []
+                );
             } catch (Assert\InvalidArgumentException $exception) {
                 WC_Admin_Notices::add_custom_notice('emspay-error', $exception->getMessage());
             }
@@ -47,10 +51,11 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
         WC()->cart->empty_cart();
 
         $ems_order_id_array = get_post_custom_values('ems_order_id', $order_id);
+
         if (is_array($ems_order_id_array) && !empty($ems_order_id_array[0])) {
             $emsOrder = $this->ems->getOrder($ems_order_id_array[0]);
 
-            if ($emsOrder->status()->isProcessing()) {
+            if ($emsOrder['status'] == 'processing') {
                 echo __(
                     "Your transaction is still being processed. You will be notified when status is updated.",
                     WC_Emspay_Helper::DOMAIN

@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-use \GingerPayments\Payment\Ginger;
+use \Ginger\Ginger;
 
 class WC_Emspay_Callback extends WC_Emspay_Gateway
 {
@@ -81,6 +81,7 @@ class WC_Emspay_Callback extends WC_Emspay_Gateway
         // we potentially have 3 different API keys we can fetch the order with
         $settings = get_option('woocommerce_emspay_settings');
         $ap_settings = get_option('woocommerce_emspay_afterpay_settings');
+        $cacert_path = WC_Emspay_Helper::getCaCertPath();
 
         $success_get = false;
         // first try with standard API key
@@ -94,10 +95,14 @@ class WC_Emspay_Callback extends WC_Emspay_Gateway
         if (!$success_get) {
             if ($settings['test_api_key']) {
 
-                $this->ems = Ginger::createClient($settings['test_api_key']);
-                if ($settings['bundle_cacert'] == 'yes') {
-                    $this->ems->useBundledCA();
-                }
+                $this->ems = Ginger::createClient(
+                    WC_Emspay_Helper::GINGER_ENDPOINT,
+                    $settings['test_api_key'],
+                    ($settings['bundle_cacert'] == 'yes') ?
+                        [
+                            CURLOPT_CAINFO => $cacert_path
+                        ] : []
+                );
 
                 try {
                     $emsOrder = $this->ems->getOrder($ems_order_id);
@@ -111,10 +116,14 @@ class WC_Emspay_Callback extends WC_Emspay_Gateway
         if (!$success_get) {
             if ($ap_settings['ap_test_api_key']) {
 
-                $this->ems = Ginger::createClient($ap_settings['ap_test_api_key']);
-                if ($settings['bundle_cacert'] == 'yes') {
-                    $this->ems->useBundledCA();
-                }
+                $this->ems = Ginger::createClient(
+                    WC_Emspay_Helper::GINGER_ENDPOINT,
+                    $ap_settings['ap_test_api_key'],
+                    ($settings['bundle_cacert'] == 'yes') ?
+                        [
+                            CURLOPT_CAINFO => $cacert_path
+                        ] : []
+                );
 
                 try {
                     $emsOrder = $this->ems->getOrder($ems_order_id);
@@ -128,10 +137,10 @@ class WC_Emspay_Callback extends WC_Emspay_Gateway
             die("COULD NOT GET ORDER");
         }
 
-        $order = new WC_Order($emsOrder->getMerchantOrderId());
+        $order = new WC_Order($emsOrder['merchant_order_id']);
 
         if ($type == "webhook") {
-            if ($emsOrder->status()->isCompleted()) {
+            if ($emsOrder['status'] == 'completed') {
                 $woo_version = get_option('woocommerce_version', 'Unknown');
                 if (version_compare($woo_version, '2.2.0', '>=')) {
                     $order->payment_complete($ems_order_id);
@@ -140,7 +149,7 @@ class WC_Emspay_Callback extends WC_Emspay_Gateway
                 }
             }
 
-            if ($emsOrder->Transactions()->current()->getStatus() == 'captured') {
+            if (!empty(current($emsOrder['transactions'])) and current($emsOrder['transactions'])['status'] == 'captured') {
                 if ($order->get_status() == 'processing')
                     $order->update_status('shipped', 'Order updated to shipped, transactions was captured', false);
             }
@@ -148,7 +157,7 @@ class WC_Emspay_Callback extends WC_Emspay_Gateway
             exit;
         }
 
-        if ($emsOrder->status()->isCompleted() || $emsOrder->status()->isProcessing()) {
+        if ($emsOrder['status'] == 'completed' || $emsOrder['status'] == 'processing') {
             header("Location: ".$this->get_return_url($order));
             exit;
         } else {

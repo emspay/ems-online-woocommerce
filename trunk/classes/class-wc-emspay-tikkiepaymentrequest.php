@@ -4,26 +4,22 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class WC_Emspay_PayNow extends WC_Emspay_Gateway
+class WC_Emspay_TikkiePaymentRequest extends WC_Emspay_Gateway
 {
     /**
-     * WC_Emspay_PayNow constructor.
+     * WC_Emspay_TikkiePaymentRequest constructor.
      */
     public function __construct()
     {
-        $this->id = 'emspay_pay-now';
+        $this->id = 'emspay_tikkie-payment-request';
         $this->icon = false;
         $this->has_fields = false;
-        $this->method_title = __('Pay now - EMS Online', WC_Emspay_Helper::DOMAIN);
-        $this->method_description = __('Pay now - EMS Online', WC_Emspay_Helper::DOMAIN);
+        $this->method_title = __('Tikkie Payment Request - EMS Online', WC_Emspay_Helper::DOMAIN);
+        $this->method_description = __('Tikkie Payment Request - EMS Online', WC_Emspay_Helper::DOMAIN);
 
         parent::__construct();
     }
 
-    /**
-     * @param int $order_id
-     * @return array
-     */
     /**
      * @param int $order_id
      * @return array
@@ -35,6 +31,11 @@ class WC_Emspay_PayNow extends WC_Emspay_Gateway
         $emsOrder = $this->ems->createOrder([
             'currency' => WC_Emspay_Helper::getCurrency(),
             'amount' => WC_Emspay_Helper::gerOrderTotalInCents($order),
+            'transactions' => [
+                [
+                    'payment_method' => str_replace('emspay_', '', $this->id)
+                ]
+            ],
             'merchant_order_id' => $order_id,
             'description' => WC_Emspay_Helper::getOrderDescription($order_id),
             'return_url' => WC_Emspay_Helper::getReturnUrl(),
@@ -52,9 +53,13 @@ class WC_Emspay_PayNow extends WC_Emspay_Gateway
             ];
         }
 
+        $pay_url = array_key_exists(0, $emsOrder['transactions'])
+            ? $emsOrder['transactions'][0]['payment_url']
+            : null;
+
         return [
             'result' => 'success',
-            'redirect' => $emsOrder['order_url']
+            'redirect' => $pay_url
         ];
     }
 }
