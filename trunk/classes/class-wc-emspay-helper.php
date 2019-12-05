@@ -36,6 +36,7 @@ class WC_Emspay_Helper
         'emspay_pay-now',
         'emspay_amex',
         'emspay_tikkie-payment-request',
+        'emspay_wechat',
     ];
 
     /**
@@ -243,6 +244,10 @@ class WC_Emspay_Helper
             case 'tikkie-payment-request':
                 $default = __('Tikkie Payment Request', self::DOMAIN);
                 $label = __('Enable Tikkie Payment Request Payments', self::DOMAIN);
+                break;
+            case 'wechat':
+                $default = __('WeChat', self::DOMAIN);
+                $label = __('Enable WeChat Payments', self::DOMAIN);
                 break;
             default:
                 $default = '';

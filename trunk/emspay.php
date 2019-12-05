@@ -80,6 +80,7 @@ function woocommerce_emspay_init()
             'WC_Emspay_PayNow',
             'WC_Emspay_Amex',
             'WC_Emspay_TikkiePaymentRequest',
+            'WC_Emspay_WeChat',
         ];
 
         return $methods;
