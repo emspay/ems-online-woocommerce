@@ -124,7 +124,7 @@ class WC_Emspay_Helper
 
         return array_filter([
             'address_type' => 'customer',
-            'merchant_customer_id' => $order->get_user_id(),
+            'merchant_customer_id' => (string) $order->get_user_id(),
             'email_address' => $billems_address['email'],
             'first_name' => $shippems_address['first_name'],
             'last_name' => $shippems_address['last_name'],
