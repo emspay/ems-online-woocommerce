@@ -40,7 +40,8 @@ class WC_Emspay_Ideal extends WC_Emspay_Gateway
             'currency' => (string) WC_Emspay_Helper::getCurrency(),
             'transactions' => [
                 [
-                    'payment_method' => str_replace('emspay_', '', $this->id)
+                    'payment_method' => str_replace('emspay_', '', $this->id),
+					'payment_method_details' => ['issuer_id' => (string) $idealIssuerId]
                 ]
             ],
             'merchant_order_id' => (string) $order_id,

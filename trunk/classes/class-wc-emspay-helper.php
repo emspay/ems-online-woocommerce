@@ -125,21 +125,21 @@ class WC_Emspay_Helper
         return array_filter([
             'address_type' => 'customer',
             'merchant_customer_id' => (string) $order->get_user_id(),
-            'email_address' => $billems_address['email'],
-            'first_name' => $shippems_address['first_name'],
-            'last_name' => $shippems_address['last_name'],
-            'address' => trim($shippems_address['address_1'])
+            'email_address' => (string) $billems_address['email'],
+            'first_name' => (string) $shippems_address['first_name'],
+            'last_name' => (string) $shippems_address['last_name'],
+            'address' => (string) trim($shippems_address['address_1'])
                 .' '.trim($shippems_address['address_2'])
                 .' '.trim($shippems_address['postcode'])
                 .' '.trim($shippems_address['city']),
-            'postal_code' => $shippems_address['postcode'],
-            'country' => $shippems_address['country'],
-            'phone_numbers' => [$billems_address['phone']],
-            'user_agent' => $user_agent,
-            'ip_address' => $ip_address,
-            'locale' => get_locale(),
-            'gender' => static::getCustomPaymentField('gender'),
-            'birthdate' => $birthdate,
+            'postal_code' => (string) $shippems_address['postcode'],
+            'country' => (string) $shippems_address['country'],
+            'phone_numbers' => (array) [$billems_address['phone']],
+            'user_agent' => (string) $user_agent,
+            'ip_address' => (string) $ip_address,
+            'locale' => (string) get_locale(),
+            'gender' => (string) static::getCustomPaymentField('gender'),
+            'birthdate' => (string) $birthdate,
             'additional_addresses' => [
                 [
                     'address_type' => 'billing',
@@ -331,16 +331,17 @@ class WC_Emspay_Helper
 
         foreach ($order->get_items() as $orderLine) {
             $productId = (int) $orderLine->get_variation_id() ?: $orderLine->get_product_id();
+            $image_url = (string) wp_get_attachment_url($orderLine->get_product()->get_image_id());
             $orderLines[] = array_filter([
-                'url' => get_permalink($productId),
-                'name' => $orderLine->get_name(),
+                'url' => (string) get_permalink($productId),
+                'name' => (string) $orderLine->get_name(),
                 'type' => 'physical',
-                'amount' => static::getAmountInCents(static::getProductPrice($orderLine, $order)),
+                'amount' => (int) static::getAmountInCents(static::getProductPrice($orderLine, $order)),
                 'currency' => 'EUR',
                 'quantity' => (int) $orderLine->get_quantity(),
-                'image_url' => wp_get_attachment_url($orderLine->get_product()->get_image_id()),
-                'vat_percentage' => static::getAmountInCents(static::getProductTaxRate($orderLine->get_product())),
-                'merchant_order_line_id' => $productId
+                'image_url' => ! empty($image_url) ? $image_url : null,
+                'vat_percentage' => (int) static::getAmountInCents(static::getProductTaxRate($orderLine->get_product())),
+                'merchant_order_line_id' => (string) $productId
             ],
             function($value) {
 	            return ! is_null($value);
