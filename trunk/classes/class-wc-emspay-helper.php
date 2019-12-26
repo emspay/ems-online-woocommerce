@@ -134,7 +134,7 @@ class WC_Emspay_Helper
                 .' '.trim($shippems_address['city']),
             'postal_code' => (string) $shippems_address['postcode'],
             'country' => (string) $shippems_address['country'],
-            'phone_numbers' => (array) [$billems_address['phone']],
+            'phone_numbers' => (array) [(string) $billems_address['phone']],
             'user_agent' => (string) $user_agent,
             'ip_address' => (string) $ip_address,
             'locale' => (string) get_locale(),
