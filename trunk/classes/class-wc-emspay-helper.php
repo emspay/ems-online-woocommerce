@@ -134,7 +134,7 @@ class WC_Emspay_Helper
                 .' '.trim($shippems_address['city']),
             'postal_code' => (string) $shippems_address['postcode'],
             'country' => (string) $shippems_address['country'],
-            'phone_numbers' => (array) [(string) $billems_address['phone']],
+            'phone_numbers' => (array) [$billems_address['phone']],
             'user_agent' => (string) $user_agent,
             'ip_address' => (string) $ip_address,
             'locale' => (string) get_locale(),
@@ -143,11 +143,11 @@ class WC_Emspay_Helper
             'additional_addresses' => [
                 [
                     'address_type' => 'billing',
-                    'address' => trim($billems_address['address_1'])
+                    'address' => (string) trim($billems_address['address_1'])
                 .' '.trim($billems_address['address_2'])
                 .' '.trim($billems_address['postcode'])
                 .' '.trim($billems_address['city']),
-                    'country' => $billems_address['country'],
+                    'country' => (string) $billems_address['country'],
                 ]
             ]
         ]);
@@ -331,16 +331,16 @@ class WC_Emspay_Helper
 
         foreach ($order->get_items() as $orderLine) {
             $productId = (int) $orderLine->get_variation_id() ?: $orderLine->get_product_id();
-            $image_url = (string) wp_get_attachment_url($orderLine->get_product()->get_image_id());
+            $image_url = wp_get_attachment_url($orderLine->get_product()->get_image_id());
             $orderLines[] = array_filter([
-                'url' => (string) get_permalink($productId),
-                'name' => (string) $orderLine->get_name(),
+                'url' => get_permalink($productId),
+                'name' => $orderLine->get_name(),
                 'type' => 'physical',
-                'amount' => (int) static::getAmountInCents(static::getProductPrice($orderLine, $order)),
+                'amount' => static::getAmountInCents(static::getProductPrice($orderLine, $order)),
                 'currency' => 'EUR',
                 'quantity' => (int) $orderLine->get_quantity(),
                 'image_url' => ! empty($image_url) ? $image_url : null,
-                'vat_percentage' => (int) static::getAmountInCents(static::getProductTaxRate($orderLine->get_product())),
+                'vat_percentage' => static::getAmountInCents(static::getProductTaxRate($orderLine->get_product())),
                 'merchant_order_line_id' => (string) $productId
             ],
             function($value) {

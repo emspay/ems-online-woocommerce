@@ -45,19 +45,19 @@ class WC_Emspay_Banktransfer extends WC_Emspay_Gateway
         $order = new WC_Order($order_id);
 		
 		$emsOrder = $this->ems->createOrder([
-            'amount' => (int) WC_Emspay_Helper::gerOrderTotalInCents($order),
-            'currency' => (string) WC_Emspay_Helper::getCurrency(),
+            'amount' => WC_Emspay_Helper::gerOrderTotalInCents($order),
+            'currency' => WC_Emspay_Helper::getCurrency(),
             'transactions' => [
                 [
                     'payment_method' => str_replace('emspay_', '', $this->id)
                 ]
             ],
             'merchant_order_id' => (string) $order_id,
-            'description' => (string) WC_Emspay_Helper::getOrderDescription($order_id),
-            'return_url' => (string) WC_Emspay_Helper::getReturnUrl(),
-            'customer' => (array) WC_Emspay_Helper::getCustomerInfo($order),
+            'description' => WC_Emspay_Helper::getOrderDescription($order_id),
+            'return_url' => WC_Emspay_Helper::getReturnUrl(),
+            'customer' => WC_Emspay_Helper::getCustomerInfo($order),
 			'extra' => ['plugin' => EMSPAY_PLUGIN_VERSION],
-            'webhook_url' => (string) WC_Emspay_Helper::getWebhookUrl($this)
+            'webhook_url' => WC_Emspay_Helper::getWebhookUrl($this)
         ]);
 
         $bank_reference = !empty(current($emsOrder['transactions'])) ?
