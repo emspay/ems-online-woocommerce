@@ -19,6 +19,7 @@ if (!defined('ABSPATH')) {
 /**
  * Define EMS Online plugin version
  */
+define('EMSPAY_PLUGIN_VERSION', 'WooCommerce v' . get_file_data(__FILE__, array('Version'), 'plugin')[0]);
 define('EMSPAY_PLUGIN_URL', plugin_dir_url(__FILE__));
 
 add_action('plugins_loaded', 'woocommerce_emspay_init', 0);

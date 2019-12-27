@@ -40,6 +40,7 @@ class WC_Emspay_PayPal extends WC_Emspay_Gateway
             'description' => (string) WC_Emspay_Helper::getOrderDescription($order_id),
             'return_url' => (string) WC_Emspay_Helper::getReturnUrl(),
             'customer' => (array) WC_Emspay_Helper::getCustomerInfo($order),
+			'extra' => ['plugin' => EMSPAY_PLUGIN_VERSION],
             'webhook_url' => (string) WC_Emspay_Helper::getWebhookUrl($this)
         ]);
 

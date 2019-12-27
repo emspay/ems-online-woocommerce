@@ -43,6 +43,7 @@ class WC_Emspay_AfterPay extends WC_Emspay_Gateway
             'description' => (string) WC_Emspay_Helper::getOrderDescription($order_id),
             'return_url' => (string) WC_Emspay_Helper::getReturnUrl(),
             'customer' => (array) WC_Emspay_Helper::getCustomerInfo($order),
+			'extra' => ['plugin' => EMSPAY_PLUGIN_VERSION],
             'webhook_url' => (string) WC_Emspay_Helper::getWebhookUrl($this),
             'order_lines' => (array) WC_Emspay_Helper::getOrderLines($order)
         ]);
