@@ -33,16 +33,16 @@ class WC_Emspay_PayNow extends WC_Emspay_Gateway
         $order = new WC_Order($order_id);
 
         $emsOrder = $this->ems->createOrder([
-            'currency' => WC_Emspay_Helper::getCurrency(),
             'amount' => WC_Emspay_Helper::gerOrderTotalInCents($order),
-            'merchant_order_id' => $order_id,
+            'currency' => WC_Emspay_Helper::getCurrency(),
+            'merchant_order_id' => (string) $order_id,
             'description' => WC_Emspay_Helper::getOrderDescription($order_id),
             'return_url' => WC_Emspay_Helper::getReturnUrl(),
             'customer' => WC_Emspay_Helper::getCustomerInfo($order),
-            'extra' => ['plugin' => EMSPAY_PLUGIN_VERSION],
-            'webhook_url' => WC_Emspay_Helper::getWebhookUrl($this),
+			'extra' => ['plugin' => EMSPAY_PLUGIN_VERSION],
+            'webhook_url' => WC_Emspay_Helper::getWebhookUrl($this)
         ]);
-
+        
         update_post_meta($order_id, 'ems_order_id', $emsOrder['id']);
 
         if ($emsOrder['status'] == 'error') {

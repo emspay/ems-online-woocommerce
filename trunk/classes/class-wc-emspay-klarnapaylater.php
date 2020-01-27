@@ -29,20 +29,20 @@ class WC_Emspay_KlarnaPayLater extends WC_Emspay_Gateway
         $order = new WC_Order($order_id);
 
         $emsOrder = $this->ems->createOrder([
-            'currency' => WC_Emspay_Helper::getCurrency(),
             'amount' => WC_Emspay_Helper::gerOrderTotalInCents($order),
+            'currency' => WC_Emspay_Helper::getCurrency(),
             'transactions' => [
                 [
                     'payment_method' => str_replace('emspay_', '', $this->id)
                 ]
             ],
-            'merchant_order_id' => $order_id,
+            'merchant_order_id' => (string) $order_id,
             'description' => WC_Emspay_Helper::getOrderDescription($order_id),
             'return_url' => WC_Emspay_Helper::getReturnUrl(),
             'customer' => WC_Emspay_Helper::getCustomerInfo($order),
-            'extra' => ['plugin' => EMSPAY_PLUGIN_VERSION],
+			'extra' => ['plugin' => EMSPAY_PLUGIN_VERSION],
             'webhook_url' => WC_Emspay_Helper::getWebhookUrl($this),
-            'order_lines' => WC_Emspay_Helper::getOrderLines($order)
+			'order_lines' => WC_Emspay_Helper::getOrderLines($order)
         ]);
 
         update_post_meta($order_id, 'ems_order_id', $emsOrder['id']);

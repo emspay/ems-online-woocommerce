@@ -27,8 +27,8 @@ class WC_Emspay_Payconiq extends WC_Emspay_Gateway
     public function process_payment($order_id)
     {
         $order = new WC_Order($order_id);
-
-        $emsOrder = $this->ems->createOrder([
+		
+		$emsOrder = $this->ems->createOrder([
             'amount' => WC_Emspay_Helper::gerOrderTotalInCents($order),
             'currency' => WC_Emspay_Helper::getCurrency(),
             'transactions' => [
@@ -36,12 +36,12 @@ class WC_Emspay_Payconiq extends WC_Emspay_Gateway
                     'payment_method' => str_replace('emspay_', '', $this->id)
                 ]
             ],
-            'merchant_order_id' => $order_id,
+            'merchant_order_id' => (string) $order_id,
             'description' => WC_Emspay_Helper::getOrderDescription($order_id),
             'return_url' => WC_Emspay_Helper::getReturnUrl(),
             'customer' => WC_Emspay_Helper::getCustomerInfo($order),
-            'extra' => ['plugin' => EMSPAY_PLUGIN_VERSION],
-            'webhook_url' => WC_Emspay_Helper::getWebhookUrl($this),
+			'extra' => ['plugin' => EMSPAY_PLUGIN_VERSION],
+            'webhook_url' => WC_Emspay_Helper::getWebhookUrl($this)
         ]);
 
         update_post_meta($order_id, 'ems_order_id', $emsOrder['id']);

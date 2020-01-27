@@ -39,11 +39,11 @@ class WC_Emspay_AfterPay extends WC_Emspay_Gateway
                     'payment_method' => str_replace('emspay_', '', $this->id)
                 ]
             ],
-            'merchant_order_id' => $order_id,
+            'merchant_order_id' => (string) $order_id,
             'description' => WC_Emspay_Helper::getOrderDescription($order_id),
             'return_url' => WC_Emspay_Helper::getReturnUrl(),
             'customer' => WC_Emspay_Helper::getCustomerInfo($order),
-            'extra' => ['plugin' => EMSPAY_PLUGIN_VERSION],
+			'extra' => ['plugin' => EMSPAY_PLUGIN_VERSION],
             'webhook_url' => WC_Emspay_Helper::getWebhookUrl($this),
             'order_lines' => WC_Emspay_Helper::getOrderLines($order)
         ]);

@@ -4,7 +4,7 @@
  * Plugin Name: EMS Online
  * Plugin URI: https://emspay.nl/
  * Description: EMS Pay WooCommerce plugin
- * Version: 1.0.6
+ * Version: 1.0.7
  * Author: Ginger Payments
  * Author URI: https://www.gingerpayments.com/
  * License: The MIT License (MIT)
@@ -19,7 +19,7 @@ if (!defined('ABSPATH')) {
 /**
  * Define EMS Online plugin version
  */
-define('EMSPAY_PLUGIN_VERSION', 'WooCommerce v1.0.0');
+define('EMSPAY_PLUGIN_VERSION', 'WooCommerce v' . get_file_data(__FILE__, array('Version'), 'plugin')[0]);
 define('EMSPAY_PLUGIN_URL', plugin_dir_url(__FILE__));
 
 add_action('plugins_loaded', 'woocommerce_emspay_init', 0);
