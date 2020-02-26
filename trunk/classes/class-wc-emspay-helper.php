@@ -103,6 +103,8 @@ class WC_Emspay_Helper
         $shippems_address = $order->get_address('shipping');
         $billems_address = $order->get_address('billing');
 
+        if ($shippems_address['address_2'] == "" && $shippems_address['address_1'] == "") {$shippems_address = $billems_address;}
+
         if (version_compare(get_option('woocommerce_version'), '3.0', '>=')) {
             $user_agent = $order->get_customer_user_agent();
             $ip_address = $order->get_customer_ip_address();
@@ -130,9 +132,9 @@ class WC_Emspay_Helper
             'last_name' => (string) $shippems_address['last_name'],
             'address' => (string) trim($shippems_address['address_1'])
                 .' '.trim($shippems_address['address_2'])
-                .' '.trim($shippems_address['postcode'])
+                .' '.trim(str_replace(' ', '', $shippems_address['postcode']))
                 .' '.trim($shippems_address['city']),
-            'postal_code' => (string) $shippems_address['postcode'],
+            'postal_code' => (string) str_replace(' ', '', $shippems_address['postcode']),
             'country' => (string) $shippems_address['country'],
             'phone_numbers' => (array) [$billems_address['phone']],
             'user_agent' => (string) $user_agent,
@@ -145,14 +147,13 @@ class WC_Emspay_Helper
                     'address_type' => 'billing',
                     'address' => (string) trim($billems_address['address_1'])
                 .' '.trim($billems_address['address_2'])
-                .' '.trim($billems_address['postcode'])
+                .' '.trim(str_replace(' ', '', $billems_address['postcode']))
                 .' '.trim($billems_address['city']),
                     'country' => (string) $billems_address['country'],
                 ]
             ]
         ]);
     }
-
     /**
      * Method retrieves custom field from POST array.
      *
