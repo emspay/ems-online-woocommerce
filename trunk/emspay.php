@@ -101,7 +101,7 @@ function woocommerce_emspay_init()
             $ip_whitelist = array_map('trim', explode(",", $ems_klarna_ip_list));
 
             if (!in_array(WC_Geolocation::get_ip_address(), $ip_whitelist)) {
-                unset($gateways['emspay_klarna']);
+                unset($gateways['emspay_klarna-pay-later']);
             }
         }
 
@@ -157,16 +157,16 @@ function woocommerce_emspay_init()
     {
         $order = wc_get_order($order_id);
 
-        if ($order && $order->get_status() == 'shipped' && in_array($order->get_payment_method(), array('emspay_klarna', 'emspay_afterpay'))) {
+        if ($order && $order->get_status() == 'shipped' && in_array($order->get_payment_method(), array('emspay_klarna-pay-later', 'emspay_afterpay'))) {
 
             $settings = get_option('woocommerce_emspay_settings');
-            $ap_settings = get_option('woocommerce_emspay_afterpay_settings');
 
             switch ($order->get_payment_method()) {
-                case 'emspay_klarna':
+                case 'emspay_klarna-pay-later':
                     $apiKey = ($settings['test_api_key'])?$settings['test_api_key']:$settings['api_key'];
                     break;
                 case 'emspay_afterpay':
+                    $ap_settings = get_option('woocommerce_emspay_afterpay_settings');
                     $apiKey = ($ap_settings['ap_test_api_key'])?$ap_settings['ap_test_api_key']:$settings['api_key'];
                     break;
             }
@@ -175,7 +175,7 @@ function woocommerce_emspay_init()
                 try {
                     $ginger = \Ginger\Ginger::createClient(
                         WC_Emspay_Helper::GINGER_ENDPOINT,
-                        $settings['api_key'],
+                        $apiKey,
                         ($settings['bundle_cacert'] == 'yes') ?
                             [
                                 CURLOPT_CAINFO => WC_Emspay_Helper::getCaCertPath()
