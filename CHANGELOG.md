@@ -11,3 +11,7 @@
 ** 1.0.9 **
 
 * Move files from trunk folder to root folder
+
+** 1.0.10 **
+
+* Fixed sending peyment information in the New Order email for all gateways
