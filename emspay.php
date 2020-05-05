@@ -187,14 +187,15 @@ function woocommerce_emspay_init()
 	 */
     function get_ginger_client($order) {
 		$settings = get_option('woocommerce_emspay_settings');
+		$apiKey = $settings['api_key'];
 
 		switch ($order->get_payment_method()) {
 			case 'emspay_klarna-pay-later':
-				$apiKey = ($settings['test_api_key'])?$settings['test_api_key']:$settings['api_key'];
+				$apiKey = ($settings['test_api_key'])?$settings['test_api_key']:$apiKey;
 				break;
 			case 'emspay_afterpay':
 				$ap_settings = get_option('woocommerce_emspay_afterpay_settings');
-				$apiKey = ($ap_settings['ap_test_api_key'])?$ap_settings['ap_test_api_key']:$settings['api_key'];
+				$apiKey = ($ap_settings['ap_test_api_key'])?$ap_settings['ap_test_api_key']:$apiKey;
 				break;
 		}
 
