@@ -4,7 +4,7 @@
  * Plugin Name: EMS Online
  * Plugin URI: https://emspay.nl/
  * Description: EMS Pay WooCommerce plugin
- * Version: 1.0.10
+ * Version: 1.0.11
  * Author: Ginger Payments
  * Author URI: https://www.gingerpayments.com/
  * License: The MIT License (MIT)
@@ -48,23 +48,6 @@ function woocommerce_emspay_init()
 
     function woocommerce_add_emspay($methods)
     {
-        $settings = get_option('woocommerce_emspay_settings');
-
-        if (strlen($settings['api_key']) > 0) {
-            try {
-                $ginger = \Ginger\Ginger::createClient(
-                    WC_Emspay_Helper::GINGER_ENDPOINT,
-                    $settings['api_key'],
-                    ($settings['bundle_cacert'] == 'yes') ?
-                        [
-                            CURLOPT_CAINFO => WC_Emspay_Helper::getCaCertPath()
-                        ] : []
-                );
-            } catch (Exception $exception) {
-                WC_Admin_Notices::add_custom_notice('emspay-error', $exception->getMessage());
-            }
-        }
-
         $methods = [
             'WC_Emspay_Callback',
             'WC_Emspay_Ideal',
@@ -144,47 +127,46 @@ function woocommerce_emspay_init()
 
     add_filter('wc_order_statuses', 'add_shipped_to_order_statuses');
 
-    add_action('woocommerce_update_order', 'ship_an_order');
+    add_action('woocommerce_order_status_shipped', 'ship_an_order', 10, 2);
+    add_action('woocommerce_refund_created', 'refund_an_order', 10, 2);
 
     load_plugin_textdomain(WC_Emspay_Helper::DOMAIN, false, basename(dirname(__FILE__)).'/languages');
 
-    /**
-     * Support for Klarna and Afterpay order shipped state
-     *
-     * @param int $order_id
-     */
-    function ship_an_order($order_id)
-    {
-        $order = wc_get_order($order_id);
+	/**
+	 * Function refund_an_order - refund EMS order
+	 *
+	 * @param $refund_id
+	 * @param $args
+	 */
+    function refund_an_order($refund_id, $args) {
 
+		try {
+			$ems_order_id = get_post_meta($args['order_id'], 'ems_order_id', true);
+			$order = wc_get_order($args['order_id']);
+			$ginger = get_ginger_client($order);
+
+			update_post_meta($args['order_id'], 'refund_id', $refund_id);
+
+			$ginger->refundOrder(
+				$ems_order_id,
+				['amount' => (int) $args['amount'], 'description' => 'OrderID: #' . $args['order_id'] . ', Reason: ' . $args['reason']]
+			);
+		} catch (\Exception $exception) {
+			WC_Admin_Notices::add_custom_notice('emspay-error', $exception->getMessage());
+		}
+	}
+
+	/**
+	 * Function ship_an_order - Support for Klarna and Afterpay order shipped state
+	 *
+	 * @param $order_id
+	 * @param $order
+	 */
+    function ship_an_order($order_id, $order)
+    {
         if ($order && $order->get_status() == 'shipped' && in_array($order->get_payment_method(), array('emspay_klarna-pay-later', 'emspay_afterpay'))) {
 
-            $settings = get_option('woocommerce_emspay_settings');
-
-            switch ($order->get_payment_method()) {
-                case 'emspay_klarna-pay-later':
-                    $apiKey = ($settings['test_api_key'])?$settings['test_api_key']:$settings['api_key'];
-                    break;
-                case 'emspay_afterpay':
-                    $ap_settings = get_option('woocommerce_emspay_afterpay_settings');
-                    $apiKey = ($ap_settings['ap_test_api_key'])?$ap_settings['ap_test_api_key']:$settings['api_key'];
-                    break;
-            }
-
-            if (strlen($apiKey) > 0) {
-                try {
-                    $ginger = \Ginger\Ginger::createClient(
-                        WC_Emspay_Helper::GINGER_ENDPOINT,
-                        $apiKey,
-                        ($settings['bundle_cacert'] == 'yes') ?
-                            [
-                                CURLOPT_CAINFO => WC_Emspay_Helper::getCaCertPath()
-                            ] : []
-                    );
-                } catch (\Exception $exception) {
-                    WC_Admin_Notices::add_custom_notice('emspay-error', $exception->getMessage());
-                }
-            }
+			$ginger = get_ginger_client($order);
 
             try {
                 $id = get_post_meta($order_id, 'ems_order_id', true);
@@ -196,6 +178,44 @@ function woocommerce_emspay_init()
             }
         }
     }
+
+	/**
+	 * Function get_ginger_client
+	 *
+	 * @param $order
+	 * @return \Ginger\ApiClient
+	 */
+    function get_ginger_client($order) {
+		$settings = get_option('woocommerce_emspay_settings');
+		$apiKey = $settings['api_key'];
+
+		switch ($order->get_payment_method()) {
+			case 'emspay_klarna-pay-later':
+				$apiKey = ($settings['test_api_key'])?$settings['test_api_key']:$apiKey;
+				break;
+			case 'emspay_afterpay':
+				$ap_settings = get_option('woocommerce_emspay_afterpay_settings');
+				$apiKey = ($ap_settings['ap_test_api_key'])?$ap_settings['ap_test_api_key']:$apiKey;
+				break;
+		}
+
+		if (strlen($settings['api_key']) > 0) {
+			try {
+				$ginger = \Ginger\Ginger::createClient(
+					WC_Emspay_Helper::GINGER_ENDPOINT,
+					$apiKey,
+					($settings['bundle_cacert'] == 'yes') ?
+						[
+							CURLOPT_CAINFO => WC_Emspay_Helper::getCaCertPath()
+						] : []
+				);
+			} catch (Exception $exception) {
+				WC_Admin_Notices::add_custom_notice('emspay-error', $exception->getMessage());
+			}
+		}
+
+		return $ginger;
+	}
 
     /**
      * Custom text on the receipt page.

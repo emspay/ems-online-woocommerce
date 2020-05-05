@@ -43,7 +43,11 @@ class WC_Emspay_Banktransfer extends WC_Emspay_Gateway
     public function process_payment($order_id)
     {
         $order = new WC_Order($order_id);
-		
+
+		if( $order->get_payment_method() != $this->id ) {
+			return false;
+		}
+
 		$emsOrder = $this->ems->createOrder([
             'amount' => WC_Emspay_Helper::gerOrderTotalInCents($order),
             'currency' => WC_Emspay_Helper::getCurrency(),
