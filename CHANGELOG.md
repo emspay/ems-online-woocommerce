@@ -15,3 +15,7 @@
 ** 1.0.10 **
 
 * Fixed sending peyment information in the New Order email for all gateways
+
+** 1.0.11 **
+
+* Add Refund Order functionality
