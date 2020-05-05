@@ -199,19 +199,21 @@ function woocommerce_emspay_init()
 				break;
 		}
 
-		if (strlen($settings['api_key']) > 0) {
-			try {
-				$ginger = \Ginger\Ginger::createClient(
-					WC_Emspay_Helper::GINGER_ENDPOINT,
-					$apiKey,
-					($settings['bundle_cacert'] == 'yes') ?
-						[
-							CURLOPT_CAINFO => WC_Emspay_Helper::getCaCertPath()
-						] : []
-				);
-			} catch (Exception $exception) {
-				WC_Admin_Notices::add_custom_notice('emspay-error', $exception->getMessage());
-			}
+		if (! $apiKey) {
+			return false;
+		}
+
+		try {
+			$ginger = \Ginger\Ginger::createClient(
+				WC_Emspay_Helper::GINGER_ENDPOINT,
+				$apiKey,
+				($settings['bundle_cacert'] == 'yes') ?
+					[
+						CURLOPT_CAINFO => WC_Emspay_Helper::getCaCertPath()
+					] : []
+			);
+		} catch (Exception $exception) {
+			WC_Admin_Notices::add_custom_notice('emspay-error', $exception->getMessage());
 		}
 
 		return $ginger;
