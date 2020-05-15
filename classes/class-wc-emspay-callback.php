@@ -72,6 +72,7 @@ class WC_Emspay_Callback extends WC_Emspay_Gateway
         } else {
             $type = "webhook";
             $input = json_decode(file_get_contents("php://input"), true);
+
             if (!in_array($input['event'], array("status_changed"))) {
                 die("Only work to do if the status changed");
             }
@@ -149,11 +150,10 @@ class WC_Emspay_Callback extends WC_Emspay_Gateway
                 }
             }
 
-            if (!empty(current($emsOrder['transactions'])) and current($emsOrder['transactions'])['status'] == 'captured') {
+            if (isset($emsOrder['transactions']['flags']['has-captures'])) {
                 if ($order->get_status() == 'processing')
                     $order->update_status('shipped', 'Order updated to shipped, transactions was captured', false);
             }
-
             exit;
         }
 
