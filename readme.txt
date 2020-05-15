@@ -86,3 +86,5 @@ Manual installation by uploading ZIP file from WordPress administration environm
 = 1.0.11 =
 * Add Refund Order functionality
 
+= 1.0.12 =
+* Captured transaction status check changed to has-captures flag in accordance with the new behavior of the capture
