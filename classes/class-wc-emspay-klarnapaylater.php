@@ -62,10 +62,14 @@ class WC_Emspay_KlarnaPayLater extends WC_Emspay_Gateway
                 'redirect' => $order->get_cancel_order_url($order)
             ];
         }
+		
+		$pay_url = array_key_exists(0, $emsOrder['transactions'])
+            ? $emsOrder['transactions'][0]['payment_url']
+            : null;
 
         return [
             'result' => 'success',
-            'redirect' => $this->get_return_url($order)
+            'redirect' => $pay_url
         ];
     }
 
