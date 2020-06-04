@@ -23,3 +23,7 @@
 ** 1.0.12 **
 
 * Captured transaction status check changed to has-captures flag in accordance with the new behavior of the capture
+
+** 1.0.13 **
+
+* Changed redirect in KP Later (after Order create in the EMS) to 'payment_url'
