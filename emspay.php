@@ -144,12 +144,29 @@ function woocommerce_emspay_init()
 			$ems_order_id = get_post_meta($args['order_id'], 'ems_order_id', true);
 			$order = wc_get_order($args['order_id']);
 			$ginger = get_ginger_client($order);
+			$emsOrder = $ginger->getOrder($ems_order_id);
+			
+			if($emsOrder['status'] != 'completed') {
+				throw new Exception( 'Only completed orders can be refunded' );
+			}
+			
+			$refund_data = [
+				'amount' => WC_Emspay_Helper::getAmountInCents($args['amount']), 
+				'description' => 'OrderID: #' . $args['order_id'] . ', Reason: ' . $args['reason']
+			];
+		
+			if($order->get_payment_method() == 'emspay_klarna-pay-later' ) {
+				if(!isset($emsOrder['transactions']['flags']['has-captures'])) {
+					throw new Exception( 'Refunds only possible when captured' );
+				};
+				$refund_data['order_lines'] = WC_Emspay_Helper::getOrderLines($order);
+			}
 
 			update_post_meta($args['order_id'], 'refund_id', $refund_id);
 
 			$ginger->refundOrder(
 				$ems_order_id,
-				['amount' => (int) $args['amount'], 'description' => 'OrderID: #' . $args['order_id'] . ', Reason: ' . $args['reason']]
+				$refund_data
 			);
 		} catch (\Exception $exception) {
 			WC_Admin_Notices::add_custom_notice('emspay-error', $exception->getMessage());
