@@ -145,6 +145,7 @@ function woocommerce_emspay_init()
 			$order = wc_get_order($args['order_id']);
 			$ginger = get_ginger_client($order);
 			$emsOrder = $ginger->getOrder($ems_order_id);
+			$orderGateway = $order->get_payment_method();
 			
 			if($emsOrder['status'] != 'completed') {
 				throw new Exception( 'Only completed orders can be refunded' );
@@ -155,7 +156,7 @@ function woocommerce_emspay_init()
 				'description' => 'OrderID: #' . $args['order_id'] . ', Reason: ' . $args['reason']
 			];
 		
-			if($order->get_payment_method() == 'emspay_klarna-pay-later' ) {
+			if( $orderGateway == 'emspay_klarna-pay-later' or $orderGateway == 'emspay_afterpay' ) {
 				if(!isset($emsOrder['transactions']['flags']['has-captures'])) {
 					throw new Exception( 'Refunds only possible when captured' );
 				};
