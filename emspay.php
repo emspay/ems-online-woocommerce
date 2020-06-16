@@ -4,7 +4,7 @@
  * Plugin Name: EMS Online
  * Plugin URI: https://emspay.nl/
  * Description: EMS Pay WooCommerce plugin
- * Version: 1.0.13
+ * Version: 1.0.14
  * Author: Ginger Payments
  * Author URI: https://www.gingerpayments.com/
  * License: The MIT License (MIT)
@@ -140,19 +140,40 @@ function woocommerce_emspay_init()
 	 */
     function refund_an_order($refund_id, $args) {
 
-		try {
-			$ems_order_id = get_post_meta($args['order_id'], 'ems_order_id', true);
-			$order = wc_get_order($args['order_id']);
-			$ginger = get_ginger_client($order);
+		$ems_order_id = get_post_meta($args['order_id'], 'ems_order_id', true);
+		$order = wc_get_order($args['order_id']);
+		$ginger = get_ginger_client($order);
+		$emsOrder = $ginger->getOrder($ems_order_id);
+		$orderGateway = $order->get_payment_method();
+		
+		if($emsOrder['status'] != 'completed') {
+			throw new Exception( 'Only completed orders can be refunded' );
+		}
+		
+		$refund_data = [
+			'amount' => WC_Emspay_Helper::getAmountInCents($args['amount']), 
+			'description' => 'OrderID: #' . $args['order_id'] . ', Reason: ' . $args['reason']
+		];
+	
+		if( $orderGateway == 'emspay_klarna-pay-later' or $orderGateway == 'emspay_afterpay' ) {
+			if(!isset($emsOrder['transactions']['flags']['has-captures'])) {
+				throw new Exception( 'Refunds only possible when captured' );
+			};
+			$refund_data['order_lines'] = WC_Emspay_Helper::getOrderLines($order);
+		}
 
-			update_post_meta($args['order_id'], 'refund_id', $refund_id);
+		update_post_meta($args['order_id'], 'refund_id', $refund_id);
 
-			$ginger->refundOrder(
-				$ems_order_id,
-				['amount' => (int) $args['amount'], 'description' => 'OrderID: #' . $args['order_id'] . ', Reason: ' . $args['reason']]
-			);
-		} catch (\Exception $exception) {
-			WC_Admin_Notices::add_custom_notice('emspay-error', $exception->getMessage());
+		$ems_refund_order = $ginger->refundOrder(
+			$ems_order_id,
+			$refund_data
+		);
+
+		if( in_array( $ems_refund_order['status'], ['error', 'cancelled', 'expired'] ) ) {
+			if( isset(current($ems_refund_order['transactions'])['reason']) ) {
+				throw new Exception( current($ems_refund_order['transactions'])['reason'] );
+			}
+			throw new Exception('Refund order is not completed');
 		}
 	}
 
