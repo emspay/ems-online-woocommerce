@@ -27,3 +27,7 @@
 ** 1.0.13 **
 
 * Changed redirect in KP Later (after Order create in the EMS) to 'payment_url'
+
+** 1.0.14 **
+
+* Fixed refund order functionality
