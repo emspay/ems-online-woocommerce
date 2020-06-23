@@ -129,6 +129,7 @@ function woocommerce_emspay_init()
 
     add_action('woocommerce_order_status_shipped', 'ship_an_order', 10, 2);
     add_action('woocommerce_refund_created', 'refund_an_order', 10, 2);
+	add_action('woocommerce_order_item_add_action_buttons', 'add_refund_description');
 
     load_plugin_textdomain(WC_Emspay_Helper::DOMAIN, false, basename(dirname(__FILE__)).'/languages');
 
@@ -175,6 +176,15 @@ function woocommerce_emspay_init()
 			}
 			throw new Exception('Refund order is not completed');
 		}
+	}
+	
+	/**
+	 * Function add_refund_description
+	 *
+	 * @param $order
+	 */
+	function add_refund_description($order) {
+		echo "<p style='color: red; ' class='description'>" . __( "Please beware that for EMS transactions the refunds will process directly to the gateway!", "emspay") . "</p>";
 	}
 
 	/**
