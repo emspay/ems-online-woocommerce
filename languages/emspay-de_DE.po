@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-22 23:00+0300\n"
-"PO-Revision-Date: 2020-06-22 23:01+0300\n"
+"POT-Creation-Date: 2020-07-20 12:28+0300\n"
+"PO-Revision-Date: 2020-07-20 12:35+0300\n"
 "Last-Translator: Jasmine Vyas\n"
 "Language-Team: German (Germany)\n"
 "Language: de_DE\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.3.1\n"
 "X-Loco-Source-Locale: en-GB\n"
 "X-Loco-Project-Id: 24032\n"
 "X-Loco-Lookup: id\n"
@@ -438,7 +438,21 @@ msgstr ""
 "addresse 128.0.0.1, 255.255.255.255). Wenn Sie nichts eingeben ist AfterPay "
 "wahrnehmbar in jeder IP-adresse."
 
-#: classes/class-wc-emspay-helper.php:416
+#: classes/class-wc-emspay-helper.php:296
+msgid "Countries available for AfterPay"
+msgstr "Für AfterPay verfügbare Länder"
+
+#: classes/class-wc-emspay-helper.php:298
+msgid ""
+"To allow AfterPay to be used for any other country just add its country code "
+"(in ISO 2 standard) to the \"Countries available for AfterPay\" field. "
+"Example: BE, NL, FR"
+msgstr ""
+"Damit AfterPay für jedes andere Land verwendet werden kann, fügen Sie "
+"einfach seinen Ländercode (in ISO 2-Norm) in das Feld \"Für AfterPay "
+"verfügbare Länder\" ein. Beispiel: BE, NL, FR';"
+
+#: classes/class-wc-emspay-helper.php:421
 #, php-format
 msgid "Your order %s at %s"
 msgstr "Ihre Bestellung %s bei %s"

@@ -4,7 +4,7 @@
  * Plugin Name: EMS Online
  * Plugin URI: https://emspay.nl/
  * Description: EMS Pay WooCommerce plugin
- * Version: 1.0.14
+ * Version: 1.0.15
  * Author: Ginger Payments
  * Author URI: https://www.gingerpayments.com/
  * License: The MIT License (MIT)
@@ -285,6 +285,37 @@ function woocommerce_emspay_init()
         return $gateways;
     }
 
+    /**
+     * AfterPay countries available .
+     *
+     * @param array $gateways
+     * @return mixed
+     */
+    function afterpay_countries_available($gateways)
+    {
+        $settings = get_option('woocommerce_emspay_afterpay_settings');
+        $ap_countries_available = $settings['ap_countries_available'];
+
+        if (strlen($ap_countries_available) > 0) {
+            $countrylist = explode(",", str_replace(' ', '', $ap_countries_available));
+            if (!in_array(WC()->customer->billing['country'], $countrylist)) {
+                unset($gateways['emspay_afterpay']);
+            }
+        }
+        return $gateways;
+    }
+
+    add_filter('woocommerce_available_payment_gateways', 'afterpay_countries_available', 10);
     add_filter('woocommerce_available_payment_gateways', 'afterpay_filter_gateways', 10);
     add_filter('woocommerce_thankyou_order_received_text', 'emspay_order_received_text', 10, 2);
+}
+
+register_activation_hook(__FILE__, 'addOptionsForAfterPayCountriesAvailable');
+register_deactivation_hook(__FILE__, 'addOptionsForAfterPayCountriesAvailable');
+
+function addOptionsForAfterPayCountriesAvailable(){
+
+    $settings = get_option('woocommerce_emspay_afterpay_settings');
+    $settings['ap_countries_available'] = 'NL, BE';
+    update_option('woocommerce_emspay_afterpay_settings', $settings);
 }

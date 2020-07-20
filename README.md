@@ -34,6 +34,8 @@ You can use an sFTP or SCP program, for example, to upload the files. There are 
 - Enable the cURL CA bundle option.
 This fixes a cURL SSL Certificate issue that appears in some web-hosting environments where you do not have access to the PHP.ini file and therefore are not able to update server certificates.
 
+- Only for AfterPay payment: To allow AfterPay to be used for any other country just add its country code (in ISO 2 standard) to the "Countries available for AfterPay" field. Example: BE, NL, FR
+
 5. Configure each payment method you would like to offer in your webshop.
 Enable only those payment methods that you applied for and for which you have received a confirmation from us.
 

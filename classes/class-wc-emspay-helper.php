@@ -292,6 +292,11 @@ class WC_Emspay_Helper
                     'type' => 'text',
                     'description' => __('IP address for testing AfterPay. If empty, visible for all. If filled, only visible for specified IP addresses. (Example: 127.0.0.1, 255.255.255.255)', WC_Emspay_Helper::DOMAIN),
                 ],
+                'ap_countries_available' => [
+                    'title' => __('Countries available for AfterPay', WC_Emspay_Helper::DOMAIN),
+                    'type' => 'text',
+                    'description' => __('To allow AfterPay to be used for any other country just add its country code (in ISO 2 standard) to the "Countries available for AfterPay" field. Example: BE, NL, FR', WC_Emspay_Helper::DOMAIN),
+                ],
             ];
 
             $formFields = array_merge($formFields, $apFields);

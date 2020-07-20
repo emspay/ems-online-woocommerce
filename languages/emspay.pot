@@ -331,6 +331,14 @@ msgstr ""
 msgid "IP address for testing AfterPay. If empty, visible for all. If filled, only visible for specified IP addresses. (Example: 127.0.0.1, 255.255.255.255)"
 msgstr ""
 
+#: classes/class-wc-emspay-helper.php:296
+msgid "Countries available for AfterPay"
+msgstr ""
+
+#: classes/class-wc-emspay-helper.php:298
+msgid "To allow AfterPay to be used for any other country just add its country code (in ISO 2 standard) to the \"Countries available for AfterPay\" field. Example: BE, NL, FR"
+msgstr ""
+
 #: classes/class-wc-emspay-helper.php:384
 #, php-format
 msgid "Your order %s at %s"

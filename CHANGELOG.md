@@ -31,3 +31,7 @@
 ** 1.0.14 **
 
 * Fixed refund order functionality
+
+** 1.0.15 **
+
+* Added the ability for AfterPay to be available in the selected countries.
