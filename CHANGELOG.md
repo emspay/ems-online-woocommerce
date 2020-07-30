@@ -31,3 +31,8 @@
 ** 1.0.14 **
 
 * Fixed refund order functionality
+
+** 1.0.15 **
+
+* Adding refund admin description
+* Removing empty values before sending data to the API
