@@ -57,4 +57,4 @@ Compatibility: WordPress 5.2.2
 
 ## WooCommerce & qTranslate-X compatibility
 In order for the webhook URL to be accessible by the EMS Online API you need to go to: Settings -> Languages -> General
-Under "URL Modification Mode" check the `"Hide URL language information fordefault language."` box.
+Under "URL Modification Mode" check the `"Hide URL language information for default language."` box.
