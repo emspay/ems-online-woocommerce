@@ -295,7 +295,7 @@ class WC_Emspay_Helper
                 'ap_countries_available' => [
                     'title' => __('Countries available for AfterPay', WC_Emspay_Helper::DOMAIN),
                     'type' => 'text',
-                    'description' => __('To allow AfterPay to be used for any other country just add its country code (in ISO 2 standard) to the "Countries available for AfterPay" field. Example: BE, NL, FR', WC_Emspay_Helper::DOMAIN),
+                    'description' => __('To allow AfterPay to be used for any other country just add its country code (in ISO 2 standard) to the "Countries available for AfterPay" field. Example: BE, NL, FR <br>  If field is empty then AfterPay will be available for all countries.', WC_Emspay_Helper::DOMAIN),
                 ],
             ];
 

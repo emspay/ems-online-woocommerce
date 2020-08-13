@@ -296,8 +296,10 @@ function woocommerce_emspay_init()
         $settings = get_option('woocommerce_emspay_afterpay_settings');
         $ap_countries_available = $settings['ap_countries_available'];
 
-        if (strlen($ap_countries_available) > 0) {
-            $countrylist = explode(",", str_replace(' ', '', $ap_countries_available));
+        if (empty($ap_countries_available)) {
+            return $gateways;
+        } else {
+            $countrylist = array_map("trim", explode(',', $ap_countries_available));
             if (!in_array(WC()->customer->billing['country'], $countrylist)) {
                 unset($gateways['emspay_afterpay']);
             }
