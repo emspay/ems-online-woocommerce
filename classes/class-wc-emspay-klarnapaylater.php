@@ -13,7 +13,7 @@ class WC_Emspay_KlarnaPayLater extends WC_Emspay_Gateway
     {
         $this->id = 'emspay_klarna-pay-later';
         $this->icon = false;
-        $this->has_fields = true;
+        $this->has_fields = false;
         $this->method_title = __('Klarna Pay Later - EMS Online', WC_Emspay_Helper::DOMAIN);
         $this->method_description = __('Klarna Pay Later - EMS Online', WC_Emspay_Helper::DOMAIN);
 
@@ -82,40 +82,5 @@ class WC_Emspay_KlarnaPayLater extends WC_Emspay_Gateway
 
         echo "<p><b>".__('Your payment using Klarna is successful.', WC_Emspay_Helper::DOMAIN)."</b></p>";
         echo "<p>".__('The invoice will be sent to your email.', WC_Emspay_Helper::DOMAIN)."</p>";
-    }
-
-    /**
-     * @return null|void
-     */
-    public function payment_fields()
-    {
-        if (!$this->has_fields) {
-            return null;
-        }
-
-        echo '<fieldset><legend>'.__('Additional Information', WC_Emspay_Helper::DOMAIN).'</legend >';
-
-        woocommerce_form_field('gender', array(
-            'type' => 'select',
-            'class' => array('input-text'),
-            'label' => __('Gender:', WC_Emspay_Helper::DOMAIN),
-            'options' => array(
-                '' => '',
-                'male' => __('Male', WC_Emspay_Helper::DOMAIN),
-                'female' => __('Female', WC_Emspay_Helper::DOMAIN),
-            ),
-            'required' => true
-        ));
-
-        woocommerce_form_field('dob', array(
-            'type' => 'text',
-            'class' => array('input-text'),
-            'label' => __('Date of birth:', WC_Emspay_Helper::DOMAIN),
-            'description' => __('Birth date format: DD - MM - YYYY, eg: 31-12-1980', WC_Emspay_Helper::DOMAIN),
-            'required' => true
-        ));
-
-        echo "</fieldset>";
-
     }
 }
