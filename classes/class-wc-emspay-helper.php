@@ -113,6 +113,17 @@ class WC_Emspay_Helper
             $ip_address = $order->customer_ip_address;
         }
 
+        $emspay_afterpay_date_of_birth_day = static::getCustomPaymentField('emspay_afterpay_date_of_birth_day');
+        $emspay_afterpay_date_of_birth_month = static::getCustomPaymentField('emspay_afterpay_date_of_birth_month');
+        $emspay_afterpay_date_of_birth_year = static::getCustomPaymentField('emspay_afterpay_date_of_birth_year');
+
+        $birthdate = implode('-', [$emspay_afterpay_date_of_birth_year, $emspay_afterpay_date_of_birth_month, $emspay_afterpay_date_of_birth_day]);
+
+        // removing it will make sure it gets removed if empty and thus not validated
+        if ($birthdate == '--') {
+            $birthdate = '';
+        }
+
         return array_filter([
             'address_type' => 'customer',
             'merchant_customer_id' => (string) $order->get_user_id(),
@@ -129,6 +140,8 @@ class WC_Emspay_Helper
             'user_agent' => (string) $user_agent,
             'ip_address' => (string) $ip_address,
             'locale' => (string) get_locale(),
+            'gender' => (string) static::getCustomPaymentField('gender'),
+            'birthdate' => (string) $birthdate,
             'additional_addresses' => [
                 [
                     'address_type' => 'billing',
@@ -140,6 +153,20 @@ class WC_Emspay_Helper
                 ]
             ]
         ]);
+    }
+    /**
+     * Method retrieves custom field from POST array.
+     *
+     * @param string $field
+     * @return string|null
+     */
+    public static function getCustomPaymentField($field)
+    {
+        if (array_key_exists($field, $_POST) && strlen($_POST[$field]) > 0) {
+            return sanitize_text_field($_POST[$field]);
+        }
+
+        return null;
     }
 
     /**
