@@ -37,3 +37,7 @@
 * Added the ability for AfterPay to be available in the selected countries.
 * Adding refund admin description
 * Removing empty values before sending data to the API
+
+** 1.0.16 **
+
+* Removing Klarna Pay Later fields gender and birthday from checkout form and customer object
