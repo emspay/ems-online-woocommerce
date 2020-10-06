@@ -238,15 +238,15 @@ class WC_Emspay_Helper
                 $default = __('Pay Now', self::DOMAIN);
                 $label = __('Enable Pay Now Payments', self::DOMAIN);
                 break;
-            case 'amex':
+            case 'emspay_amex':
                 $default = __('American Express', self::DOMAIN);
                 $label = __('Enable American Express Payments', self::DOMAIN);
                 break;
-            case 'tikkie-payment-request':
+            case 'emspay_tikkie-payment-request':
                 $default = __('Tikkie Payment Request', self::DOMAIN);
                 $label = __('Enable Tikkie Payment Request Payments', self::DOMAIN);
                 break;
-            case 'wechat':
+            case 'emspay_wechat':
                 $default = __('WeChat', self::DOMAIN);
                 $label = __('Enable WeChat Payments', self::DOMAIN);
                 break;
@@ -427,6 +427,6 @@ class WC_Emspay_Helper
      * @return bool|string
      */
     public static function getCaCertPath(){
-        return realpath(plugin_dir_path(__FILE__).'../ginger-php/assets/cacert.pem');
+        return realpath(plugin_dir_path(__FILE__).'../assets/cacert.pem');
     }
 }
