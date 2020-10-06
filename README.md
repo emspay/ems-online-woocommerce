@@ -6,7 +6,7 @@ This is the offical EMS Online plugin.
 By integrating your webshop with EMS Online you can accept payments from your customers in an easy and trusted manner with all relevant payment methods supported. 
 
 ## Version number
-Version 1.0.15
+Version 1.1.0
 
 ## Pre-requisites to install the plug-ins 
 * PHP v5.4 and above
@@ -33,6 +33,8 @@ You can use an sFTP or SCP program, for example, to upload the files. There are 
 - Select your preferred Failed payment page. This setting determines the page to which your customer is redirected after a payment attempt has failed. You can choose between the Checkout page (the page where you can choose a payment method) or the Shopping cart page (the page before checkout where the content of the shopping cart is displayed).
 - Enable the cURL CA bundle option.
 This fixes a cURL SSL Certificate issue that appears in some web-hosting environments where you do not have access to the PHP.ini file and therefore are not able to update server certificates.
+
+- Only for AfterPay payment: To allow AfterPay to be used for any other country just add its country code (in ISO 2 standard) to the "Countries available for AfterPay" field. Example: BE, NL, FR
 
 5. Configure each payment method you would like to offer in your webshop.
 Enable only those payment methods that you applied for and for which you have received a confirmation from us.

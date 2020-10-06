@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-22 22:59+0300\n"
-"PO-Revision-Date: 2020-06-22 23:00+0300\n"
+"POT-Creation-Date: 2020-09-10 16:39+0300\n"
+"PO-Revision-Date: 2020-09-10 16:39+0300\n"
 "Last-Translator: Jasmine Vyas\n"
 "Language-Team: English (UK)\n"
 "Language: en_GB\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.3\n"
 "X-Loco-Source-Locale: en-GB\n"
 "X-Loco-Project-Id: 24032\n"
 "X-Loco-Lookup: id\n"
@@ -48,22 +48,18 @@ msgid "The invoice will be sent to your email."
 msgstr "The invoice will be sent to your email address."
 
 #: classes/class-wc-emspay-afterpay.php:95
-#: classes/class-wc-emspay-klarnapaylater.php:96
 msgid "Additional Information"
 msgstr "Additional Information"
 
 #: classes/class-wc-emspay-afterpay.php:100
-#: classes/class-wc-emspay-klarnapaylater.php:101
 msgid "Gender:"
 msgstr "Gender:"
 
 #: classes/class-wc-emspay-afterpay.php:103
-#: classes/class-wc-emspay-klarnapaylater.php:104
 msgid "Male"
 msgstr "Male"
 
 #: classes/class-wc-emspay-afterpay.php:104
-#: classes/class-wc-emspay-klarnapaylater.php:105
 msgid "Female"
 msgstr "Female"
 
@@ -411,8 +407,8 @@ msgstr "Automatically include Webhook URL with every order"
 #: classes/class-wc-emspay-helper.php:276
 msgid "API will request this URL in order to update transaction details."
 msgstr ""
-"Automatically provide the webhook URL with each generated order to the ING "
-"PSP API to update the transaction details."
+"Automatically provide the webhook URL with each generated order to the EMS "
+"Online PSP API to update the transaction details."
 
 #: classes/class-wc-emspay-helper.php:288
 msgid "Test API key for testing implementation of AfterPay."
@@ -434,7 +430,23 @@ msgstr ""
 "if you want to test AfterPay you can type IP addresses as 128.0.0.1, "
 "255.255.255.255.)"
 
-#: classes/class-wc-emspay-helper.php:416
+#: classes/class-wc-emspay-helper.php:296
+msgid "Countries available for AfterPay"
+msgstr "Countries available for AfterPay"
+
+#: classes/class-wc-emspay-helper.php:298
+msgid ""
+"To allow AfterPay to be used for any other country just add its country code "
+"(in ISO 2 standard) to the \"Countries available for AfterPay\" field. "
+"Example: BE, NL, FR <br>  If field is empty then AfterPay will be available "
+"for all countries."
+msgstr ""
+"To allow AfterPay to be used for any other country just add its country code "
+"(in ISO 2 standard) to the \"Countries available for AfterPay\" field. "
+"Example: BE, NL, FR <br>  If field is empty then AfterPay will be available "
+"for all countries."
+
+#: classes/class-wc-emspay-helper.php:421
 #, php-format
 msgid "Your order %s at %s"
 msgstr "Your order %s at %s"
@@ -475,16 +487,6 @@ msgstr ""
 msgid "Your payment using Klarna is successful."
 msgstr "Your payment with Klarna is successfully processed."
 
-#: classes/class-wc-emspay-klarnapaylater.php:113
-msgid "Date of birth:"
-msgstr "Date of Birth:"
-
-#: classes/class-wc-emspay-klarnapaylater.php:114
-msgid "Birth date format: DD - MM - YYYY, eg: 31-12-1980"
-msgstr ""
-"Please use the following format for entering the birth date : DD - MM - "
-"YYYY, e.g.: 31-12-1980"
-
 #: classes/class-wc-emspay-klarnapaynow.php:17
 #: classes/class-wc-emspay-klarnapaynow.php:18
 msgid "EMS Online - Klarna Pay Now"
@@ -519,6 +521,14 @@ msgid ""
 msgstr ""
 "Please beware that for EMS transactions the refunds will process directly to "
 "the gateway!"
+
+#~ msgid "Date of birth:"
+#~ msgstr "Date of Birth:"
+
+#~ msgid "Birth date format: DD - MM - YYYY, eg: 31-12-1980"
+#~ msgstr ""
+#~ "Please use the following format for entering the birth date : DD - MM - "
+#~ "YYYY, e.g.: 31-12-1980"
 
 #~ msgid "Klarna"
 #~ msgstr "Klarna"
