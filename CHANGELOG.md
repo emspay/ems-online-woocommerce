@@ -42,3 +42,7 @@
 * Added the ability for AfterPay to be available in the selected countries.
 * Removing Klarna Pay Later fields gender and birthday from checkout form and customer object
 * Replaced locally stored ginger-php library on composer library installer.
+
+** 1.1.1 **
+
+* Removed the Webhook option

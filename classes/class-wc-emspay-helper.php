@@ -270,14 +270,6 @@ class WC_Emspay_Helper
                 'default' => $default,
                 'desc_tip' => true
             ],
-            'enable_webhook' => [
-                'title' => __('Use Webhook URL', self::DOMAIN),
-                'label' => __('Automatically include Webhook URL with every order', self::DOMAIN),
-                'description' => __('API will request this URL in order to update transaction details.', self::DOMAIN),
-                'type' => 'checkbox',
-                'desc_tip' => true,
-                'default' => 'yes'
-            ]
         ];
 
         if ($type == 'emspay_afterpay') {
@@ -322,9 +314,9 @@ class WC_Emspay_Helper
      * @param WC_Payment_Gateway $gateway
      * @return null|string
      */
-    public static function getWebhookUrl(WC_Payment_Gateway $gateway)
+    public static function getWebhookUrl()
     {
-        return ($gateway->get_option('enable_webhook') == 'yes') ? self::getReturnUrl() : null;
+        return self::getReturnUrl();
     }
 
     /**

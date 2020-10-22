@@ -44,7 +44,6 @@ Enable only those payment methods that you applied for and for which you have re
 	- Select Enable iDEAL Payment to include the payment method in your pay page. Fill in iDEAL in the Title field.
 	- The plugin can automatically generate a webhook URL when a message is sent to the EMS API for new orders. This option is enabled by default.
 	If you use this option you do not have to configure the webhook in the merchant portal.
-	To disable this option, make it unchecked.
 
 - Follow the same procedure for all other payment methods you have enabled.
 

@@ -41,7 +41,7 @@ class WC_Emspay_KlarnaPayLater extends WC_Emspay_Gateway
             'return_url' => WC_Emspay_Helper::getReturnUrl(),
             'customer' => WC_Emspay_Helper::getCustomerInfo($order),
 			'extra' => ['plugin' => EMSPAY_PLUGIN_VERSION],
-            'webhook_url' => WC_Emspay_Helper::getWebhookUrl($this),
+            'webhook_url' => WC_Emspay_Helper::getWebhookUrl(),
 			'order_lines' => WC_Emspay_Helper::getOrderLines($order)
         ]));
 
