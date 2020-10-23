@@ -46,3 +46,4 @@
 ** 1.1.1 **
 
 * Removed the Webhook option
+* Updated EMS Online plugin description in README 
