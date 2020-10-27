@@ -41,7 +41,7 @@ class WC_Emspay_WeChat extends WC_Emspay_Gateway
             'return_url' => WC_Emspay_Helper::getReturnUrl(),
             'customer' => WC_Emspay_Helper::getCustomerInfo($order),
 			'extra' => ['plugin' => EMSPAY_PLUGIN_VERSION],
-            'webhook_url' => WC_Emspay_Helper::getWebhookUrl($this)
+            'webhook_url' => WC_Emspay_Helper::getWebhookUrl()
         ]));
 
         update_post_meta($order_id, 'ems_order_id', $emsOrder['id']);
