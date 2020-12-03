@@ -46,4 +46,8 @@
 ** 1.1.1 **
 
 * Removed the Webhook option
-* Updated EMS Online plugin description in README 
+* Updated EMS Online plugin description in README
+
+** 1.1.2 **
+
+* Expanded updating of order statuses in the store 

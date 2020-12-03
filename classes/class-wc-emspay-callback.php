@@ -148,11 +148,11 @@ class WC_Emspay_Callback extends WC_Emspay_Gateway
                 } else {
                     $order->payment_complete();
                 }
-            }
-
-            if (isset($emsOrder['transactions']['flags']['has-captures'])) {
+            } elseif (isset($emsOrder['transactions']['flags']['has-captures'])){
                 if ($order->get_status() == 'processing')
                     $order->update_status('shipped', 'Order updated to shipped, transactions was captured', false);
+            } else {
+                $order->update_status($this->get_store_status($emsOrder['status']));
             }
             exit;
         }
@@ -170,5 +170,23 @@ class WC_Emspay_Callback extends WC_Emspay_Gateway
             header("Location: ".str_replace("&amp;", "&", $url));
             exit;
         }
+    }
+
+    /**
+     * Function get_store_status
+     *
+     * @param $ems_order_status
+     * @return string
+     */
+    public function get_store_status($ems_order_status) {
+        $maps_statuses = [
+            'new' => 'pending',
+            'processing' => 'processing',
+            'error' => 'failed',
+            'expired' => 'cancelled',
+            'cancelled' => 'cancelled',
+            'see-transactions' => 'on-hold'
+        ];
+        return $maps_statuses[$ems_order_status];
     }
 }
