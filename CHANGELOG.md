@@ -50,4 +50,8 @@
 
 ** 1.1.2 **
 
-* Expanded updating of order statuses in the store 
+* Expanded updating of order statuses in the store
+
+** 1.1.3 **
+
+* Fixed shipping tax rate functionality
