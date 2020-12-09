@@ -396,7 +396,7 @@ class WC_Emspay_Helper
     public static function getShippingTaxRate()
     {
         $totalTaxRate = 0;
-        foreach (WC_Tax::get_shippems_tax_rates() as $taxRate) {
+        foreach (WC_Tax::get_shipping_tax_rates() as $taxRate) {
             $totalTaxRate += $taxRate['rate'];
         }
         return $totalTaxRate;
