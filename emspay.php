@@ -271,7 +271,7 @@ function woocommerce_emspay_init()
     function afterpay_filter_gateways($gateways)
     {
         $settings = get_option('woocommerce_emspay_afterpay_settings');
-        $ap_ip = $settings['ap_debug_ip'];
+        $ap_ip = $settings['ap_debug_ip'] ?? '';
 
         if (strlen($ap_ip) > 0) {
             $ip_whitelist = array_map('trim', explode(",", $ap_ip));
