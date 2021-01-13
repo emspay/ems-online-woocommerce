@@ -44,25 +44,32 @@ class WC_Emspay_Banktransfer extends WC_Emspay_Gateway
     {
         $order = new WC_Order($order_id);
 
-		if( $order->get_payment_method() != $this->id ) {
-			return false;
-		}
+        if( $order->get_payment_method() != $this->id ) {
+              return false;
+        }
 
-		$emsOrder = $this->ems->createOrder(array_filter([
-            'amount' => WC_Emspay_Helper::gerOrderTotalInCents($order),
-            'currency' => WC_Emspay_Helper::getCurrency(),
-            'transactions' => [
-                [
-                    'payment_method' => str_replace('emspay_', '', $this->id)
-                ]
-            ],
-            'merchant_order_id' => (string) $order_id,
-            'description' => WC_Emspay_Helper::getOrderDescription($order_id),
-            'return_url' => WC_Emspay_Helper::getReturnUrl(),
-            'customer' => WC_Emspay_Helper::getCustomerInfo($order),
-			'extra' => ['plugin' => EMSPAY_PLUGIN_VERSION],
-            'webhook_url' => WC_Emspay_Helper::getWebhookUrl()
-        ]));
+        try {
+            $emsOrder = $this->ems->createOrder(array_filter([
+                 'amount' => WC_Emspay_Helper::gerOrderTotalInCents($order),
+                 'currency' => WC_Emspay_Helper::getCurrency(),
+                 'transactions' => [
+                     [
+                         'payment_method' => str_replace('emspay_', '', $this->id)
+                     ]
+                 ],
+                 'merchant_order_id' => (string) $order_id,
+                 'description' => WC_Emspay_Helper::getOrderDescription($order_id),
+                 'return_url' => WC_Emspay_Helper::getReturnUrl(),
+                 'customer' => WC_Emspay_Helper::getCustomerInfo($order),
+                 'extra' => ['plugin' => EMSPAY_PLUGIN_VERSION],
+                 'webhook_url' => WC_Emspay_Helper::getWebhookUrl()
+            ]));
+        } catch (\Exception $exception) {
+            wc_add_notice(sprintf(__('There was a problem processing your transaction: %s', WC_Emspay_Helper::DOMAIN), $exception->getMessage()), 'error');
+            return [
+                'result' => 'failure'
+            ];
+        }
 
         $bank_reference = !empty(current($emsOrder['transactions'])) ?
             current($emsOrder['transactions'])['payment_method_details']['reference'] : null;
