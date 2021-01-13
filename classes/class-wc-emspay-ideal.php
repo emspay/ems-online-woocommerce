@@ -42,14 +42,14 @@ class WC_Emspay_Ideal extends WC_Emspay_Gateway
                 'transactions' => [
                     [
                         'payment_method' => str_replace('emspay_', '', $this->id),
-                                  'payment_method_details' => ['issuer_id' => (string) $idealIssuerId]
+                        'payment_method_details' => ['issuer_id' => (string) $idealIssuerId]
                     ]
                 ],
                 'merchant_order_id' => (string) $order_id,
                 'description' => WC_Emspay_Helper::getOrderDescription($order_id),
                 'return_url' => WC_Emspay_Helper::getReturnUrl(),
                 'customer' => WC_Emspay_Helper::getCustomerInfo($order),
-                      'extra' => ['plugin' => EMSPAY_PLUGIN_VERSION],
+                'extra' => ['plugin' => EMSPAY_PLUGIN_VERSION],
                 'webhook_url' => WC_Emspay_Helper::getWebhookUrl()
             ]));
         } catch (\Exception $exception) {

@@ -40,7 +40,8 @@ class WC_Emspay_PayPal extends WC_Emspay_Gateway
                 'merchant_order_id' => (string) $order_id,
                 'description' => WC_Emspay_Helper::getOrderDescription($order_id),
                 'return_url' => WC_Emspay_Helper::getReturnUrl(),
-                'customer' => WC_Emspay_Helper::getCustomerInfo($order), 'extra' => ['plugin' => EMSPAY_PLUGIN_VERSION],
+                'customer' => WC_Emspay_Helper::getCustomerInfo($order),
+                'extra' => ['plugin' => EMSPAY_PLUGIN_VERSION],
                 'webhook_url' => WC_Emspay_Helper::getWebhookUrl()
             ]));
         } catch (\Exception $exception) {

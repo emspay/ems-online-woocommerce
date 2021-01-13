@@ -41,9 +41,9 @@ class WC_Emspay_KlarnaPayLater extends WC_Emspay_Gateway
                 'description' => WC_Emspay_Helper::getOrderDescription($order_id),
                 'return_url' => WC_Emspay_Helper::getReturnUrl(),
                 'customer' => WC_Emspay_Helper::getCustomerInfo($order),
-                      'extra' => ['plugin' => EMSPAY_PLUGIN_VERSION],
+                'extra' => ['plugin' => EMSPAY_PLUGIN_VERSION],
                 'webhook_url' => WC_Emspay_Helper::getWebhookUrl(),
-                      'order_lines' => WC_Emspay_Helper::getOrderLines($order)
+                'order_lines' => WC_Emspay_Helper::getOrderLines($order)
             ]));
         } catch (\Exception $exception) {
             wc_add_notice(sprintf(__('There was a problem processing your transaction: %s', WC_Emspay_Helper::DOMAIN), $exception->getMessage()), 'error');
