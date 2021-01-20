@@ -129,7 +129,7 @@ function woocommerce_emspay_init()
 
     add_action('woocommerce_order_status_shipped', 'ship_an_order', 10, 2);
     add_action('woocommerce_refund_created', 'refund_an_order', 10, 2);
-	add_action('woocommerce_order_item_add_action_buttons', 'add_refund_description');
+    add_action('woocommerce_order_item_add_action_buttons', 'add_refund_description');
 
     load_plugin_textdomain(WC_Emspay_Helper::DOMAIN, false, basename(dirname(__FILE__)).'/languages');
 
@@ -271,53 +271,24 @@ function woocommerce_emspay_init()
     function afterpay_filter_gateways($gateways)
     {
         $settings = get_option('woocommerce_emspay_afterpay_settings');
-        $ap_ip = $settings['ap_debug_ip'] ?? '';
 
-        if (strlen($ap_ip) > 0) {
-            $ip_whitelist = array_map('trim', explode(",", $ap_ip));
+        if ($settings['ap_debug_ip']) {
+            $ip_whitelist = array_map('trim', explode(",", $settings['ap_debug_ip']));
             if (!in_array(WC_Geolocation::get_ip_address(), $ip_whitelist)) {
                 unset($gateways['emspay_afterpay']);
+                return $gateways;
             }
-        } else if (isset(WC()->customer->billing['country']) && !in_array(WC()->customer->billing['country'], WC_Emspay_Helper::$afterPayCountries)) {
-            unset($gateways['emspay_afterpay']);
         }
-
-        return $gateways;
-    }
-
-    /**
-     * AfterPay countries available .
-     *
-     * @param array $gateways
-     * @return mixed
-     */
-    function afterpay_countries_available($gateways)
-    {
-        $settings = get_option('woocommerce_emspay_afterpay_settings');
-        $ap_countries_available = $settings['ap_countries_available'];
-
-        if (empty($ap_countries_available)) {
-            return $gateways;
-        } else {
-            $countrylist = array_map("trim", explode(',', $ap_countries_available));
-            if (!in_array(WC()->customer->billing['country'], $countrylist)) {
+        if ($settings['ap_countries_available']) {
+            $countrylist = array_map("trim", explode(',', $settings['ap_countries_available']));
+            if (!in_array(WC()->customer->get_billing_country(), $countrylist)) {
                 unset($gateways['emspay_afterpay']);
             }
         }
+
         return $gateways;
     }
 
-    add_filter('woocommerce_available_payment_gateways', 'afterpay_countries_available', 10);
     add_filter('woocommerce_available_payment_gateways', 'afterpay_filter_gateways', 10);
     add_filter('woocommerce_thankyou_order_received_text', 'emspay_order_received_text', 10, 2);
-}
-
-register_activation_hook(__FILE__, 'addOptionsForAfterPayCountriesAvailable');
-register_deactivation_hook(__FILE__, 'addOptionsForAfterPayCountriesAvailable');
-
-function addOptionsForAfterPayCountriesAvailable(){
-
-    $settings = get_option('woocommerce_emspay_afterpay_settings');
-    $settings['ap_countries_available'] = 'NL, BE';
-    update_option('woocommerce_emspay_afterpay_settings', $settings);
 }

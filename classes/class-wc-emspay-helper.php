@@ -252,6 +252,7 @@ class WC_Emspay_Helper
                 $default = __('AfterPay', self::DOMAIN);
                 $label = __('Enable AfterPay Payments', self::DOMAIN);
                 $currencies = self::$supportedGatewayCurrencies['emspay_afterpay'];
+                $countries = self::$afterPayCountries;
                 break;
             case 'emspay_klarna-pay-later':
                 $default = __('Klarna Pay Later', self::DOMAIN);
@@ -337,6 +338,7 @@ class WC_Emspay_Helper
                 'ap_countries_available' => [
                     'title' => __('Countries available for AfterPay', WC_Emspay_Helper::DOMAIN),
                     'type' => 'text',
+                    'default' => $countries,
                     'description' => __('To allow AfterPay to be used for any other country just add its country code (in ISO 2 standard) to the "Countries available for AfterPay" field. Example: BE, NL, FR <br>  If field is empty then AfterPay will be available for all countries.', WC_Emspay_Helper::DOMAIN),
                 ],
             ];
