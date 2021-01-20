@@ -42,9 +42,10 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
             }
         }
 
-        $this->validate_currency();
+        if( is_admin()) {
+            $this->validate_currency();
+        }
 
-        add_action('woocommerce_update_options_payment_gateways', array($this, 'process_admin_options'));
         add_action('woocommerce_update_options_payment_gateways_'.$this->id, array($this, 'process_admin_options'));
         add_action('woocommerce_thankyou_'.$this->id, array($this, 'handle_thankyou'));
         add_action('woocommerce_api_'.strtolower(get_class($this)), array($this, 'handle_callback'));
@@ -96,6 +97,7 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
      * Function validate_currency
      */
     protected function validate_currency() {
+
         if ( ! $this->isStoreCurrencySupported() ) {
             $this->enabled= false;
             $this->update_option('enabled', false);

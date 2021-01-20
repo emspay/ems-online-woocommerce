@@ -69,29 +69,6 @@ function woocommerce_emspay_init()
         return $methods;
     }
 
-    /**
-     * Check if Klarna payment method is limited to specific set of IPs.
-     *
-     * @param $gateways
-     * @return mixed
-     */
-    function klarna_enabled_ip($gateways)
-    {
-        $settings = get_option('woocommerce_emspay_settings');
-        $ems_klarna_ip_list = $settings['debug_klarna_ip'];
-
-        if (strlen($ems_klarna_ip_list) > 0) {
-            $ip_whitelist = array_map('trim', explode(",", $ems_klarna_ip_list));
-
-            if (!in_array(WC_Geolocation::get_ip_address(), $ip_whitelist)) {
-                unset($gateways['emspay_klarna-pay-later']);
-            }
-        }
-
-        return $gateways;
-    }
-
-    add_filter('woocommerce_available_payment_gateways', 'klarna_enabled_ip');
     add_filter('woocommerce_payment_gateways', 'woocommerce_add_emspay');
     add_action('woocommerce_api_callback', array(new woocommerce_emspay(), 'handle_callback'));
 
@@ -263,15 +240,20 @@ function woocommerce_emspay_init()
     }
 
     /**
-     * Filter out EMS Online AfterPay method if not in allowed countries.
+     * Filter out EMS Online AfterPay method if not in allowed countries and IP.
      *
      * @param array $gateways
      * @return mixed
      */
-    function afterpay_filter_gateways($gateways)
+    function afterpay_filter_gateway($gateways)
     {
+        if ( ! is_checkout() ) {
+            return $gateways;
+        }
+
         $settings = get_option('woocommerce_emspay_afterpay_settings');
 
+        // Filter AfterPay by IP option
         if ($settings['ap_debug_ip']) {
             $ip_whitelist = array_map('trim', explode(",", $settings['ap_debug_ip']));
             if (!in_array(WC_Geolocation::get_ip_address(), $ip_whitelist)) {
@@ -279,6 +261,8 @@ function woocommerce_emspay_init()
                 return $gateways;
             }
         }
+
+        // Filter AfterPay by country available option
         if ($settings['ap_countries_available']) {
             $countrylist = array_map("trim", explode(',', $settings['ap_countries_available']));
             if (!in_array(WC()->customer->get_billing_country(), $countrylist)) {
@@ -289,6 +273,62 @@ function woocommerce_emspay_init()
         return $gateways;
     }
 
-    add_filter('woocommerce_available_payment_gateways', 'afterpay_filter_gateways', 10);
+    /**
+     * Filter out EMS Online Klarna method if not in allowed IP.
+     *
+     * @param array $gateways
+     * @return mixed
+     */
+    function klarna_filter_gateway($gateways)
+    {
+        if ( ! is_checkout() ) {
+            return $gateways;
+        }
+
+        $settings = get_option('woocommerce_emspay_settings');
+
+        // Filter Klarna by IP option
+        if ($settings['debug_klarna_ip']) {
+            $ip_whitelist = array_map('trim', explode(",", $settings['debug_klarna_ip']));
+
+            if (!in_array(WC_Geolocation::get_ip_address(), $ip_whitelist)) {
+                unset($gateways['emspay_klarna-pay-later']);
+            }
+        }
+
+        return $gateways;
+    }
+
+    /**
+     * Filter out EMS Online gateways by currencies.
+     *
+     * @param $gateways
+     * @return bool
+     */
+    function filter_gateway_by_currency($gateways) {
+        if ( ! is_checkout() ) {
+            return $gateways;
+        }
+
+        if ( ! in_array(get_woocommerce_currency(), WC_Emspay_Helper::$supportedCurrencies) ) {
+            return false;
+        }
+
+        foreach ( $gateways as $key=>$gateway ) {
+
+            if(empty($gateway->settings['allowed_currencies'])) {
+                return true;
+            }
+            if( ! in_array(get_woocommerce_currency(), $gateway->settings['allowed_currencies']) ) {
+                unset($gateways[$key]);
+            }
+        }
+
+        return $gateways;
+    }
+
+    add_filter('woocommerce_available_payment_gateways', 'afterpay_filter_gateway', 10);
+    add_filter('woocommerce_available_payment_gateways', 'klarna_filter_gateway', 10);
+    add_filter('woocommerce_available_payment_gateways', 'filter_gateway_by_currency', 10);
     add_filter('woocommerce_thankyou_order_received_text', 'emspay_order_received_text', 10, 2);
 }
