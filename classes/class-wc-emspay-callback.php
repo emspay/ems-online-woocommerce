@@ -148,6 +148,7 @@ class WC_Emspay_Callback extends WC_Emspay_Gateway
                 } else {
                     $order->payment_complete();
                 }
+                $order->update_status($this->get_store_status($emsOrder['status']));
             } elseif (isset($emsOrder['transactions']['flags']['has-captures'])){
                 if ($order->get_status() == 'processing')
                     $order->update_status('shipped', 'Order updated to shipped, transactions was captured', false);
