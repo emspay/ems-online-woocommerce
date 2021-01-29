@@ -25,7 +25,7 @@ The ideal online payment page for your webshop:
 Promotion promotion extended!
 
 Choose the EMS Online Payment Solution now
-and pay no subscription costs at € 9.95 throughout 2020!
+and pay no subscription costs at € 9.95 until June 2021!
 
 Start immediately with your test account
 Request it https://portal.emspay.eu/create-test-account?language=NL_NL 
