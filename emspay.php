@@ -4,7 +4,7 @@
  * Plugin Name: EMS Online
  * Plugin URI: https://emspay.nl/
  * Description: EMS Pay WooCommerce plugin
- * Version: 1.1.3
+ * Version: 1.1.4
  * Author: Ginger Payments
  * Author URI: https://www.gingerpayments.com/
  * License: The MIT License (MIT)
@@ -69,29 +69,6 @@ function woocommerce_emspay_init()
         return $methods;
     }
 
-    /**
-     * Check if Klarna payment method is limited to specific set of IPs.
-     *
-     * @param $gateways
-     * @return mixed
-     */
-    function klarna_enabled_ip($gateways)
-    {
-        $settings = get_option('woocommerce_emspay_settings');
-        $ems_klarna_ip_list = $settings['debug_klarna_ip'];
-
-        if (strlen($ems_klarna_ip_list) > 0) {
-            $ip_whitelist = array_map('trim', explode(",", $ems_klarna_ip_list));
-
-            if (!in_array(WC_Geolocation::get_ip_address(), $ip_whitelist)) {
-                unset($gateways['emspay_klarna-pay-later']);
-            }
-        }
-
-        return $gateways;
-    }
-
-    add_filter('woocommerce_available_payment_gateways', 'klarna_enabled_ip');
     add_filter('woocommerce_payment_gateways', 'woocommerce_add_emspay');
     add_action('woocommerce_api_callback', array(new woocommerce_emspay(), 'handle_callback'));
 
@@ -129,7 +106,7 @@ function woocommerce_emspay_init()
 
     add_action('woocommerce_order_status_shipped', 'ship_an_order', 10, 2);
     add_action('woocommerce_refund_created', 'refund_an_order', 10, 2);
-	add_action('woocommerce_order_item_add_action_buttons', 'add_refund_description');
+    add_action('woocommerce_order_item_add_action_buttons', 'add_refund_description');
 
     load_plugin_textdomain(WC_Emspay_Helper::DOMAIN, false, basename(dirname(__FILE__)).'/languages');
 
@@ -263,61 +240,95 @@ function woocommerce_emspay_init()
     }
 
     /**
-     * Filter out EMS Online AfterPay method if not in allowed countries.
+     * Filter out EMS Online AfterPay method if not in allowed countries and IP.
      *
      * @param array $gateways
      * @return mixed
      */
-    function afterpay_filter_gateways($gateways)
+    function afterpay_filter_gateway($gateways)
     {
-        $settings = get_option('woocommerce_emspay_afterpay_settings');
-        $ap_ip = $settings['ap_debug_ip'];
+        if ( ! is_checkout() ) {
+            return $gateways;
+        }
 
-        if (strlen($ap_ip) > 0) {
-            $ip_whitelist = array_map('trim', explode(",", $ap_ip));
+        $settings = get_option('woocommerce_emspay_afterpay_settings');
+
+        // Filter AfterPay by IP option
+        if ($settings['ap_debug_ip']) {
+            $ip_whitelist = array_map('trim', explode(",", $settings['ap_debug_ip']));
             if (!in_array(WC_Geolocation::get_ip_address(), $ip_whitelist)) {
                 unset($gateways['emspay_afterpay']);
+                return $gateways;
             }
-        } else if (isset(WC()->customer->billing['country']) && !in_array(WC()->customer->billing['country'], WC_Emspay_Helper::$afterPayCountries)) {
-            unset($gateways['emspay_afterpay']);
+        }
+
+        // Filter AfterPay by country available option
+        if ($settings['ap_countries_available']) {
+            $countrylist = array_map("trim", explode(',', $settings['ap_countries_available']));
+            if (!in_array(WC()->customer->get_billing_country(), $countrylist)) {
+                unset($gateways['emspay_afterpay']);
+            }
         }
 
         return $gateways;
     }
 
     /**
-     * AfterPay countries available .
+     * Filter out EMS Online Klarna method if not in allowed IP.
      *
      * @param array $gateways
      * @return mixed
      */
-    function afterpay_countries_available($gateways)
+    function klarna_filter_gateway($gateways)
     {
-        $settings = get_option('woocommerce_emspay_afterpay_settings');
-        $ap_countries_available = $settings['ap_countries_available'];
-
-        if (empty($ap_countries_available)) {
+        if ( ! is_checkout() ) {
             return $gateways;
-        } else {
-            $countrylist = array_map("trim", explode(',', $ap_countries_available));
-            if (!in_array(WC()->customer->billing['country'], $countrylist)) {
-                unset($gateways['emspay_afterpay']);
+        }
+
+        $settings = get_option('woocommerce_emspay_settings');
+
+        // Filter Klarna by IP option
+        if ($settings['debug_klarna_ip']) {
+            $ip_whitelist = array_map('trim', explode(",", $settings['debug_klarna_ip']));
+
+            if (!in_array(WC_Geolocation::get_ip_address(), $ip_whitelist)) {
+                unset($gateways['emspay_klarna-pay-later']);
             }
         }
+
         return $gateways;
     }
 
-    add_filter('woocommerce_available_payment_gateways', 'afterpay_countries_available', 10);
-    add_filter('woocommerce_available_payment_gateways', 'afterpay_filter_gateways', 10);
+    /**
+     * Filter out EMS Online gateways by currencies.
+     *
+     * @param $gateways
+     * @return bool
+     */
+    function filter_gateway_by_currency($gateways) {
+        if ( ! is_checkout() ) {
+            return $gateways;
+        }
+
+        if ( ! in_array(get_woocommerce_currency(), WC_Emspay_Helper::$supportedCurrencies) ) {
+            return false;
+        }
+
+        foreach ( $gateways as $key=>$gateway ) {
+
+            if(empty($gateway->settings['allowed_currencies'])) {
+                return true;
+            }
+            if( ! in_array(get_woocommerce_currency(), $gateway->settings['allowed_currencies']) ) {
+                unset($gateways[$key]);
+            }
+        }
+
+        return $gateways;
+    }
+
+    add_filter('woocommerce_available_payment_gateways', 'afterpay_filter_gateway', 10);
+    add_filter('woocommerce_available_payment_gateways', 'klarna_filter_gateway', 10);
+    add_filter('woocommerce_available_payment_gateways', 'filter_gateway_by_currency', 10);
     add_filter('woocommerce_thankyou_order_received_text', 'emspay_order_received_text', 10, 2);
-}
-
-register_activation_hook(__FILE__, 'addOptionsForAfterPayCountriesAvailable');
-register_deactivation_hook(__FILE__, 'addOptionsForAfterPayCountriesAvailable');
-
-function addOptionsForAfterPayCountriesAvailable(){
-
-    $settings = get_option('woocommerce_emspay_afterpay_settings');
-    $settings['ap_countries_available'] = 'NL, BE';
-    update_option('woocommerce_emspay_afterpay_settings', $settings);
 }

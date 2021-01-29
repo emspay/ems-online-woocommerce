@@ -31,22 +31,29 @@ class WC_Emspay_AfterPay extends WC_Emspay_Gateway
     {
         $order = new WC_Order($order_id);
 
-        $emsOrder = $this->ems->createOrder(array_filter([
-            'amount' => WC_Emspay_Helper::gerOrderTotalInCents($order),
-            'currency' => WC_Emspay_Helper::getCurrency(),
-            'transactions' => [
-                [
-                    'payment_method' => str_replace('emspay_', '', $this->id)
-                ]
-            ],
-            'merchant_order_id' => (string) $order_id,
-            'description' => WC_Emspay_Helper::getOrderDescription($order_id),
-            'return_url' => WC_Emspay_Helper::getReturnUrl(),
-            'customer' => WC_Emspay_Helper::getCustomerInfo($order),
-			'extra' => ['plugin' => EMSPAY_PLUGIN_VERSION],
-            'webhook_url' => WC_Emspay_Helper::getWebhookUrl(),
-            'order_lines' => WC_Emspay_Helper::getOrderLines($order)
-        ]));
+        try {
+            $emsOrder = $this->ems->createOrder(array_filter([
+                'amount' => WC_Emspay_Helper::gerOrderTotalInCents($order),
+                'currency' => WC_Emspay_Helper::getCurrency(),
+                'transactions' => [
+                    [
+                        'payment_method' => str_replace('emspay_', '', $this->id)
+                    ]
+                ],
+                'merchant_order_id' => (string) $order_id,
+                'description' => WC_Emspay_Helper::getOrderDescription($order_id),
+                'return_url' => WC_Emspay_Helper::getReturnUrl(),
+                'customer' => WC_Emspay_Helper::getCustomerInfo($order),
+                'extra' => ['plugin' => EMSPAY_PLUGIN_VERSION],
+                'webhook_url' => WC_Emspay_Helper::getWebhookUrl(),
+                'order_lines' => WC_Emspay_Helper::getOrderLines($order)
+            ]));
+        } catch (\Exception $exception) {
+            wc_add_notice(sprintf(__('There was a problem processing your transaction: %s', WC_Emspay_Helper::DOMAIN), $exception->getMessage()), 'error');
+            return [
+            'result' => 'failure'
+            ];
+        }
 
         update_post_meta($order_id, 'ems_order_id', $emsOrder['id']);
 

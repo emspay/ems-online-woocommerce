@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-13 18:13+0300\n"
-"PO-Revision-Date: 2020-10-22 14:10+0300\n"
+"POT-Creation-Date: 2021-01-13 19:07+0200\n"
+"PO-Revision-Date: 2021-01-13 19:11+0200\n"
 "Last-Translator: Jasmine Vyas\n"
 "Language-Team: Dutch (Netherlands)\n"
 "Language: nl_NL\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.4.2\n"
 "X-Loco-Source-Locale: en-GB\n"
 "X-Loco-Project-Id: 24032\n"
 "X-Loco-Lookup: id\n"
@@ -50,22 +50,18 @@ msgid "The invoice will be sent to your email."
 msgstr "De factuur wordt verzonden naar uw e-mail adres."
 
 #: classes/class-wc-emspay-afterpay.php:95
-#: classes/class-wc-emspay-klarnapaylater.php:96
 msgid "Additional Information"
 msgstr "Bijkomstige informatie"
 
 #: classes/class-wc-emspay-afterpay.php:100
-#: classes/class-wc-emspay-klarnapaylater.php:101
 msgid "Gender:"
 msgstr "Geslacht:"
 
 #: classes/class-wc-emspay-afterpay.php:103
-#: classes/class-wc-emspay-klarnapaylater.php:104
 msgid "Male"
 msgstr "Man"
 
 #: classes/class-wc-emspay-afterpay.php:104
-#: classes/class-wc-emspay-klarnapaylater.php:105
 msgid "Female"
 msgstr "Vrouw"
 
@@ -211,7 +207,7 @@ msgid "API key provided by EMS"
 msgstr "Kopieer uw EMS Online API key van uw merchant portal"
 
 #: classes/class-wc-emspay-callback.php:31
-#: classes/class-wc-emspay-helper.php:286
+#: classes/class-wc-emspay-helper.php:328
 msgid "Test API key"
 msgstr "Test API key"
 
@@ -269,7 +265,7 @@ msgstr "Voorkomt probleem indien curl.cacert niet ingesteld is in PHP.ini"
 msgid "Mastercard, VISA, Maestro or V PAY - EMS Online"
 msgstr "EMS Online: Mastercard, Visa, Maestro of V PAY"
 
-#: classes/class-wc-emspay-gateway.php:60
+#: classes/class-wc-emspay-gateway.php:65
 msgid ""
 "Your transaction is still being processed. You will be notified when status "
 "is updated."
@@ -278,143 +274,173 @@ msgstr ""
 "kaartuitgever ontvangen. U ontvangt een bericht zodra we deze hebben "
 "ontvangen."
 
-#: classes/class-wc-emspay-helper.php:198
+#: classes/class-wc-emspay-gateway.php:75
+msgid "Gateway Disabled"
+msgstr "Gateway uitgeschakeld"
+
+#: classes/class-wc-emspay-gateway.php:112
+#, php-format
+msgid "Current shop currency %s not supported by EMS Online."
+msgstr "Huidige winkelvaluta %s wordt niet ondersteund door EMS Online."
+
+#: classes/class-wc-emspay-gateway.php:122
+#, php-format
+msgid "Current shop currency %s not supported by %s."
+msgstr "Huidige winkelvaluta %s wordt niet ondersteund door %s."
+
+#: classes/class-wc-emspay-helper.php:222
 msgid "iDEAL"
 msgstr "iDEAL"
 
-#: classes/class-wc-emspay-helper.php:199
+#: classes/class-wc-emspay-helper.php:223
 msgid "Enable iDEAL Payments"
 msgstr "iDEAL betalingen aanzetten"
 
-#: classes/class-wc-emspay-helper.php:202
+#: classes/class-wc-emspay-helper.php:227
 msgid "Credit Card"
 msgstr "Mastercard, Visa, Maestro of V PAY"
 
-#: classes/class-wc-emspay-helper.php:203
+#: classes/class-wc-emspay-helper.php:228
 msgid "Enable Credit Card Payments"
 msgstr "Creditcard betalingen aanzetten"
 
-#: classes/class-wc-emspay-helper.php:206
+#: classes/class-wc-emspay-helper.php:232
 msgid "Bank Transfer"
 msgstr "Overschrijving"
 
-#: classes/class-wc-emspay-helper.php:207
+#: classes/class-wc-emspay-helper.php:233
 msgid "Enable Bank Transfer Payments"
 msgstr "Overschrijving betalingen aanzetten"
 
-#: classes/class-wc-emspay-helper.php:210
+#: classes/class-wc-emspay-helper.php:237
 msgid "Klarna Pay Now"
 msgstr "Klarna Pay Now"
 
-#: classes/class-wc-emspay-helper.php:211
+#: classes/class-wc-emspay-helper.php:238
 msgid "Enable Klarna Pay Now Payments"
 msgstr "Klarna Pay Now betalingen aanzetten"
 
-#: classes/class-wc-emspay-helper.php:214
+#: classes/class-wc-emspay-helper.php:242
 msgid "Bancontact"
 msgstr "Bancontact"
 
-#: classes/class-wc-emspay-helper.php:215
+#: classes/class-wc-emspay-helper.php:243
 msgid "Enable Bancontact Payments"
 msgstr "Bancontact betalingen aanzetten"
 
-#: classes/class-wc-emspay-helper.php:218
+#: classes/class-wc-emspay-helper.php:247
 msgid "PayPal"
 msgstr "PayPal"
 
-#: classes/class-wc-emspay-helper.php:219
+#: classes/class-wc-emspay-helper.php:248
 msgid "Enable PayPal Payments"
 msgstr "PayPal betalingen aanzetten"
 
-#: classes/class-wc-emspay-helper.php:222
+#: classes/class-wc-emspay-helper.php:252
 msgid "AfterPay"
 msgstr "EMS Online : AfterPay"
 
-#: classes/class-wc-emspay-helper.php:223
+#: classes/class-wc-emspay-helper.php:253
 msgid "Enable AfterPay Payments"
 msgstr "AfterPay betalingen aanzetten"
 
-#: classes/class-wc-emspay-helper.php:226
+#: classes/class-wc-emspay-helper.php:257
 msgid "Klarna Pay Later"
 msgstr "Klarna Pay Later"
 
-#: classes/class-wc-emspay-helper.php:227
+#: classes/class-wc-emspay-helper.php:258
 msgid "Enable Klarna Pay Later Payments"
 msgstr "Klarna Pay Later betalingen aanzetten"
 
-#: classes/class-wc-emspay-helper.php:230
+#: classes/class-wc-emspay-helper.php:262
 msgid "Payconiq"
 msgstr "Payconiq"
 
-#: classes/class-wc-emspay-helper.php:231
+#: classes/class-wc-emspay-helper.php:263
 msgid "Enable Payconiq Payments"
 msgstr "Payconiq betalingen aanzetten"
 
-#: classes/class-wc-emspay-helper.php:234
+#: classes/class-wc-emspay-helper.php:267
 msgid "Apple Pay"
 msgstr "Apple Pay"
 
-#: classes/class-wc-emspay-helper.php:235
+#: classes/class-wc-emspay-helper.php:268
 msgid "Enable Apple Pay Payments"
 msgstr "Apple Pay betalingen aanzetten"
 
-#: classes/class-wc-emspay-helper.php:238
+#: classes/class-wc-emspay-helper.php:272
 msgid "Pay Now"
 msgstr "Pay Now"
 
-#: classes/class-wc-emspay-helper.php:239
+#: classes/class-wc-emspay-helper.php:273
 msgid "Enable Pay Now Payments"
 msgstr "Pay Now betalingen aanzetten"
 
-#: classes/class-wc-emspay-helper.php:242
+#: classes/class-wc-emspay-helper.php:276
 msgid "American Express"
 msgstr "American Express"
 
-#: classes/class-wc-emspay-helper.php:243
+#: classes/class-wc-emspay-helper.php:277
 msgid "Enable American Express Payments"
 msgstr "American Express betalingen aanzetten"
 
-#: classes/class-wc-emspay-helper.php:246
+#: classes/class-wc-emspay-helper.php:281
 msgid "Tikkie Payment Request"
 msgstr "Tikkie Payment Request"
 
-#: classes/class-wc-emspay-helper.php:247
+#: classes/class-wc-emspay-helper.php:282
 msgid "Enable Tikkie Payment Request Payments"
 msgstr "Tikkie Payment Request betalingen aanzetten"
 
-#: classes/class-wc-emspay-helper.php:250
+#: classes/class-wc-emspay-helper.php:286
 msgid "WeChat"
 msgstr "WeChat"
 
-#: classes/class-wc-emspay-helper.php:251
+#: classes/class-wc-emspay-helper.php:287
 msgid "Enable WeChat Payments"
 msgstr "WeChat betalingen aanzetten"
 
-#: classes/class-wc-emspay-helper.php:261
+#: classes/class-wc-emspay-helper.php:298
 msgid "Enable/Disable"
 msgstr "Aanzetten/Uitzetten"
 
-#: classes/class-wc-emspay-helper.php:267
+#: classes/class-wc-emspay-helper.php:304
 msgid "Title"
 msgstr "Titel"
 
-#: classes/class-wc-emspay-helper.php:269
+#: classes/class-wc-emspay-helper.php:306
 msgid "This controls the title which the user sees during checkout."
 msgstr ""
 "Dit veld is de naam van de betaalmethode die uw klant zal zien bij het "
 "afrekenen."
 
-#: classes/class-wc-emspay-helper.php:288
+#: classes/class-wc-emspay-helper.php:313
+msgid "Allowed currencies"
+msgstr "Toegestane valuta's"
+
+#: classes/class-wc-emspay-helper.php:314
+msgid "Payment gateway will be available ONLY for selected currencies."
+msgstr "Betalingsgateway is ALLEEN beschikbaar voor geselecteerde valuta's."
+
+#: classes/class-wc-emspay-helper.php:315
+msgid "If set empty - option is ignored."
+msgstr "Indien ingesteld op leeg - optie wordt genegeerd."
+
+#: classes/class-wc-emspay-helper.php:321
+msgid "Select currencies..."
+msgstr "Valuta's selecteren ..."
+
+#: classes/class-wc-emspay-helper.php:330
 msgid "Test API key for testing implementation of AfterPay."
 msgstr ""
 "Vul hier de API Key in van uw test webshop. Dit is alleen van toepassing "
 "voor AfterPay. Gebruikt u AfterPay niet dan kunt u dit leeglaten."
 
-#: classes/class-wc-emspay-helper.php:291
+#: classes/class-wc-emspay-helper.php:333
 msgid "AfterPay Debug IP"
 msgstr "IP adressen voor het testen van AfterPay :"
 
-#: classes/class-wc-emspay-helper.php:293
+#: classes/class-wc-emspay-helper.php:335
 msgid ""
 "IP address for testing AfterPay. If empty, visible for all. If filled, only "
 "visible for specified IP addresses. (Example: 127.0.0.1, 255.255.255.255)"
@@ -424,11 +450,11 @@ msgstr ""
 "255.255.255.255). Vult u niets in dan is de betaalmethode voor alle IP "
 "adressen zichtbaar."
 
-#: classes/class-wc-emspay-helper.php:296
+#: classes/class-wc-emspay-helper.php:338
 msgid "Countries available for AfterPay"
 msgstr "Landen beschikbaar voor AfterPay"
 
-#: classes/class-wc-emspay-helper.php:298
+#: classes/class-wc-emspay-helper.php:340
 msgid ""
 "To allow AfterPay to be used for any other country just add its country code "
 "(in ISO 2 standard) to the \"Countries available for AfterPay\" field. "
@@ -440,7 +466,7 @@ msgstr ""
 "Voorbeeld: BE, NL, FR <br> Als het veld leeg is, is AfterPay beschikbaar "
 "voor alle landen."
 
-#: classes/class-wc-emspay-helper.php:421
+#: classes/class-wc-emspay-helper.php:463
 #, php-format
 msgid "Your order %s at %s"
 msgstr "Uw bestelling %s bij %s"
@@ -481,16 +507,6 @@ msgstr ""
 msgid "Your payment using Klarna is successful."
 msgstr "Uw betaling met Klarna is succesvol verwerkt."
 
-#: classes/class-wc-emspay-klarnapaylater.php:113
-msgid "Date of birth:"
-msgstr "Geboortedatum:"
-
-#: classes/class-wc-emspay-klarnapaylater.php:114
-msgid "Birth date format: DD - MM - YYYY, eg: 31-12-1980"
-msgstr ""
-"Gebruik het volgende formaat voor het invoeren van de geboortedatum: MM - DD "
-"- YYYY, bijv: 31-12-1980"
-
 #: classes/class-wc-emspay-klarnapaynow.php:17
 #: classes/class-wc-emspay-klarnapaynow.php:18
 msgid "EMS Online - Klarna Pay Now"
@@ -525,6 +541,14 @@ msgid ""
 msgstr ""
 "Houd er rekening mee dat voor EMS-transacties de terugbetalingen "
 "rechtstreeks naar de gateway worden verwerkt!"
+
+#~ msgid "Date of birth:"
+#~ msgstr "Geboortedatum:"
+
+#~ msgid "Birth date format: DD - MM - YYYY, eg: 31-12-1980"
+#~ msgstr ""
+#~ "Gebruik het volgende formaat voor het invoeren van de geboortedatum: MM - "
+#~ "DD - YYYY, bijv: 31-12-1980"
 
 #~ msgid "Klarna"
 #~ msgstr "Klarna"
