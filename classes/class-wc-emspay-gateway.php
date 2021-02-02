@@ -44,6 +44,13 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
         add_action('woocommerce_update_options_payment_gateways_'.$this->id, array($this, 'process_admin_options'));
         add_action('woocommerce_thankyou_'.$this->id, array($this, 'handle_thankyou'));
         add_action('woocommerce_api_'.strtolower(get_class($this)), array($this, 'handle_callback'));
+        add_filter('woocommerce_valid_order_statuses_for_payment_complete', array($this, 'append_processing_order_post_status'));
+    }
+
+    public function append_processing_order_post_status($statuses) {
+        $statuses[] = 'processing';
+
+        return $statuses;
     }
 
     public function handle_thankyou($order_id)
