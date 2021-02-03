@@ -66,9 +66,8 @@ class WC_Emspay_Callback extends WC_Emspay_Gateway
 
     public function handle_callback()
     {
-        if (!empty($_GET['order_id'])) {
+        if (!empty($ems_order_id = sanitize_text_field($_GET['order_id']))) {
             $type = "return";
-            $ems_order_id = $_GET['order_id'];
         } else {
             $type = "webhook";
             $input = json_decode(file_get_contents("php://input"), true);

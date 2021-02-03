@@ -110,17 +110,17 @@ class WC_Emspay_Banktransfer extends WC_Emspay_Gateway
 
         $reference = get_post_custom_values('bank_reference', $order_id);
 
-        return __("Please use the following payment information:", WC_Emspay_Helper::DOMAIN)
+        return esc_html__("Please use the following payment information:", WC_Emspay_Helper::DOMAIN)
             . "<br/>"
-            . __("Bank Reference:", WC_Emspay_Helper::DOMAIN).' '.$reference[0]
+            . esc_html__("Bank Reference:", WC_Emspay_Helper::DOMAIN).' '.$reference[0]
             . "<br/>"
-            . __("IBAN:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_IBAN
+            . esc_html__("IBAN:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_IBAN
             . "<br/>"
-            . __("BIC:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_BIC
+            . esc_html__("BIC:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_BIC
             . "<br/>"
-            . __("Account Holder:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_HOLDER
+            . esc_html__("Account Holder:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_HOLDER
             . "<br/>"
-            . __("Residence:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_RESIDENCE
+            . esc_html__("Residence:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_RESIDENCE
             . "<br/><br/>";
     }
 }

@@ -72,7 +72,7 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
             $emsOrder = $this->ems->getOrder($ems_order_id_array[0]);
 
             if ($emsOrder['status'] == 'processing') {
-                echo __(
+                echo esc_html__(
                     "Your transaction is still being processed. You will be notified when status is updated.",
                     WC_Emspay_Helper::DOMAIN
                 );
@@ -82,7 +82,7 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
 
     function admin_options()
     {
-        echo '<h2>'.$this->method_title.'</h2>';
+        echo '<h2>'.esc_html($this->method_title).'</h2>';
         echo '<table class="form-table">';
         $this->generate_settings_html();
         echo '</table>';

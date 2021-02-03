@@ -80,7 +80,7 @@ class WC_Emspay_KlarnaPayLater extends WC_Emspay_Gateway
     {
         WC()->cart->empty_cart();
 
-        echo "<p><b>".__('Your payment using Klarna is successful.', WC_Emspay_Helper::DOMAIN)."</b></p>";
-        echo "<p>".__('The invoice will be sent to your email.', WC_Emspay_Helper::DOMAIN)."</p>";
+        echo "<p><b>".esc_html__('Your payment using Klarna is successful.', WC_Emspay_Helper::DOMAIN)."</b></p>";
+        echo "<p>".esc_html__('The invoice will be sent to your email.', WC_Emspay_Helper::DOMAIN)."</p>";
     }
 }

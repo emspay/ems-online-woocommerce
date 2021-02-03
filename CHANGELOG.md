@@ -58,5 +58,5 @@
 
 ** 1.1.4 **
 
-* Appended processing order post status to correct status update for 'processing' or 'complemented' by WooCommerce
-  Updated README and 
+* Appended processing order post status for correct status update to 'complemented' by WooCommerce
+  Updated README

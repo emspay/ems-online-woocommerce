@@ -184,7 +184,7 @@ function woocommerce_emspay_init()
 	 * @param $order
 	 */
 	function add_refund_description($order) {
-		echo "<p style='color: red; ' class='description'>" . __( "Please beware that for EMS transactions the refunds will process directly to the gateway!", "emspay") . "</p>";
+		echo "<p style='color: red; ' class='description'>" . esc_html__( "Please beware that for EMS transactions the refunds will process directly to the gateway!", "emspay") . "</p>";
 	}
 
 	/**
