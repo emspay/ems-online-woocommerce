@@ -47,8 +47,16 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
         add_filter('woocommerce_valid_order_statuses_for_payment_complete', array($this, 'append_processing_order_post_status'));
     }
 
+    /**
+     * Function append_processing_order_post_status
+     *
+     * @param $statuses
+     * @return mixed
+     */
     public function append_processing_order_post_status($statuses) {
-        $statuses[] = 'processing';
+        if(! in_array('processing', $statuses)) {
+            $statuses[] = 'processing';
+        }
 
         return $statuses;
     }
