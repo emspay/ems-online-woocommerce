@@ -49,6 +49,7 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
 
     /**
      * Function append_processing_order_post_status
+     * Appended 'processing' order post status to correct status update for 'processing' or 'complemented' by WooCommerce
      *
      * @param $statuses
      * @return mixed
