@@ -29,20 +29,20 @@ class WC_Emspay_KlarnaPayLater extends WC_Emspay_Gateway
         $order = new WC_Order($order_id);
 
         $emsOrder = $this->ems->createOrder(array_filter([
-            'amount' => WC_Emspay_Helper::gerOrderTotalInCents($order),
-            'currency' => WC_Emspay_Helper::getCurrency(),
+            'amount' => WC_Emspay_Helper::gingerGerOrderTotalInCents($order),
+            'currency' => WC_Emspay_Helper::gingerGetCurrency(),
             'transactions' => [
                 [
                     'payment_method' => str_replace('emspay_', '', $this->id)
                 ]
             ],
             'merchant_order_id' => (string) $order_id,
-            'description' => WC_Emspay_Helper::getOrderDescription($order_id),
-            'return_url' => WC_Emspay_Helper::getReturnUrl(),
-            'customer' => WC_Emspay_Helper::getCustomerInfo($order),
+            'description' => WC_Emspay_Helper::gingerGetOrderDescription($order_id),
+            'return_url' => WC_Emspay_Helper::gingerGetReturnUrl(),
+            'customer' => WC_Emspay_Helper::gingerGetCustomerInfo($order),
 			'extra' => ['plugin' => EMSPAY_PLUGIN_VERSION],
-            'webhook_url' => WC_Emspay_Helper::getWebhookUrl(),
-			'order_lines' => WC_Emspay_Helper::getOrderLines($order)
+            'webhook_url' => WC_Emspay_Helper::gingerGetWebhookUrl(),
+			'order_lines' => WC_Emspay_Helper::gingerGetOrderLines($order)
         ]));
 
         update_post_meta($order_id, 'ems_order_id', $emsOrder['id']);
@@ -76,7 +76,7 @@ class WC_Emspay_KlarnaPayLater extends WC_Emspay_Gateway
     /**
      * @param $order_id
      */
-    public function handle_thankyou($order_id)
+    public function ginger_handle_thankyou($order_id)
     {
         WC()->cart->empty_cart();
 

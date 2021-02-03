@@ -12,7 +12,7 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
 
     public function __construct()
     {
-        $this->init_form_fields();
+        $this->ginger_init_form_fields();
         $this->init_settings();
 
         $this->title = $this->get_option('title');
@@ -32,7 +32,7 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
                     $apiKey,
                     ($settings['bundle_cacert'] == 'yes') ?
                         [
-                            CURLOPT_CAINFO => WC_Emspay_Helper::getCaCertPath()
+                            CURLOPT_CAINFO => WC_Emspay_Helper::gingerGetCaCertPath()
                         ] : []
                 );
             } catch (Assert\InvalidArgumentException $exception) {
@@ -42,19 +42,19 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
 
         add_action('woocommerce_update_options_payment_gateways', array($this, 'process_admin_options'));
         add_action('woocommerce_update_options_payment_gateways_'.$this->id, array($this, 'process_admin_options'));
-        add_action('woocommerce_thankyou_'.$this->id, array($this, 'handle_thankyou'));
-        add_action('woocommerce_api_'.strtolower(get_class($this)), array($this, 'handle_callback'));
-        add_filter('woocommerce_valid_order_statuses_for_payment_complete', array($this, 'append_processing_order_post_status'));
+        add_action('woocommerce_thankyou_'.$this->id, array($this, 'ginger_handle_thankyou'));
+        add_action('woocommerce_api_'.strtolower(get_class($this)), array($this, 'ginger_handle_callback'));
+        add_filter('woocommerce_valid_order_statuses_for_payment_complete', array($this, 'ginger_append_processing_order_post_status'));
     }
 
     /**
-     * Function append_processing_order_post_status
+     * Function ginger_append_processing_order_post_status
      * Appended 'processing' order post status to correct status update for 'processing' or 'complemented' by WooCommerce
      *
      * @param $statuses
      * @return mixed
      */
-    public function append_processing_order_post_status($statuses) {
+    public function ginger_append_processing_order_post_status($statuses) {
         if(! in_array('processing', $statuses)) {
             $statuses[] = 'processing';
         }
@@ -62,7 +62,7 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
         return $statuses;
     }
 
-    public function handle_thankyou($order_id)
+    public function ginger_handle_thankyou($order_id)
     {
         WC()->cart->empty_cart();
 
@@ -88,13 +88,13 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
         echo '</table>';
     }
 
-    public function init_form_fields()
+    public function ginger_init_form_fields()
     {
-        $this->form_fields = WC_Emspay_Helper::getFormFields($this->id);
+        $this->form_fields = WC_Emspay_Helper::gingerGetFormFields($this->id);
     }
 
     public function get_icon()
     {
-        return apply_filters('woocommerce_gateway_icon', WC_Emspay_Helper::getIconSource($this->id), $this->id);
+        return apply_filters('woocommerce_gateway_icon', WC_Emspay_Helper::gingerGetIconSource($this->id), $this->id);
     }
 }

@@ -75,7 +75,7 @@ function woocommerce_emspay_init()
      * @param $gateways
      * @return mixed
      */
-    function klarna_enabled_ip($gateways)
+    function ginger_klarna_enabled_ip($gateways)
     {
         $settings = get_option('woocommerce_emspay_settings');
         $ems_klarna_ip_list = $settings['debug_klarna_ip'];
@@ -91,11 +91,11 @@ function woocommerce_emspay_init()
         return $gateways;
     }
 
-    add_filter('woocommerce_available_payment_gateways', 'klarna_enabled_ip');
+    add_filter('woocommerce_available_payment_gateways', 'ginger_klarna_enabled_ip');
     add_filter('woocommerce_payment_gateways', 'woocommerce_add_emspay');
-    add_action('woocommerce_api_callback', array(new woocommerce_emspay(), 'handle_callback'));
+    add_action('woocommerce_api_callback', array(new woocommerce_emspay(), 'ginger_handle_callback'));
 
-    function register_shipped_order_status()
+    function ginger_register_shipped_order_status()
     {
         register_post_status('wc-shipped', array(
             'label' => 'Shipped',
@@ -107,13 +107,13 @@ function woocommerce_emspay_init()
         ));
     }
 
-    add_action('init', 'register_shipped_order_status');
+    add_action('init', 'ginger_register_shipped_order_status');
 
     /**
      * @param array $order_statuses
      * @return array
      */
-    function add_shipped_to_order_statuses(array $order_statuses)
+    function ginger_add_shipped_to_order_statuses(array $order_statuses)
     {
         $new_order_statuses = array();
         foreach ($order_statuses as $key => $status) {
@@ -125,25 +125,25 @@ function woocommerce_emspay_init()
         return $new_order_statuses;
     }
 
-    add_filter('wc_order_statuses', 'add_shipped_to_order_statuses');
+    add_filter('wc_order_statuses', 'ginger_add_shipped_to_order_statuses');
 
-    add_action('woocommerce_order_status_shipped', 'ship_an_order', 10, 2);
-    add_action('woocommerce_refund_created', 'refund_an_order', 10, 2);
-	add_action('woocommerce_order_item_add_action_buttons', 'add_refund_description');
+    add_action('woocommerce_order_status_shipped', 'ginger_ship_an_order', 10, 2);
+    add_action('woocommerce_refund_created', 'ginger_refund_an_order', 10, 2);
+	add_action('woocommerce_order_item_add_action_buttons', 'ginger_add_refund_description');
 
     load_plugin_textdomain(WC_Emspay_Helper::DOMAIN, false, basename(dirname(__FILE__)).'/languages');
 
 	/**
-	 * Function refund_an_order - refund EMS order
+	 * Function ginger_refund_an_order - refund EMS order
 	 *
 	 * @param $refund_id
 	 * @param $args
 	 */
-    function refund_an_order($refund_id, $args) {
+    function ginger_refund_an_order($refund_id, $args) {
 
 		$ems_order_id = get_post_meta($args['order_id'], 'ems_order_id', true);
 		$order = wc_get_order($args['order_id']);
-		$ginger = get_ginger_client($order);
+		$ginger = ginger_get_client($order);
 		$emsOrder = $ginger->getOrder($ems_order_id);
 		$orderGateway = $order->get_payment_method();
 		
@@ -152,7 +152,7 @@ function woocommerce_emspay_init()
 		}
 		
 		$refund_data = [
-			'amount' => WC_Emspay_Helper::getAmountInCents($args['amount']), 
+			'amount' => WC_Emspay_Helper::gingerGetAmountInCents($args['amount']),
 			'description' => 'OrderID: #' . $args['order_id'] . ', Reason: ' . $args['reason']
 		];
 	
@@ -160,7 +160,7 @@ function woocommerce_emspay_init()
 			if(!isset($emsOrder['transactions']['flags']['has-captures'])) {
 				throw new Exception( 'Refunds only possible when captured' );
 			};
-			$refund_data['order_lines'] = WC_Emspay_Helper::getOrderLines($order);
+			$refund_data['order_lines'] = WC_Emspay_Helper::gingerGetOrderLines($order);
 		}
 
 		update_post_meta($args['order_id'], 'refund_id', $refund_id);
@@ -179,25 +179,25 @@ function woocommerce_emspay_init()
 	}
 	
 	/**
-	 * Function add_refund_description
+	 * Function ginger_add_refund_description
 	 *
 	 * @param $order
 	 */
-	function add_refund_description($order) {
+	function ginger_add_refund_description($order) {
 		echo "<p style='color: red; ' class='description'>" . esc_html__( "Please beware that for EMS transactions the refunds will process directly to the gateway!", "emspay") . "</p>";
 	}
 
 	/**
-	 * Function ship_an_order - Support for Klarna and Afterpay order shipped state
+	 * Function ginger_ship_an_order - Support for Klarna and Afterpay order shipped state
 	 *
 	 * @param $order_id
 	 * @param $order
 	 */
-    function ship_an_order($order_id, $order)
+    function ginger_ship_an_order($order_id, $order)
     {
         if ($order && $order->get_status() == 'shipped' && in_array($order->get_payment_method(), array('emspay_klarna-pay-later', 'emspay_afterpay'))) {
 
-			$ginger = get_ginger_client($order);
+			$ginger = ginger_get_client($order);
 
             try {
                 $id = get_post_meta($order_id, 'ems_order_id', true);
@@ -211,12 +211,12 @@ function woocommerce_emspay_init()
     }
 
 	/**
-	 * Function get_ginger_client
+	 * Function ginger_get_client
 	 *
 	 * @param $order
 	 * @return \Ginger\ApiClient
 	 */
-    function get_ginger_client($order) {
+    function ginger_get_client($order) {
 		$settings = get_option('woocommerce_emspay_settings');
 		$apiKey = $settings['api_key'];
 
@@ -240,7 +240,7 @@ function woocommerce_emspay_init()
 				$apiKey,
 				($settings['bundle_cacert'] == 'yes') ?
 					[
-						CURLOPT_CAINFO => WC_Emspay_Helper::getCaCertPath()
+						CURLOPT_CAINFO => WC_Emspay_Helper::gingerGetCaCertPath()
 					] : []
 			);
 		} catch (Exception $exception) {
@@ -257,9 +257,9 @@ function woocommerce_emspay_init()
      * @param WC_Order $order
      * @return string
      */
-    function emspay_order_received_text($text, $order)
+    function ginger_order_received_text($text, $order)
     {
-        return WC_Emspay_Helper::getOrderDescription($order->get_id());
+        return WC_Emspay_Helper::gingerGetOrderDescription($order->get_id());
     }
 
     /**
@@ -268,7 +268,7 @@ function woocommerce_emspay_init()
      * @param array $gateways
      * @return mixed
      */
-    function afterpay_filter_gateways($gateways)
+    function ginger_afterpay_filter_gateways($gateways)
     {
         $settings = get_option('woocommerce_emspay_afterpay_settings');
         $ap_ip = $settings['ap_debug_ip'];
@@ -278,7 +278,7 @@ function woocommerce_emspay_init()
             if (!in_array(WC_Geolocation::get_ip_address(), $ip_whitelist)) {
                 unset($gateways['emspay_afterpay']);
             }
-        } else if (isset(WC()->customer->billing['country']) && !in_array(WC()->customer->billing['country'], WC_Emspay_Helper::$afterPayCountries)) {
+        } else if (! empty(WC()->customer->get_billing_country()) && !in_array(WC()->customer->get_billing_country(), WC_Emspay_Helper::$gingerAfterPayCountries)) {
             unset($gateways['emspay_afterpay']);
         }
 
@@ -291,7 +291,7 @@ function woocommerce_emspay_init()
      * @param array $gateways
      * @return mixed
      */
-    function afterpay_countries_available($gateways)
+    function ginger_afterpay_countries_available($gateways)
     {
         $settings = get_option('woocommerce_emspay_afterpay_settings');
         $ap_countries_available = $settings['ap_countries_available'];
@@ -300,24 +300,14 @@ function woocommerce_emspay_init()
             return $gateways;
         } else {
             $countrylist = array_map("trim", explode(',', $ap_countries_available));
-            if (!in_array(WC()->customer->billing['country'], $countrylist)) {
+            if (!in_array(WC()->customer->get_billing_country(), $countrylist)) {
                 unset($gateways['emspay_afterpay']);
             }
         }
         return $gateways;
     }
 
-    add_filter('woocommerce_available_payment_gateways', 'afterpay_countries_available', 10);
-    add_filter('woocommerce_available_payment_gateways', 'afterpay_filter_gateways', 10);
-    add_filter('woocommerce_thankyou_order_received_text', 'emspay_order_received_text', 10, 2);
-}
-
-register_activation_hook(__FILE__, 'addOptionsForAfterPayCountriesAvailable');
-register_deactivation_hook(__FILE__, 'addOptionsForAfterPayCountriesAvailable');
-
-function addOptionsForAfterPayCountriesAvailable(){
-
-    $settings = get_option('woocommerce_emspay_afterpay_settings');
-    $settings['ap_countries_available'] = 'NL, BE';
-    update_option('woocommerce_emspay_afterpay_settings', $settings);
+    add_filter('woocommerce_available_payment_gateways', 'ginger_afterpay_countries_available', 10);
+    add_filter('woocommerce_available_payment_gateways', 'ginger_afterpay_filter_gateways', 10);
+    add_filter('woocommerce_thankyou_order_received_text', 'ginger_order_received_text', 10, 2);
 }
