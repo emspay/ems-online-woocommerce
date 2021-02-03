@@ -55,3 +55,8 @@
 ** 1.1.3 **
 
 * Fixed shipping tax rate functionality
+
+** 1.1.4 **
+
+* Appended processing order post status to correct status update for 'processing' or 'complemented' by WooCommerce
+  Updated README and 
