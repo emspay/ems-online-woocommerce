@@ -25,7 +25,7 @@ The ideal online payment page for your webshop:
 Promotion promotion extended!
 
 Choose the EMS Online Payment Solution now
-and pay no subscription costs at € 9.95 throughout 2020!
+and pay no subscription costs at € 9.95 until June 2021!
 
 Start immediately with your test account
 Request it https://portal.emspay.eu/create-test-account?language=NL_NL 
@@ -36,7 +36,7 @@ Click on the yellow button [Begin→]
 simply request your live account.
 
 ## Version number
-Version 1.1.3
+Version 1.1.4
 
 ## Pre-requisites to install the plug-ins 
 * PHP v5.4 and above
@@ -82,7 +82,7 @@ Manual installation by uploading ZIP file from WordPress administration environm
 3. Select the ems-online.zip file.
 4. Continue with step 3 of Installation using (s)FTP.
 
-Compatibility: WordPress 5.2.2
+Compatibility: WordPress 5.6
 
 ## WooCommerce & qTranslate-X compatibility
 In order for the webhook URL to be accessible by the EMS Online API you need to go to: Settings -> Languages -> General
