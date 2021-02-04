@@ -332,13 +332,17 @@ function woocommerce_emspay_init()
             return $gateways;
         }
 
-        if ( ! in_array(get_woocommerce_currency(), WC_Emspay_Helper::$supportedCurrencies) ) {
+        if ( ! in_array(get_woocommerce_currency(), WC_Emspay_Helper::$gingerSupportedCurrencies) ) {
             return false;
         }
 
         foreach ( $gateways as $key=>$gateway ) {
 
-            if(empty($gateway->settings['allowed_currencies'])) {
+            if( ! in_array(get_woocommerce_currency(), WC_Emspay_Helper::$gingerSupportedCurrencies)) {
+                return false;
+            }
+
+            if( empty($gateway->settings['allowed_currencies']) ) {
                 continue;
             }
             if( ! in_array(get_woocommerce_currency(), $gateway->settings['allowed_currencies']) ) {

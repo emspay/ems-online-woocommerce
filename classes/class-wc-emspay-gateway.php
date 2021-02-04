@@ -141,7 +141,7 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
      */
     protected function gingerIsStoreCurrencySupported ()
     {
-        return in_array(get_woocommerce_currency(), WC_Emspay_Helper::$supportedCurrencies);
+        return in_array(get_woocommerce_currency(), WC_Emspay_Helper::$gingerSupportedCurrencies);
     }
 
     /**

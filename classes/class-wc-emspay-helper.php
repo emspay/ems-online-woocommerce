@@ -47,12 +47,12 @@ class WC_Emspay_Helper
     /**
      * @var array
      */
-    public static $supportedCurrencies = ['EUR'];
+    public static $gingerSupportedCurrencies = ['EUR'];
 
     /**
      * @var array
      */
-    public static $supportedGatewayCurrencies = [
+    public static $gingerSupportedGatewayCurrencies = [
         'emspay_ideal' => ['EUR'],
         'emspay_bank-transfer' => ['EUR'],
         'emspay_credit-card' => ['EUR', 'GBP', 'USD', 'CAD', 'CHF', 'CZK', 'DKK', 'NOK', 'PLN', 'SEK', 'AUD', 'HKD', 'JPY', 'NZD', 'SGD', 'ZAR', 'BRL', 'TRY'],
@@ -221,53 +221,53 @@ class WC_Emspay_Helper
             case 'emspay_ideal':
                 $default = __('iDEAL', self::DOMAIN);
                 $label = __('Enable iDEAL Payments', self::DOMAIN);
-                $currencies = self::$supportedGatewayCurrencies['emspay_ideal'];
+                $currencies = self::$gingerSupportedGatewayCurrencies['emspay_ideal'];
                 break;
             case 'emspay_credit-card':
                 $default = __('Credit Card', self::DOMAIN);
                 $label = __('Enable Credit Card Payments', self::DOMAIN);
-                $currencies = self::$supportedGatewayCurrencies['emspay_credit-card'];
+                $currencies = self::$gingerSupportedGatewayCurrencies['emspay_credit-card'];
                 break;
             case 'emspay_bank-transfer':
                 $default = __('Bank Transfer', self::DOMAIN);
                 $label = __('Enable Bank Transfer Payments', self::DOMAIN);
-                $currencies = self::$supportedGatewayCurrencies['emspay_bank-transfer'];
+                $currencies = self::$gingerSupportedGatewayCurrencies['emspay_bank-transfer'];
                 break;
             case 'emspay_klarna-pay-now':
                 $default = __('Klarna Pay Now', self::DOMAIN);
                 $label = __('Enable Klarna Pay Now Payments', self::DOMAIN);
-                $currencies = self::$supportedGatewayCurrencies['emspay_klarna-pay-now'];
+                $currencies = self::$gingerSupportedGatewayCurrencies['emspay_klarna-pay-now'];
                 break;
             case 'emspay_bancontact':
                 $default = __('Bancontact', self::DOMAIN);
                 $label = __('Enable Bancontact Payments', self::DOMAIN);
-                $currencies = self::$supportedGatewayCurrencies['emspay_bancontact'];
+                $currencies = self::$gingerSupportedGatewayCurrencies['emspay_bancontact'];
                 break;
             case 'emspay_paypal':
                 $default = __('PayPal', self::DOMAIN);
                 $label = __('Enable PayPal Payments', self::DOMAIN);
-                $currencies = self::$supportedGatewayCurrencies['emspay_paypal'];
+                $currencies = self::$gingerSupportedGatewayCurrencies['emspay_paypal'];
                 break;
             case 'emspay_afterpay':
                 $default = __('AfterPay', self::DOMAIN);
                 $label = __('Enable AfterPay Payments', self::DOMAIN);
-                $currencies = self::$supportedGatewayCurrencies['emspay_afterpay'];
+                $currencies = self::$gingerSupportedGatewayCurrencies['emspay_afterpay'];
                 $countries = self::$gingerAfterPayCountries;
                 break;
             case 'emspay_klarna-pay-later':
                 $default = __('Klarna Pay Later', self::DOMAIN);
                 $label = __('Enable Klarna Pay Later Payments', self::DOMAIN);
-                $currencies = self::$supportedGatewayCurrencies['emspay_klarna-pay-later'];
+                $currencies = self::$gingerSupportedGatewayCurrencies['emspay_klarna-pay-later'];
                 break;
             case 'emspay_payconiq':
                 $default = __('Payconiq', self::DOMAIN);
                 $label = __('Enable Payconiq Payments', self::DOMAIN);
-                $currencies = self::$supportedGatewayCurrencies['emspay_payconiq'];
+                $currencies = self::$gingerSupportedGatewayCurrencies['emspay_payconiq'];
                 break;
 	        case 'emspay_apple-pay':
 		        $default = __('Apple Pay', self::DOMAIN);
 		        $label = __('Enable Apple Pay Payments', self::DOMAIN);
-                    $currencies = self::$supportedGatewayCurrencies['emspay_apple-pay'];
+                    $currencies = self::$gingerSupportedGatewayCurrencies['emspay_apple-pay'];
 		        break;
             case 'emspay_pay-now':
                 $default = __('Pay Now', self::DOMAIN);
@@ -276,17 +276,17 @@ class WC_Emspay_Helper
             case 'emspay_amex':
                 $default = __('American Express', self::DOMAIN);
                 $label = __('Enable American Express Payments', self::DOMAIN);
-                $currencies = self::$supportedGatewayCurrencies['emspay_amex'];
+                $currencies = self::$gingerSupportedGatewayCurrencies['emspay_amex'];
                 break;
             case 'emspay_tikkie-payment-request':
                 $default = __('Tikkie Payment Request', self::DOMAIN);
                 $label = __('Enable Tikkie Payment Request Payments', self::DOMAIN);
-                $currencies = self::$supportedGatewayCurrencies['emspay_tikkie-payment-request'];
+                $currencies = self::$gingerSupportedGatewayCurrencies['emspay_tikkie-payment-request'];
                 break;
             case 'emspay_wechat':
                 $default = __('WeChat', self::DOMAIN);
                 $label = __('Enable WeChat Payments', self::DOMAIN);
-                $currencies = self::$supportedGatewayCurrencies['emspay_wechat'];
+                $currencies = self::$gingerSupportedGatewayCurrencies['emspay_wechat'];
                 break;
             default:
                 $default = '';
