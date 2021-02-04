@@ -43,7 +43,7 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
         }
 
         if( is_admin()) {
-            $this->validate_currency();
+            $this->ginger_validate_currency();
         }
 
         add_action('woocommerce_update_options_payment_gateways_'.$this->id, array($this, 'process_admin_options'));
@@ -110,11 +110,11 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
     }
 
     /**
-     * Function validate_currency
+     * Function ginger_validate_currency
      */
-    protected function validate_currency() {
+    protected function ginger_validate_currency() {
 
-        if ( ! $this->isStoreCurrencySupported() ) {
+        if ( ! $this->gingerIsStoreCurrencySupported() ) {
             $this->enabled= false;
             $this->update_option('enabled', false);
 
@@ -124,7 +124,7 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
             );
         }
 
-        if ( ! $this->isGatewayCurrencySupported() ) {
+        if ( ! $this->gingerIsGatewayCurrencySupported() ) {
             $this->enabled = false;
             $this->update_option('enabled', false);
 
@@ -139,7 +139,7 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
     /**
      * @return bool
      */
-    protected function isStoreCurrencySupported ()
+    protected function gingerIsStoreCurrencySupported ()
     {
         return in_array(get_woocommerce_currency(), WC_Emspay_Helper::$supportedCurrencies);
     }
@@ -147,7 +147,7 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
     /**
      * @return bool
      */
-    protected function isGatewayCurrencySupported ()
+    protected function gingerIsGatewayCurrencySupported ()
     {
         if(empty($this->allowed_currencies)) {
            return true;

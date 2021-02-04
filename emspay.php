@@ -339,7 +339,7 @@ function woocommerce_emspay_init()
         foreach ( $gateways as $key=>$gateway ) {
 
             if(empty($gateway->settings['allowed_currencies'])) {
-                return true;
+                continue;
             }
             if( ! in_array(get_woocommerce_currency(), $gateway->settings['allowed_currencies']) ) {
                 unset($gateways[$key]);
