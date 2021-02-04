@@ -267,7 +267,7 @@ function woocommerce_emspay_init()
      * @param array $gateways
      * @return mixed
      */
-    function ginger_afterpay_filter_gateways($gateways)
+    function ginger_afterpay_filter_gateway($gateways)
     {
         if ( ! is_checkout() ) {
             return $gateways;

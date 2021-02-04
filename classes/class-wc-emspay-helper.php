@@ -252,7 +252,7 @@ class WC_Emspay_Helper
                 $default = __('AfterPay', self::DOMAIN);
                 $label = __('Enable AfterPay Payments', self::DOMAIN);
                 $currencies = self::$supportedGatewayCurrencies['emspay_afterpay'];
-                $countries = self::$afterPayCountries;
+                $countries = self::$gingerAfterPayCountries;
                 break;
             case 'emspay_klarna-pay-later':
                 $default = __('Klarna Pay Later', self::DOMAIN);
