@@ -82,12 +82,12 @@ class WC_Emspay_AfterPay extends WC_Emspay_Gateway
     /**
      * @param $order_id
      */
-    public function handle_thankyou($order_id)
+    public function ginger_handle_thankyou($order_id)
     {
         WC()->cart->empty_cart();
 
-        echo "<p><b>".__('Your payment using AfterPay is successful.', WC_Emspay_Helper::DOMAIN)."</b></p>";
-        echo "<p>".__('The invoice will be sent to your email.', WC_Emspay_Helper::DOMAIN)."</p>";
+        echo "<p><b>".esc_html__('Your payment using AfterPay is successful.', WC_Emspay_Helper::DOMAIN)."</b></p>";
+        echo "<p>".esc_html__('The invoice will be sent to your email.', WC_Emspay_Helper::DOMAIN)."</p>";
     }
 
     /**
@@ -99,7 +99,7 @@ class WC_Emspay_AfterPay extends WC_Emspay_Gateway
             return null;
         }
 
-        echo '<fieldset><legend>'.__('Additional Information', WC_Emspay_Helper::DOMAIN).'</legend >';
+        echo '<fieldset><legend>'.esc_html__('Additional Information', WC_Emspay_Helper::DOMAIN).'</legend >';
 
         woocommerce_form_field('gender', array(
             'type' => 'select',

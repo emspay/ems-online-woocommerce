@@ -32,7 +32,7 @@ class WC_Emspay_Banktransfer extends WC_Emspay_Gateway
         add_action('woocommerce_process_shop_order_meta', array($this, 'process_payment'), 41, 1);
 
         // Sends instructions for payment in the Order email
-        add_action( 'woocommerce_email_after_order_table', array($this, 'add_order_email_instructions'), 10, 1 );
+        add_action( 'woocommerce_email_after_order_table', array($this, 'ginger_add_order_email_instructions'), 10, 1 );
 
     }
 
@@ -88,11 +88,11 @@ class WC_Emspay_Banktransfer extends WC_Emspay_Gateway
     /**
      * @param $order_id
      */
-    public function handle_thankyou($order_id)
+    public function ginger_handle_thankyou($order_id)
     {
         WC()->cart->empty_cart();
 
-        echo $this->get_instructions($order_id);
+        echo $this->ginger_get_instructions($order_id);
     }
 
     /**
@@ -100,12 +100,12 @@ class WC_Emspay_Banktransfer extends WC_Emspay_Gateway
      *
      * @param $order
      */
-    public function add_order_email_instructions($order) {
+    public function ginger_add_order_email_instructions($order) {
 
         $payment_method = $order->get_payment_method();
 
         if( $payment_method == $this->id ) {
-            echo $this->get_instructions($order->get_id());
+            echo $this->ginger_get_instructions($order->get_id());
         }
     }
 
@@ -113,21 +113,21 @@ class WC_Emspay_Banktransfer extends WC_Emspay_Gateway
      * @param $order_id
      * @return string
      */
-    public function get_instructions($order_id){
+    public function ginger_get_instructions($order_id){
 
         $reference = get_post_custom_values('bank_reference', $order_id);
 
-        return __("Please use the following payment information:", WC_Emspay_Helper::DOMAIN)
+        return esc_html__("Please use the following payment information:", WC_Emspay_Helper::DOMAIN)
             . "<br/>"
-            . __("Bank Reference:", WC_Emspay_Helper::DOMAIN).' '.$reference[0]
+            . esc_html__("Bank Reference:", WC_Emspay_Helper::DOMAIN).' '.$reference[0]
             . "<br/>"
-            . __("IBAN:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_IBAN
+            . esc_html__("IBAN:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_IBAN
             . "<br/>"
-            . __("BIC:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_BIC
+            . esc_html__("BIC:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_BIC
             . "<br/>"
-            . __("Account Holder:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_HOLDER
+            . esc_html__("Account Holder:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_HOLDER
             . "<br/>"
-            . __("Residence:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_RESIDENCE
+            . esc_html__("Residence:", WC_Emspay_Helper::DOMAIN).' '.static::EMS_RESIDENCE
             . "<br/><br/>";
     }
 }

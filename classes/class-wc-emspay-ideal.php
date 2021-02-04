@@ -87,7 +87,7 @@ class WC_Emspay_Ideal extends WC_Emspay_Gateway
             return null;
         }
         echo '<select name="ems_ideal_issuer_id">';
-        echo '<option value="">'.__('Choose your bank:', WC_Emspay_Helper::DOMAIN).'</option>';
+        echo '<option value="">'.esc_html__('Choose your bank:', WC_Emspay_Helper::DOMAIN).'</option>';
         foreach ($this->ems->getIdealIssuers() AS $issuer) {
             echo '<option value="'.$issuer['id'].'">'.htmlspecialchars($issuer['name']).'</option>';
         }

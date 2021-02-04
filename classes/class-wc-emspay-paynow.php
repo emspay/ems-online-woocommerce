@@ -49,7 +49,7 @@ class WC_Emspay_PayNow extends WC_Emspay_Gateway
                 'result' => 'failure'
             ];
         }
-        
+
         update_post_meta($order_id, 'ems_order_id', $emsOrder['id']);
 
         if ($emsOrder['status'] == 'error') {

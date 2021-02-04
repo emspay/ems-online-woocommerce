@@ -42,7 +42,7 @@ class WC_Emspay_Helper
     /**
      * @var array
      */
-    public static $afterPayCountries = ['NL', 'BE'];
+    public static $gingerAfterPayCountries = ['NL', 'BE'];
 
     /**
      * @var array
@@ -73,7 +73,7 @@ class WC_Emspay_Helper
      *
      * @return string
      */
-    public static function getReturnUrl()
+    public static function gingerGetReturnUrl()
     {
         return add_query_arg('wc-api', 'woocommerce_emspay', home_url('/'));
     }
@@ -84,7 +84,7 @@ class WC_Emspay_Helper
      * @param float $total
      * @return int
      */
-    public static function getAmountInCents($total)
+    public static function gingerGetAmountInCents($total)
     {
         return (int) round($total * 100);
     }
@@ -95,7 +95,7 @@ class WC_Emspay_Helper
      * @param WC_Order $order
      * @return int
      */
-    public static function gerOrderTotalInCents(WC_Order $order)
+    public static function gingerGerOrderTotalInCents(WC_Order $order)
     {
         if (version_compare(get_option('woocommerce_version'), '3.0', '>=')) {
             $orderTotal = $order->get_total();
@@ -103,7 +103,7 @@ class WC_Emspay_Helper
             $orderTotal = $order->order->order_total;
         }
 
-        return static::getAmountInCents($orderTotal);
+        return static::gingerGetAmountInCents($orderTotal);
     }
 
     /**
@@ -111,7 +111,7 @@ class WC_Emspay_Helper
      *
      * @return string
      */
-    public static function getCurrency()
+    public static function gingerGetCurrency()
     {
         return get_woocommerce_currency();
     }
@@ -122,7 +122,7 @@ class WC_Emspay_Helper
      * @param WC_Order $order
      * @return array
      */
-    public static function getCustomerInfo(WC_Order $order)
+    public static function gingerGetCustomerInfo(WC_Order $order)
     {
         $shippems_address = $order->get_address('shipping');
         $billems_address = $order->get_address('billing');
@@ -137,9 +137,9 @@ class WC_Emspay_Helper
             $ip_address = $order->customer_ip_address;
         }
 
-        $emspay_afterpay_date_of_birth_day = static::getCustomPaymentField('emspay_afterpay_date_of_birth_day');
-        $emspay_afterpay_date_of_birth_month = static::getCustomPaymentField('emspay_afterpay_date_of_birth_month');
-        $emspay_afterpay_date_of_birth_year = static::getCustomPaymentField('emspay_afterpay_date_of_birth_year');
+        $emspay_afterpay_date_of_birth_day = static::gingerGetCustomPaymentField('emspay_afterpay_date_of_birth_day');
+        $emspay_afterpay_date_of_birth_month = static::gingerGetCustomPaymentField('emspay_afterpay_date_of_birth_month');
+        $emspay_afterpay_date_of_birth_year = static::gingerGetCustomPaymentField('emspay_afterpay_date_of_birth_year');
 
         $birthdate = implode('-', [$emspay_afterpay_date_of_birth_year, $emspay_afterpay_date_of_birth_month, $emspay_afterpay_date_of_birth_day]);
 
@@ -164,7 +164,7 @@ class WC_Emspay_Helper
             'user_agent' => (string) $user_agent,
             'ip_address' => (string) $ip_address,
             'locale' => (string) get_locale(),
-            'gender' => (string) static::getCustomPaymentField('gender'),
+            'gender' => (string) static::gingerGetCustomPaymentField('gender'),
             'birthdate' => (string) $birthdate,
             'additional_addresses' => [
                 [
@@ -184,7 +184,7 @@ class WC_Emspay_Helper
      * @param string $field
      * @return string|null
      */
-    public static function getCustomPaymentField($field)
+    public static function gingerGetCustomPaymentField($field)
     {
         if (array_key_exists($field, $_POST) && strlen($_POST[$field]) > 0) {
             return sanitize_text_field($_POST[$field]);
@@ -199,7 +199,7 @@ class WC_Emspay_Helper
      * @param WC_Product $product
      * @return float|string
      */
-    public static function getProductPrice($orderLine, $order)
+    public static function gingerGetProductPrice($orderLine, $order)
     {
         if (version_compare(get_option('woocommerce_version'), '3.0', '>=')) {
             return $order->get_item_total( $orderLine, true );
@@ -215,7 +215,7 @@ class WC_Emspay_Helper
      * @param string $type Form type
      * @return array
      */
-    public static function getFormFields($type)
+    public static function gingerGetFormFields($type)
     {
         switch ($type) {
             case 'emspay_ideal':
@@ -355,7 +355,7 @@ class WC_Emspay_Helper
      * @param $method
      * @return null|string
      */
-    public static function getIconSource($method)
+    public static function gingerGetIconSource($method)
     {
         if (in_array($method, self::$PAYMENT_METHODS)) {
             return '<img src="'.WC_HTTPS::force_https_url(EMSPAY_PLUGIN_URL."images/{$method}.png").'" />';
@@ -366,16 +366,16 @@ class WC_Emspay_Helper
      * @param WC_Payment_Gateway $gateway
      * @return null|string
      */
-    public static function getWebhookUrl()
+    public static function gingerGetWebhookUrl()
     {
-        return self::getReturnUrl();
+        return self::gingerGetReturnUrl();
     }
 
     /**
      * @param $order
      * @return array
      */
-    public static function getOrderLines($order)
+    public static function gingerGetOrderLines($order)
     {
         $orderLines = [];
 
@@ -386,11 +386,11 @@ class WC_Emspay_Helper
                 'url' => get_permalink($productId),
                 'name' => $orderLine->get_name(),
                 'type' => 'physical',
-                'amount' => static::getAmountInCents(static::getProductPrice($orderLine, $order)),
+                'amount' => static::gingerGetAmountInCents(static::gingerGetProductPrice($orderLine, $order)),
                 'currency' => 'EUR',
                 'quantity' => (int) $orderLine->get_quantity(),
                 'image_url' => ! empty($image_url) ? $image_url : null,
-                'vat_percentage' => static::getAmountInCents(static::getProductTaxRate($orderLine->get_product())),
+                'vat_percentage' => static::gingerGetAmountInCents(static::gingerGetProductTaxRate($orderLine->get_product())),
                 'merchant_order_line_id' => (string) $productId
             ],
             function($value) {
@@ -399,7 +399,7 @@ class WC_Emspay_Helper
         }
 
         if ($order->get_total_shipping() > 0) {
-            $orderLines[] = static::getShippingOrderLine($order);
+            $orderLines[] = static::gingerGetShippingOrderLine($order);
         }
 
         return $orderLines;
@@ -412,7 +412,7 @@ class WC_Emspay_Helper
      * @param $product
      * @return int
      */
-    public static function getProductTaxRate(WC_Product $product)
+    public static function gingerGetProductTaxRate(WC_Product $product)
     {
         $WC_Tax = new WC_Tax();
         $totalTaxRate = 0;
@@ -426,14 +426,14 @@ class WC_Emspay_Helper
      * @param $order
      * @return array
      */
-    public static function getShippingOrderLine($order)
+    public static function gingerGetShippingOrderLine($order)
     {
         return [
             'name' => $order->get_shippems_method(),
             'type' => 'shipping_fee',
-            'amount' => static::getAmountInCents($order->get_shippems_total() + $order->get_shippems_tax()),
+            'amount' => static::gingerGetAmountInCents($order->get_shippems_total() + $order->get_shippems_tax()),
             'currency' => 'EUR',
-            'vat_percentage' => static::getAmountInCents(static::getShippingTaxRate()),
+            'vat_percentage' => static::gingerGetAmountInCents(static::gingerGetShippingTaxRate()),
             'quantity' => 1,
             'merchant_order_line_id' => count($order->get_items()) + 1
         ];
@@ -445,7 +445,7 @@ class WC_Emspay_Helper
      *
      * @return int
      */
-    public static function getShippingTaxRate()
+    public static function gingerGetShippingTaxRate()
     {
         $totalTaxRate = 0;
         foreach (WC_Tax::get_shipping_tax_rates() as $taxRate) {
@@ -460,7 +460,7 @@ class WC_Emspay_Helper
      * @param type $orderId
      * @return string
      */
-    public static function getOrderDescription($orderId)
+    public static function gingerGetOrderDescription($orderId)
     {
         return sprintf(__('Your order %s at %s', self::DOMAIN), $orderId, get_bloginfo('name'));
     }
@@ -470,7 +470,7 @@ class WC_Emspay_Helper
      *
      * @return bool|string
      */
-    public static function getCaCertPath(){
+    public static function gingerGetCaCertPath(){
         return realpath(plugin_dir_path(__FILE__).'../assets/cacert.pem');
     }
 }

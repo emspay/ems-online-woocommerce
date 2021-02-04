@@ -58,5 +58,12 @@
 
 ** 1.1.4 **
 
+* Appended processing order post status for correct status update to 'complemented' by WooCommerce
+  Updated README
+  
+** 1.1.5 **
+
 * Filtering gateways depending on the store currency, supported gateway currencies and supported currencies by the EMC Online service.
   Sending to the API the currency selected by the consumer when creating an order.
+  Sanitized, Escaped, and Validated data
+  Added generic function/class/define/namespace names 
