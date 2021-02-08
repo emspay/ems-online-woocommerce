@@ -60,3 +60,7 @@
 
 * Appended processing order post status for correct status update to 'complemented' by WooCommerce
   Updated README
+
+** 1.1.5 **
+
+* Changes regarding to WordPress requirements for placing a plugin on the WordPress store
