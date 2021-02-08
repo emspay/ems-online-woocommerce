@@ -1,9 +1,9 @@
 === EMS Online ===
 Tags: EMS Online, WooCommerce, payment
 Contributors: emspay, gingerpayments
-Requires at least: 5.2.2
-Tested up to: 5.2.2
-Stable tag: 1.0.11
+Requires at least: 5.6
+Tested up to: 5.6
+Stable tag: 1.1.5
 License: The MIT License (MIT)
 License URI: https://opensource.org/licenses/MIT
 
