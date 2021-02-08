@@ -19,7 +19,7 @@ class WC_Emspay_Callback extends WC_Emspay_Gateway
         parent::__construct();
     }
 
-    public function init_form_fields()
+    public function ginger_init_form_fields()
     {
         $this->form_fields = [
             'api_key' => [
@@ -64,11 +64,10 @@ class WC_Emspay_Callback extends WC_Emspay_Gateway
         ];
     }
 
-    public function handle_callback()
+    public function ginger_handle_callback()
     {
-        if (!empty($_GET['order_id'])) {
+        if (!empty($ems_order_id = sanitize_text_field($_GET['order_id']))) {
             $type = "return";
-            $ems_order_id = $_GET['order_id'];
         } else {
             $type = "webhook";
             $input = json_decode(file_get_contents("php://input"), true);
@@ -82,7 +81,7 @@ class WC_Emspay_Callback extends WC_Emspay_Gateway
         // we potentially have 3 different API keys we can fetch the order with
         $settings = get_option('woocommerce_emspay_settings');
         $ap_settings = get_option('woocommerce_emspay_afterpay_settings');
-        $cacert_path = WC_Emspay_Helper::getCaCertPath();
+        $cacert_path = WC_Emspay_Helper::gingerGetCaCertPath();
 
         $success_get = false;
         // first try with standard API key
@@ -152,7 +151,7 @@ class WC_Emspay_Callback extends WC_Emspay_Gateway
                 if ($order->get_status() == 'processing')
                     $order->update_status('shipped', 'Order updated to shipped, transactions was captured', false);
             } else {
-                $order->update_status($this->get_store_status($emsOrder['status']));
+                $order->update_status($this->ginger_get_store_status($emsOrder['status']));
             }
             exit;
         }
@@ -173,12 +172,12 @@ class WC_Emspay_Callback extends WC_Emspay_Gateway
     }
 
     /**
-     * Function get_store_status
+     * Function ginger_get_store_status
      *
      * @param $ems_order_status
      * @return string
      */
-    public function get_store_status($ems_order_status) {
+    public function ginger_get_store_status($ems_order_status) {
         $maps_statuses = [
             'new' => 'pending',
             'processing' => 'processing',
