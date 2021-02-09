@@ -64,3 +64,7 @@
 ** 1.1.5 **
 
 * Changes regarding to WordPress requirements for placing a plugin on the WordPress store
+
+** 1.1.6 **
+
+* Updated readme.txt for WordPress store
