@@ -3,7 +3,7 @@ Tags: EMS Online, WooCommerce, payment
 Contributors: emspay, gingerpayments
 Requires at least: 5.6
 Tested up to: 5.6
-Stable tag: 1.1.6
+Stable tag: 1.1.7
 License: The MIT License (MIT)
 License URI: https://opensource.org/licenses/MIT
 
@@ -193,3 +193,7 @@ https://developer.emspay.eu/contact
 ** 1.1.6 **
 
 * Updated readme.txt for WordPress store
+
+** 1.1.7 **
+
+* Changed the mapping of statuses between the EMS API and the store. Processing on the API side is equivalent to Pending on the store side.

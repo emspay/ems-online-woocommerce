@@ -180,7 +180,7 @@ class WC_Emspay_Callback extends WC_Emspay_Gateway
     public function ginger_get_store_status($ems_order_status) {
         $maps_statuses = [
             'new' => 'pending',
-            'processing' => 'processing',
+            'processing' => 'pending',
             'error' => 'failed',
             'expired' => 'cancelled',
             'cancelled' => 'cancelled',
