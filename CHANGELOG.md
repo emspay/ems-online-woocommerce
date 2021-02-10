@@ -68,3 +68,7 @@
 ** 1.1.6 **
 
 * Updated readme.txt for WordPress store
+
+** 1.1.7 **
+
+* Changed the mapping of statuses between the EMS API and the store. Processing on the API side is equivalent to Pending on the store side.
