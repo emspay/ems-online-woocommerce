@@ -3,7 +3,7 @@ Tags: EMS Online, WooCommerce, payment
 Contributors: emspay, gingerpayments
 Requires at least: 5.6
 Tested up to: 5.6
-Stable tag: 1.1.5
+Stable tag: 1.2.0
 License: The MIT License (MIT)
 License URI: https://opensource.org/licenses/MIT
 
@@ -11,9 +11,41 @@ This is the offical EMS Online plugin
 
 == Description ==
 
-Official EMSPay WooCommerce plugin
+This is the offical EMS Online plugin.
 
-== Pre-requisites to install the plug-ins == 
+EMS helps entrepreneurs with the best, smartest and most efficient payment systems. Both
+in your physical store and online in your webshop. With a wide range of payment methods
+you can serve every customer.
+
+Why EMS?
+
+Via the EMS website you can create a free test account online 24/7 and try out the online
+payment solution. EMS's online solution also offers the option of sending payment links and
+accepting QR payments.
+
+The ideal online payment page for your webshop:
+- Free test account - available online 24/7
+- Wide range of payment methods
+- Easy integration via a plug-in or API
+- Free shopping cart plug-ins
+- Payment page in the look & feel of your webshop
+- Reports in the formats CAMT.053, MT940S, MT940 & CODA
+- One clear dashboard for all your payment, turnover data and administration functions
+
+Promotion promotion extended!
+
+Choose the EMS Online Payment Solution now
+and pay no subscription costs at € 9.95 until June 2021!
+
+Start immediately with your test account
+Request it https://portal.emspay.eu/create-test-account?language=NL_NL
+
+Satisfied after testing?
+Click on the yellow button [Begin→]
+ in the test portal and
+simply request your live account.
+
+== Pre-requisites to install the plug-ins ==
 
 - PHP v5.4 and above
 - MySQL v5.4 and above
@@ -34,22 +66,21 @@ You can use an sFTP or SCP program, for example, to upload the files. There are 
 	- Klarna IP
 	For the payment method Klarna you can choose to offer it only to a limited set of whitelisted IP addresses. You can use this for instance when you are in the testing phase and want to make sure that Klarna is not available yet for your customers.
 	If you do not offer Klarna you can leave the Test API key and Klarna debug IP fields empty.
-- Are you offering Afterpay on your pay page? 
+- Are you offering Afterpay on your pay page?
 	- To do this click on the “Manage” button of EMS Online: AfterPay in the payment method overview.
 	- Next, see the instructions for Klarna
 - Select your preferred Failed payment page. This setting determines the page to which your customer is redirected after a payment attempt has failed. You can choose between the Checkout page (the page where you can choose a payment method) or the Shopping cart page (the page before checkout where the content of the shopping cart is displayed).
 - Enable the cURL CA bundle option.
 This fixes a cURL SSL Certificate issue that appears in some web-hosting environments where you do not have access to the PHP.ini file and therefore are not able to update server certificates.
 
+- Only for AfterPay payment: To allow AfterPay to be used for any other country just add its country code (in ISO 2 standard) to the "Countries available for AfterPay" field. Example: BE, NL, FR
+
 5. Configure each payment method you would like to offer in your webshop.
 Enable only those payment methods that you applied for and for which you have received a confirmation from us.
 
 - To configure iDEAL do the following:
 	- Go to ‘WooCommerce’ > ‘Settings’ > Payments > ‘EMS Online: iDEAL’.
-	- Select Enable iDEAL Payment to include the payment method in your pay page. Fill in iDEAL in the Title field.
-	- The plugin can automatically generate a webhook URL when a message is sent to the EMS API for new orders. This option is enabled by default.
-	If you use this option you do not have to configure the webhook in the merchant portal.
-	To disable this option, make it unchecked.
+	- Select Enable iDEAL Payment to include the payment method in your pay page.
 
 - Follow the same procedure for all other payment methods you have enabled.
 
@@ -60,31 +91,114 @@ Manual installation by uploading ZIP file from WordPress administration environm
 3. Select the ems-online.zip file.
 4. Continue with step 3 of Installation using (s)FTP.
 
+Compatibility: WordPress 5.6
+
 
 == Screenshots ==
 
-** TODO **
+1. Checkout page: EMS payment methods
 
 == Frequently Asked Questions ==
 
-** TODO **
+= I can't install the plugin =
+
+Please temporarily enable the [WordPress Debug Mode](https://codex.wordpress.org/Debugging_in_WordPress). Edit your `wp-config.php` and set the constants `WP_DEBUG` and `WP_DEBUG_LOG` to `true` and try
+it again. When the plugin triggers an error, WordPress will log the error to the log file `/wp-content/debug.log`. Please check this file for errors. When done, don't forget to turn off
+the WordPress debug mode by setting the two constants `WP_DEBUG` and `WP_DEBUG_LOG` back to `false`.
+
+= I get a white screen =
+
+Most of the time a white screen means a PHP error. Because PHP won't show error messages on default for security reasons, the page is white. Please turn on the WordPress Debug Mode to turn on PHP error messages (see previous answer).
+
+= I have a different question =
+
+Please contact us via the above "support" tab and add a ticket: please describe your problem as detailed as possible. Include screenshots where appropriate.
+Where possible, also include the log file. You can find the log files in `/wp-content/uploads/wc-logs/` or `/wp-content/plugin/woocommerce/logs`.
+
+* Contact EMS Support
+
+Visit the FAQ:
+https://developer.emspay.eu/faq
+
+Contact information:
+https://developer.emspay.eu/contact
 
 == Changelog ==
 
-= 1.0.0 =
-* Initial release
+** 1.0.0 **
 
-= 1.0.8 =
+* Initial version
+
+** 1.0.8 **
+
 * Fix Captured and shipped functionality
 
-= 1.0.9 =
+** 1.0.9 **
+
 * Move files from trunk folder to root folder
 
-= 1.0.10 =
+** 1.0.10 **
+
 * Fixed sending peyment information in the New Order email for all gateways
 
-= 1.0.11 =
+** 1.0.11 **
+
 * Add Refund Order functionality
 
-= 1.0.12 =
+** 1.0.12 **
+
 * Captured transaction status check changed to has-captures flag in accordance with the new behavior of the capture
+
+** 1.0.13 **
+
+* Changed redirect in KP Later (after Order create in the EMS) to 'payment_url'
+
+** 1.0.14 **
+
+* Fixed refund order functionality
+
+** 1.0.15 **
+
+* Adding refund admin description
+* Removing empty values before sending data to the API
+
+** 1.1.0 **
+
+* Added the ability for AfterPay to be available in the selected countries.
+* Removing Klarna Pay Later fields gender and birthday from checkout form and customer object
+* Replaced locally stored ginger-php library on composer library installer.
+
+** 1.1.1 **
+
+* Removed the Webhook option
+* Updated EMS Online plugin description in README
+
+** 1.1.2 **
+
+* Expanded updating of order statuses in the store
+
+** 1.1.3 **
+
+* Fixed shipping tax rate functionality
+
+** 1.1.4 **
+
+* Appended processing order post status for correct status update to 'complemented' by WooCommerce
+  Updated README
+
+** 1.1.5 **
+
+* Changes regarding to WordPress requirements for placing a plugin on the WordPress store
+
+** 1.1.6 **
+
+* Updated readme.txt for WordPress store
+
+** 1.1.7 **
+
+* Changed the mapping of statuses between the EMS API and the store. Processing on the API side is equivalent to Pending on the store side.
+
+** 1.2.0 **
+
+* Filtering gateways depending on the store currency, supported gateway currencies and supported currencies by the EMC Online service.
+  Sending to the API the currency selected by the consumer when creating an order.

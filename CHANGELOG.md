@@ -60,10 +60,21 @@
 
 * Appended processing order post status for correct status update to 'complemented' by WooCommerce
   Updated README
-  
+
 ** 1.1.5 **
+
+* Changes regarding to WordPress requirements for placing a plugin on the WordPress store
+
+** 1.1.6 **
+
+* Updated readme.txt for WordPress store
+
+** 1.1.7 **
+
+* Changed the mapping of statuses between the EMS API and the store. Processing on the API side is equivalent to Pending on the store side.
+
+** 1.2.0 **
 
 * Filtering gateways depending on the store currency, supported gateway currencies and supported currencies by the EMC Online service.
   Sending to the API the currency selected by the consumer when creating an order.
-  Sanitized, Escaped, and Validated data
-  Added generic function/class/define/namespace names 
+
