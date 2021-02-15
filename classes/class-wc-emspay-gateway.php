@@ -114,13 +114,14 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
      */
     protected function ginger_validate_currency() {
 
+        $current_currency = get_woocommerce_currency();
         if ( ! $this->gingerIsStoreCurrencySupported() ) {
             $this->enabled= false;
             $this->update_option('enabled', false);
 
             $this->errors[] = sprintf(
                 __( 'Current shop currency %s not supported by EMS Online.', WC_Emspay_Helper::DOMAIN ),
-                get_woocommerce_currency()
+                $current_currency
             );
         }
 
@@ -130,7 +131,7 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
 
             $this->errors[] = sprintf(
                 __( 'Current shop currency %s not supported by %s.', WC_Emspay_Helper::DOMAIN ),
-                get_woocommerce_currency(),
+                $current_currency,
                 $this->get_option('title')
             );
         }

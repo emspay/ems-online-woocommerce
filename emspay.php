@@ -332,7 +332,9 @@ function woocommerce_emspay_init()
             return $gateways;
         }
 
-        if ( ! in_array(get_woocommerce_currency(), WC_Emspay_Helper::$gingerSupportedCurrencies) ) {
+        $current_currency = get_woocommerce_currency();
+
+        if ( ! in_array($current_currency, WC_Emspay_Helper::$gingerSupportedCurrencies) ) {
             return false;
         }
 
@@ -340,7 +342,7 @@ function woocommerce_emspay_init()
             if( empty($gateway->settings['allowed_currencies']) ) {
                 continue;
             }
-            if( ! in_array(get_woocommerce_currency(), $gateway->settings['allowed_currencies']) ) {
+            if( ! in_array($current_currency, $gateway->settings['allowed_currencies']) ) {
                 unset($gateways[$key]);
             }
         }
