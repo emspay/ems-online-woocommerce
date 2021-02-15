@@ -337,11 +337,6 @@ function woocommerce_emspay_init()
         }
 
         foreach ( $gateways as $key=>$gateway ) {
-
-            if( ! in_array(get_woocommerce_currency(), WC_Emspay_Helper::$gingerSupportedCurrencies)) {
-                return false;
-            }
-
             if( empty($gateway->settings['allowed_currencies']) ) {
                 continue;
             }
