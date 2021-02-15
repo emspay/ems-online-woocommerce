@@ -473,4 +473,11 @@ class WC_Emspay_Helper
     public static function gingerGetCaCertPath(){
         return realpath(plugin_dir_path(__FILE__).'../assets/cacert.pem');
     }
+
+    /**
+     * Function gingerGetBillingCountry
+     */
+    public static function gingerGetBillingCountry() {
+        return (! empty(WC()->customer) ? WC()->customer->get_billing_country() : false);
+    }
 }

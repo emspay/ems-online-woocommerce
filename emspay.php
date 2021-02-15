@@ -269,6 +269,7 @@ function woocommerce_emspay_init()
      */
     function ginger_afterpay_filter_gateway($gateways)
     {
+
         if ( ! is_checkout() ) {
             return $gateways;
         }
@@ -287,7 +288,7 @@ function woocommerce_emspay_init()
         // Filter AfterPay by country available option
         if ($settings['ap_countries_available']) {
             $countrylist = array_map("trim", explode(',', $settings['ap_countries_available']));
-            if (!in_array(WC()->customer->get_billing_country(), $countrylist)) {
+            if (! WC_Emspay_Helper::gingerGetBillingCountry() or !in_array(WC_Emspay_Helper::gingerGetBillingCountry(), $countrylist)) {
                 unset($gateways['emspay_afterpay']);
             }
         }
