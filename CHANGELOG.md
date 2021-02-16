@@ -72,3 +72,9 @@
 ** 1.1.7 **
 
 * Changed the mapping of statuses between the EMS API and the store. Processing on the API side is equivalent to Pending on the store side.
+
+** 1.2.0 **
+
+* Filtering gateways depending on the store currency, supported gateway currencies and supported currencies by the EMC Online service.
+  Sending to the API the currency selected by the consumer when creating an order.
+
