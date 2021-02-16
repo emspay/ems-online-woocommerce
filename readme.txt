@@ -3,7 +3,7 @@ Tags: EMS Online, WooCommerce, payment
 Contributors: emspay, gingerpayments
 Requires at least: 5.6
 Tested up to: 5.6
-Stable tag: 1.1.7
+Stable tag: 1.2.0
 License: The MIT License (MIT)
 License URI: https://opensource.org/licenses/MIT
 
@@ -74,6 +74,7 @@ You can use an sFTP or SCP program, for example, to upload the files. There are 
 This fixes a cURL SSL Certificate issue that appears in some web-hosting environments where you do not have access to the PHP.ini file and therefore are not able to update server certificates.
 
 - Only for AfterPay payment: To allow AfterPay to be used for any other country just add its country code (in ISO 2 standard) to the "Countries available for AfterPay" field. Example: BE, NL, FR
+- Each payment method has a Allowed currencies(settlement) setting with which it works. Depending on this setting, the selected store currency and the allowed currencies for the EMS gateway, payment methods will be filtered on the Checkout page. This setting can be edited for each payment method, if some currencies are not added, but the payment method works with it.
 
 5. Configure each payment method you would like to offer in your webshop.
 Enable only those payment methods that you applied for and for which you have received a confirmation from us.
@@ -197,3 +198,8 @@ https://developer.emspay.eu/contact
 ** 1.1.7 **
 
 * Changed the mapping of statuses between the EMS API and the store. Processing on the API side is equivalent to Pending on the store side.
+
+** 1.2.0 **
+
+* Filtering gateways depending on the store currency, supported gateway currencies and supported currencies by the EMC Online service.
+  Sending to the API the currency selected by the consumer when creating an order.

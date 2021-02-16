@@ -4,7 +4,7 @@
  * Plugin Name: EMS Online
  * Plugin URI: https://emspay.nl/
  * Description: EMS Pay WooCommerce plugin
- * Version: 1.1.7
+ * Version: 1.2.0
  * Author: Ginger Payments
  * Author URI: https://www.gingerpayments.com/
  * License: The MIT License (MIT)
@@ -126,10 +126,9 @@ function woocommerce_emspay_init()
     }
 
     add_filter('wc_order_statuses', 'ginger_add_shipped_to_order_statuses');
-
     add_action('woocommerce_order_status_shipped', 'ginger_ship_an_order', 10, 2);
     add_action('woocommerce_refund_created', 'ginger_refund_an_order', 10, 2);
-	add_action('woocommerce_order_item_add_action_buttons', 'ginger_add_refund_description');
+    add_action('woocommerce_order_item_add_action_buttons', 'ginger_add_refund_description');
 
     load_plugin_textdomain(WC_Emspay_Helper::DOMAIN, false, basename(dirname(__FILE__)).'/languages');
 
@@ -263,51 +262,97 @@ function woocommerce_emspay_init()
     }
 
     /**
-     * Filter out EMS Online AfterPay method if not in allowed countries.
+     * Filter out EMS Online AfterPay method if not in allowed countries and IP.
      *
      * @param array $gateways
      * @return mixed
      */
-    function ginger_afterpay_filter_gateways($gateways)
+    function ginger_afterpay_filter_gateway($gateways)
     {
-        $settings = get_option('woocommerce_emspay_afterpay_settings');
-        $ap_ip = $settings['ap_debug_ip'];
 
-        if (strlen($ap_ip) > 0) {
-            $ip_whitelist = array_map('trim', explode(",", $ap_ip));
+        if ( ! is_checkout() ) {
+            return $gateways;
+        }
+
+        $settings = get_option('woocommerce_emspay_afterpay_settings');
+
+        // Filter AfterPay by IP option
+        if ($settings['ap_debug_ip']) {
+            $ip_whitelist = array_map('trim', explode(",", $settings['ap_debug_ip']));
             if (!in_array(WC_Geolocation::get_ip_address(), $ip_whitelist)) {
                 unset($gateways['emspay_afterpay']);
+                return $gateways;
             }
-        } else if (! empty(WC()->customer->get_billing_country()) && !in_array(WC()->customer->get_billing_country(), WC_Emspay_Helper::$gingerAfterPayCountries)) {
-            unset($gateways['emspay_afterpay']);
+        }
+
+        // Filter AfterPay by country available option
+        if ($settings['ap_countries_available']) {
+            $countrylist = array_map("trim", explode(',', $settings['ap_countries_available']));
+            if (! WC_Emspay_Helper::gingerGetBillingCountry() or !in_array(WC_Emspay_Helper::gingerGetBillingCountry(), $countrylist)) {
+                unset($gateways['emspay_afterpay']);
+            }
         }
 
         return $gateways;
     }
 
     /**
-     * AfterPay countries available .
+     * Filter out EMS Online Klarna method if not in allowed IP.
      *
      * @param array $gateways
      * @return mixed
      */
-    function ginger_afterpay_countries_available($gateways)
+    function ginger_klarna_filter_gateway($gateways)
     {
-        $settings = get_option('woocommerce_emspay_afterpay_settings');
-        $ap_countries_available = $settings['ap_countries_available'];
-
-        if (empty($ap_countries_available)) {
+        if ( ! is_checkout() ) {
             return $gateways;
-        } else {
-            $countrylist = array_map("trim", explode(',', $ap_countries_available));
-            if (!in_array(WC()->customer->get_billing_country(), $countrylist)) {
-                unset($gateways['emspay_afterpay']);
+        }
+
+        $settings = get_option('woocommerce_emspay_settings');
+
+        // Filter Klarna by IP option
+        if ($settings['debug_klarna_ip']) {
+            $ip_whitelist = array_map('trim', explode(",", $settings['debug_klarna_ip']));
+
+            if (!in_array(WC_Geolocation::get_ip_address(), $ip_whitelist)) {
+                unset($gateways['emspay_klarna-pay-later']);
             }
         }
+
         return $gateways;
     }
 
-    add_filter('woocommerce_available_payment_gateways', 'ginger_afterpay_countries_available', 10);
-    add_filter('woocommerce_available_payment_gateways', 'ginger_afterpay_filter_gateways', 10);
+    /**
+     * Filter out EMS Online gateways by currencies.
+     *
+     * @param $gateways
+     * @return bool
+     */
+    function ginger_filter_gateway_by_currency($gateways) {
+        if ( ! is_checkout() ) {
+            return $gateways;
+        }
+
+        $current_currency = get_woocommerce_currency();
+
+        if ( ! in_array($current_currency, WC_Emspay_Helper::$gingerSupportedCurrencies) ) {
+            return false;
+        }
+
+        foreach ( $gateways as $key=>$gateway ) {
+            if( empty($gateway->settings['allowed_currencies']) ) {
+                continue;
+            }
+            if( ! in_array($current_currency, $gateway->settings['allowed_currencies']) ) {
+                unset($gateways[$key]);
+            }
+        }
+
+        return $gateways;
+    }
+
+    add_filter('woocommerce_available_payment_gateways', 'ginger_afterpay_filter_gateway', 10);
+    add_filter('woocommerce_available_payment_gateways', 'ginger_klarna_filter_gateway', 10);
+    add_filter('woocommerce_available_payment_gateways', 'ginger_filter_gateway_by_currency', 10);
     add_filter('woocommerce_thankyou_order_received_text', 'ginger_order_received_text', 10, 2);
 }
