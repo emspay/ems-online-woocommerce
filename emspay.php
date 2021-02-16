@@ -273,6 +273,7 @@ function woocommerce_emspay_init()
             return $gateways;
         }
 
+        unset($gateways['emspay']);
         $settings = get_option('woocommerce_emspay_afterpay_settings');
 
         // Filter AfterPay by IP option
@@ -306,8 +307,6 @@ function woocommerce_emspay_init()
         if ( ! is_checkout() ) {
             return $gateways;
         }
-
-        unset($gateways['emspay']);
 
         $settings = get_option('woocommerce_emspay_settings');
 
