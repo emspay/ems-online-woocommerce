@@ -201,5 +201,5 @@ https://developer.emspay.eu/contact
 
 ** 1.2.0 **
 
-* Filtering gateways depending on the store currency, supported gateway currencies and supported currencies by the EMC Online service.
+* Filtering gateways depending on the store currency, supported gateway currencies and supported currencies by the EMS Online service.
   Sending to the API the currency selected by the consumer when creating an order.
