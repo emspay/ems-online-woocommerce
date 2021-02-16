@@ -269,7 +269,6 @@ function woocommerce_emspay_init()
      */
     function ginger_afterpay_filter_gateway($gateways)
     {
-
         if ( ! is_checkout() ) {
             return $gateways;
         }
@@ -308,6 +307,8 @@ function woocommerce_emspay_init()
             return $gateways;
         }
 
+        unset($gateways['emspay']);
+
         $settings = get_option('woocommerce_emspay_settings');
 
         // Filter Klarna by IP option
@@ -329,6 +330,7 @@ function woocommerce_emspay_init()
      * @return bool
      */
     function ginger_filter_gateway_by_currency($gateways) {
+
         if ( ! is_checkout() ) {
             return $gateways;
         }
