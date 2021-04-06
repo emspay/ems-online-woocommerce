@@ -147,7 +147,7 @@ function woocommerce_emspay_init()
 		$orderGateway = $order->get_payment_method();
 
 		if($emsOrder['status'] !== 'completed') {
-			throw new Exception( 'Only completed orders can be refunded' );
+			throw new Exception( __( 'Only completed orders can be refunded', WC_Emspay_Helper::DOMAIN ));
 		}
 		
 		$refund_data = [
@@ -157,7 +157,7 @@ function woocommerce_emspay_init()
 
 		if( $orderGateway == 'emspay_klarna-pay-later' or $orderGateway == 'emspay_afterpay' ) {
 			if(!isset($emsOrder['transactions']['flags']['has-captures'])) {
-				throw new Exception( 'Refunds only possible when captured' );
+				throw new Exception( __(' Refunds only possible when captured', WC_Emspay_Helper::DOMAIN ));
 			};
 			$refund_data['order_lines'] = WC_Emspay_Helper::gingerGetOrderLines($order);
 		}
@@ -171,9 +171,9 @@ function woocommerce_emspay_init()
 
 		if( $ems_refund_order['status'] !== 'completed' ) {
                 if( isset(current($ems_refund_order['transactions'])['reason']) ) {
-                    throw new Exception( current($ems_refund_order['transactions'])['reason'] );
+                    throw new Exception( sprintf(__( 'Refund order is not completed: %s', WC_Emspay_Helper::DOMAIN ), current($ems_refund_order['transactions'])['reason']));
                 }
-                throw new Exception('Refund order is not completed');
+                throw new Exception( __( 'Refund order is not completed', WC_Emspay_Helper::DOMAIN ));
             }
 	}
 	
@@ -183,7 +183,7 @@ function woocommerce_emspay_init()
 	 * @param $order
 	 */
 	function ginger_add_refund_description($order) {
-		echo "<p style='color: red; ' class='description'>" . esc_html__( "Please beware that for EMS transactions the refunds will process directly to the gateway!", "emspay") . "</p>";
+		echo "<p style='color: red; ' class='description'>" . esc_html__( "Please beware that for EMS transactions the refunds will process directly to the gateway!", WC_Emspay_Helper::DOMAIN) . "</p>";
 	}
 
 	/**
