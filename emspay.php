@@ -145,8 +145,8 @@ function woocommerce_emspay_init()
 		$ginger = ginger_get_client($order);
 		$emsOrder = $ginger->getOrder($ems_order_id);
 		$orderGateway = $order->get_payment_method();
-		
-		if($emsOrder['status'] != 'completed') {
+
+		if($emsOrder['status'] !== 'completed') {
 			throw new Exception( 'Only completed orders can be refunded' );
 		}
 		
@@ -154,7 +154,7 @@ function woocommerce_emspay_init()
 			'amount' => WC_Emspay_Helper::gingerGetAmountInCents($args['amount']),
 			'description' => 'OrderID: #' . $args['order_id'] . ', Reason: ' . $args['reason']
 		];
-	
+
 		if( $orderGateway == 'emspay_klarna-pay-later' or $orderGateway == 'emspay_afterpay' ) {
 			if(!isset($emsOrder['transactions']['flags']['has-captures'])) {
 				throw new Exception( 'Refunds only possible when captured' );
@@ -169,12 +169,12 @@ function woocommerce_emspay_init()
 			$refund_data
 		);
 
-		if( in_array( $ems_refund_order['status'], ['error', 'cancelled', 'expired'] ) ) {
-			if( isset(current($ems_refund_order['transactions'])['reason']) ) {
-				throw new Exception( current($ems_refund_order['transactions'])['reason'] );
-			}
-			throw new Exception('Refund order is not completed');
-		}
+		if( $ems_refund_order['status'] !== 'completed' ) {
+                if( isset(current($ems_refund_order['transactions'])['reason']) ) {
+                    throw new Exception( current($ems_refund_order['transactions'])['reason'] );
+                }
+                throw new Exception('Refund order is not completed');
+            }
 	}
 	
 	/**
