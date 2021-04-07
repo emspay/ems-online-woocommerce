@@ -124,10 +124,10 @@ class WC_Emspay_Helper
      */
     public static function gingerGetCustomerInfo(WC_Order $order)
     {
-        $shippems_address = $order->get_address('shipping');
-        $billems_address = $order->get_address('billing');
+        $shipping_address = $order->get_address('shipping');
+        $billing_address = $order->get_address('billing');
 
-        if ($shippems_address['address_2'] == "" && $shippems_address['address_1'] == "") {$shippems_address = $billems_address;}
+        if ($shipping_address['address_2'] == "" && $shipping_address['address_1'] == "") {$shipping_address = $billing_address;}
 
         if (version_compare(get_option('woocommerce_version'), '3.0', '>=')) {
             $user_agent = $order->get_customer_user_agent();
@@ -151,16 +151,16 @@ class WC_Emspay_Helper
         return array_filter([
             'address_type' => 'customer',
             'merchant_customer_id' => (string) $order->get_user_id(),
-            'email_address' => (string) $billems_address['email'],
-            'first_name' => (string) $shippems_address['first_name'],
-            'last_name' => (string) $shippems_address['last_name'],
-            'address' => (string) trim($shippems_address['address_1'])
-                .' '.trim($shippems_address['address_2'])
-                .' '.trim(str_replace(' ', '', $shippems_address['postcode']))
-                .' '.trim($shippems_address['city']),
-            'postal_code' => (string) str_replace(' ', '', $shippems_address['postcode']),
-            'country' => (string) $shippems_address['country'],
-            'phone_numbers' => (array) [$billems_address['phone']],
+            'email_address' => (string) $billing_address['email'],
+            'first_name' => (string) $shipping_address['first_name'],
+            'last_name' => (string) $shipping_address['last_name'],
+            'address' => (string) trim($shipping_address['address_1'])
+                .' '.trim($shipping_address['address_2'])
+                .' '.trim(str_replace(' ', '', $shipping_address['postcode']))
+                .' '.trim($shipping_address['city']),
+            'postal_code' => (string) str_replace(' ', '', $shipping_address['postcode']),
+            'country' => (string) $shipping_address['country'],
+            'phone_numbers' => (array) [$billing_address['phone']],
             'user_agent' => (string) $user_agent,
             'ip_address' => (string) $ip_address,
             'locale' => (string) get_locale(),
@@ -169,11 +169,11 @@ class WC_Emspay_Helper
             'additional_addresses' => [
                 [
                     'address_type' => 'billing',
-                    'address' => (string) trim($billems_address['address_1'])
-                .' '.trim($billems_address['address_2'])
-                .' '.trim(str_replace(' ', '', $billems_address['postcode']))
-                .' '.trim($billems_address['city']),
-                    'country' => (string) $billems_address['country'],
+                    'address' => (string) trim($billing_address['address_1'])
+                .' '.trim($billing_address['address_2'])
+                .' '.trim(str_replace(' ', '', $billing_address['postcode']))
+                .' '.trim($billing_address['city']),
+                    'country' => (string) $billing_address['country'],
                 ]
             ]
         ]);
@@ -429,13 +429,13 @@ class WC_Emspay_Helper
     public static function gingerGetShippingOrderLine($order)
     {
         return [
-            'name' => $order->get_shippems_method(),
+            'name' => $order->get_shipping_method(),
             'type' => 'shipping_fee',
-            'amount' => static::gingerGetAmountInCents($order->get_shippems_total() + $order->get_shippems_tax()),
+            'amount' => static::gingerGetAmountInCents($order->get_shipping_total() + $order->get_shipping_tax()),
             'currency' => 'EUR',
             'vat_percentage' => static::gingerGetAmountInCents(static::gingerGetShippingTaxRate()),
             'quantity' => 1,
-            'merchant_order_line_id' => count($order->get_items()) + 1
+            'merchant_order_line_id' => (string) (count($order->get_items()) + 1)
         ];
     }
 

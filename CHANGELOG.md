@@ -82,3 +82,7 @@
 
 * Fixed a bug related to processing a response for a refund Order
 
+** 1.2.2 **
+
+* Fixed shipping functionality for AfterPay and Klarna Pay Later
+
