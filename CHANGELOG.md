@@ -78,3 +78,7 @@
 * Filtering gateways depending on the store currency, supported currencies by the EMS Online service and supported currencies by payment methods.
   Sending to the API the currency selected by the consumer when creating an order.
 
+** 1.2.1 **
+
+* Fixed a bug related to processing a response for a refund Order
+
