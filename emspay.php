@@ -157,7 +157,7 @@ function woocommerce_emspay_init()
 
 		if( $orderGateway == 'emspay_klarna-pay-later' or $orderGateway == 'emspay_afterpay' ) {
 			if(!isset($emsOrder['transactions']['flags']['has-captures'])) {
-				throw new Exception( __(' Refunds only possible when captured', WC_Emspay_Helper::DOMAIN ));
+				throw new Exception( __('Refunds only possible when captured', WC_Emspay_Helper::DOMAIN ));
 			};
 			$refund_data['order_lines'] = WC_Emspay_Helper::gingerGetOrderLines($order);
 		}
