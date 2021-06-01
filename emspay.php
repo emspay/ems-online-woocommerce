@@ -170,10 +170,11 @@ function woocommerce_emspay_init()
 		);
 
 		if( $ems_refund_order['status'] !== 'completed' ) {
-                if( isset(current($ems_refund_order['transactions'])['reason']) ) {
-                    throw new Exception( sprintf(__( 'Refund order is not completed: %s', WC_Emspay_Helper::DOMAIN ), current($ems_refund_order['transactions'])['reason']));
+                if( isset(current($ems_refund_order['transactions'])['customer_message']) ) {
+                    throw new Exception( sprintf(__( 'Refund order is not completed: %s', WC_Emspay_Helper::DOMAIN ), current($ems_refund_order['transactions'])['customer_message']));
+                } else {
+                    throw new Exception( __( 'Refund order is not completed', WC_Emspay_Helper::DOMAIN ));
                 }
-                throw new Exception( __( 'Refund order is not completed', WC_Emspay_Helper::DOMAIN ));
             }
 	}
 	
