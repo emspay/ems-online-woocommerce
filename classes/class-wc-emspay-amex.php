@@ -54,7 +54,7 @@ class WC_Emspay_Amex extends WC_Emspay_Gateway
         update_post_meta($order_id, 'ems_order_id', $emsOrder['id']);
 
         if ($emsOrder['status'] == 'error') {
-            wc_add_notice(__('There was a problem processing your transaction.', WC_Emspay_Helper::DOMAIN), 'error');
+            wc_add_notice(current($emsOrder['transactions'])['customer_message'], 'error');
             return [
                 'result' => 'failure'
             ];
