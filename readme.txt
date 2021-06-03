@@ -211,4 +211,4 @@ https://developer.emspay.eu/contact
 ** 1.2.3 **
 
 * Replaced 'reason' to 'customer_message' in error output
-* Added receiving of supporting currencies by payment methods from API
+* Added request to retrieve a list of available currencies for every payment method.

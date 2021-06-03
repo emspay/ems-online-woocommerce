@@ -344,6 +344,10 @@ function woocommerce_emspay_init()
         foreach ( $gateways as $key => $gateway ) {
             $currentMethod = strtr($gateway->id, ['emspay_' => '']);
 
+            if(empty($allowed_currencies['payment_methods'][$currentMethod]['currencies'])) {
+                continue;
+            }
+
             if( ! in_array($current_currency, $allowed_currencies['payment_methods'][$currentMethod]['currencies']) ) {
                 unset($gateways[$key]);
             }
