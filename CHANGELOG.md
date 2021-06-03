@@ -86,3 +86,9 @@
 
 * Fixed shipping functionality for AfterPay and Klarna Pay Later
 
+** 1.2.3 **
+
+* Replaced 'reason' to 'customer_message' in error output
+* Added request to retrieve a list of available currencies for every payment method.
+
+

@@ -45,30 +45,6 @@ class WC_Emspay_Helper
     public static $gingerAfterPayCountries = ['NL', 'BE'];
 
     /**
-     * @var array
-     */
-    public static $gingerSupportedCurrencies = ['EUR'];
-
-    /**
-     * @var array
-     */
-    public static $gingerSupportedGatewayCurrencies = [
-        'emspay_ideal' => ['EUR'],
-        'emspay_bank-transfer' => ['EUR'],
-        'emspay_credit-card' => ['EUR', 'GBP', 'USD', 'CAD', 'CHF', 'CZK', 'DKK', 'NOK', 'PLN', 'SEK', 'AUD', 'HKD', 'JPY', 'NZD', 'SGD', 'ZAR', 'BRL', 'TRY'],
-        'emspay_bancontact' => ['EUR'],
-        'emspay_klarna-pay-now' => ['EUR', 'DKK', 'NOK', 'SEK', 'CHF', 'GBP', 'USD', 'AUD'],
-        'emspay_paypal' => ['AUD', 'CAD', 'CHF', 'CZK', 'DKK', 'EUR', 'GBP', 'HKD', 'NOK', 'PLN', 'SEK', 'SGD', 'USD'],
-        'emspay_klarna-pay-later' => ['EUR', 'DKK', 'NOK', 'SEK', 'CHF', 'GBP', 'USD', 'AUD'],
-        'emspay_payconiq' => ['EUR'],
-        'emspay_afterpay' => ['EUR', 'NOK', 'SEK', 'DKK', 'CHF'],
-        'emspay_apple-pay' => ['AUD', 'CHF', 'CAD', 'EUR', 'GBP', 'HKD', 'SGD', 'USD'],
-        'emspay_amex' => ['AUD', 'CHF', 'DKK', 'EUR', 'GBP', 'HKD', 'JPY', 'NOK', 'NZD', 'SEK', 'SGD', 'USD'],
-        'emspay_tikkie-payment-request' => ['EUR'],
-        'emspay_wechat' => ['EUR', 'USD', 'CNY', 'AUD', 'CAD', 'GBP', 'HKD', 'JPY', 'NZD', 'SGD', 'THB', 'KRW', 'RUB', 'DKK', 'SEK', 'CHF', 'NOK'],
-    ];
-
-    /**
      * Method returns returns WC_Api callback URL
      *
      * @return string
@@ -221,53 +197,43 @@ class WC_Emspay_Helper
             case 'emspay_ideal':
                 $default = __('iDEAL', self::DOMAIN);
                 $label = __('Enable iDEAL Payments', self::DOMAIN);
-                $currencies = self::$gingerSupportedGatewayCurrencies['emspay_ideal'];
                 break;
             case 'emspay_credit-card':
                 $default = __('Credit Card', self::DOMAIN);
                 $label = __('Enable Credit Card Payments', self::DOMAIN);
-                $currencies = self::$gingerSupportedGatewayCurrencies['emspay_credit-card'];
                 break;
             case 'emspay_bank-transfer':
                 $default = __('Bank Transfer', self::DOMAIN);
                 $label = __('Enable Bank Transfer Payments', self::DOMAIN);
-                $currencies = self::$gingerSupportedGatewayCurrencies['emspay_bank-transfer'];
                 break;
             case 'emspay_klarna-pay-now':
                 $default = __('Klarna Pay Now', self::DOMAIN);
                 $label = __('Enable Klarna Pay Now Payments', self::DOMAIN);
-                $currencies = self::$gingerSupportedGatewayCurrencies['emspay_klarna-pay-now'];
                 break;
             case 'emspay_bancontact':
                 $default = __('Bancontact', self::DOMAIN);
                 $label = __('Enable Bancontact Payments', self::DOMAIN);
-                $currencies = self::$gingerSupportedGatewayCurrencies['emspay_bancontact'];
                 break;
             case 'emspay_paypal':
                 $default = __('PayPal', self::DOMAIN);
                 $label = __('Enable PayPal Payments', self::DOMAIN);
-                $currencies = self::$gingerSupportedGatewayCurrencies['emspay_paypal'];
                 break;
             case 'emspay_afterpay':
                 $default = __('AfterPay', self::DOMAIN);
                 $label = __('Enable AfterPay Payments', self::DOMAIN);
-                $currencies = self::$gingerSupportedGatewayCurrencies['emspay_afterpay'];
                 $countries = self::$gingerAfterPayCountries;
                 break;
             case 'emspay_klarna-pay-later':
                 $default = __('Klarna Pay Later', self::DOMAIN);
                 $label = __('Enable Klarna Pay Later Payments', self::DOMAIN);
-                $currencies = self::$gingerSupportedGatewayCurrencies['emspay_klarna-pay-later'];
                 break;
             case 'emspay_payconiq':
                 $default = __('Payconiq', self::DOMAIN);
                 $label = __('Enable Payconiq Payments', self::DOMAIN);
-                $currencies = self::$gingerSupportedGatewayCurrencies['emspay_payconiq'];
                 break;
 	        case 'emspay_apple-pay':
 		        $default = __('Apple Pay', self::DOMAIN);
 		        $label = __('Enable Apple Pay Payments', self::DOMAIN);
-                    $currencies = self::$gingerSupportedGatewayCurrencies['emspay_apple-pay'];
 		        break;
             case 'emspay_pay-now':
                 $default = __('Pay Now', self::DOMAIN);
@@ -276,17 +242,14 @@ class WC_Emspay_Helper
             case 'emspay_amex':
                 $default = __('American Express', self::DOMAIN);
                 $label = __('Enable American Express Payments', self::DOMAIN);
-                $currencies = self::$gingerSupportedGatewayCurrencies['emspay_amex'];
                 break;
             case 'emspay_tikkie-payment-request':
                 $default = __('Tikkie Payment Request', self::DOMAIN);
                 $label = __('Enable Tikkie Payment Request Payments', self::DOMAIN);
-                $currencies = self::$gingerSupportedGatewayCurrencies['emspay_tikkie-payment-request'];
                 break;
             case 'emspay_wechat':
                 $default = __('WeChat', self::DOMAIN);
                 $label = __('Enable WeChat Payments', self::DOMAIN);
-                $currencies = self::$gingerSupportedGatewayCurrencies['emspay_wechat'];
                 break;
             default:
                 $default = '';
@@ -309,19 +272,6 @@ class WC_Emspay_Helper
                 'desc_tip' => true
             ],
         ];
-        if($type !== 'emspay_pay-now') {
-            $formFields['allowed_currencies'] = [
-                'title'    => __( 'Allowed currencies', self::DOMAIN ),
-                'desc_tip' => __( 'Payment gateway will be available ONLY for selected currencies.', self::DOMAIN ) . ' ' .
-                    __( 'If set empty - option is ignored.', self::DOMAIN ),
-                'default'  => $currencies,
-                'type'     => 'multiselect',
-                'class'    => 'chosen_select',
-                'css'      => 'width:100%',
-                'options'  => get_woocommerce_currencies(),
-                'custom_attributes' => array_merge( array( 'data-placeholder' => __( 'Select currencies...', self::DOMAIN ) )),
-            ];
-        };
 
         if ($type == 'emspay_afterpay') {
             $apFields = [
@@ -387,7 +337,7 @@ class WC_Emspay_Helper
                 'name' => $orderLine->get_name(),
                 'type' => 'physical',
                 'amount' => static::gingerGetAmountInCents(static::gingerGetProductPrice($orderLine, $order)),
-                'currency' => 'EUR',
+                'currency' => WC_Emspay_Helper::gingerGetCurrency(),
                 'quantity' => (int) $orderLine->get_quantity(),
                 'image_url' => ! empty($image_url) ? $image_url : null,
                 'vat_percentage' => static::gingerGetAmountInCents(static::gingerGetProductTaxRate($orderLine->get_product())),
@@ -432,7 +382,7 @@ class WC_Emspay_Helper
             'name' => $order->get_shipping_method(),
             'type' => 'shipping_fee',
             'amount' => static::gingerGetAmountInCents($order->get_shipping_total() + $order->get_shipping_tax()),
-            'currency' => 'EUR',
+            'currency' => WC_Emspay_Helper::gingerGetCurrency(),
             'vat_percentage' => static::gingerGetAmountInCents(static::gingerGetShippingTaxRate()),
             'quantity' => 1,
             'merchant_order_line_id' => (string) (count($order->get_items()) + 1)

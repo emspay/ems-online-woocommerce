@@ -58,7 +58,7 @@ class WC_Emspay_AfterPay extends WC_Emspay_Gateway
         update_post_meta($order_id, 'ems_order_id', $emsOrder['id']);
 
         if ($emsOrder['status'] == 'error') {
-            wc_add_notice(current($emsOrder['transactions'])['reason'], 'error');
+            wc_add_notice(current($emsOrder['transactions'])['customer_message'], 'error');
             return [
                 'result' => 'failure',
             ];
