@@ -3,7 +3,7 @@ Tags: EMS Online, WooCommerce, payment
 Contributors: emspay, gingerpayments
 Requires at least: 5.6
 Tested up to: 5.6
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 License: The MIT License (MIT)
 License URI: https://opensource.org/licenses/MIT
 
@@ -199,3 +199,16 @@ https://developer.emspay.eu/contact
 
 * Filtering gateways depending on the store currency, supported currencies by the EMS Online service and supported currencies by payment methods.
   Sending to the API the currency selected by the consumer when creating an order.
+
+** 1.2.1 **
+
+* Fixed a bug related to processing a response for a refund Order
+
+** 1.2.2 **
+
+* Fixed shipping functionality for AfterPay and Klarna Pay Later
+
+** 1.2.3 **
+
+* Replaced 'reason' to 'customer_message' in error output
+* Added request to retrieve a list of available currencies for every payment method.

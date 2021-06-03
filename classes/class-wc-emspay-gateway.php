@@ -9,19 +9,21 @@ use \Ginger\Ginger;
 class WC_Emspay_Gateway extends WC_Payment_Gateway
 {
     protected $ems;
-    protected $allowed_currencies;
+    protected $ginger_settings;
 
     public function __construct()
     {
+        global $current_tab;
+        global $current_section;
+
         $this->ginger_init_form_fields();
         $this->init_settings();
 
         $this->title = $this->get_option('title');
         $this->enabled = $this->get_option('enabled');
-        $this->allowed_currencies = $this->get_option('allowed_currencies');
+        $this->ginger_settings = get_option('woocommerce_emspay_settings');
 
-        $settings = get_option('woocommerce_emspay_settings');
-        $apiKey = ($settings['test_api_key'])?$settings['test_api_key']:$settings['api_key'];
+        $apiKey = ($this->ginger_settings['test_api_key'])?$this->ginger_settings['test_api_key']:$this->ginger_settings['api_key'];
 
         if ($this->id == 'emspay_afterpay' && $this->get_option('ap_test_api_key')) {
             $apiKey = $this->get_option('ap_test_api_key');
@@ -32,7 +34,7 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
                 $this->ems = Ginger::createClient(
                     WC_Emspay_Helper::GINGER_ENDPOINT,
                     $apiKey,
-                    ($settings['bundle_cacert'] == 'yes') ?
+                    ($this->ginger_settings['bundle_cacert'] == 'yes') ?
                         [
                             CURLOPT_CAINFO => WC_Emspay_Helper::gingerGetCaCertPath()
                         ] : []
@@ -42,8 +44,11 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
             }
         }
 
-        if( is_admin()) {
-            $this->ginger_validate_currency();
+        // Check if payment method supports store currency while saving payment method settings in the admin
+        if( is_admin() ) {
+            if( $current_tab == 'checkout' and $current_section == $this->id ) {
+                $this->ginger_validate_currency();
+            }
         }
 
         add_action('woocommerce_update_options_payment_gateways_'.$this->id, array($this, 'process_admin_options'));
@@ -115,16 +120,6 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
     protected function ginger_validate_currency() {
 
         $current_currency = get_woocommerce_currency();
-        if ( ! $this->gingerIsStoreCurrencySupported() ) {
-            $this->enabled= false;
-            $this->update_option('enabled', false);
-
-            $this->errors[] = sprintf(
-                __( 'Current shop currency %s not supported by EMS Online.', WC_Emspay_Helper::DOMAIN ),
-                $current_currency
-            );
-        }
-
         if ( ! $this->gingerIsGatewayCurrencySupported() ) {
             $this->enabled = false;
             $this->update_option('enabled', false);
@@ -140,19 +135,14 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
     /**
      * @return bool
      */
-    protected function gingerIsStoreCurrencySupported ()
-    {
-        return in_array(get_woocommerce_currency(), WC_Emspay_Helper::$gingerSupportedCurrencies);
-    }
+    protected function gingerIsGatewayCurrencySupported () {
+        $currentMethod = strtr($this->id, ['emspay_' => '']);
+        $payment_methods_currencies = $this->ems->send('GET', '/merchants/self/projects/self/currencies');
 
-    /**
-     * @return bool
-     */
-    protected function gingerIsGatewayCurrencySupported ()
-    {
-        if(empty($this->allowed_currencies)) {
-           return true;
+        if(empty($payment_methods_currencies['payment_methods'][$currentMethod]['currencies'])) {
+            return true;
         }
-        return in_array(get_woocommerce_currency(), $this->allowed_currencies);
+
+        return in_array(get_woocommerce_currency(), $payment_methods_currencies['payment_methods'][$currentMethod]['currencies']);
     }
 }

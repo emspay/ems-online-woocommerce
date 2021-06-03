@@ -4,7 +4,7 @@
  * Plugin Name: EMS Online
  * Plugin URI: https://emspay.nl/
  * Description: EMS Pay WooCommerce plugin
- * Version: 1.2.2
+ * Version: 1.2.3
  * Author: Ginger Payments
  * Author URI: https://www.gingerpayments.com/
  * License: The MIT License (MIT)
@@ -216,19 +216,21 @@ function woocommerce_emspay_init()
 	 * @param $order
 	 * @return \Ginger\ApiClient
 	 */
-    function ginger_get_client($order) {
+    function ginger_get_client($order = []) {
 		$settings = get_option('woocommerce_emspay_settings');
 		$apiKey = $settings['api_key'];
 
-		switch ($order->get_payment_method()) {
-			case 'emspay_klarna-pay-later':
-				$apiKey = ($settings['test_api_key'])?$settings['test_api_key']:$apiKey;
-				break;
-			case 'emspay_afterpay':
-				$ap_settings = get_option('woocommerce_emspay_afterpay_settings');
-				$apiKey = ($ap_settings['ap_test_api_key'])?$ap_settings['ap_test_api_key']:$apiKey;
-				break;
-		}
+		if(! empty($order)) {
+                switch ($order->get_payment_method()) {
+                    case 'emspay_klarna-pay-later':
+                        $apiKey = ($settings['test_api_key'])?$settings['test_api_key']:$apiKey;
+                        break;
+                    case 'emspay_afterpay':
+                        $ap_settings = get_option('woocommerce_emspay_afterpay_settings');
+                        $apiKey = ($ap_settings['ap_test_api_key'])?$ap_settings['ap_test_api_key']:$apiKey;
+                        break;
+                }
+            }
 
 		if (! $apiKey) {
 			return false;
@@ -336,16 +338,17 @@ function woocommerce_emspay_init()
         }
 
         $current_currency = get_woocommerce_currency();
+        $client = ginger_get_client();
+        $allowed_currencies = $client->send('GET', '/merchants/self/projects/self/currencies');
 
-        if ( ! in_array($current_currency, WC_Emspay_Helper::$gingerSupportedCurrencies) ) {
-            return false;
-        }
+        foreach ( $gateways as $key => $gateway ) {
+            $currentMethod = strtr($gateway->id, ['emspay_' => '']);
 
-        foreach ( $gateways as $key=>$gateway ) {
-            if( empty($gateway->settings['allowed_currencies']) ) {
+            if(empty($allowed_currencies['payment_methods'][$currentMethod]['currencies'])) {
                 continue;
             }
-            if( ! in_array($current_currency, $gateway->settings['allowed_currencies']) ) {
+
+            if( ! in_array($current_currency, $allowed_currencies['payment_methods'][$currentMethod]['currencies']) ) {
                 unset($gateways[$key]);
             }
         }
