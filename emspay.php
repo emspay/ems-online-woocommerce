@@ -339,6 +339,9 @@ function woocommerce_emspay_init()
 
         $current_currency = get_woocommerce_currency();
         $client = ginger_get_client();
+        if (empty($client)) {
+            return $gateways;
+        }
         $allowed_currencies = $client->send('GET', '/merchants/self/projects/self/currencies');
 
         foreach ( $gateways as $key => $gateway ) {

@@ -118,6 +118,10 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
      * Function ginger_validate_currency
      */
     protected function ginger_validate_currency() {
+        if(empty($this->ems)) {
+            $this->errors[] = 'API key is empty. Set API key and try again';
+            return false;
+        }
 
         $current_currency = get_woocommerce_currency();
         if ( ! $this->gingerIsGatewayCurrencySupported() ) {
@@ -129,7 +133,9 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
                 $current_currency,
                 $this->get_option('title')
             );
+            return false;
         }
+        return true;
     }
 
     /**
