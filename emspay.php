@@ -335,14 +335,28 @@ function woocommerce_emspay_init()
 
         if ( ! is_checkout() ) {
             return $gateways;
+        } else {
+            wc_clear_notices();
         }
 
         $current_currency = get_woocommerce_currency();
         $client = ginger_get_client();
+
         if (empty($client)) {
-            return $gateways;
+            if(! wc_has_notice(__( 'API key is empty. Set API key and try again', WC_Emspay_Helper::DOMAIN ), 'error')) {
+                wc_add_notice(__( 'API key is empty. Set API key and try again', WC_Emspay_Helper::DOMAIN ), 'error');
+            }
+            return false;
         }
-        $allowed_currencies = $client->send('GET', '/merchants/self/projects/self/currencies');
+
+        try {
+            $allowed_currencies = $client->send('GET', '/merchants/self/projects/self/currencies');
+        } catch (Exception $exception) {
+            if(! wc_has_notice(sprintf(__('API Key is not valid: %s', WC_Emspay_Helper::DOMAIN), $exception->getMessage()), 'error')) {
+                wc_add_notice(sprintf(__('API Key is not valid: %s', WC_Emspay_Helper::DOMAIN), $exception->getMessage()), 'error');
+            }
+            return false;
+        }
 
         foreach ( $gateways as $key => $gateway ) {
             $currentMethod = strtr($gateway->id, ['emspay_' => '']);
