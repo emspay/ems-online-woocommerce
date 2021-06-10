@@ -140,6 +140,11 @@ class WC_Emspay_Callback extends WC_Emspay_Gateway
         $order = new WC_Order($emsOrder['merchant_order_id']);
 
         if ($type == "webhook") {
+            $ems_order_id_meta = get_post_meta($emsOrder['merchant_order_id'], 'ems_order_id', true);
+            if(! empty($ems_order_id_meta) and $emsOrder['id'] !== $ems_order_id_meta) {
+                exit;
+            }
+
             if ($emsOrder['status'] == 'completed') {
                 $woo_version = get_option('woocommerce_version', 'Unknown');
                 if (version_compare($woo_version, '2.2.0', '>=')) {

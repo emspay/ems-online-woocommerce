@@ -13,8 +13,6 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
 
     public function __construct()
     {
-        global $current_tab;
-        global $current_section;
 
         $this->ginger_init_form_fields();
         $this->init_settings();
@@ -30,31 +28,39 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
         }
 
         if (strlen($apiKey) > 0) {
-            try {
-                $this->ems = Ginger::createClient(
-                    WC_Emspay_Helper::GINGER_ENDPOINT,
-                    $apiKey,
-                    ($this->ginger_settings['bundle_cacert'] == 'yes') ?
-                        [
-                            CURLOPT_CAINFO => WC_Emspay_Helper::gingerGetCaCertPath()
-                        ] : []
-                );
-            } catch (Assert\InvalidArgumentException $exception) {
-                WC_Admin_Notices::add_custom_notice('emspay-error', $exception->getMessage());
-            }
+            $this->ems = Ginger::createClient(
+                WC_Emspay_Helper::GINGER_ENDPOINT,
+                $apiKey,
+                ($this->ginger_settings['bundle_cacert'] == 'yes') ?
+                    [
+                        CURLOPT_CAINFO => WC_Emspay_Helper::gingerGetCaCertPath()
+                    ] : []
+            );
         }
 
-        // Check if payment method supports store currency while saving payment method settings in the admin
-        if( is_admin() ) {
-            if( $current_tab == 'checkout' and $current_section == $this->id ) {
-                $this->ginger_validate_currency();
-            }
-        }
-
+        add_action( 'woocommerce_before_settings_checkout', array( $this, 'ginger_checkout_tab_output' ) );
         add_action('woocommerce_update_options_payment_gateways_'.$this->id, array($this, 'process_admin_options'));
+        add_action('woocommerce_update_options_payment_gateways_'.$this->id, array($this, 'ginger_update_options_payment_gateways'));
         add_action('woocommerce_thankyou_'.$this->id, array($this, 'ginger_handle_thankyou'));
         add_action('woocommerce_api_'.strtolower(get_class($this)), array($this, 'ginger_handle_callback'));
         add_filter('woocommerce_valid_order_statuses_for_payment_complete', array($this, 'ginger_append_processing_order_post_status'));
+    }
+
+    /**
+     * Function ginger_checkout_tab_output
+     */
+    public function ginger_checkout_tab_output() {
+        WC_Admin_Notices::remove_notice('emspay-error');
+    }
+
+    /**
+     * Function ginger_update_options_payment_gateways
+     */
+    public function ginger_update_options_payment_gateways() {
+        WC_Admin_Notices::remove_notice('emspay-error');
+        if($this->id !== 'emspay') {
+            $this->ginger_validate_currency();
+        }
     }
 
     /**
@@ -119,30 +125,56 @@ class WC_Emspay_Gateway extends WC_Payment_Gateway
      */
     protected function ginger_validate_currency() {
 
-        $current_currency = get_woocommerce_currency();
-        if ( ! $this->gingerIsGatewayCurrencySupported() ) {
-            $this->enabled = false;
-            $this->update_option('enabled', false);
+        if(empty($this->ems)) {
+            $reason = __( 'API key is empty. Set API key and try again', WC_Emspay_Helper::DOMAIN );
+            $this->gingerDisabledPaymentMethod($reason);
+            return false;
+        }
 
-            $this->errors[] = sprintf(
+        try {
+            $payment_methods_currencies = $this->ems->send('GET', '/merchants/self/projects/self/currencies');
+        } catch (Exception $exception) {
+            $this->gingerDisabledPaymentMethod($exception->getMessage());
+            return false;
+        }
+
+        if ( ! $this->gingerIsGatewayCurrencySupported($payment_methods_currencies) ) {
+            $reason = sprintf(
                 __( 'Current shop currency %s not supported by %s.', WC_Emspay_Helper::DOMAIN ),
-                $current_currency,
+                get_woocommerce_currency(),
                 $this->get_option('title')
             );
+            $this->gingerDisabledPaymentMethod($reason);
+            return false;
         }
+        return true;
     }
 
     /**
+     * Function gingerIsGatewayCurrencySupported
+     *
+     * @param $payment_methods_currencies
      * @return bool
      */
-    protected function gingerIsGatewayCurrencySupported () {
+    protected function gingerIsGatewayCurrencySupported ($payment_methods_currencies) {
+
         $currentMethod = strtr($this->id, ['emspay_' => '']);
-        $payment_methods_currencies = $this->ems->send('GET', '/merchants/self/projects/self/currencies');
 
         if(empty($payment_methods_currencies['payment_methods'][$currentMethod]['currencies'])) {
             return true;
         }
 
         return in_array(get_woocommerce_currency(), $payment_methods_currencies['payment_methods'][$currentMethod]['currencies']);
+    }
+
+    /**
+     * Function gingerDisabledPaymentMethod
+     *
+     * @param $reason
+     */
+    public function gingerDisabledPaymentMethod($reason) {
+        $this->enabled = false;
+        $this->update_option('enabled', false);
+        WC_Admin_Notices::add_custom_notice('emspay-error', $reason);
     }
 }
