@@ -3,7 +3,7 @@ Tags: EMS Online, WooCommerce, payment
 Contributors: emspay, gingerpayments
 Requires at least: 5.6
 Tested up to: 5.6
-Stable tag: 1.2.3
+Stable tag: 1.2.4
 License: The MIT License (MIT)
 License URI: https://opensource.org/licenses/MIT
 
@@ -212,3 +212,8 @@ https://developer.emspay.eu/contact
 
 * Replaced 'reason' to 'customer_message' in error output
 * Added request to retrieve a list of available currencies for every payment method.
+
+** 1.2.4 **
+
+* Fixed the functionality of changing the status for orders with a repeated payment attempt
+* Fixed cases related to empty or invalid API key
