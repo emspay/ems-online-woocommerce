@@ -346,7 +346,6 @@ function woocommerce_emspay_init()
         {
             if (strstr($gateway->id,'emspay')) $ems_payment_methods = true;
         }
-
         if (!$ems_payment_methods) return $gateways; //if gateways aren't contain ems methods, further validations is unnecessary
 
         $current_currency = get_woocommerce_currency();
@@ -362,10 +361,7 @@ function woocommerce_emspay_init()
         try {
             $allowed_currencies = $client->send('GET', '/merchants/self/projects/self/currencies');
         } catch (Exception $exception) {
-            if(! wc_has_notice(sprintf(__('API Key is not valid: %s', WC_Emspay_Helper::DOMAIN), $exception->getMessage()), 'error')) {
-                wc_add_notice(sprintf(__('API Key is not valid: %s', WC_Emspay_Helper::DOMAIN), $exception->getMessage()), 'error');
-            }
-            return false;
+            return $gateways; //return gateways without currency validation when merchant's api-key hasn't access to api
         }
 
         foreach ( $gateways as $key => $gateway ) {
