@@ -48,7 +48,7 @@ function woocommerce_emspay_init()
 
     function woocommerce_add_emspay($methods)
     {
-        $methods = [
+        $ems_methods = [
             'WC_Emspay_Callback',
             'WC_Emspay_Ideal',
             'WC_Emspay_Banktransfer',
@@ -66,7 +66,7 @@ function woocommerce_emspay_init()
             'WC_Emspay_WeChat',
         ];
 
-        return $methods;
+        return array_merge($methods, $ems_methods);
     }
 
     /**
@@ -132,72 +132,75 @@ function woocommerce_emspay_init()
 
     load_plugin_textdomain(WC_Emspay_Helper::DOMAIN, false, basename(dirname(__FILE__)).'/languages');
 
-	/**
-	 * Function ginger_refund_an_order - refund EMS order
-	 *
-	 * @param $refund_id
-	 * @param $args
-	 */
+    /**
+     * Function ginger_refund_an_order - refund EMS order
+     *
+     * @param $refund_id
+     * @param $args
+     */
     function ginger_refund_an_order($refund_id, $args) {
+        $ems_order_id = get_post_meta($args['order_id'], 'ems_order_id', true);
+        $order = wc_get_order($args['order_id']);
+        if (!strstr($order->data['payment_method'],'emspay')) return true; //order was not paid by ems payment method
+        $ginger = ginger_get_client($order);
+        $emsOrder = $ginger->getOrder($ems_order_id);
+        $orderGateway = $order->get_payment_method();
 
-		$ems_order_id = get_post_meta($args['order_id'], 'ems_order_id', true);
-		$order = wc_get_order($args['order_id']);
-		$ginger = ginger_get_client($order);
-		$emsOrder = $ginger->getOrder($ems_order_id);
-		$orderGateway = $order->get_payment_method();
+        if($emsOrder['status'] !== 'completed') {
+            throw new Exception( __( 'Only completed orders can be refunded', WC_Emspay_Helper::DOMAIN ));
+        }
 
-		if($emsOrder['status'] !== 'completed') {
-			throw new Exception( __( 'Only completed orders can be refunded', WC_Emspay_Helper::DOMAIN ));
-		}
-		
-		$refund_data = [
-			'amount' => WC_Emspay_Helper::gingerGetAmountInCents($args['amount']),
-			'description' => 'OrderID: #' . $args['order_id'] . ', Reason: ' . $args['reason']
-		];
+        $refund_data = [
+            'amount' => WC_Emspay_Helper::gingerGetAmountInCents($args['amount']),
+            'description' => 'OrderID: #' . $args['order_id'] . ', Reason: ' . $args['reason']
+        ];
 
-		if( $orderGateway == 'emspay_klarna-pay-later' or $orderGateway == 'emspay_afterpay' ) {
-			if(!isset($emsOrder['transactions']['flags']['has-captures'])) {
-				throw new Exception( __('Refunds only possible when captured', WC_Emspay_Helper::DOMAIN ));
-			};
-			$refund_data['order_lines'] = WC_Emspay_Helper::gingerGetOrderLines($order);
-		}
+        if( $orderGateway == 'emspay_klarna-pay-later' or $orderGateway == 'emspay_afterpay' ) {
+            if(!isset($emsOrder['transactions']['flags']['has-captures'])) {
+                throw new Exception( __('Refunds only possible when captured', WC_Emspay_Helper::DOMAIN ));
+            };
+            $refund_data['order_lines'] = WC_Emspay_Helper::gingerGetOrderLines($order);
+        }
 
-		update_post_meta($args['order_id'], 'refund_id', $refund_id);
+        update_post_meta($args['order_id'], 'refund_id', $refund_id);
 
-		$ems_refund_order = $ginger->refundOrder(
-			$ems_order_id,
-			$refund_data
-		);
+        $ems_refund_order = $ginger->refundOrder(
+            $ems_order_id,
+            $refund_data
+        );
 
-		if( $ems_refund_order['status'] !== 'completed' ) {
-                if( isset(current($ems_refund_order['transactions'])['customer_message']) ) {
-                    throw new Exception( sprintf(__( 'Refund order is not completed: %s', WC_Emspay_Helper::DOMAIN ), current($ems_refund_order['transactions'])['customer_message']));
-                } else {
-                    throw new Exception( __( 'Refund order is not completed', WC_Emspay_Helper::DOMAIN ));
-                }
+        if( $ems_refund_order['status'] !== 'completed' ) {
+            if( isset(current($ems_refund_order['transactions'])['customer_message']) ) {
+                throw new Exception( sprintf(__( 'Refund order is not completed: %s', WC_Emspay_Helper::DOMAIN ), current($ems_refund_order['transactions'])['customer_message']));
+            } else {
+                throw new Exception( __( 'Refund order is not completed', WC_Emspay_Helper::DOMAIN ));
             }
-	}
-	
-	/**
-	 * Function ginger_add_refund_description
-	 *
-	 * @param $order
-	 */
-	function ginger_add_refund_description($order) {
-		echo "<p style='color: red; ' class='description'>" . esc_html__( "Please beware that for EMS transactions the refunds will process directly to the gateway!", WC_Emspay_Helper::DOMAIN) . "</p>";
-	}
+        }
+    }
 
-	/**
-	 * Function ginger_ship_an_order - Support for Klarna and Afterpay order shipped state
-	 *
-	 * @param $order_id
-	 * @param $order
-	 */
+    /**
+     * Function ginger_add_refund_description
+     *
+     * @param $order
+     */
+    function ginger_add_refund_description($order) {
+        if (strstr($order->data['payment_method'],'emspay')) //shows only for orders which were paid by ems payment method
+        {
+            echo "<p style='color: red; ' class='description'>" . esc_html__( "Please beware that for EMS transactions the refunds will process directly to the gateway!", WC_Emspay_Helper::DOMAIN) . "</p>";
+        }
+    }
+
+    /**
+     * Function ginger_ship_an_order - Support for Klarna and Afterpay order shipped state
+     *
+     * @param $order_id
+     * @param $order
+     */
     function ginger_ship_an_order($order_id, $order)
     {
         if ($order && $order->get_status() == 'shipped' && in_array($order->get_payment_method(), array('emspay_klarna-pay-later', 'emspay_afterpay'))) {
 
-			$ginger = ginger_get_client($order);
+            $ginger = ginger_get_client($order);
 
             try {
                 $id = get_post_meta($order_id, 'ems_order_id', true);
@@ -210,47 +213,47 @@ function woocommerce_emspay_init()
         }
     }
 
-	/**
-	 * Function ginger_get_client
-	 *
-	 * @param $order
-	 * @return \Ginger\ApiClient
-	 */
+    /**
+     * Function ginger_get_client
+     *
+     * @param $order
+     * @return \Ginger\ApiClient
+     */
     function ginger_get_client($order = []) {
-		$settings = get_option('woocommerce_emspay_settings');
-		$apiKey = $settings['api_key'];
+        $settings = get_option('woocommerce_emspay_settings');
+        $apiKey = $settings['api_key'];
 
-		if(! empty($order)) {
-                switch ($order->get_payment_method()) {
-                    case 'emspay_klarna-pay-later':
-                        $apiKey = ($settings['test_api_key'])?$settings['test_api_key']:$apiKey;
-                        break;
-                    case 'emspay_afterpay':
-                        $ap_settings = get_option('woocommerce_emspay_afterpay_settings');
-                        $apiKey = ($ap_settings['ap_test_api_key'])?$ap_settings['ap_test_api_key']:$apiKey;
-                        break;
-                }
+        if(! empty($order)) {
+            switch ($order->get_payment_method()) {
+                case 'emspay_klarna-pay-later':
+                    $apiKey = ($settings['test_api_key'])?$settings['test_api_key']:$apiKey;
+                    break;
+                case 'emspay_afterpay':
+                    $ap_settings = get_option('woocommerce_emspay_afterpay_settings');
+                    $apiKey = ($ap_settings['ap_test_api_key'])?$ap_settings['ap_test_api_key']:$apiKey;
+                    break;
             }
+        }
 
-		if (! $apiKey) {
-			return false;
-		}
+        if (! $apiKey) {
+            return false;
+        }
 
-		try {
-			$ginger = \Ginger\Ginger::createClient(
-				WC_Emspay_Helper::GINGER_ENDPOINT,
-				$apiKey,
-				($settings['bundle_cacert'] == 'yes') ?
-					[
-						CURLOPT_CAINFO => WC_Emspay_Helper::gingerGetCaCertPath()
-					] : []
-			);
-		} catch (Exception $exception) {
-			WC_Admin_Notices::add_custom_notice('emspay-error', $exception->getMessage());
-		}
+        try {
+            $ginger = \Ginger\Ginger::createClient(
+                WC_Emspay_Helper::GINGER_ENDPOINT,
+                $apiKey,
+                ($settings['bundle_cacert'] == 'yes') ?
+                    [
+                        CURLOPT_CAINFO => WC_Emspay_Helper::gingerGetCaCertPath()
+                    ] : []
+            );
+        } catch (Exception $exception) {
+            WC_Admin_Notices::add_custom_notice('emspay-error', $exception->getMessage());
+        }
 
-		return $ginger;
-	}
+        return $ginger;
+    }
 
     /**
      * Custom text on the receipt page.
@@ -338,6 +341,13 @@ function woocommerce_emspay_init()
         } else {
             wc_clear_notices();
         }
+        $ems_payment_methods = false; //flag that says gateways are contain ems methods or not
+        foreach ($gateways as $key => $gateway)
+        {
+            if (strstr($gateway->id,'emspay')) $ems_payment_methods = true;
+        }
+
+        if (!$ems_payment_methods) return $gateways; //if gateways aren't contain ems methods, further validations is unnecessary
 
         $current_currency = get_woocommerce_currency();
         $client = ginger_get_client();
@@ -359,6 +369,7 @@ function woocommerce_emspay_init()
         }
 
         foreach ( $gateways as $key => $gateway ) {
+            if (!strstr($gateway->id,'emspay')) continue; //skip woocommerce default payment methods
             $currentMethod = strtr($gateway->id, ['emspay_' => '']);
 
             if(empty($allowed_currencies['payment_methods'][$currentMethod]['currencies'])) {
