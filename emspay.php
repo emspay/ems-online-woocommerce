@@ -341,26 +341,40 @@ function woocommerce_emspay_init()
         } else {
             wc_clear_notices();
         }
-        $ems_payment_methods = false; //flag that says gateways are contain ems methods or not
-        foreach ($gateways as $key => $gateway)
-        {
-            if (strstr($gateway->id,'emspay')) $ems_payment_methods = true;
-        }
-        if (!$ems_payment_methods) return $gateways; //if gateways aren't contain ems methods, further validations is unnecessary
+
+        if (!(int)preg_grep('/emspay/', array_keys($gateways))) return $gateways;//if gateways aren't contain ems methods, further validations is unnecessary
 
         $current_currency = get_woocommerce_currency();
         $client = ginger_get_client();
 
         if (empty($client)) {
-            if(! wc_has_notice(__( 'API key is empty. Set API key and try again', WC_Emspay_Helper::DOMAIN ), 'error')) {
-                wc_add_notice(__( 'API key is empty. Set API key and try again', WC_Emspay_Helper::DOMAIN ), 'error');
+            if(! wc_has_notice(__( 'API key is empty. EMS payment methods deactivated', WC_Emspay_Helper::DOMAIN ), 'notice')) {
+                wc_add_notice(__( 'API key is empty. EMS payment methods deactivated', WC_Emspay_Helper::DOMAIN ), 'notice');
             }
-            return false;
+            foreach ($gateways as $key => $gateway) if (strstr($gateway->id,'emspay')) unset($gateways[$key]);
+            return $gateways;
         }
 
         try {
             $allowed_currencies = $client->send('GET', '/merchants/self/projects/self/currencies');
         } catch (Exception $exception) {
+
+            //Unfortunately $exception->getCode() is empty hence we find error code in $exception->getMessage()
+            if (strstr($exception->getMessage(),"Unauthorized(401)"))
+            {
+                if(! wc_has_notice(sprintf(__('API Key is not valid: %s EMS payment methods deactivated', WC_Emspay_Helper::DOMAIN), $exception->getMessage()), 'notice')) {
+                    wc_add_notice(sprintf(__('API Key is not valid: %s EMS payment methods deactivated', WC_Emspay_Helper::DOMAIN), $exception->getMessage()), 'notice');
+                }
+                foreach ($gateways as $key => $gateway) if (strstr($gateway->id,'emspay')) unset($gateways[$key]);
+            }
+
+            if (strstr($exception->getMessage(),"Forbidden(403)"))
+            {
+                if(! wc_has_notice(sprintf(__('API Key has not permission for some action: %s Please contact technical support!', WC_Emspay_Helper::DOMAIN), $exception->getMessage()), 'notice')) {
+                    wc_add_notice(sprintf(__('API Key has not permission for some action: %s Please contact technical support!', WC_Emspay_Helper::DOMAIN), $exception->getMessage()), 'notice');
+                }
+            }
+
             return $gateways; //return gateways without currency validation when merchant's api-key hasn't access to api
         }
 
