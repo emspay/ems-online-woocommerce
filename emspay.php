@@ -394,8 +394,18 @@ function woocommerce_emspay_init()
         return $gateways;
     }
 
+    /**
+     *  Function ginger_remove_notices
+     */
+    function ginger_remove_notices()
+    {
+        wc_clear_notices();
+    }
+
     add_filter('woocommerce_available_payment_gateways', 'ginger_afterpay_filter_gateway', 10);
     add_filter('woocommerce_available_payment_gateways', 'ginger_klarna_filter_gateway', 10);
     add_filter('woocommerce_available_payment_gateways', 'ginger_filter_gateway_by_currency', 10);
     add_filter('woocommerce_thankyou_order_received_text', 'ginger_order_received_text', 10, 2);
+    add_filter('woocommerce_thankyou', 'ginger_remove_notices', 20);
+
 }
