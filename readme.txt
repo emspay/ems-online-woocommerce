@@ -3,7 +3,7 @@ Tags: EMS Online, WooCommerce, payment
 Contributors: emspay, gingerpayments
 Requires at least: 5.6
 Tested up to: 5.6
-Stable tag: 1.2.4
+Stable tag: 1.2.5
 License: The MIT License (MIT)
 License URI: https://opensource.org/licenses/MIT
 
@@ -217,3 +217,8 @@ https://developer.emspay.eu/contact
 
 * Fixed the functionality of changing the status for orders with a repeated payment attempt
 * Fixed cases related to empty or invalid API key
+
+** 1.2.5 **
+
+* Added Woocommerce default payment methods
+* Enabled AfterPay
