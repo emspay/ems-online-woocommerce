@@ -95,3 +95,8 @@
 
 * Fixed the functionality of changing the status for orders with a repeated payment attempt
 * Fixed cases related to empty or invalid API key
+
+** 1.2.5 **
+
+* Added Woocommerce default payment methods
+* Enabled AfterPay

@@ -73,9 +73,13 @@ class WC_Emspay_AfterPay extends WC_Emspay_Gateway
             ];
         }
 
+        $pay_url = array_key_exists(0, $emsOrder['transactions'])
+            ? $emsOrder['transactions'][0]['payment_url']
+            : null;
+
         return [
             'result' => 'success',
-            'redirect' => $this->get_return_url($order)
+            'redirect' => $pay_url
         ];
     }
 
