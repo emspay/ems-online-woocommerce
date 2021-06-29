@@ -1,0 +1,12 @@
+/**
+ * Plugin Name: EMS Online
+ * Plugin URI: https://emspay.nl/
+ * Description: EMS Pay WooCommerce plugin
+ * Version:
+ * Author: Ginger Payments
+ * Author URI: https://www.gingerpayments.com/
+ * License: The MIT License (MIT)
+ * Text Domain: emspay
+ * Domain Path: /languages
+ */
+
