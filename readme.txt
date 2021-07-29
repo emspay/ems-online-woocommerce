@@ -3,7 +3,7 @@ Tags: EMS Online, WooCommerce, payment
 Contributors: emspay, gingerpayments
 Requires at least: 5.6
 Tested up to: 5.6
-Stable tag: 1.2.5
+Stable tag: 1.3.0
 License: The MIT License (MIT)
 License URI: https://opensource.org/licenses/MIT
 
@@ -122,6 +122,7 @@ https://developer.emspay.eu/contact
 
 == Changelog ==
 
+
 ** 1.0.0 **
 
 * Initial version
@@ -220,5 +221,15 @@ https://developer.emspay.eu/contact
 
 ** 1.2.5 **
 
-* Added Woocommerce default payment methods
-* Enabled AfterPay
+* Added Woocommerce default payment methods.
+* Enabled AfterPay.
+
+** 1.3.0 **
+
+* Refactored code to handle GPE solution.
+* Unified bank labels to handle GPE solution.
+* Added Bank Config class.
+* Added Bank Gateway for handling custom bank functionality requests.
+* Implemented GitHubActions.  
+* Added AfterMerge PHPUnit test to check GPE solution GitHub actions.
+* Added Sofort, Klarna Direct Debit, Google Pay payment methods

@@ -98,5 +98,15 @@
 
 ** 1.2.5 **
 
-* Added Woocommerce default payment methods
-* Enabled AfterPay
+* Added Woocommerce default payment methods.
+* Enabled AfterPay.
+
+** 1.3.0 **
+
+* Refactored code to handle GPE solution.
+* Unified bank labels to handle GPE solution.
+* Added Bank Config class.
+* Added Bank Gateway for handling custom bank functionality requests.
+* Implemented GitHubActions.  
+* Added AfterMerge PHPUnit test to check GPE solution GitHub actions.
+* Added Sofort, Klarna Direct Debit, Google Pay payment methods
