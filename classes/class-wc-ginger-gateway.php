@@ -146,6 +146,11 @@ class WC_Ginger_Gateway extends WC_Payment_Gateway
      */
     public function process_payment($order_id)
     {
+        $this->merchant_order_id = $order_id;
+        $this->woocommerceOrder = new WC_Order($this->merchant_order_id);
+
+        if($this->woocommerceOrder->get_payment_method() != $this->id) return false;
+
         if ($this instanceof GingerIssuers)
         {
             if (!$this->gingerGetSelectedIssuer())
@@ -154,9 +159,6 @@ class WC_Ginger_Gateway extends WC_Payment_Gateway
                 return ['result' => 'failure'];
             }
         }
-
-        $this->merchant_order_id = $order_id;
-        $this->woocommerceOrder = new WC_Order($this->merchant_order_id);
 
         try {
             $gingerOrder = $this->gingerClient->createOrder($this->gingerGetBuiltOrder());

@@ -109,4 +109,9 @@
 * Added Bank Gateway for handling custom bank functionality requests.
 * Implemented GitHubActions.  
 * Added AfterMerge PHPUnit test to check GPE solution GitHub actions.
-* Added Sofort, Klarna Direct Debit, Google Pay payment methods
+* Added Sofort, KlarnaDirectDebit, GooglePay payment methods
+
+** 1.3.1 **
+
+*Fixed bug: After order's status changing creates BankTransfer order.
+*Fixed bug: Refund doesn't work for payment methods that can be captured (AfterPay, KlarnaPayLater, KlarnaDirectDebit)

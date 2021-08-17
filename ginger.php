@@ -3,7 +3,7 @@
  * Plugin Name: EMS Online
  * Plugin URI: https://emspay.nl/
  * Description: EMS Pay WooCommerce plugin
- * Version: 1.3.0
+ * Version: 1.3.1
  * Author: Ginger Payments
  * Author URI: https://www.gingerpayments.com/
  * License: The MIT License (MIT)
@@ -117,7 +117,7 @@ function woocommerce_ginger_init()
 
         if(in_array($order->get_payment_method(),WC_Ginger_Helper::GATEWAYS_SUPPORT_CAPTURING))
         {
-            if(!isset($gingerOrder['transactions']['flags']['has-captures']))
+            if(!in_array('has-captures',$gingerOrder['flags']))
             {
                 throw new Exception(__('Refunds only possible when captured', WC_Ginger_BankConfig::BANK_PREFIX));
             };
