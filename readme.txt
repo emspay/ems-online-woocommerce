@@ -3,7 +3,7 @@ Tags: EMS Online, WooCommerce, payment
 Contributors: emspay, gingerpayments
 Requires at least: 5.6
 Tested up to: 5.6
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 License: The MIT License (MIT)
 License URI: https://opensource.org/licenses/MIT
 
@@ -238,3 +238,8 @@ https://developer.emspay.eu/contact
 
 *Fixed bug: After order's status changing creates BankTransfer order.
 *Fixed bug: Refund doesn't work for payment methods that can be captured (AfterPay, KlarnaPayLater, KlarnaDirectDebit)
+
+** 1.3.2 **
+
+*Fixed bug: All the automated e-mails are no longer being send. 
+

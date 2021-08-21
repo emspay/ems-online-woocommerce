@@ -36,7 +36,7 @@ class WC_Ginger_Gateway extends WC_Payment_Gateway
             // Create banktransfer order in ginger system when creating an order from the admin panel
             add_action('woocommerce_process_shop_order_meta', array($this, 'process_payment'), 41, 1);
             // Sends instructions for payment in the Order email
-            add_action( 'woocommerce_email_after_order_table', array($this, 'gingerIdentificationProcess'), 10, 1 );
+            add_action( 'woocommerce_email_after_order_table', array($this, 'ginger_add_order_email_instructions'), 10, 1 );
         }
 
     }
@@ -357,6 +357,21 @@ class WC_Ginger_Gateway extends WC_Payment_Gateway
         $this->enabled = false;
         $this->update_option('enabled', false);
         WC_Admin_Notices::add_custom_notice('ginger-error', $reason);
+    }
+
+    /**
+     * Adds instructions for order emails
+     *
+     * @param $order
+     */
+    public function ginger_add_order_email_instructions($order) {
+
+        $payment_method = $order->get_payment_method();
+
+        if( $payment_method == WC_Ginger_BankConfig::BANK_PREFIX . '_bank-transfer')
+        {
+            echo $this->gingerIdentificationProcess($order->get_id());
+        }
     }
 
     /**

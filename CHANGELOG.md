@@ -115,3 +115,8 @@
 
 *Fixed bug: After order's status changing creates BankTransfer order.
 *Fixed bug: Refund doesn't work for payment methods that can be captured (AfterPay, KlarnaPayLater, KlarnaDirectDebit)
+
+** 1.3.2 **
+
+*Fixed bug: All the automated e-mails are no longer being send. 
+
