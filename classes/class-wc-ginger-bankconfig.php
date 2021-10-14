@@ -16,6 +16,7 @@ class WC_Ginger_BankConfig
      */
     const BANK_PREFIX = "emspay";
     const BANK_LABEL = "EMS Online";
+    const PLUGIN_NAME = "emspay-online-woocommerce";
 
     /**
      * EMS Online supported payment methods

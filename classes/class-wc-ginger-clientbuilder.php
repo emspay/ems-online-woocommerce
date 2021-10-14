@@ -44,7 +44,8 @@ class WC_Ginger_Clientbuilder
     public static function gingerGetTestAPIKey($paymentMethod)
     {
         $settings = get_option('woocommerce_'.$paymentMethod.'_settings');
-        if (!array_key_exists('test_api_key', $settings)) return false;
+        if (is_array($settings) && !array_key_exists('test_api_key', $settings)) return false;
+
         return $settings['test_api_key'];
     }
 
