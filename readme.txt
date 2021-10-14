@@ -243,3 +243,7 @@ https://developer.emspay.eu/contact
 
 *Fixed bug: All the automated e-mails are no longer being send. 
 
+** 1.3.3 **
+
+*Fixed bug: an error is displayed on the store interface
+

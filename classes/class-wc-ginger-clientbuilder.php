@@ -45,7 +45,6 @@ class WC_Ginger_Clientbuilder
     {
         $settings = get_option('woocommerce_'.$paymentMethod.'_settings');
         if (is_array($settings) && !array_key_exists('test_api_key', $settings)) return false;
-
         return $settings['test_api_key'];
     }
 
