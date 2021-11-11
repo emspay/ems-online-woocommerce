@@ -3,7 +3,7 @@
  * Plugin Name: EMS Online
  * Plugin URI: https://emspay.nl/
  * Description: EMS Pay WooCommerce plugin
- * Version: 1.3.3
+ * Version: 1.3.4
  * Author: Ginger Payments
  * Author URI: https://www.gingerpayments.com/
  * License: The MIT License (MIT)
@@ -19,7 +19,7 @@ if (!defined('ABSPATH')) {
 /**
  * Define the Plugin version
  */
-define('GINGER_PLUGIN_VERSION', 'WooCommerce v' . get_file_data(__FILE__, array('Version'), 'plugin')[0]);
+define('GINGER_PLUGIN_VERSION', get_file_data(__FILE__, array('Version'), 'plugin')[0]);
 define('GINGER_PLUGIN_URL', plugin_dir_url(__FILE__));
 
 add_action('plugins_loaded', 'woocommerce_ginger_init', 0);
@@ -165,14 +165,17 @@ function woocommerce_ginger_init()
      */
     function ginger_ship_an_order($order_id, $order)
     {
-        if ($order->get_status() == 'shipped' && in_array($order->get_payment_method(),WC_Ginger_Helper::GATEWAYS_SUPPORT_CAPTURING))
+        if ($order->get_status() == 'shipped')
         {
             $client = WC_Ginger_Clientbuilder::gingerBuildClient($order->get_payment_method());
             try {
                 $id = get_post_meta($order_id, WC_Ginger_BankConfig::BANK_PREFIX.'_order_id', true);
                 $gingerOrder = $client->getOrder($id);
-                $transactionID = current($gingerOrder['transactions']) ? current($gingerOrder['transactions'])['id'] : null;
-                $client->captureOrderTransaction($gingerOrder['id'], $transactionID);
+                if (current($gingerOrder['transactions'])['is_capturable'])//check if order can be captured
+                {
+                    $transactionID = current($gingerOrder['transactions']) ? current($gingerOrder['transactions'])['id'] : null;
+                    $client->captureOrderTransaction($gingerOrder['id'], $transactionID);
+                }
             } catch (\Exception $exception) {
                 WC_Admin_Notices::add_custom_notice('ginger-error', $exception->getMessage());
             }
@@ -324,9 +327,29 @@ function woocommerce_ginger_init()
         wc_clear_notices();
     }
 
+    function applepay_detection()
+    {
+        if (is_checkout()):?>
+            <script type="text/javascript">
+                jQuery(document).ready(function ($) {
+                    $(document.body).on('updated_checkout', function () {
+                        let BANK_PREFIX = '<?php echo WC_Ginger_BankConfig::BANK_PREFIX?>';
+                        if(!window.ApplePaySession)
+                        {
+                            let payment = document.getElementsByClassName('payment_method_'+BANK_PREFIX+'_apple-pay')[0];
+                            payment.style.display = 'none';
+                        }
+                    });
+                });
+            </script>
+        <?php
+        endif;
+    }
+
     add_filter('woocommerce_available_payment_gateways', 'ginger_additional_filter_gateways', 10);
     add_filter('woocommerce_available_payment_gateways', 'ginger_filter_gateway_by_currency', 10);
     add_filter('woocommerce_thankyou_order_received_text', 'ginger_order_received_text', 10, 2);
     add_action('woocommerce_thankyou', 'ginger_remove_notices', 20);
+    add_action('woocommerce_after_checkout_form', 'applepay_detection',10);
 
 }

@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class WC_Ginger_KlarnaDirectDebit extends WC_Ginger_BankGateway implements GingerOrderLines
+class WC_Ginger_KlarnaDirectDebit extends WC_Ginger_BankGateway
 {
     public function __construct()
     {

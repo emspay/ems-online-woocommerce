@@ -5,7 +5,6 @@ if (!defined('ABSPATH')) {
 }
 
 class WC_Ginger_AfterPay extends WC_Ginger_BankGateway implements
-    GingerOrderLines,
     GingerCustomerPersonalInformation,
     GingerAdditionalTestingEnvironment,
     GingerCountryValidation

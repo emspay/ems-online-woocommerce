@@ -26,6 +26,8 @@ class WC_Ginger_Orderbuilder extends WC_Ginger_Gateway
         $order['description'] = $this->gingerGetOrderDescription();
         $order['return_url'] = $this->gingergetReturnUrl();
         $order['webhook_url'] = $this->gingerGetWebhookUrl();
+        $order['order_lines'] = $this->gingerGetOrderLines($this->woocommerceOrder);
+
         $transactions = $this->gingerGetTransactions();
 
         if ($this instanceof GingerIssuers)
@@ -39,11 +41,6 @@ class WC_Ginger_Orderbuilder extends WC_Ginger_Gateway
         if (!$this instanceof GingerHostedPaymentPage) //HPP order must not contains transaction field
         {
             $order['transactions'][] = $transactions;
-        }
-
-        if ($this instanceof GingerOrderLines)
-        {
-            $order['order_lines'] = $this->gingerGetOrderLines($this->woocommerceOrder);
         }
 
         return $order;
@@ -86,8 +83,30 @@ class WC_Ginger_Orderbuilder extends WC_Ginger_Gateway
     public function gingerGetExtra(): array
     {
         return [
-            'plugin' => GINGER_PLUGIN_VERSION
+            'user_agent' => $this->gingerGetUserAgent(),
+            'platform_name' => $this->gingerGetPlatformName(),
+            'platform_version' => $this->gingerGetPlatformVersion(),
+            'plugin_name' => $this->gingerGetPluginName(),
+            'plugin_version' => $this->gingerGetPluginVersion()
         ];
+    }
+    public function gingerGetPluginVersion(): string
+    {
+        return GINGER_PLUGIN_VERSION;
+    }
+
+    public function gingerGetPluginName()
+    {
+        return WC_Ginger_BankConfig::PLUGIN_NAME;
+    }
+    public function gingerGetPlatformName()
+    {
+        return 'WooCommerce';
+    }
+
+    public function gingerGetPlatformVersion()
+    {
+        return get_option('woocommerce_version');
     }
 
     /**

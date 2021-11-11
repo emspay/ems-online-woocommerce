@@ -4,9 +4,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class WC_Ginger_KlarnaPayLater extends WC_Ginger_BankGateway implements
-    GingerOrderLines,
-    GingerAdditionalTestingEnvironment
+class WC_Ginger_KlarnaPayLater extends WC_Ginger_BankGateway implements GingerAdditionalTestingEnvironment
 {
 
     public function __construct()

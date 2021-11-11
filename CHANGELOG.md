@@ -113,14 +113,20 @@
 
 ** 1.3.1 **
 
-*Fixed bug: After order's status changing creates BankTransfer order.
-*Fixed bug: Refund doesn't work for payment methods that can be captured (AfterPay, KlarnaPayLater, KlarnaDirectDebit)
+* Fixed bug: After order's status changing creates BankTransfer order.
+* Fixed bug: Refund doesn't work for payment methods that can be captured (AfterPay, KlarnaPayLater, KlarnaDirectDebit)
 
 ** 1.3.2 **
 
-*Fixed bug: All the automated e-mails are no longer being send. 
+* Fixed bug: All the automated e-mails are no longer being send. 
 
 ** 1.3.3 **
 
-*Fixed bug: an error is displayed on the store interface
+* Fixed bug: an error is displayed on the store interface
 
+** 1.3.4 **
+
+* Added Apple Pay and Google Pay detection
+* Updated the extra field in an order, Refactored PHPUnit tests to correspond the updated extra field
+* Added Order Lines in each order
+* Fixed bug: plugin will be deactivated after updating through store when it was installed using archive.
