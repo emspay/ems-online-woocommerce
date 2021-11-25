@@ -3,7 +3,7 @@ Tags: EMS Online, WooCommerce, payment
 Contributors: emspay, gingerpayments
 Requires at least: 5.6
 Tested up to: 5.6
-Stable tag: 1.3.4
+Stable tag: 1.3.5
 License: The MIT License (MIT)
 License URI: https://opensource.org/licenses/MIT
 
@@ -253,3 +253,7 @@ https://developer.emspay.eu/contact
 * Updated the extra field in an order, Refactored PHPUnit tests to correspond the updated extra field
 * Added Order Lines in each order
 * Fixed bug: plugin will be deactivated after updating through store when it was installed using archive.
+
+** 1.3.5 **
+
+* Added default list of currency with EUR

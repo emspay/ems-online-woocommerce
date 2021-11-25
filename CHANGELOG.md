@@ -130,3 +130,7 @@
 * Updated the extra field in an order, Refactored PHPUnit tests to correspond the updated extra field
 * Added Order Lines in each order
 * Fixed bug: plugin will be deactivated after updating through store when it was installed using archive.
+
+** 1.3.5 **
+
+* Added default list of currency with EUR

@@ -3,7 +3,7 @@
  * Plugin Name: EMS Online
  * Plugin URI: https://emspay.nl/
  * Description: EMS Pay WooCommerce plugin
- * Version: 1.3.4
+ * Version: 1.3.5
  * Author: Ginger Payments
  * Author URI: https://www.gingerpayments.com/
  * License: The MIT License (MIT)
@@ -242,17 +242,16 @@ function woocommerce_ginger_init()
                     wc_add_notice(sprintf(__('API Key is not valid: %s '.WC_Ginger_BankConfig::BANK_LABEL.' payment methods deactivated', WC_Ginger_BankConfig::BANK_PREFIX), $exception->getMessage()), 'notice');
                 }
                 foreach ($gateways as $key => $gateway) if (strstr($gateway->id,WC_Ginger_BankConfig::BANK_PREFIX)) unset($gateways[$key]);
+
+                return $gateways;
             }
 
-            if (strstr($exception->getMessage(),"Forbidden(403)"))
+            foreach ($gateways as $gateway)
             {
-                if(!wc_has_notice(sprintf(__('API Key has not permission for some action: %s Please contact technical support!', WC_Ginger_BankConfig::BANK_PREFIX), $exception->getMessage()), 'notice'))
-                {
-                    wc_add_notice(sprintf(__('API Key has not permission for some action: %s Please contact technical support!', WC_Ginger_BankConfig::BANK_PREFIX), $exception->getMessage()), 'notice');
-                }
+                if (!strstr($gateway->id,WC_Ginger_BankConfig::BANK_PREFIX)) continue; //skip woocommerce default payment methods
+                $paymentMethod = str_replace(WC_Ginger_BankConfig::BANK_PREFIX.'_', '', $gateway->id); //get payment method name without bank prefix
+                $allowed_currencies['payment_methods'][$paymentMethod]['currencies'] = ['EUR']; //create array of currency with one default currency - EUR for each payment method
             }
-
-            return $gateways; //return gateways without currency validation when merchant's api-key hasn't access to api
         }
 
         $notAvailableGateways = "";
