@@ -134,3 +134,8 @@
 ** 1.3.5 **
 
 * Added default list of currency with EUR
+
+** 1.3.6 **
+
+* Removed unavailable payment methods
+* Added caching the array of currency

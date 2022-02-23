@@ -3,7 +3,7 @@
  * Plugin Name: EMS Online
  * Plugin URI: https://emspay.nl/
  * Description: EMS Pay WooCommerce plugin
- * Version: 1.3.5
+ * Version: 1.3.6
  * Author: Ginger Payments
  * Author URI: https://www.gingerpayments.com/
  * License: The MIT License (MIT)
@@ -198,80 +198,6 @@ function woocommerce_ginger_init()
     }
 
 
-    /**
-     * Filter out The plugin gateways by currencies.
-     *
-     * @param $gateways
-     * @return bool
-     */
-    function ginger_filter_gateway_by_currency($gateways)
-    {
-        if (!is_checkout()) return $gateways;
-        wc_clear_notices();
-
-        if (!(int)preg_grep('/'.WC_Ginger_BankConfig::BANK_PREFIX.'/', array_keys($gateways))) return $gateways;//if gateways aren't contain bank's methods, further validations is unnecessary
-
-        $current_currency = get_woocommerce_currency();
-        $client = WC_Ginger_Clientbuilder::gingerBuildClient();
-
-        if (!$client)
-        {
-            if(!wc_has_notice(__( 'API key is empty. '.WC_Ginger_BankConfig::BANK_LABEL.' payment methods deactivated', WC_Ginger_BankConfig::BANK_PREFIX ), 'notice'))
-            {
-                wc_add_notice(__( 'API key is empty. '.WC_Ginger_BankConfig::BANK_LABEL.' payment methods deactivated', WC_Ginger_BankConfig::BANK_PREFIX ), 'notice');
-            }
-            foreach ($gateways as $key => $gateway)
-            {
-                if ($gateway instanceof GingerAdditionalTestingEnvironment)
-                {
-                    if (WC_Ginger_Clientbuilder::gingerBuildClient($gateway->id)) continue;
-                }
-                if (strstr($gateway->id,WC_Ginger_BankConfig::BANK_PREFIX)) unset($gateways[$key]);
-            }
-            return $gateways;
-        }
-
-        try {
-            $allowed_currencies = $client->getCurrencyList();
-        } catch (Exception $exception) {
-            //Unfortunately $exception->getCode() is empty hence we find error code in $exception->getMessage()
-            if (strstr($exception->getMessage(),"Unauthorized(401)"))
-            {
-                if(!wc_has_notice(sprintf(__('API Key is not valid: %s '.WC_Ginger_BankConfig::BANK_LABEL.' payment methods deactivated', WC_Ginger_BankConfig::BANK_PREFIX), $exception->getMessage()), 'notice'))
-                {
-                    wc_add_notice(sprintf(__('API Key is not valid: %s '.WC_Ginger_BankConfig::BANK_LABEL.' payment methods deactivated', WC_Ginger_BankConfig::BANK_PREFIX), $exception->getMessage()), 'notice');
-                }
-                foreach ($gateways as $key => $gateway) if (strstr($gateway->id,WC_Ginger_BankConfig::BANK_PREFIX)) unset($gateways[$key]);
-
-                return $gateways;
-            }
-
-            foreach ($gateways as $gateway)
-            {
-                if (!strstr($gateway->id,WC_Ginger_BankConfig::BANK_PREFIX)) continue; //skip woocommerce default payment methods
-                $paymentMethod = str_replace(WC_Ginger_BankConfig::BANK_PREFIX.'_', '', $gateway->id); //get payment method name without bank prefix
-                $allowed_currencies['payment_methods'][$paymentMethod]['currencies'] = ['EUR']; //create array of currency with one default currency - EUR for each payment method
-            }
-        }
-
-        $notAvailableGateways = "";
-        foreach ($gateways as $key => $gateway)
-        {
-            if (!strstr($gateway->id,WC_Ginger_BankConfig::BANK_PREFIX)) continue; //skip woocommerce default payment methods
-            $currentMethod = str_replace(WC_Ginger_BankConfig::BANK_PREFIX.'_','',$gateway->id);
-            if(!array_key_exists($currentMethod, $allowed_currencies['payment_methods']) || !$allowed_currencies['payment_methods'][$currentMethod]['currencies']) continue;
-            if(!in_array($current_currency, $allowed_currencies['payment_methods'][$currentMethod]['currencies']))
-            {
-                $notAvailableGateways .= $gateway->method_title."; <br>";
-                unset($gateways[$key]);
-            }
-        }
-        if($notAvailableGateways && !wc_has_notice(__('The following payment methods are not available for selected currency: <br>'.$notAvailableGateways, WC_Ginger_BankConfig::BANK_PREFIX), 'notice'))
-        {
-            wc_add_notice(__('The following payment methods are not available for selected currency: <br>'.$notAvailableGateways, WC_Ginger_BankConfig::BANK_PREFIX), 'notice');
-        }
-        return $gateways;
-    }
 
     /**
      * Filter out The plugin gateways by countries and IPs.
@@ -346,7 +272,6 @@ function woocommerce_ginger_init()
     }
 
     add_filter('woocommerce_available_payment_gateways', 'ginger_additional_filter_gateways', 10);
-    add_filter('woocommerce_available_payment_gateways', 'ginger_filter_gateway_by_currency', 10);
     add_filter('woocommerce_thankyou_order_received_text', 'ginger_order_received_text', 10, 2);
     add_action('woocommerce_thankyou', 'ginger_remove_notices', 20);
     add_action('woocommerce_after_checkout_form', 'applepay_detection',10);

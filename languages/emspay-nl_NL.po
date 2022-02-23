@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-10 13:02+0300\n"
-"PO-Revision-Date: 2021-07-13 15:15+0000\n"
+"PO-Revision-Date: 2022-01-10 07:43+0000\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Language: nl-NL\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;esc_html_e;esc_html__\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: .\n"
-"X-Loco-Version: 2.5.3; wp-5.6"
+"X-Loco-Version: 2.5.3; wp-5.7.5"
 
 #: classes/class-wc-emspay-banktransfer.php:121
 msgid "Account Holder:"
@@ -51,7 +51,7 @@ msgstr "EMS Online: American Express"
 
 #: classes/class-wc-emspay-callback.php:26
 msgid "API key"
-msgstr "API key"
+msgstr "EMS Online API Key:"
 
 msgid ""
 "API Key has not permission for some action: %s Please contact technical "
@@ -126,7 +126,7 @@ msgstr "Checkout pagina"
 
 #: classes/class-wc-emspay-ideal.php:83
 msgid "Choose your bank:"
-msgstr "Kies uw bank:"
+msgstr "Selecteer uw bank:"
 
 #: classes/class-wc-emspay-helper.php:338
 msgid "Countries available for AfterPay"
@@ -169,7 +169,7 @@ msgid "EMS Online - Klarna Pay Now"
 msgstr "EMS Online: Klarna Pay Now"
 
 msgid "EMS Online - Library"
-msgstr "EMS Online – Bibliotheek"
+msgstr "EMS Online – Inpluggen"
 
 #: classes/class-wc-emspay-payconiq.php:17 
 #: classes/class-wc-emspay-payconiq.php:18
@@ -335,7 +335,7 @@ msgid "Klarna Pay Now"
 msgstr "Klarna Pay Now"
 
 msgid "Library"
-msgstr "Bibliotheek"
+msgstr "Inpluggen"
 
 #: classes/class-wc-emspay-afterpay.php:125
 msgid "Maand"
@@ -433,7 +433,7 @@ msgstr "Winkelwagen"
 #: classes/class-wc-emspay-callback.php:31 
 #: classes/class-wc-emspay-helper.php:328
 msgid "Test API key"
-msgstr "Test API key"
+msgstr "EMS Online Test API-sleutel:"
 
 #: classes/class-wc-emspay-helper.php:330
 msgid "Test API key for testing implementation of AfterPay."

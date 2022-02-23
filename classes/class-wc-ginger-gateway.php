@@ -27,9 +27,11 @@ class WC_Ginger_Gateway extends WC_Payment_Gateway
         add_action( 'woocommerce_before_settings_checkout', array( $this, 'ginger_checkout_tab_output' ) );
         add_action('woocommerce_update_options_payment_gateways_'.$this->id, array($this, 'process_admin_options'));
         add_action('woocommerce_update_options_payment_gateways_'.$this->id, array($this, 'ginger_update_options_payment_gateways'));
+        add_action('woocommerce_update_options_payment_gateways_'.$this->id, array($this, 'refresh_saved_currency_array'));
         add_action('woocommerce_thankyou_'.$this->id, array($this, 'ginger_handle_thankyou'));
         add_action('woocommerce_api_'.strtolower(get_class($this)), array($this, 'ginger_handle_callback'));
         add_filter('woocommerce_valid_order_statuses_for_payment_complete', array($this, 'ginger_append_processing_order_post_status'));
+        add_filter('woocommerce_available_payment_gateways', array($this,'ginger_filter_gateway_by_currency'), 10);
 
         if($this instanceof GingerIdentificationPay)
         {
@@ -41,6 +43,119 @@ class WC_Ginger_Gateway extends WC_Payment_Gateway
 
     }
 
+    /**
+     * Filter out The plugin gateways by currencies.
+     *
+     * @param $gateways
+     * @return bool
+     */
+    function ginger_filter_gateway_by_currency($gateways)
+    {
+        if (!is_checkout()) return $gateways;
+        wc_clear_notices();
+
+        if (!(int)preg_grep('/'.WC_Ginger_BankConfig::BANK_PREFIX.'/', array_keys($gateways))) return $gateways;//if gateways aren't contain bank's methods, further validations is unnecessary
+
+        $current_currency = get_woocommerce_currency();
+
+        if (!$this->gingerClient)
+        {
+            if(!wc_has_notice(__( 'API key is empty. '.WC_Ginger_BankConfig::BANK_LABEL.' payment methods deactivated', WC_Ginger_BankConfig::BANK_PREFIX ), 'notice'))
+            {
+                wc_add_notice(__( 'API key is empty. '.WC_Ginger_BankConfig::BANK_LABEL.' payment methods deactivated', WC_Ginger_BankConfig::BANK_PREFIX ), 'notice');
+            }
+            foreach ($gateways as $key => $gateway)
+            {
+                if ($gateway instanceof GingerAdditionalTestingEnvironment)
+                {
+                    if (WC_Ginger_Clientbuilder::gingerBuildClient($gateway->id)) continue;
+                }
+                if (strstr($gateway->id,WC_Ginger_BankConfig::BANK_PREFIX)) unset($gateways[$key]);
+            }
+            return $gateways;
+        }
+
+        try {
+            $allowed_currencies = $this->ginger_get_allowed_currencies();
+        } catch (Exception $exception) {
+            //Unfortunately $exception->getCode() is empty hence we find error code in $exception->getMessage()
+            if (strstr($exception->getMessage(),"Unauthorized(401)"))
+            {
+                if(!wc_has_notice(sprintf(__('API Key is not valid: %s '.WC_Ginger_BankConfig::BANK_LABEL.' payment methods deactivated', WC_Ginger_BankConfig::BANK_PREFIX), $exception->getMessage()), 'notice'))
+                {
+                    wc_add_notice(sprintf(__('API Key is not valid: %s '.WC_Ginger_BankConfig::BANK_LABEL.' payment methods deactivated', WC_Ginger_BankConfig::BANK_PREFIX), $exception->getMessage()), 'notice');
+                }
+                foreach ($gateways as $key => $gateway) if (strstr($gateway->id,WC_Ginger_BankConfig::BANK_PREFIX)) unset($gateways[$key]);
+
+                return $gateways;
+            }
+
+            foreach ($gateways as $gateway)
+            {
+                if (!strstr($gateway->id,WC_Ginger_BankConfig::BANK_PREFIX)) continue; //skip woocommerce default payment methods
+                $paymentMethod = str_replace(WC_Ginger_BankConfig::BANK_PREFIX.'_', '', $gateway->id); //get payment method name without bank prefix
+                $allowed_currencies['payment_methods'][$paymentMethod]['currencies'] = ['EUR']; //create array of currency with one default currency - EUR for each payment method
+            }
+        }
+
+        $notAvailableGateways = "";
+        foreach ($gateways as $key => $gateway)
+        {
+            if (!strstr($gateway->id,WC_Ginger_BankConfig::BANK_PREFIX)) continue; //skip woocommerce default payment methods
+            $currentMethod = str_replace(WC_Ginger_BankConfig::BANK_PREFIX.'_','',$gateway->id);
+            if(!array_key_exists($currentMethod, $allowed_currencies['payment_methods']) || !$allowed_currencies['payment_methods'][$currentMethod]['currencies']) continue;
+            if(!in_array($current_currency, $allowed_currencies['payment_methods'][$currentMethod]['currencies']))
+            {
+                $notAvailableGateways .= $gateway->method_title."; <br>";
+                unset($gateways[$key]);
+            }
+        }
+        if($notAvailableGateways && !wc_has_notice(__('The following payment methods are not available for selected currency: <br>'.$notAvailableGateways, WC_Ginger_BankConfig::BANK_PREFIX), 'notice'))
+        {
+            wc_add_notice(__('The following payment methods are not available for selected currency: <br>'.$notAvailableGateways, WC_Ginger_BankConfig::BANK_PREFIX), 'notice');
+        }
+        return $gateways;
+    }
+
+    function ginger_get_allowed_currencies()
+    {
+        if (file_exists(__DIR__."/../ginger_currency_list.json"))
+        {
+            $currencyList = json_decode(file_get_contents(__DIR__."/../ginger_currency_list.json"),true);
+            if ($currencyList['expired_time'] > time()) return $currencyList['currency_list'];
+        }
+
+        $allowed_currencies = $this->cacheCurrencyList();
+
+        return $allowed_currencies;
+    }
+
+
+    public function refresh_saved_currency_array()
+    {
+        WC_Admin_Notices::remove_notice('ginger-error');
+
+        try {
+            $this->cacheCurrencyList();
+        }catch (Exception $exception){
+            WC_Admin_Notices::add_custom_notice('ginger-error', $exception->getMessage());
+            return false;
+        }
+
+        return true;
+    }
+
+    private function cacheCurrencyList()
+    {
+        $allowed_currencies = $this->gingerClient->getCurrencyList();
+        $currencyListWithExpiredTime = [
+            'currency_list' => $allowed_currencies,
+            'expired_time' => time() + (60*6)
+        ];
+        file_put_contents(__DIR__."/../ginger_currency_list.json", json_encode($currencyListWithExpiredTime));
+
+        return $allowed_currencies;
+    }
 
     /**
      * @return null|void
