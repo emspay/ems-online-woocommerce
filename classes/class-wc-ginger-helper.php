@@ -11,12 +11,6 @@ class WC_Ginger_Helper
 {
 
     /**
-     * AfterPay terms condition
-     */
-    const GINGER_AFTERPAY_TERMS_CONDITION_URL_NL = 'https://www.afterpay.nl/nl/algemeen/betalen-met-afterpay/betalingsvoorwaarden';
-    const GINGER_AFTERPAY_TERMS_CONDITION_URL_BE = 'https://www.afterpay.be/be/footer/betalen-met-afterpay/betalingsvoorwaarden';
-
-    /**
      * List of payment methods that support capturing
      */
     const GATEWAYS_SUPPORT_CAPTURING = [

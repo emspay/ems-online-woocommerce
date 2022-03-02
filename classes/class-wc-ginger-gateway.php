@@ -182,9 +182,8 @@ class WC_Ginger_Gateway extends WC_Payment_Gateway
             woocommerce_form_field('gender', array(
                 'type' => 'select',
                 'class' => array('input-text'),
-                'label' => __('Gender:', WC_Ginger_BankConfig::BANK_PREFIX),
                 'options' => array(
-                    '' => '',
+                    '' => __('Gender', WC_Ginger_BankConfig::BANK_PREFIX),
                     'male' => __('Male', WC_Ginger_BankConfig::BANK_PREFIX),
                     'female' => __('Female', WC_Ginger_BankConfig::BANK_PREFIX),
                 ),
@@ -244,9 +243,10 @@ class WC_Ginger_Gateway extends WC_Payment_Gateway
                 'class' => array('input-text'),
                 'label' => sprintf(
                     __("I accept <a href='%s' target='_blank'>Terms and Conditions</a>", WC_Ginger_BankConfig::BANK_PREFIX),
-                    (WC_Ginger_Helper::gingerGetBillingCountry() == 'NL'?WC_Ginger_Helper::GINGER_AFTERPAY_TERMS_CONDITION_URL_NL: WC_Ginger_Helper::GINGER_AFTERPAY_TERMS_CONDITION_URL_BE)
+                    (WC_Ginger_Helper::gingerGetBillingCountry() == 'NL'? static::GINGER_AFTERPAY_TERMS_CONDITION_URL_NL: static::GINGER_AFTERPAY_TERMS_CONDITION_URL_EN)
                 ),
-                'required' => true
+                'required' => true,
+                'id'=> 'toc'
             ));
 
             echo "</fieldset>";

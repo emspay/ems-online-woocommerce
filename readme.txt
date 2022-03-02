@@ -3,7 +3,7 @@ Tags: EMS Online, WooCommerce, payment
 Contributors: emspay, gingerpayments
 Requires at least: 5.6
 Tested up to: 5.6
-Stable tag: 1.3.6
+Stable tag: 1.3.7
 License: The MIT License (MIT)
 License URI: https://opensource.org/licenses/MIT
 
@@ -262,3 +262,7 @@ https://developer.emspay.eu/contact
 
 * Removed unavailable payment methods
 * Added caching the array of currency
+
+** 1.3.7 **
+
+* Added possibility to skip the intermediate page with terms of condition in AfterPay

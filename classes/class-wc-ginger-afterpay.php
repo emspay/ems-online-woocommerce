@@ -7,7 +7,8 @@ if (!defined('ABSPATH')) {
 class WC_Ginger_AfterPay extends WC_Ginger_BankGateway implements
     GingerCustomerPersonalInformation,
     GingerAdditionalTestingEnvironment,
-    GingerCountryValidation
+    GingerCountryValidation,
+    GingerTermsAndConditions
 {
     public function __construct()
     {

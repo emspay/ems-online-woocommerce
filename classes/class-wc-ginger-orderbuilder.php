@@ -13,6 +13,7 @@ class WC_Ginger_Orderbuilder extends WC_Ginger_Gateway
     /**
      * Function builds an order
      * @return array
+     * @throws Exception
      */
     public function gingerGetBuiltOrder(): array
     {
@@ -28,19 +29,9 @@ class WC_Ginger_Orderbuilder extends WC_Ginger_Gateway
         $order['webhook_url'] = $this->gingerGetWebhookUrl();
         $order['order_lines'] = $this->gingerGetOrderLines($this->woocommerceOrder);
 
-        $transactions = $this->gingerGetTransactions();
-
-        if ($this instanceof GingerIssuers)
-        {
-            $transactions = array_merge(
-                $transactions,
-                array_filter(['payment_method_details' => ['issuer_id' => $this->gingerGetSelectedIssuer()]])
-            );
-        }
-
         if (!$this instanceof GingerHostedPaymentPage) //HPP order must not contains transaction field
         {
-            $order['transactions'][] = $transactions;
+            $order['transactions'][] = $this->gingerGetTransactions();;
         }
 
         return $order;
@@ -59,13 +50,50 @@ class WC_Ginger_Orderbuilder extends WC_Ginger_Gateway
     /**
      * Function returns transaction array
      * @return array
+     * @throws Exception
      */
     public function gingerGetTransactions(): array
     {
-        return [
-            'payment_method' => $this->gingerGetPaymentMethod()
-        ];
+        return array_filter([
+            'payment_method' => $this->gingerGetPaymentMethod(),
+            'payment_method_details' => $this->gingerGetPaymentMethodDetails()
+        ]);
     }
+
+    /**
+     * @return array|string[]
+     * @throws Exception
+     */
+    public function gingerGetPaymentMethodDetails(): array
+    {
+        $paymentMethodDetails = [];
+
+        //uses for ideal
+        if ($this instanceof GingerIssuers)
+        {
+            $paymentMethodDetails['issuer_id'] = $this->gingerGetSelectedIssuer();
+            return $paymentMethodDetails;
+        }
+
+        //uses for afterpay
+        if ($this instanceof GingerTermsAndConditions)
+        {
+            $termsAndConditionFlag = WC_Ginger_Helper::gingerGetCustomPaymentField('toc');
+            if ($termsAndConditionFlag)
+            {
+                $paymentMethodDetails = [
+                    'verified_terms_of_service' => true,
+                ];
+            }
+            return $paymentMethodDetails;
+
+        }
+
+        return $paymentMethodDetails;
+
+    }
+
+
 
     /**
      * Function returns chosen payment method

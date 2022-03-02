@@ -139,3 +139,7 @@
 
 * Removed unavailable payment methods
 * Added caching the array of currency
+
+** 1.3.7 **
+
+* Added possibility to skip the intermediate page with terms of condition in AfterPay
