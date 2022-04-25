@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-10 12:58+0300\n"
-"PO-Revision-Date: 2022-01-10 07:44+0000\n"
+"PO-Revision-Date: 2022-04-25 10:29+0000\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de-DE\n"
@@ -19,7 +19,6 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;esc_html_e;esc_html__\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: .\n"
-"\n"
 "X-Loco-Version: 2.5.3; wp-5.7.5"
 
 #: classes/class-wc-emspay-banktransfer.php:121
@@ -261,6 +260,12 @@ msgstr "Gateway deaktiviert"
 #: classes/class-wc-emspay-afterpay.php:100
 msgid "Gender:"
 msgstr "Geschlecht:"
+
+msgid "GiroPay"
+msgstr "GiroPay"
+
+msgid "GiroPay - EMS Online"
+msgstr "GiroPay - EMS Online"
 
 #: classes/class-wc-emspay-afterpay.php:161
 #, php-format
