@@ -27,7 +27,7 @@ class WC_Ginger_Gateway extends WC_Payment_Gateway
         add_action( 'woocommerce_before_settings_checkout', array( $this, 'ginger_checkout_tab_output' ) );
         add_action('woocommerce_update_options_payment_gateways_'.$this->id, array($this, 'process_admin_options'));
         add_action('woocommerce_update_options_payment_gateways_'.$this->id, array($this, 'ginger_update_options_payment_gateways'));
-        add_action('woocommerce_update_options_payment_gateways_'.$this->id, array($this, 'refresh_saved_currency_array'));
+        add_action('updated_option', array($this, 'ginger_check_api_key'), 10, 3);
         add_action('woocommerce_thankyou_'.$this->id, array($this, 'ginger_handle_thankyou'));
         add_action('woocommerce_api_'.strtolower(get_class($this)), array($this, 'ginger_handle_callback'));
         add_filter('woocommerce_valid_order_statuses_for_payment_complete', array($this, 'ginger_append_processing_order_post_status'));
@@ -117,7 +117,19 @@ class WC_Ginger_Gateway extends WC_Payment_Gateway
         return $gateways;
     }
 
-    function ginger_get_allowed_currencies()
+    public function ginger_get_allowed_currencies()
+    {
+        $allowed_currencies = $this->ginger_get_cached_currencies();
+
+        if (!$allowed_currencies){
+            $this->ginger_refresh_saved_currency_array();
+            $allowed_currencies = $this->ginger_get_cached_currencies();
+        }
+
+        return $allowed_currencies;
+    }
+
+    public function ginger_get_cached_currencies()
     {
         if (file_exists(__DIR__."/../ginger_currency_list.json"))
         {
@@ -125,27 +137,33 @@ class WC_Ginger_Gateway extends WC_Payment_Gateway
             if ($currencyList['expired_time'] > time()) return $currencyList['currency_list'];
         }
 
-        $allowed_currencies = $this->cacheCurrencyList();
-
-        return $allowed_currencies;
+        return false;
     }
 
-
-    public function refresh_saved_currency_array()
+    public function ginger_check_api_key($option_name, $old_value, $new_value)
     {
-        WC_Admin_Notices::remove_notice('ginger-error');
-
-        try {
-            $this->cacheCurrencyList();
-        }catch (Exception $exception){
-            WC_Admin_Notices::add_custom_notice('ginger-error', $exception->getMessage());
-            return false;
+        if ($option_name == 'woocommerce_ginger_settings' && $this->id == 'ginger')
+        {
+            WC_Admin_Notices::remove_notice('ginger-exception-error');
+            try {
+                #TODO refactor ClientBuilder and add possibility to provide custom api-key, currently api-key is caching and at this moment  get_option('woocommerce_ginger_settings') contains old api-key
+                $this->gingerClient = \Ginger\Ginger::createClient(
+                    WC_Ginger_BankConfig::GINGER_BANK_ENDPOINT,
+                    $new_value['api_key'],
+                    ($new_value['bundle_cacert'] == 'yes') ?
+                        [
+                            CURLOPT_CAINFO => WC_Ginger_Clientbuilder::gingerGetCaCertPath()
+                        ] : []
+                );
+                $this->ginger_refresh_saved_currency_array();
+            } catch (Exception $exception){
+                WC_Admin_Notices::add_custom_notice('ginger-exception-error', $exception->getMessage());
+            }
         }
-
-        return true;
     }
 
-    private function cacheCurrencyList()
+
+    public function ginger_refresh_saved_currency_array()
     {
         $allowed_currencies = $this->gingerClient->getCurrencyList();
         $currencyListWithExpiredTime = [
@@ -153,8 +171,6 @@ class WC_Ginger_Gateway extends WC_Payment_Gateway
             'expired_time' => time() + (60*6)
         ];
         file_put_contents(__DIR__."/../ginger_currency_list.json", json_encode($currencyListWithExpiredTime));
-
-        return $allowed_currencies;
     }
 
     /**
@@ -471,7 +487,6 @@ class WC_Ginger_Gateway extends WC_Payment_Gateway
     {
         $this->enabled = false;
         $this->update_option('enabled', false);
-        WC_Admin_Notices::add_custom_notice('ginger-error', $reason);
     }
 
     /**

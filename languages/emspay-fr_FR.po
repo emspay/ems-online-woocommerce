@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-10 13:11+0300\n"
-"PO-Revision-Date: 2022-01-10 07:43+0000\n"
+"PO-Revision-Date: 2022-04-25 10:31+0000\n"
 "Last-Translator: \n"
 "Language-Team: French (France)\n"
 "Language: fr-FR\n"
@@ -263,6 +263,12 @@ msgstr "Passerelle désactivée"
 #: classes/class-wc-emspay-afterpay.php:100
 msgid "Gender:"
 msgstr "Sexe:"
+
+msgid "GiroPay"
+msgstr "GiroPay"
+
+msgid "GiroPay - EMS Online"
+msgstr "GiroPay - EMS Online"
 
 #: classes/class-wc-emspay-afterpay.php:161
 #, php-format

@@ -3,7 +3,7 @@ Tags: EMS Online, WooCommerce, payment
 Contributors: emspay, gingerpayments
 Requires at least: 5.6
 Tested up to: 5.6
-Stable tag: 1.3.7
+Stable tag: 1.3.8
 License: The MIT License (MIT)
 License URI: https://opensource.org/licenses/MIT
 
@@ -266,3 +266,9 @@ https://developer.emspay.eu/contact
 ** 1.3.7 **
 
 * Added possibility to skip the intermediate page with terms of condition in AfterPay
+
+** 1.3.8 **
+
+*Added GiroPay payment method
+*Added Api Key check 
+*Fixed bug: Fatal error appears when Api-key field has been filled and it was empty 

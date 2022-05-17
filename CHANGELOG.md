@@ -143,3 +143,9 @@
 ** 1.3.7 **
 
 * Added possibility to skip the intermediate page with terms of condition in AfterPay
+
+** 1.3.8 **
+
+*Added GiroPay payment method
+*Added Api Key check 
+*Fixed bug: Fatal error appears when Api-key field has been filled and it was empty 
