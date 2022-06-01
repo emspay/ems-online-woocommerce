@@ -2,7 +2,7 @@
 Tags: EMS Online, WooCommerce, payment
 Contributors: emspay, gingerpayments
 Requires at least: 5.6
-Tested up to: 5.6
+Tested up to: 6.0
 Stable tag:
 License: The MIT License (MIT)
 License URI: https://opensource.org/licenses/MIT
@@ -88,7 +88,7 @@ Manual installation by uploading ZIP file from WordPress administration environm
 3. Select the ems-online.zip file.
 4. Continue with step 3 of Installation using (s)FTP.
 
-Compatibility: WordPress 5.6
+Compatibility: WordPress 5.6 or higher
 
 
 == Screenshots ==

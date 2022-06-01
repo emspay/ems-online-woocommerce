@@ -79,7 +79,7 @@ Manual installation by uploading ZIP file from WordPress administration environm
 3. Select the ems-online.zip file.
 4. Continue with step 3 of Installation using (s)FTP.
 
-Compatibility: WordPress 5.6
+Compatibility: WordPress 5.6 or higher
 
 ## WooCommerce & qTranslate-X compatibility
 In order for the webhook URL to be accessible by the EMS Online API you need to go to: Settings -> Languages -> General
