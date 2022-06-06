@@ -2,8 +2,8 @@
 Tags: EMS Online, WooCommerce, payment
 Contributors: emspay, gingerpayments
 Requires at least: 5.6
-Tested up to: 5.6
-Stable tag: 1.3.8
+Tested up to: 6.0
+Stable tag: 1.3.9
 License: The MIT License (MIT)
 License URI: https://opensource.org/licenses/MIT
 
@@ -88,7 +88,7 @@ Manual installation by uploading ZIP file from WordPress administration environm
 3. Select the ems-online.zip file.
 4. Continue with step 3 of Installation using (s)FTP.
 
-Compatibility: WordPress 5.6
+Compatibility: WordPress 5.6 or higher
 
 
 == Screenshots ==
@@ -269,6 +269,11 @@ https://developer.emspay.eu/contact
 
 ** 1.3.8 **
 
-*Added GiroPay payment method
-*Added Api Key check 
-*Fixed bug: Fatal error appears when Api-key field has been filled and it was empty 
+* Added GiroPay payment method
+* Added Api Key check
+* Fixed bug: Fatal error appears when Api-key field has been filled and it was empty
+
+** 1.3.9 **
+
+* The plugin has been tested with the latest versions of WordPress (5.7, 5.8, 5.9, 6.0)
+* Updated the "Library" module's description

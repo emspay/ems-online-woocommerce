@@ -146,6 +146,11 @@
 
 ** 1.3.8 **
 
-*Added GiroPay payment method
-*Added Api Key check 
-*Fixed bug: Fatal error appears when Api-key field has been filled and it was empty 
+* Added GiroPay payment method
+* Added Api Key check
+* Fixed bug: Fatal error appears when Api-key field has been filled and it was empty
+
+** 1.3.9 **
+
+* The plugin has been tested with the latest versions of WordPress (5.7, 5.8, 5.9, 6.0)
+* Updated the "Library" module's description

@@ -115,8 +115,8 @@ class WC_Ginger_Helper
                     'lib_title' => [
                         'title' => __( 'Title', WC_Ginger_BankConfig::BANK_PREFIX ),
                         'type' => 'text',
-                        'description' => __( 'This controls the title which the user sees during checkout.', WC_Ginger_BankConfig::BANK_PREFIX ),
-                        'default' => __( 'Library', WC_Ginger_BankConfig::BANK_PREFIX )
+                        'description' => __( 'This is the general module with settings, during checkout the user will not see this option.', WC_Ginger_BankConfig::BANK_PREFIX ),
+                        'default' => __( 'Plugin', WC_Ginger_BankConfig::BANK_PREFIX )
                     ],
                     'api_key' => [
                         'title' => __('API key', WC_Ginger_BankConfig::BANK_PREFIX),
