@@ -40,6 +40,8 @@ class WC_Ginger_BankConfig
         'emspay_google-pay',
         'emspay_sofort',
         'emspay_giropay',
+        'emspay_swish',
+        'emspay_mobilepay',
     ];
 
     /**
@@ -65,5 +67,7 @@ class WC_Ginger_BankConfig
         'WC_Ginger_GooglePay',
         'WC_Ginger_KlarnaDirectDebit',
         'WC_Ginger_GiroPay',
+        'WC_Ginger_Swish',
+        'WC_Ginger_MobilePay',
     ];
 }
