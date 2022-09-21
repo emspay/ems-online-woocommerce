@@ -3,7 +3,7 @@ Tags: EMS Online, WooCommerce, payment
 Contributors: emspay, gingerpayments
 Requires at least: 5.6
 Tested up to: 6.0
-Stable tag: 1.3.9
+Stable tag: 1.3.10
 License: The MIT License (MIT)
 License URI: https://opensource.org/licenses/MIT
 
@@ -277,3 +277,8 @@ https://developer.emspay.eu/contact
 
 * The plugin has been tested with the latest versions of WordPress (5.7, 5.8, 5.9, 6.0)
 * Updated the "Library" module's description
+
+** 1.3.10 **
+
+* Fixed bug: user gets error "Merchant order line id's must be unique" when cart contains the same products as different items
+* Added new payment methods: Swish, MobilePay, 

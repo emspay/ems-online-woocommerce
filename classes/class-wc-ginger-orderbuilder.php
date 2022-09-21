@@ -410,10 +410,13 @@ class WC_Ginger_Orderbuilder extends WC_Ginger_Gateway
     public function gingerGetOrderLines($order)
     {
         $orderLines = [];
+        $productIds = [];
 
         foreach ($order->get_items() as $orderLine)
         {
             $productId = (int) $orderLine->get_variation_id() ?: $orderLine->get_product_id();
+            $productIds[] = $productId;
+
             $imageURL = wp_get_attachment_url($orderLine->get_product()->get_image_id());
             $orderLines[] = array_filter([
                 'url' => get_permalink($productId),
@@ -435,7 +438,42 @@ class WC_Ginger_Orderbuilder extends WC_Ginger_Gateway
             $orderLines[] = $this->gingerGetShippingOrderLine($order);
         }
 
+
+        //bug-fix: PLUG-1381
+        if (count($productIds) !== count(array_unique($productIds))) {
+            $orderLines = $this->gingerGetUniqueOrderLines($orderLines);
+        }
+
         return $orderLines;
+    }
+
+    /**
+     * @param $orderLines - array that contains order line duplications
+     * @return array - array without duplications
+     */
+    public function gingerGetUniqueOrderLines($orderLines)
+    {
+        $updatedOrderLines = [];
+
+        foreach ($orderLines as $orderLine) {
+
+            $addOrderLine = true;
+
+            foreach ($updatedOrderLines as $key => $updatedOrderLine) {
+                if ($updatedOrderLine['merchant_order_line_id'] == $orderLine['merchant_order_line_id']) {
+                    $updatedOrderLines[$key]['quantity']+= $orderLine['quantity'];
+                    $addOrderLine = false; //order line already exists, so we just sum the quantity
+                    break;
+                }
+            }
+
+            if ($addOrderLine) {
+                $updatedOrderLines[] = $orderLine;
+            }
+
+        }
+
+        return $updatedOrderLines;
     }
 
     /**
