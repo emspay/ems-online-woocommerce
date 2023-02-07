@@ -158,4 +158,13 @@
 ** 1.3.10 **
 
 * Fixed bug: user gets error "Merchant order line id's must be unique" when cart contains the same products as different items
-* Added new payment methods: Swish, MobilePay, 
+* Added new payment methods: Swish, MobilePay,
+
+** 1.3.11 **
+
+* Fixed bug: user gets error "array offset on value of type bool" when the plugin has been installed in first time
+
+** 1.3.12 **
+
+* Fixed bug: user gets error "Warning: Trying to access array offset on value of type bool" when the plugin has been installed in first time
+* Fixed bug: user gets email with error "Warning: Trying to access array offset on value of type bool"

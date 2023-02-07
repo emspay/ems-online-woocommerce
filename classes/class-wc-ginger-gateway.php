@@ -513,16 +513,16 @@ class WC_Ginger_Gateway extends WC_Payment_Gateway
     {
         if (!$this->gingerClient) return true;
         $gingerOrder = $this->gingerClient->getOrder(get_post_custom_values(WC_Ginger_BankConfig::BANK_PREFIX.'_order_id',$order_id)[0]);
-        $paymentReference = get_post_custom_values('bank_reference',$order_id)[0];
 
         $gingerOrderIBAN = current($gingerOrder['transactions'])['payment_method_details']['creditor_iban'];
+        $gingerOrderReference = current($gingerOrder['transactions'])['payment_method_details']['reference'];
         $gingerOrderBIC = current($gingerOrder['transactions'])['payment_method_details']['creditor_bic'];
         $gingerOrderHolderName = current($gingerOrder['transactions'])['payment_method_details']['creditor_account_holder_name'];
         $gingerOrderHolderCity = current($gingerOrder['transactions'])['payment_method_details']['creditor_account_holder_city'];
 
         return esc_html__("Please use the following payment information:", WC_Ginger_BankConfig::BANK_PREFIX)
             . "<br/>"
-            . esc_html__("Bank Reference:", WC_Ginger_BankConfig::BANK_PREFIX).' '.$paymentReference
+            . esc_html__("Bank Reference:", WC_Ginger_BankConfig::BANK_PREFIX).' '.$gingerOrderReference
             . "<br/>"
             . esc_html__("IBAN:", WC_Ginger_BankConfig::BANK_PREFIX).' '.$gingerOrderIBAN
             . "<br/>"
