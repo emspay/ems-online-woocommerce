@@ -163,3 +163,8 @@
 ** 1.3.11 **
 
 * Fixed bug: user gets error "array offset on value of type bool" when the plugin has been installed in first time
+
+** 1.3.12 **
+
+* Fixed bug: user gets error "Warning: Trying to access array offset on value of type bool" when the plugin has been installed in first time
+* Fixed bug: user gets email with error "Warning: Trying to access array offset on value of type bool"
