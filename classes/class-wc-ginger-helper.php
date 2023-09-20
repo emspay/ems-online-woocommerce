@@ -222,7 +222,9 @@ class WC_Ginger_Helper
         if (in_array($method, WC_Ginger_BankConfig::$BANK_PAYMENT_METHODS))
         {
             $imageTitle = str_replace(WC_Ginger_BankConfig::BANK_PREFIX,'ginger',$method);
-            return '<img src="'.WC_HTTPS::force_https_url(GINGER_PLUGIN_URL."images/{$imageTitle}.png").'" />';
+            $imageType = $imageTitle == 'ginger_pay-now' ? 'png' : 'svg';
+            $imagePath = GINGER_PLUGIN_URL."images/{$imageTitle}.$imageType";
+            return '<img src="'.WC_HTTPS::force_https_url($imagePath).'" />';
         }
     }
 

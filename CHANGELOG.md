@@ -1,4 +1,4 @@
-# Changelog WooCommerce
+git# Changelog WooCommerce
 
 ** 1.0.0 **
 
@@ -168,3 +168,8 @@
 
 * Fixed bug: user gets error "Warning: Trying to access array offset on value of type bool" when the plugin has been installed in first time
 * Fixed bug: user gets email with error "Warning: Trying to access array offset on value of type bool"
+
+** 1.3.13 **
+
+* Added Viacash
+* Changed payment method icons

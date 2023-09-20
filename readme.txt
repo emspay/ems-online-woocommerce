@@ -3,7 +3,7 @@ Tags: EMS Online, WooCommerce, payment
 Contributors: emspay, gingerpayments
 Requires at least: 5.6
 Tested up to: 6.1
-Stable tag: 1.3.12
+Stable tag: 1.3.13
 License: The MIT License (MIT)
 License URI: https://opensource.org/licenses/MIT
 
@@ -291,3 +291,8 @@ https://developer.emspay.eu/contact
 
 * Fixed bug: user gets error "Warning: Trying to access array offset on value of type bool" when the plugin has been installed in first time
 * Fixed bug: user gets email with error "Warning: Trying to access array offset on value of type bool"
+
+** 1.3.13 **
+
+* Added Viacash
+* Changed payment method icons
