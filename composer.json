@@ -1,8 +1,16 @@
 {
-    "require": {
-        "gingerpayments/ginger-php": "^2.2"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^9.3.7"
-    }
+	"name": "pantropica/ems-online-woocommerce",
+	"description": "",
+	"version": "1.0.0",
+	"keywords": [
+		"wordpress",
+		"plugin"
+	],
+	"type": "wordpress-plugin",
+	"require": {
+		"gingerpayments/ginger-php": "^2.2"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "^9.3.7"
+	}
 }
