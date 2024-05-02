@@ -32,7 +32,8 @@ spl_autoload_register(function ($class)
     if (is_readable($filepath) && is_file($filepath)) require_once($filepath);
 });
 
-require_once(untrailingslashit(plugin_dir_path(__FILE__)).'/vendor/autoload.php');
+// require_once(untrailingslashit(plugin_dir_path(__FILE__)).'/vendor/autoload.php');
+require_once(untrailingslashit(dirname($_SERVER['DOCUMENT_ROOT'])) . '/vendor/autoload.php');
 
 
 function woocommerce_ginger_init()
