@@ -173,3 +173,7 @@ git# Changelog WooCommerce
 
 * Added Viacash
 * Changed payment method icons
+
+** 1.3.14 **
+
+* Fixed bug with order status mapping
