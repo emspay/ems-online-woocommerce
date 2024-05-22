@@ -37,6 +37,7 @@ class WC_Ginger_Callback extends WC_Ginger_BankGateway
                 } else {
                     $order->payment_complete();
                 }
+                $order->update_status($this->ginger_get_store_status($gingerOrder['status']));
                 exit;
             }
 
@@ -112,11 +113,12 @@ class WC_Ginger_Callback extends WC_Ginger_BankGateway
     {
         $maps_statuses = [
             'new' => 'pending',
-            'processing' => 'pending',
+            'processing' => 'processing',
             'error' => 'failed',
             'expired' => 'cancelled',
             'cancelled' => 'cancelled',
-            'see-transactions' => 'on-hold'
+            'see-transactions' => 'on-hold',
+            'completed' => 'completed'
         ];
         return $maps_statuses[$gingerOrderStatus];
     }

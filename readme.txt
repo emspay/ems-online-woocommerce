@@ -3,7 +3,7 @@ Tags: EMS Online, WooCommerce, payment
 Contributors: emspay, gingerpayments
 Requires at least: 5.6
 Tested up to: 6.1
-Stable tag: 1.3.13
+Stable tag: 1.3.14
 License: The MIT License (MIT)
 License URI: https://opensource.org/licenses/MIT
 
@@ -296,3 +296,7 @@ https://developer.emspay.eu/contact
 
 * Added Viacash
 * Changed payment method icons
+
+** 1.3.14 **
+
+* Fixed bug with order status mapping

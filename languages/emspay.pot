@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EMS Online 1.2.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/ems-pay\n"
-"POT-Creation-Date: 2022-07-25 06:26+0000\n"
+"POT-Creation-Date: 2022-04-25 10:27+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Language: \n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;"
 
-#: classes/class-wc-emspay-afterpay.php:20
+#: classes/class-wc-emspay-afterpay.php:20 
 #: classes/class-wc-emspay-afterpay.php:21
 msgid "EMS Online : AfterPay"
 msgstr ""
@@ -35,7 +35,7 @@ msgstr ""
 msgid "Your payment using AfterPay is successful."
 msgstr ""
 
-#: classes/class-wc-emspay-afterpay.php:83
+#: classes/class-wc-emspay-afterpay.php:83 
 #: classes/class-wc-emspay-klarnapaylater.php:84
 msgid "The invoice will be sent to your email."
 msgstr ""
@@ -125,30 +125,30 @@ msgstr ""
 msgid "American Express - EMS Online"
 msgstr ""
 
-#: classes/class-wc-emspay-amex.php:50 classes/class-wc-emspay-applepay.php:50
-#: classes/class-wc-emspay-bancontact.php:50
-#: classes/class-wc-emspay-callback.php:164
-#: classes/class-wc-emspay-creditcard.php:50
-#: classes/class-wc-emspay-ideal.php:58
-#: classes/class-wc-emspay-klarnapaynow.php:50
-#: classes/class-wc-emspay-payconiq.php:50
-#: classes/class-wc-emspay-paynow.php:49 classes/class-wc-emspay-paypal.php:50
-#: classes/class-wc-emspay-tikkiepaymentrequest.php:50
+#: classes/class-wc-emspay-amex.php:50 classes/class-wc-emspay-applepay.php:50 
+#: classes/class-wc-emspay-bancontact.php:50 
+#: classes/class-wc-emspay-callback.php:164 
+#: classes/class-wc-emspay-creditcard.php:50 
+#: classes/class-wc-emspay-ideal.php:58 
+#: classes/class-wc-emspay-klarnapaynow.php:50 
+#: classes/class-wc-emspay-payconiq.php:50 
+#: classes/class-wc-emspay-paynow.php:49 classes/class-wc-emspay-paypal.php:50 
+#: classes/class-wc-emspay-tikkiepaymentrequest.php:50 
 #: classes/class-wc-emspay-wechat.php:50
 msgid "There was a problem processing your transaction."
 msgstr ""
 
-#: classes/class-wc-emspay-applepay.php:17
+#: classes/class-wc-emspay-applepay.php:17 
 #: classes/class-wc-emspay-applepay.php:18
 msgid "Apple Pay - EMS Online"
 msgstr ""
 
-#: classes/class-wc-emspay-bancontact.php:17
+#: classes/class-wc-emspay-bancontact.php:17 
 #: classes/class-wc-emspay-bancontact.php:18
 msgid "Bancontact - EMS Online"
 msgstr ""
 
-#: classes/class-wc-emspay-banktransfer.php:26
+#: classes/class-wc-emspay-banktransfer.php:26 
 #: classes/class-wc-emspay-banktransfer.php:27
 msgid "Banktransfer - EMS Online"
 msgstr ""
@@ -181,7 +181,7 @@ msgstr ""
 msgid "Residence:"
 msgstr ""
 
-#: classes/class-wc-emspay-callback.php:16
+#: classes/class-wc-emspay-callback.php:16 
 #: classes/class-wc-emspay-callback.php:17
 msgid "EMS Online"
 msgstr ""
@@ -194,7 +194,7 @@ msgstr ""
 msgid "API key provided by EMS"
 msgstr ""
 
-#: classes/class-wc-emspay-callback.php:31
+#: classes/class-wc-emspay-callback.php:31 
 #: classes/class-wc-emspay-helper.php:328
 msgid "Test API key"
 msgstr ""
@@ -241,7 +241,7 @@ msgstr ""
 msgid "Resolves issue when curl.cacert path is not set in PHP.ini"
 msgstr ""
 
-#: classes/class-wc-emspay-creditcard.php:17
+#: classes/class-wc-emspay-creditcard.php:17 
 #: classes/class-wc-emspay-creditcard.php:18
 msgid "Mastercard, VISA, Maestro or V PAY - EMS Online"
 msgstr ""
@@ -449,7 +449,7 @@ msgstr ""
 msgid "Choose your bank:"
 msgstr ""
 
-#: classes/class-wc-emspay-klarnapaylater.php:17
+#: classes/class-wc-emspay-klarnapaylater.php:17 
 #: classes/class-wc-emspay-klarnapaylater.php:18
 msgid "Klarna Pay Later - EMS Online"
 msgstr ""
@@ -465,12 +465,12 @@ msgstr ""
 msgid "Your payment using Klarna is successful."
 msgstr ""
 
-#: classes/class-wc-emspay-klarnapaynow.php:17
+#: classes/class-wc-emspay-klarnapaynow.php:17 
 #: classes/class-wc-emspay-klarnapaynow.php:18
 msgid "EMS Online - Klarna Pay Now"
 msgstr ""
 
-#: classes/class-wc-emspay-payconiq.php:17
+#: classes/class-wc-emspay-payconiq.php:17 
 #: classes/class-wc-emspay-payconiq.php:18
 msgid "EMS Online - PAYCONIQ"
 msgstr ""
@@ -483,7 +483,7 @@ msgstr ""
 msgid "PayPal - EMS Online"
 msgstr ""
 
-#: classes/class-wc-emspay-tikkiepaymentrequest.php:17
+#: classes/class-wc-emspay-tikkiepaymentrequest.php:17 
 #: classes/class-wc-emspay-tikkiepaymentrequest.php:18
 msgid "Tikkie Payment Request - EMS Online"
 msgstr ""
@@ -530,17 +530,4 @@ msgid "GiroPay"
 msgstr ""
 
 msgid "GiroPay - EMS Online"
-msgstr ""
-
-msgid ""
-"Swish\n"
-msgstr ""
-
-msgid "Swish - EMS Online"
-msgstr ""
-
-msgid "MobilePay - EMS Online"
-msgstr ""
-
-msgid "MobilePay"
 msgstr ""

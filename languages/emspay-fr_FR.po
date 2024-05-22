@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-10 13:11+0300\n"
-"PO-Revision-Date: 2022-07-25 06:30+0000\n"
+"PO-Revision-Date: 2023-09-21 10:56+0000\n"
 "Last-Translator: \n"
 "Language-Team: French (France)\n"
 "Language: fr_FR\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Poedit-KeywordsList: _e;__;esc_html_e;esc_html__\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: .\n"
-"X-Loco-Version: 2.5.3; wp-5.7.5"
+"X-Loco-Version: 2.5.3; wp-6.1.1"
 
 #: classes/class-wc-emspay-banktransfer.php:121
 msgid "Account Holder:"
@@ -135,7 +135,7 @@ msgstr "Pays disponibles pour AfterPay"
 
 #: classes/class-wc-emspay-helper.php:227
 msgid "Credit Card"
-msgstr "Cartes de crédit"
+msgstr "Carte de crédit / débit"
 
 #: classes/class-wc-emspay-callback.php:55
 msgid "cURL CA bundle"
@@ -206,7 +206,7 @@ msgstr "Activer les paiements par Virement Bancaire"
 
 #: classes/class-wc-emspay-helper.php:228
 msgid "Enable Credit Card Payments"
-msgstr "Activer les paiements par Cartes de crédit"
+msgstr "Activer les paiements par Carte de crédit / débit"
 
 #: classes/class-wc-emspay-helper.php:223
 msgid "Enable iDEAL Payments"
@@ -372,12 +372,6 @@ msgstr "EMS Online: MasterCard, VISA, Maestro ou V PAY"
 msgid "May"
 msgstr "Mai"
 
-msgid "MobilePay"
-msgstr "MobilePay"
-
-msgid "MobilePay - EMS Online"
-msgstr "MobilePay - EMS Online"
-
 #: classes/class-wc-emspay-afterpay.php:137
 msgid "Nov"
 msgstr "Novembre"
@@ -453,13 +447,6 @@ msgstr "Septembre"
 #: classes/class-wc-emspay-callback.php:49
 msgid "Shopping Cart"
 msgstr "Panier"
-
-msgid ""
-"Swish\n"
-msgstr "Swish"
-
-msgid "Swish - EMS Online"
-msgstr "Swish - EMS Online"
 
 #: classes/class-wc-emspay-callback.php:31
 #: classes/class-wc-emspay-helper.php:328
