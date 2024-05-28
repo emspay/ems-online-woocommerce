@@ -253,9 +253,9 @@ class WC_Ginger_Orderbuilder extends WC_Ginger_Gateway
                 'address_type' => 'billing',
                 'address' => (string) trim($this->billingAddress['address_1'])
                     .' '.trim($this->billingAddress['address_2'])
-                    .' '.trim(str_replace(' ', '', $this->billingAddress['postcode']))
                     .' '.trim($this->billingAddress['city']),
                 'country' => (string) $this->billingAddress['country'],
+                'postal_code' => $this->billingAddress['postcode']
             ]
         ];
     }
