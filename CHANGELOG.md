@@ -177,3 +177,7 @@ git# Changelog WooCommerce
 ** 1.3.14 **
 
 * Fixed bug with order status mapping
+
+** 1.3.15 **
+
+* Updated additional addresses at customer
