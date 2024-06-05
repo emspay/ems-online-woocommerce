@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-06-05T09:58:42+00:00\n"
+"POT-Creation-Date: 2024-06-05T12:43:13+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: emspay\n"
@@ -60,7 +60,7 @@ msgid "Bank Transfer - "
 msgstr ""
 
 #: classes/class-wc-ginger-callback.php:62
-msgid "There was a problem processing your transaction. "
+msgid "There was a problem processing your transaction."
 msgstr ""
 
 #: classes/class-wc-ginger-creditcard.php:14

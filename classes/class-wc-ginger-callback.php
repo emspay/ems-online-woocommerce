@@ -59,7 +59,7 @@ class WC_Ginger_Callback extends WC_Ginger_BankGateway
 			exit;
 		}
 
-		wc_add_notice(__('There was a problem processing your transaction. ' . current($gingerOrder['transactions'])['customer_message'], "emspay"), 'error');
+		wc_add_notice(__('There was a problem processing your transaction.', "emspay") . current($gingerOrder['transactions'])['customer_message'], 'error');
 		if ($this->get_option('failed_redirect') == 'cart') {
 			$url = $order->get_cancel_order_url();
 		} else {
