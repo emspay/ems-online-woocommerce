@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-10 13:02+0300\n"
-"PO-Revision-Date: 2024-06-05 10:14+0000\n"
+"PO-Revision-Date: 2024-06-05 10:36+0000\n"
 "Last-Translator: \n"
 "Language-Team: Nederlands\n"
 "Language: nl_NL\n"
@@ -126,7 +126,7 @@ msgstr "Checkout pagina"
 
 #: classes/class-wc-ginger-gateway.php:174
 msgid "Choose your bank:"
-msgstr "Selecteer uw bank:"
+msgstr "Selecteer jouw bank:"
 
 #: classes/class-wc-ginger-helper.php:192
 msgid "Countries available for "
@@ -373,7 +373,7 @@ msgstr "Alleen voltooide bestellingen kunnen worden terugbetaald"
 #: classes/class-wc-ginger-helper.php:127
 msgid "Page where user is redirected after payment has failed."
 msgstr ""
-"De pagina waar uw klant naar wordt doorverwezen na een mislukte betaling."
+"De pagina waar je klant naar wordt doorverwezen na een mislukte betaling."
 
 #: classes/class-wc-ginger-helper.php:85
 msgid "Pay Now"
@@ -394,7 +394,7 @@ msgstr "PAYCONIQ - "
 
 #: classes/class-wc-ginger-gateway.php:275
 msgid "Payment Error: You must choose an iDEAL Bank!"
-msgstr "Om met iDEAL te kunnen betalen dient u uw bank te selecteren."
+msgstr "Om met iDEAL te kunnen betalen moet je jouw bank selecteren."
 
 #: classes/class-wc-ginger-helper.php:65
 msgid "PayPal"
@@ -414,7 +414,7 @@ msgstr ""
 
 #: classes/class-wc-ginger-gateway.php:505
 msgid "Please use the following payment information:"
-msgstr "Gebruik het volgende kenmerk bij uw overschrijving:"
+msgstr "Gebruik het volgende kenmerk bij jouw overschrijving:"
 
 #: classes/class-wc-ginger-helper.php:118
 msgid "Plugin"
@@ -458,11 +458,10 @@ msgid "Test API key"
 msgstr "EMS Online Test API-sleutel:"
 
 #: classes/class-wc-ginger-helper.php:177
-#, fuzzy
 msgid "Test API key for testing implementation of Klarna."
 msgstr ""
-"Vul hier de API Key in van uw test webshop. Dit is alleen van toepassing "
-"voor Klarna. Gebruikt u Klarna niet dan kunt u dit leeglaten."
+"Vul hier de API Key in van jouw test webshop. Dit is alleen van toepassing "
+"voor Klarna. Gebruikt je Klarna niet dan kunt je dit leeglaten."
 
 #: classes/class-wc-ginger-gateway.php:105
 #: classes/class-wc-ginger-gateway.php:106
@@ -473,21 +472,21 @@ msgstr ""
 "valuta:"
 
 #: classes/class-wc-ginger-callback.php:62
-#, fuzzy
 msgid "There was a problem processing your transaction."
 msgstr ""
-"Helaas is er een fout opgetreden tijdens het verwerken van uw betaling. "
+"Helaas is er een fout opgetreden tijdens het verwerken van jouw betaling. "
 "Probeer het alstublieft nogmaals."
 
 #. translators: %s: The error message
 #: classes/class-wc-ginger-gateway.php:285
 msgid "There was a problem processing your transaction: %s"
-msgstr "Er is een probleem opgetreden bij het verwerken van uw transactie: %s"
+msgstr ""
+"Er is een probleem opgetreden bij het verwerken van jouw transactie: %s"
 
 #: classes/class-wc-ginger-helper.php:166
 msgid "This controls the title which the user sees during checkout."
 msgstr ""
-"Dit veld is de naam van de betaalmethode die uw klant zal zien bij het "
+"Dit veld is de naam van de betaalmethode die jouw klant zal zien bij het "
 "afrekenen."
 
 #: classes/class-wc-ginger-helper.php:117
@@ -535,6 +534,6 @@ msgid ""
 "Your transaction is still being processed. You will be notified when status "
 "is updated."
 msgstr ""
-"Uw betaling is in behandeling. We hebben nog geen bevestiging van uw bank of "
-"kaartuitgever ontvangen. U ontvangt een bericht zodra we deze hebben "
+"Je betaling is in behandeling. We hebben nog geen bevestiging van jouw bank "
+"of kaartuitgever ontvangen. Je ontvangt een bericht zodra we deze hebben "
 "ontvangen."
