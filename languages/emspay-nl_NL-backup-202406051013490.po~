@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-10 13:02+0300\n"
-"PO-Revision-Date: 2024-06-05 10:14+0000\n"
+"PO-Revision-Date: 2024-06-05 10:12+0000\n"
 "Last-Translator: \n"
 "Language-Team: Nederlands\n"
 "Language: nl_NL\n"
@@ -48,7 +48,7 @@ msgstr "American Express"
 
 #: classes/class-wc-ginger-amex.php:14 classes/class-wc-ginger-amex.php:15
 msgid "American Express - "
-msgstr "American Express - "
+msgstr ""
 
 #: classes/class-wc-ginger-helper.php:121
 msgid "API key"
@@ -57,7 +57,7 @@ msgstr "EMS Online API Key:"
 #: classes/class-wc-ginger-gateway.php:60
 #: classes/class-wc-ginger-gateway.php:61
 msgid "API key is empty. "
-msgstr "API key is empty. "
+msgstr ""
 
 #: classes/class-wc-ginger-gateway.php:421
 msgid "API key is empty. Set API key and try again"
@@ -66,7 +66,7 @@ msgstr "API-Key is leeg. Stel de API-Key in en probeer het opnieuw"
 #. translators: %s: the error message
 #: classes/class-wc-ginger-gateway.php:79
 msgid "API Key is not valid: %s "
-msgstr "API Key is not valid: %s "
+msgstr ""
 
 #: classes/class-wc-ginger-helper.php:123
 #, fuzzy
@@ -130,7 +130,7 @@ msgstr "Selecteer uw bank:"
 
 #: classes/class-wc-ginger-helper.php:192
 msgid "Countries available for "
-msgstr "Landen beschikbaar voor "
+msgstr ""
 
 #: classes/class-wc-ginger-helper.php:49
 msgid "Credit Card"
@@ -160,7 +160,7 @@ msgstr "EMS Online"
 
 #. Description of the plugin
 msgid "EMS Pay WooCommerce plugin"
-msgstr "EMS Pay WooCommerce plugin"
+msgstr ""
 
 #: classes/class-wc-ginger-helper.php:70
 msgid "Enable AfterPay Payments"
@@ -188,7 +188,7 @@ msgstr "Schakel creditcard-/debetkaartbetalingen in"
 
 #: classes/class-wc-ginger-helper.php:102
 msgid "Enable Google Pay Payments"
-msgstr "Enable Google Pay Payments"
+msgstr ""
 
 #: classes/class-wc-ginger-helper.php:46
 msgid "Enable iDEAL Payments"
@@ -196,7 +196,7 @@ msgstr "iDEAL betalingen aanzetten"
 
 #: classes/class-wc-ginger-helper.php:106
 msgid "Enable Klarna Direct Debit Payments"
-msgstr "Enable Klarna Direct Debit Payments"
+msgstr ""
 
 #: classes/class-wc-ginger-helper.php:74
 msgid "Enable Klarna Pay Later Payments"
@@ -220,7 +220,7 @@ msgstr "PayPal betalingen aanzetten"
 
 #: classes/class-wc-ginger-helper.php:110
 msgid "Enable Sofort Payments"
-msgstr "Enable Sofort Payments"
+msgstr ""
 
 #: classes/class-wc-ginger-helper.php:94
 msgid "Enable Tikkie Payment Request Payments"
@@ -296,7 +296,7 @@ msgstr "iDEAL - "
 
 #: classes/class-wc-ginger-helper.php:182
 msgid "IP address for testing "
-msgstr "IP-adres voor testen"
+msgstr ""
 
 #: classes/class-wc-ginger-gateway.php:228
 msgid "Jaar"
@@ -316,7 +316,7 @@ msgstr "Juni"
 
 #: classes/class-wc-ginger-helper.php:105
 msgid "Klarna Direct Debit"
-msgstr "Klarna Direct Debit"
+msgstr ""
 
 #: classes/class-wc-ginger-helper.php:73
 msgid "Klarna Pay Later"
@@ -368,7 +368,7 @@ msgstr "Oktober"
 
 #: ginger.php:108
 msgid "Only completed orders can be refunded"
-msgstr "Alleen voltooide bestellingen kunnen worden terugbetaald"
+msgstr ""
 
 #: classes/class-wc-ginger-helper.php:127
 msgid "Page where user is redirected after payment has failed."
@@ -422,16 +422,16 @@ msgstr "Plugin"
 
 #: ginger.php:141
 msgid "Refund order is not completed"
-msgstr "De terugbetalingsbestelling is niet voltooid"
+msgstr ""
 
 #. translators: %s: Order number
 #: ginger.php:135
 msgid "Refund order is not completed: %s"
-msgstr "Terugbetalingsbestelling is niet voltooid: %s"
+msgstr ""
 
 #: ginger.php:119
 msgid "Refunds only possible when captured"
-msgstr "Terugbetalingen zijn alleen mogelijk wanneer ze zijn vastgelegd"
+msgstr ""
 
 #: classes/class-wc-ginger-gateway.php:515
 msgid "Residence:"
@@ -482,7 +482,7 @@ msgstr ""
 #. translators: %s: The error message
 #: classes/class-wc-ginger-gateway.php:285
 msgid "There was a problem processing your transaction: %s"
-msgstr "Er is een probleem opgetreden bij het verwerken van uw transactie: %s"
+msgstr ""
 
 #: classes/class-wc-ginger-helper.php:166
 msgid "This controls the title which the user sees during checkout."
@@ -495,8 +495,6 @@ msgid ""
 "This is the general module with settings, during checkout the user will not "
 "see this option."
 msgstr ""
-"Dit is de algemene module met instellingen, tijdens het afrekenen ziet de "
-"gebruiker deze optie niet."
 
 #: classes/class-wc-ginger-helper.php:93
 msgid "Tikkie Payment Request"
