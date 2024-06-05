@@ -190,16 +190,7 @@ function woocommerce_ginger_init()
 	function ginger_order_received_text($text, $order)
 	{
 		$orderBuilder = new WC_Ginger_Orderbuilder();
-
-
-		var_dump($order);
-
-		//if(\property_exists($order, 'get_id')) {
-
-		//}
-
 		$orderBuilder->gingerSetMerchantOrderID($order->get_id());
-
 		return $orderBuilder->gingerGetOrderDescription();
 	}
 
