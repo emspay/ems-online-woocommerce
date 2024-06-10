@@ -181,3 +181,7 @@ git# Changelog WooCommerce
 ** 1.3.15 **
 
 * Updated additional addresses at customer
+
+** 1.3.16 **
+
+* Updated plugin settings: added checkbox that provides possibility to automatically change merchant’s order status to Completed
