@@ -146,6 +146,11 @@ class WC_Ginger_Helper
                         ),
                         'type' => 'checkbox',
                         'desc_tip' => true
+                    ],
+                    'auto_complete' => [
+                        'title' => __('Auto complete orders', WC_Ginger_BankConfig::BANK_PREFIX),
+                        'label' => __('Enable automatically change store orders status to Completed after receiving payment', WC_Ginger_BankConfig::BANK_PREFIX),
+                        'type' => 'checkbox'
                     ]
                 ];
             default:
@@ -192,10 +197,10 @@ class WC_Ginger_Helper
         {
             $additionalFields = [
                 'countries_available' => [
-                'title' => __('Countries available for ' . $gateway->method_title, WC_Ginger_BankConfig::BANK_PREFIX),
-                'type' => 'text',
-                'default' => implode(', ',self::gingerGetAvailableCountries($gateway->id)),
-                'description' => __('To allow '. $gateway->method_title.' to be used for any other country just add its country code (in ISO 2 standard) to the "Countries available for '. $gateway->method_title.'" field. Example: BE, NL, FR <br>  If field is empty then ' .$gateway->method_title. ' will be available for all countries.', WC_Ginger_BankConfig::BANK_PREFIX),
+                    'title' => __('Countries available for ' . $gateway->method_title, WC_Ginger_BankConfig::BANK_PREFIX),
+                    'type' => 'text',
+                    'default' => implode(', ',self::gingerGetAvailableCountries($gateway->id)),
+                    'description' => __('To allow '. $gateway->method_title.' to be used for any other country just add its country code (in ISO 2 standard) to the "Countries available for '. $gateway->method_title.'" field. Example: BE, NL, FR <br>  If field is empty then ' .$gateway->method_title. ' will be available for all countries.', WC_Ginger_BankConfig::BANK_PREFIX),
                 ]
             ];
             $formFields = array_merge($formFields, $additionalFields);

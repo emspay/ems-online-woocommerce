@@ -37,7 +37,12 @@ class WC_Ginger_Callback extends WC_Ginger_BankGateway
                 } else {
                     $order->payment_complete();
                 }
-                $order->update_status($this->ginger_get_store_status($gingerOrder['status']));
+                $settings = get_option('woocommerce_ginger_settings');
+
+                $autocomplete = $settings['auto_complete'] ?? 'no';
+                if ($autocomplete == 'yes') {
+                    $order->update_status($this->ginger_get_store_status($gingerOrder['status']));
+                }
                 exit;
             }
 
