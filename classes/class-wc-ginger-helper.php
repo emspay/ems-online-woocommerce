@@ -145,6 +145,11 @@ class WC_Ginger_Helper
 						),
 						'type' => 'checkbox',
 						'desc_tip' => true
+					],
+					'auto_complete' => [
+						'title' => __('Auto complete orders', WC_Ginger_BankConfig::BANK_PREFIX),
+						'label' => __('Enable automatically change store orders status to Completed after receiving payment', WC_Ginger_BankConfig::BANK_PREFIX),
+						'type' => 'checkbox'
 					]
 				];
 			default:
