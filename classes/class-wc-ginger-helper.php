@@ -31,7 +31,6 @@ class WC_Ginger_Helper
 		return null;
 	}
 
-
 	/**
 	 * Form helper for admin settings display
 	 *
@@ -147,8 +146,8 @@ class WC_Ginger_Helper
 						'desc_tip' => true
 					],
 					'auto_complete' => [
-						'title' => __('Auto complete orders', WC_Ginger_BankConfig::BANK_PREFIX),
-						'label' => __('Enable automatically change store orders status to Completed after receiving payment', WC_Ginger_BankConfig::BANK_PREFIX),
+						'title' => __('Auto complete orders', "emspay"),
+						'label' => __('Enable automatically change store orders status to Completed after receiving payment', "emspay"),
 						'type' => 'checkbox'
 					]
 				];
