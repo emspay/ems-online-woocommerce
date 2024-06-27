@@ -180,17 +180,6 @@ class WC_Ginger_Gateway extends WC_Payment_Gateway
     {
         if (!$this->has_fields) return null;
 
-        if($this instanceof GingerIssuers)
-        {
-            echo '<select name="ginger_ideal_issuer_id">';
-            echo '<option value="">'.esc_html__('Choose your bank:', WC_Ginger_BankConfig::BANK_PREFIX).'</option>';
-            foreach ($this->gingerClient->getIdealIssuers() AS $issuer)
-            {
-                echo '<option value="'.$issuer['id'].'">'.htmlspecialchars($issuer['name']).'</option>';
-            }
-            echo '</select>';
-        }
-
         if($this instanceof GingerCustomerPersonalInformation)
         {
             echo '<fieldset><legend>'.esc_html__('Additional Information', WC_Ginger_BankConfig::BANK_PREFIX).'</legend >';
@@ -281,15 +270,6 @@ class WC_Ginger_Gateway extends WC_Payment_Gateway
         $this->woocommerceOrder = new WC_Order($this->merchant_order_id);
 
         if($this->woocommerceOrder->get_payment_method() != $this->id) return false;
-
-        if ($this instanceof GingerIssuers)
-        {
-            if (!$this->gingerGetSelectedIssuer())
-            {
-                wc_add_notice(__('Payment Error: You must choose an iDEAL Bank!', WC_Ginger_BankConfig::BANK_PREFIX), 'error');
-                return ['result' => 'failure'];
-            }
-        }
 
         try {
             $gingerOrder = $this->gingerClient->createOrder($this->gingerGetBuiltOrder());
