@@ -39,7 +39,7 @@ simply request your live account.
 
 ## Version number
 
-Version 1.3.16
+Version 1.3.17
 
 ## Pre-requisites to install the plug-ins
 

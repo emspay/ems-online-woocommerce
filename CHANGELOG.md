@@ -185,3 +185,7 @@ git# Changelog WooCommerce
 ** 1.3.16 **
 
 - Updated plugin settings: added checkbox that provides possibility to automatically change merchant’s order status to Completed
+
+** 1.3.17 **
+
+- Removed select in ideal payment method

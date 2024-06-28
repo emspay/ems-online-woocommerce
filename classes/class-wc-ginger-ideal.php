@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-class WC_Ginger_Ideal extends WC_Ginger_BankGateway implements GingerIssuers
+class WC_Ginger_Ideal extends WC_Ginger_BankGateway
 {
 
 	public function __construct()

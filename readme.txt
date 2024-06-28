@@ -3,7 +3,7 @@ Tags: EMS Online, WooCommerce, payment
 Contributors: emspay, gingerpayments
 Requires at least: 5.6
 Tested up to: 6.5
-Stable tag: 1.3.16
+Stable tag: 1.3.17
 License: The MIT License (MIT)
 License URI: https://opensource.org/licenses/MIT
 
@@ -308,3 +308,7 @@ https://developer.emspay.eu/contact
 ** 1.3.16 **
 
 * Updated plugin settings: added checkbox that provides possibility to automatically change merchant’s order status to Completed
+
+** 1.3.17 **
+
+* Removed select in ideal payment method

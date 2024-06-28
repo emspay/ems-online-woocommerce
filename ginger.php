@@ -4,7 +4,7 @@
  * Plugin Name: EMS Online
  * Plugin URI: https://emspay.nl/
  * Description: EMS Pay WooCommerce plugin
- * Version: 1.3.16
+ * Version: 1.3.17
  * Author: Ginger Payments
  * Author URI: https://www.gingerpayments.com/
  * License: The MIT License (MIT)
