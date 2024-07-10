@@ -22,7 +22,7 @@ class WC_Ginger_Orderbuilder extends WC_Ginger_Gateway
         $order['merchant_order_id'] = $this->gingerGetMerchantOrderID();
         $order['customer'] = $this->gingerGetCustomerInfo();
         $order['currency'] = $this->gingerGetCurrency();
-        $order['extra'] = $this->gingerGetExtra();
+        $order['client'] = $this->gingerGetClient();
         $order['amount'] = $this->gingerGetAmount();
         $order['description'] = $this->gingerGetOrderDescription();
         $order['return_url'] = $this->gingergetReturnUrl();
@@ -101,7 +101,7 @@ class WC_Ginger_Orderbuilder extends WC_Ginger_Gateway
      * Function returns extra fields
      * @return array
      */
-    public function gingerGetExtra(): array
+    public function gingerGetClient(): array
     {
         return [
             'user_agent' => $this->gingerGetUserAgent(),
