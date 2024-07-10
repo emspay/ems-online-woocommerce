@@ -189,3 +189,7 @@ git# Changelog WooCommerce
 ** 1.3.17 **
 
 * Removed select in ideal payment method
+
+** 1.3.18 **
+
+* Removed AfterPay payment method
