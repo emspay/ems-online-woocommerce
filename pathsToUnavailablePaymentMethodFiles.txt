@@ -5,6 +5,7 @@ classes/class-wc-ginger-wechat.php
 classes/class-wc-ginger-giropay.php
 classes/class-wc-ginger-swish.php
 classes/class-wc-ginger-mobilepay.php
+classes/class-wc-ginger-afterpay.php
 images/ginger_sofort.png
 images/ginger_klarna-direct-debit.png
 images/ginger_tikkie-payment-request.png
@@ -12,3 +13,4 @@ images/ginger_wechat.png
 images/ginger_giropay.png
 images/ginger_swish.png
 images/ginger_mobilepay.png
+images/ginger_afterpay.png
